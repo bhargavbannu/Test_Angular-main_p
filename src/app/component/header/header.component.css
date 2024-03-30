@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.plane-bottom {
+  margin-right: auto;
+  margin-top: -26px;
+  /* margin-left: -82px; */
+  position: fixed;
+    left: 0;
+}
+
+.plane-engines {
+  margin-left: auto;
+  position: fixed;
+  right: 0px;
+  /* margin-right: -82px; */
+  margin-top: -6px;
+}
+
+.plane-top {
+  background-image: url(../../../assets/images/clouds-banner.gif);
+  background-repeat: no-repeat;
+  background-color: #00007c;
+}
+
+.loggedArea {
+  color: #ffffff;
+  background-color: #00007c;
+}
+
+.loginTitle {
+    display: flex;
+    font-weight: bold;
+}
+.manualArea  {
+  margin-left: auto;   
+}
+
+.manualArea a{
+    color: #ffffff;
+    font-weight: bold;
+    font-family: Arial;
+    text-decoration: none;
+}
+

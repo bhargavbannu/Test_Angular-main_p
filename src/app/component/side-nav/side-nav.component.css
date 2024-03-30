@@ -1,0 +1,142 @@
+.sidenav-container{
+  height: 70% !important;
+  position: absolute;
+  overflow: unset;
+}
+
+.sidenav {
+width: 268px !important;
+height: fit-content;
+margin-top: 5px;
+border: 1px solid;
+border-top-right-radius: 25px;
+border-top-left-radius: 25px;
+color: #ffffff;
+font-weight: bold;
+background-color: #00007c;
+}
+
+
+.mat-mdc-list-item {
+  height: 27px !important;
+  overflow: hidden !important;
+  display: table !important;
+  padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+} 
+/* .mat-mdc-list-base{
+    height: 30px !important;
+    overflow: hidden !important;
+    display: table !important;
+    padding-top: 0px !important;
+      padding-bottom: 0px !important;
+} */
+.mat-mdc-nav-list .mat-mdc-list-base .mdc-list {
+    display: table !important;
+    height: 29px !important;
+    overflow: hidden;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    position: relative !important;   
+    overflow-y: auto; 
+} 
+
+
+.menu-heading{
+  text-align: center;
+  background-color: #8383B3;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.footer {
+ height: 30px;
+ margin-top: -15px;
+ background-color: #8383B3;
+}
+
+.mat-drawer-inner-container {
+  overflow: hidden !important;
+}
+
+::ng-deep .mdc-list-item__primary-text{
+  color: #ffffff !important;
+}
+
+
+::ng-deep .mainlist {
+  margin-top: -28px !important;
+  /* height: 356px;  mychnage */
+}
+
+::ng-deep .sublinks .mdc-list-item__content {
+  margin-left: 40px !important;
+  margin-top: -35px !important;
+  padding-top: 0px !important;
+
+}
+
+.mat-mdc-nav-list,
+.mat-mdc-list-base,
+.mdc-list,
+.sublinks {
+    padding-top: 0 !important; /* Override padding top */
+}
+
+.dummy{
+  height: 55px;
+  padding-top: 16px;
+}
+
+.span1{
+  display: flex;
+height: 12px;
+padding-bottom: 19px;
+}
+
+.dummy1{
+  height: 60px;
+}
+
+.span2{
+  height: 27px;
+  padding-top: 8px;
+}
+
+.span3{
+  height: 60px;
+}
+
+.span4{
+  height: 21px;
+}
+.span4{
+  height: 20px;
+}
+.subspan1{
+  height: 28px;
+  padding-left: 37px;
+}
+.span13{
+  height: 17px;
+}
+.span11{
+  height: 23px;
+}
+.span14{
+  height: 18px;
+}
+.dummy3{
+  height: 156px;
+  padding-top: 4px;
+}
+
+.span6{
+  height: 20px;
+}
+.dummy2{
+  height: 80px;
+  padding-top: 5px;
+}
