@@ -5,7 +5,7 @@
 }
 
 .sidenav {
-width: 268px !important;
+width: 239px !important;
 height: fit-content;
 margin-top: 5px;
 border: 1px solid;
@@ -61,6 +61,9 @@ background-color: #00007c;
   overflow: hidden !important;
 }
 
+.mat-drawer-content{
+margin-left: 241px !important;
+}
 ::ng-deep .mdc-list-item__primary-text{
   color: #ffffff !important;
 }
