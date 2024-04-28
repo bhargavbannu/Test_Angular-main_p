@@ -1,22 +1,28 @@
 .container {
   display: flex;
   align-items: center;
+  position: relative;
+  min-width: 100%;
+  /* left: 9%; */
 }
 
 .plane-bottom {
   margin-right: auto;
   margin-top: -26px;
+  left: 0;
+  position: absolute;
   /* margin-left: -82px; */
-  position: fixed;
-    left: 0;
+  /* position: fixed; */
 }
 
 .plane-engines {
   margin-left: auto;
-  position: fixed;
-  right: 0px;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  /* position: fixed; */
   /* margin-right: -82px; */
-  margin-top: -6px;
+  /* margin-top: -6px; */
 }
 
 .plane-top {
@@ -31,17 +37,16 @@
 }
 
 .loginTitle {
-    display: flex;
-    font-weight: bold;
+  display: flex;
+  font-weight: bold;
 }
-.manualArea  {
-  margin-left: auto;   
-}
-
-.manualArea a{
-    color: #ffffff;
-    font-weight: bold;
-    font-family: Arial;
-    text-decoration: none;
+.manualArea {
+  margin-left: auto;
 }
 
+.manualArea a {
+  color: #ffffff;
+  font-weight: bold;
+  font-family: Arial;
+  text-decoration: none;
+}

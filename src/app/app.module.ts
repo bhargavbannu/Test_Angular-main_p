@@ -9,12 +9,13 @@ import { SideNavComponent } from './component/side-nav/side-nav.component';
 import { SearchComponent } from './component/search/search.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { SearchPaginationComponent } from './component/search-pagination/search-pagination.component';
-import {MatSidenavModule} from '@angular/material/sidenav'
-import {MatListModule} from '@angular/material/list'
-import {MatInputModule} from '@angular/material/input'
-import {MatCheckboxModule} from '@angular/material/checkbox'
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { DocumentComponent } from './document/document.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
     HeaderComponent,
     SideNavComponent,
     SearchComponent,
-    SearchPaginationComponent
+    SearchPaginationComponent,
+    DocumentComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,9 +35,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
     MatSidenavModule,
     MatListModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

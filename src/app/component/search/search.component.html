@@ -1,61 +1,6 @@
-<!-- <div class="mt-3">
-    <div>
-        <h3>Search Criteria</h3>
-    </div>
-    <table class="table table-secondary table-bordered mt-3">
-        <tbody>
-            <tr>
-                <td><label>Vendor Name</label></td>
-                <td><input type="text" class="form-control" placeholder="Enter Vendor Name"></td>
-                <td><label>ESO</label></td>
-                <td><input type="text" class="form-control" placeholder="ESO"></td>
-            </tr>
-            <tr>
-                <td><label>Current Vendor Only</label></td>
-                <td><input type="checkbox" class="form-check-input"></td>
-                <td><label>EC</label></td>
-                <td><input type="text" class="form-control" placeholder="ECO"></td>
-            </tr>
-            <tr>
-                <td><label>Vendor Reference No</label></td>
-                <td><input type="text" class="form-control" placeholder="Enter Vendor Name"></td>
-                <td><label>ATA</label></td>
-                <td><input type="text" class="form-control" placeholder="ATA"></td>
-            </tr>
-            <tr>
-                <td><label>Detail Doc Type</label></td>
-                <td>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </td>
-                <td><label>Detail No</label></td>
-                <td><input type="text" class="form-control" placeholder="ESO"></td>
-            </tr>
-            <tr>
-                <td colspan="4"><a routerLink="/search/advance-search" routerLinkActive="active">Advance Search (Display)</a></td>
-            </tr>
-            <tr> 
-                <td colspan="4">
-                    <tr class="d-flex justify-content-end">
-                        <td><button type="button" class="btn btn-secondary btn-lg">Clear</button></td>
-                        <td><button type="button" class="btn btn-success btn-lg">Search</button></td>
-                    </tr>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
 <div>
-    <router-outlet></router-outlet>
-</div> 
-</div> -->
-
 <form
-class="formClass"
+  class="formClass"
   name="SearchForm"
   id="searchFormId"
   method="get"
@@ -73,7 +18,7 @@ class="formClass"
     id="currentVendorOnlyId"
     value="true"
   />
-
+<div style="padding-top: 3px;">
   <table cellspacing="0" cellpadding="0" border="0">
     <tbody>
       <tr>
@@ -117,10 +62,7 @@ class="formClass"
                         <td align="left">
                           <table>
                             <tbody>
-                              <tr
-                                class="eds-pagerstyle inline-table_dark_grey"
-                                style=""
-                              >
+                              <tr class="eds-pagerstyle inline-table_dark_grey">
                                 <td align="right">Vendor Name&nbsp; &nbsp;</td>
                                 <td align="left">
                                   <input
@@ -142,7 +84,11 @@ class="formClass"
                                 >
                                   <div
                                     class="inline-table_dark_grey"
-                                    style="vertical-align: middle; width: 85%; color: black;"
+                                    style="
+                                      vertical-align: middle;
+                                      width: 85%;
+                                      color: black;
+                                    "
                                   >
                                     Current Vendor Only
                                   </div>
@@ -160,7 +106,6 @@ class="formClass"
 
                               <tr
                                 class="eds-pagerstyle-alt inline-table_dark_grey"
-                                style=""
                               >
                                 <td align="right">
                                   Vendor Reference No.&nbsp; &nbsp;
@@ -180,225 +125,20 @@ class="formClass"
 
                               <tr
                                 class="eds-pagerstyle dropdown inline-table_dark_grey"
-                                style=""
                               >
                                 <td align="right">
                                   Detail Doc Type&nbsp; &nbsp;
                                 </td>
                                 <td align="left">
                                   <select
-                                    name="detailDocType"
-                                    class=""
-                                    tabindex="-1"
-                                  >
-                                    <option value=""></option>
-
-                                    <option value="AA SB">AA SB</option>
-
-                                    <option value="ACMM">ACMM</option>
-
-                                    <option value="ACMM/IPL">ACMM/IPL</option>
-
-                                    <option value="AIPC">AIPC</option>
-
-                                    <option value="ALS">ALS</option>
-
-                                    <option value="AMDT">AMDT</option>
-
-                                    <option value="AMM">AMM</option>
-
-                                    <option value="AMM/IPL">AMM/IPL</option>
-
-                                    <option value="AMOC">AMOC</option>
-
-                                    <option value="AOL">AOL</option>
-
-                                    <option value="ASM">ASM</option>
-
-                                    <option value="ATP">ATP</option>
-
-                                    <option value="AWL">AWL</option>
-
-                                    <option value="AWM">AWM</option>
-
-                                    <option value="CDCCL">CDCCL</option>
-
-                                    <option value="CESM">CESM</option>
-
-                                    <option value="CIR">CIR</option>
-
-                                    <option value="CMM">CMM</option>
-
-                                    <option value="CMM V1A">CMM V1A</option>
-
-                                    <option value="CMM VOL1">CMM VOL1</option>
-
-                                    <option value="CMM VOL2">CMM VOL2</option>
-
-                                    <option value="CMM VOL3">CMM VOL3</option>
-
-                                    <option value="CMM/3D">CMM/3D</option>
-
-                                    <option value="CMM/ATTA">CMM/ATTA</option>
-
-                                    <option value="CMM/IPC">CMM/IPC</option>
-
-                                    <option value="CMM/IPD">CMM/IPD</option>
-
-                                    <option value="CMM/IPL">CMM/IPL</option>
-
-                                    <option value="CMM/SUPP">CMM/SUPP</option>
-
-                                    <option value="CMP">CMP</option>
-
-                                    <option value="CMP/IPD">CMP/IPD</option>
-
-                                    <option value="CMP/IPL">CMP/IPL</option>
-
-                                    <option value="CMS">CMS</option>
-
-                                    <option value="CN">CN</option>
-
-                                    <option value="CPD">CPD</option>
-
-                                    <option value="CRM">CRM</option>
-
-                                    <option value="CRM/IPL">CRM/IPL</option>
-
-                                    <option value="CSB">CSB</option>
-
-                                    <option value="DEFAULT">DEFAULT</option>
-
-                                    <option value="EM">EM</option>
-
-                                    <option value="ESI">ESI</option>
-
-                                    <option value="FP">FP</option>
-
-                                    <option value="GPM">GPM</option>
-
-                                    <option value="IC">IC</option>
-
-                                    <option value="ICA">ICA</option>
-
-                                    <option value="IN">IN</option>
-
-                                    <option value="IPC">IPC</option>
-
-                                    <option value="IPC VOL2">IPC VOL2</option>
-
-                                    <option value="IPL">IPL</option>
-
-                                    <option value="IRM">IRM</option>
-
-                                    <option value="MCMM">MCMM</option>
-
-                                    <option value="MM">MM</option>
-
-                                    <option value="MM/IPC">MM/IPC</option>
-
-                                    <option value="MM/IPL">MM/IPL</option>
-
-                                    <option value="MSPM">MSPM</option>
-
-                                    <option value="NSC">NSC</option>
-
-                                    <option value="OIT">OIT</option>
-
-                                    <option value="OM">OM</option>
-
-                                    <option value="OM/IPC">OM/IPC</option>
-
-                                    <option value="OM/IPL">OM/IPL</option>
-
-                                    <option value="OPER/MM">OPER/MM</option>
-
-                                    <option value="OPER/MM/IPL">
-                                      OPER/MM/IPL
-                                    </option>
-
-                                    <option value="OPNC">OPNC</option>
-
-                                    <option value="OSDPR">OSDPR</option>
-
-                                    <option value="PL">PL</option>
-
-                                    <option value="PMP">PMP</option>
-
-                                    <option value="RIL">RIL</option>
-
-                                    <option value="RM">RM</option>
-
-                                    <option value="RS">RS</option>
-
-                                    <option value="SB">SB</option>
-
-                                    <option value="SDS">SDS</option>
-
-                                    <option value="SIL">SIL</option>
-
-                                    <option value="SL">SL</option>
-
-                                    <option value="SMM">SMM</option>
-
-                                    <option value="SNL">SNL</option>
-
-                                    <option value="SOPM">SOPM</option>
-
-                                    <option value="SOPM INTRO">
-                                      SOPM INTRO
-                                    </option>
-
-                                    <option value="SOPM INTRODUCTION">
-                                      SOPM INTRODUCTION
-                                    </option>
-
-                                    <option value="SPB">SPB</option>
-
-                                    <option value="SPCL">SPCL</option>
-
-                                    <option value="SPIB">SPIB</option>
-
-                                    <option value="SPM">SPM</option>
-
-                                    <option value="SRM">SRM</option>
-
-                                    <option value="TB">TB</option>
-
-                                    <option value="TEM">TEM</option>
-
-                                    <option value="TG">TG</option>
-
-                                    <option value="TIL">TIL</option>
-
-                                    <option value="TN">TN</option>
-
-                                    <option value="TR">TR</option>
-
-                                    <option value="TSG">TSG</option>
-
-                                    <option value="TSM">TSM</option>
-
-                                    <option value="TV">TV</option>
-
-                                    <option value="USERHBK">USERHBK</option>
-
-                                    <option value="V12">V12</option>
-
-                                    <option value="V22">V22</option>
-
-                                    <option value="VOL 1">VOL 1</option>
-
-                                    <option value="VOL 2">VOL 2</option>
-
-                                    <option value="VOL 3">VOL 3</option>
-
-                                    <option value="VSB">VSB</option>
-
-                                    <option value="WISE">WISE</option>
-
-                                    <option value="WSPG">WSPG</option>
-                                  </select>
+                                  name="detailDocType"
+                                  class=""
+                                  tabindex="-1"
+                                >
+                              <option *ngFor=" let doc of documents">
+                                {{doc.label}}
+
+                              </option></select>
                                 </td>
                               </tr>
                             </tbody>
@@ -409,7 +149,6 @@ class="formClass"
                             <tbody>
                               <tr
                                 class="eds-pagerstyle-alt inline-table_dark_grey"
-                                style=""
                               >
                                 <td align="right">ESO&nbsp; &nbsp;</td>
                                 <td align="left">
@@ -426,10 +165,7 @@ class="formClass"
                                 </td>
                               </tr>
 
-                              <tr
-                                class="eds-pagerstyle inline-table_dark_grey"
-                                style=""
-                              >
+                              <tr class="eds-pagerstyle inline-table_dark_grey">
                                 <td align="right">ECO&nbsp; &nbsp;</td>
                                 <td align="left">
                                   <input
@@ -446,7 +182,6 @@ class="formClass"
 
                               <tr
                                 class="eds-pagerstyle-alt inline-table_dark_grey"
-                                style=""
                               >
                                 <td align="right">ATA&nbsp; &nbsp;</td>
                                 <td align="left">
@@ -463,10 +198,7 @@ class="formClass"
                                 </td>
                               </tr>
 
-                              <tr
-                                class="eds-pagerstyle inline-table_dark_grey"
-                                style=""
-                              >
+                              <tr class="eds-pagerstyle inline-table_dark_grey">
                                 <td align="right">Detail No.&nbsp; &nbsp;</td>
                                 <td align="left">
                                   <input
@@ -492,11 +224,16 @@ class="formClass"
                             id="export-section-id_less"
                             class="hidableSectionLink"
                           >
-                             <!-- <a
+                            <!-- <a
                             href="javascript:showMore('export-section-id', setIsAdvancedSearchHidden);"
                             >Advanced Search (Display)</a
                           >  -->
-                          <a style="cursor:pointer; pointer-events: auto;" routerLinkActive="active" (click)="advancedSearch()">{{advancedSearchValue}}</a>
+                            <a
+                              style="cursor: pointer; pointer-events: auto"
+                              routerLinkActive="active"
+                              (click)="advancedSearch()"
+                              >{{ advancedSearchValue }}</a
+                            >
                           </div>
 
                           <div
@@ -504,13 +241,12 @@ class="formClass"
                             style="display: none"
                           >
                             <div class="hidableSectionLink">
-                               <a
-                              href="javascript:showLess('export-section-id',setIsAdvancedSearchHidden);"
-                              >Advanced Search (Hide)</a
-                            > 
+                              <a
+                                href="javascript:showLess('export-section-id',setIsAdvancedSearchHidden);"
+                                >Advanced Search (Hide)</a
+                              >
                             </div>
                             <table width="100%"></table>
-                          
                           </div>
                         </td>
                       </tr>
@@ -521,7 +257,7 @@ class="formClass"
               </tr>
               <div>
                 <router-outlet></router-outlet>
-              </div> 
+              </div>
               <tr class="eds-pagerstyle-alt blueColSpan">
                 <td colspan="2">
                   <span style="float: right">
@@ -538,51 +274,40 @@ class="formClass"
       </tr>
     </tbody>
   </table>
+  </div>
 </form>
 
+<div>
+  <td valign="top" align="left">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <!-- ERRORS -->
 
-
-<!-- <div class="form-row">
-  <h3>Search Criteria</h3>
-  <mat-form-field class="formfield">
-    <div class="input-container">
-      <label class="inlinelabel">Vendor Name</label>
-      <input matInput class="customInput" />
-    </div>
-
-    <div class="input-container2">
-      <label class="inlinelabel">ESO</label>
-      <input matInput class="customInput" />
-    </div>
-
-    <div class="input-container">
-      <label class="inlinelabel">Current Vendor Only</label>
-      <input type="checkbox" />
-    </div>
-
-    <div class="input-container">
-      <label class="inlinelabel">ECO</label>
-      <input matInput class="customInput" />
-    </div>
-
-    <div class="input-container">
-      <label class="inlinelabel">Vendor Reference No.</label>
-      <input matInput class="customInput" />
-    </div>
-
-    <div class="input-container">
-      <label class="inlinelabel">ATA</label>
-      <input matInput class="customInput" />
-    </div>
-
-    <div class="input-container">
-      <label class="inlinelabel">Detail Doc Type</label>
-      <input matInput class="customInput" />
-    </div>
-
-    <div class="input-container">
-      <label class="inlinelabel">Detail No.</label>
-      <input matInput class="customInput" />
-    </div>
-  </mat-form-field>
-</div> -->
+      <tbody>
+        <tr>
+          <td
+            id="errorMsg"
+            class="eds-messageframe"
+            style="display: none"
+            align="left"
+          >
+            <ul>
+              <li>
+                <span class="eds-message-warning" id="errorMsgContents"> </span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td id="emptyRow" style="display: none">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="left">
+            <!-- CONTENT -->
+            <br /><br />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</div>
+</div>
