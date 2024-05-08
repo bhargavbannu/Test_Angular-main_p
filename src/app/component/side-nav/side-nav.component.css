@@ -63,6 +63,7 @@ background-color: #00007c;
 
 .mat-drawer-content{
 margin-left: 241px !important;
+overflow: visible;
 }
 ::ng-deep .mdc-list-item__primary-text{
   color: #ffffff !important;
