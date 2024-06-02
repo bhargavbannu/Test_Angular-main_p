@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent,
-    children: [
+    children: [ 
       { path: 'advance-search', component: SearchPaginationComponent },
     ],
   },
