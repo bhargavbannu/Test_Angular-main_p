@@ -15,7 +15,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { DocumentComponent } from './document/document.component';
+import { DocumentComponent } from './component/document/document.component';
+import { SearchAuditComponent } from './component/search-audit/search-audit.component';
+import { SearchRoutesComponent } from './component/search-routes/search-routes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,8 @@ import { DocumentComponent } from './document/document.component';
     SearchComponent,
     SearchPaginationComponent,
     DocumentComponent,
+    SearchAuditComponent,
+    SearchRoutesComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,889 @@
+<div style="margin-top: 15px;">
+  <tr>
+    <td valign="top" align="left">
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+            <td
+              id="errorMsg"
+              class="eds-messageframe"
+              style="display: none"
+              align="left"
+            >
+              <ul>
+                <li>
+                  <span class="eds-message-warning" id="errorMsgContents">
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td id="emptyRow" style="display: none">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="left">
+              <form
+                name="OpenRouteFilterForm"
+                id="searchFormId"
+                method="get"
+                action="/vdt/OpenRoutes.html"
+              >
+                <table cellspacing="0" cellpadding="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <table
+                          class="eds-tabheader"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                        >
+                          <tbody>
+                            <tr>
+                              <td class="eds-tabtopleftcorner"></td>
+                              <td class="eds-tabtopmiddle" align="center">
+                                <div class="eds-tabtitle">Search Criteria</div>
+                              </td>
+                              <td class="eds-tabtoprightcorner"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="eds-tabtoprightcorner"></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table
+                          cellspacing="0"
+                          cellpadding="0"
+                          width="100%"
+                          border="0"
+                          class="eds-tabtitle"
+                        >
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table
+                                  class="inline-table_dark_grey"
+                                  width="600"
+                                >
+                                  <tbody>
+                                    <tr>
+                                      <td align="right" width="45%">
+                                        <table
+                                          class="inline-table_dark_grey"
+                                          style="width: 100%"
+                                        >
+                                          <tbody>
+                                            <tr
+                                              class="eds-pagerstyle dropdown inline-table_dark_grey"
+                                            >
+                                              <td align="right">
+                                                Routing&nbsp; &nbsp;
+                                              </td>
+                                              <td align="left">
+                                                <select
+                                                  name="routeType"
+                                                  class=""
+                                                  id="routeTypeId"
+                                                  style="width: 171.333334px;
+                                                  height: 19.333334px"
+                                                >
+                                                  <option value="">ALL</option>
+
+                                                  <option value="ETDT">
+                                                    ETDT
+                                                  </option>
+
+                                                  <option value="NONE">
+                                                    NONE
+                                                  </option>
+
+                                                  <option value="OLD">
+                                                    OLD
+                                                  </option>
+
+                                                  <option value="RR">RR</option>
+
+                                                  <option value="T4">T4</option>
+
+                                                  <option value="T5">T5</option>
+
+                                                  <option value="T6">T6</option>
+                                                </select>
+                                              </td>
+                                            </tr>
+
+                                            <tr
+                                              class="eds-pagerstyle-alt dropdown inline-table_dark_grey"
+                                            >
+                                              <td align="right">
+                                                Section&nbsp; &nbsp;
+                                              </td>
+                                              <td align="left">
+                                                <select
+                                                  name="section"
+                                                  class=""
+                                                  style="width: 171.333334px;
+                                                  height: 19.333334px"
+                                                >
+                                                  <option
+                                                    value="-1"
+                                                    selected="selected"
+                                                  >
+                                                    ALL
+                                                  </option>
+
+                                                  <option value="0">
+                                                    0 - 0
+                                                  </option>
+
+                                                  <option value="10">
+                                                    10 - 10
+                                                  </option>
+
+                                                  <option value="12">
+                                                    12 - 12
+                                                  </option>
+
+                                                  <option value="14">
+                                                    14 - 14
+                                                  </option>
+
+                                                  <option value="17">
+                                                    17 - 17
+                                                  </option>
+
+                                                  <option value="20">
+                                                    20 - 20
+                                                  </option>
+
+                                                  <option value="21">
+                                                    21 - 21
+                                                  </option>
+
+                                                  <option value="23">
+                                                    23 - 23
+                                                  </option>
+
+                                                  <option value="30">
+                                                    30 - 30
+                                                  </option>
+
+                                                  <option value="36">
+                                                    36 - 36
+                                                  </option>
+
+                                                  <option value="38">
+                                                    38 - 38
+                                                  </option>
+
+                                                  <option value="39">
+                                                    39 - 39
+                                                  </option>
+
+                                                  <option value="40">
+                                                    40 - 40
+                                                  </option>
+
+                                                  <option value="44">
+                                                    44 - 44
+                                                  </option>
+
+                                                  <option value="47">
+                                                    47 - 47
+                                                  </option>
+
+                                                  <option value="60">
+                                                    60 - 60
+                                                  </option>
+
+                                                  <option value="61">
+                                                    61 - 61
+                                                  </option>
+
+                                                  <option value="63">
+                                                    63 - 63
+                                                  </option>
+
+                                                  <option value="71">
+                                                    71 - 71
+                                                  </option>
+
+                                                  <option value="72">
+                                                    72 - 72
+                                                  </option>
+
+                                                  <option value="73">
+                                                    73 - 73
+                                                  </option>
+
+                                                  <option value="74">
+                                                    74 - 74-CHRISTOPHER REEVES
+                                                  </option>
+
+                                                  <option value="75">
+                                                    75 - 75
+                                                  </option>
+
+                                                  <option value="77">
+                                                    77 - 77
+                                                  </option>
+                                                </select>
+                                              </td>
+                                            </tr>
+
+                                            <tr
+                                              class="eds-pagerstyle dropdown inline-table_dark_grey"
+                                            >
+                                              <td align="right">
+                                                DetailDoc Type&nbsp; &nbsp;
+                                              </td>
+                                              <td align="left">
+                                                <select
+                                                  name="detailDocType"
+                                                  class=""
+                                                  style="width: 171.333334px;
+                                                  height: 19.333334px"
+                                                >
+                                                  <option value="">ALL</option>
+
+                                                  <option value="AA SB">
+                                                    AA SB
+                                                  </option>
+
+                                                  <option value="ACMM">
+                                                    ACMM
+                                                  </option>
+
+                                                  <option value="ACMM/IPL">
+                                                    ACMM/IPL
+                                                  </option>
+
+                                                  <option value="AIPC">
+                                                    AIPC
+                                                  </option>
+
+                                                  <option value="ALS">
+                                                    ALS
+                                                  </option>
+
+                                                  <option value="AMDT">
+                                                    AMDT
+                                                  </option>
+
+                                                  <option value="AMM">
+                                                    AMM
+                                                  </option>
+
+                                                  <option value="AMM/IPL">
+                                                    AMM/IPL
+                                                  </option>
+
+                                                  <option value="AMOC">
+                                                    AMOC
+                                                  </option>
+
+                                                  <option value="AOL">
+                                                    AOL
+                                                  </option>
+
+                                                  <option value="ASM">
+                                                    ASM
+                                                  </option>
+
+                                                  <option value="ATP">
+                                                    ATP
+                                                  </option>
+
+                                                  <option value="AWL">
+                                                    AWL
+                                                  </option>
+
+                                                  <option value="AWM">
+                                                    AWM
+                                                  </option>
+
+                                                  <option value="CDCCL">
+                                                    CDCCL CMM/IPL
+                                                  </option>
+
+                                                  <option value="CESM">
+                                                    CESM
+                                                  </option>
+
+                                                  <option value="CIR">
+                                                    CIR
+                                                  </option>
+
+                                                  <option value="CMM">
+                                                    CMM
+                                                  </option>
+
+                                                  <option value="CMM V1A">
+                                                    CMM VOL1A
+                                                  </option>
+
+                                                  <option value="CMM VOL1">
+                                                    CMM VOL1
+                                                  </option>
+
+                                                  <option value="CMM VOL2">
+                                                    CMM VOL2
+                                                  </option>
+
+                                                  <option value="CMM VOL3">
+                                                    CMM VOL3
+                                                  </option>
+
+                                                  <option value="CMM/3D">
+                                                    CMM/3D
+                                                  </option>
+
+                                                  <option value="CMM/ATTA">
+                                                    CMM/ATTACHMENTS
+                                                  </option>
+
+                                                  <option value="CMM/IPC">
+                                                    CMM/IPC
+                                                  </option>
+
+                                                  <option value="CMM/IPD">
+                                                    CMM/IPD
+                                                  </option>
+
+                                                  <option value="CMM/IPL">
+                                                    CMM/IPL
+                                                  </option>
+
+                                                  <option value="CMM/SUPP">
+                                                    CMM/SUPP
+                                                  </option>
+
+                                                  <option value="CMP">
+                                                    CMP
+                                                  </option>
+
+                                                  <option value="CMP/IPD">
+                                                    CMP/IPD
+                                                  </option>
+
+                                                  <option value="CMP/IPL">
+                                                    CMP/IPL
+                                                  </option>
+
+                                                  <option value="CMS">
+                                                    CMS
+                                                  </option>
+
+                                                  <option value="CN">CN</option>
+
+                                                  <option value="CPD">
+                                                    CPD
+                                                  </option>
+
+                                                  <option value="CRM">
+                                                    CRM
+                                                  </option>
+
+                                                  <option value="CRM/IPL">
+                                                    CRM/IPL
+                                                  </option>
+
+                                                  <option value="CSB">
+                                                    CSB
+                                                  </option>
+
+                                                  <option value="DEFAULT">
+                                                    DEFAULT
+                                                  </option>
+
+                                                  <option value="EM">EM</option>
+
+                                                  <option value="ESI">
+                                                    ESI
+                                                  </option>
+
+                                                  <option value="FP">
+                                                    FOLDING PROCEDURES
+                                                  </option>
+
+                                                  <option value="GPM">
+                                                    GENERAL PRACTICE MANUAL
+                                                  </option>
+
+                                                  <option value="IC">IC</option>
+
+                                                  <option value="ICA">
+                                                    ICA
+                                                  </option>
+
+                                                  <option value="IN">IN</option>
+
+                                                  <option value="IPC">
+                                                    IPC
+                                                  </option>
+
+                                                  <option value="IPC VOL2">
+                                                    IPC VOL2
+                                                  </option>
+
+                                                  <option value="IPL">
+                                                    IPL
+                                                  </option>
+
+                                                  <option value="IRM">
+                                                    IRM
+                                                  </option>
+
+                                                  <option value="MCMM">
+                                                    MCMM
+                                                  </option>
+
+                                                  <option value="MM">MM</option>
+
+                                                  <option value="MM/IPC">
+                                                    MM/IPC
+                                                  </option>
+
+                                                  <option value="MM/IPL">
+                                                    MM/IPL
+                                                  </option>
+
+                                                  <option value="MSPM">
+                                                    MSPM
+                                                  </option>
+
+                                                  <option value="NSC">
+                                                    NSC
+                                                  </option>
+
+                                                  <option value="OIT">
+                                                    OIT
+                                                  </option>
+
+                                                  <option value="OM">OM</option>
+
+                                                  <option value="OM/IPC">
+                                                    OM/IPC
+                                                  </option>
+
+                                                  <option value="OM/IPL">
+                                                    OM/IPL
+                                                  </option>
+
+                                                  <option value="OPER/MM">
+                                                    OPER/MM
+                                                  </option>
+
+                                                  <option value="OPER/MM/IPL">
+                                                    OPER/MM/IPL
+                                                  </option>
+
+                                                  <option value="OPNC">
+                                                    OPNC
+                                                  </option>
+
+                                                  <option value="OSDPR">
+                                                    OSDPR
+                                                  </option>
+
+                                                  <option value="PL">PL</option>
+
+                                                  <option value="PMP">
+                                                    PMP
+                                                  </option>
+
+                                                  <option value="RIL">
+                                                    RIL
+                                                  </option>
+
+                                                  <option value="RM">RM</option>
+
+                                                  <option value="RS">RS</option>
+
+                                                  <option value="SB">SB</option>
+
+                                                  <option value="SDS">
+                                                    SDS
+                                                  </option>
+
+                                                  <option value="SIL">
+                                                    SIL
+                                                  </option>
+
+                                                  <option value="SL">SL</option>
+
+                                                  <option value="SMM">
+                                                    SMM
+                                                  </option>
+
+                                                  <option value="SNL">
+                                                    SNL
+                                                  </option>
+
+                                                  <option value="SOPM">
+                                                    SOPM
+                                                  </option>
+
+                                                  <option value="SOPM INTRO">
+                                                    SOPM INTRO
+                                                  </option>
+
+                                                  <option
+                                                    value="SOPM INTRODUCTION"
+                                                  >
+                                                    SOPM INTRODUCTION
+                                                  </option>
+
+                                                  <option value="SPB">
+                                                    SPB
+                                                  </option>
+
+                                                  <option value="SPCL">
+                                                    SPARE PARTS CONFIG LIST
+                                                  </option>
+
+                                                  <option value="SPIB">
+                                                    SPIB
+                                                  </option>
+
+                                                  <option value="SPM">
+                                                    SPM
+                                                  </option>
+
+                                                  <option value="SRM">
+                                                    SRM
+                                                  </option>
+
+                                                  <option value="TB">TB</option>
+
+                                                  <option value="TEM">
+                                                    TEM
+                                                  </option>
+
+                                                  <option value="TG">TG</option>
+
+                                                  <option value="TIL">
+                                                    TIL
+                                                  </option>
+
+                                                  <option value="TN">TN</option>
+
+                                                  <option value="TR">TR</option>
+
+                                                  <option value="TSG">
+                                                    TROUBLESHOOTING GUIDE
+                                                  </option>
+
+                                                  <option value="TSM">
+                                                    TSM
+                                                  </option>
+
+                                                  <option value="TV">TV</option>
+
+                                                  <option value="USERHBK">
+                                                    USER HANDBOOK
+                                                  </option>
+
+                                                  <option value="V12">
+                                                    V12
+                                                  </option>
+
+                                                  <option value="V22">
+                                                    V22
+                                                  </option>
+
+                                                  <option value="VOL 1">
+                                                    CMM VOL 1
+                                                  </option>
+
+                                                  <option value="VOL 2">
+                                                    CMM VOL 2
+                                                  </option>
+
+                                                  <option value="VOL 3">
+                                                    CMM VOL 3
+                                                  </option>
+
+                                                  <option value="VSB">
+                                                    VSB
+                                                  </option>
+
+                                                  <option value="WISE">
+                                                    WISE
+                                                  </option>
+
+                                                  <option value="WSPG">
+                                                    WSPG
+                                                  </option>
+                                                </select>
+                                              </td>
+                                            </tr>
+
+                                            <tr
+                                              class="eds-pagerstyle-alt dropdown inline-table_dark_grey"
+                                            >
+                                              <td align="right">
+                                                Effectivity &nbsp; &nbsp;
+                                              </td>
+                                              <td align="left">
+                                                <select
+                                                  name="effectivity"
+                                                  class=""
+                                                  id="effectivity"
+                                                  multiple="multiple"
+                                                >
+                                                  <option value="A319">
+                                                    A319
+                                                  </option>
+
+                                                  <option value="A319XF">
+                                                    A319XF
+                                                  </option>
+
+                                                  <option value="A320">
+                                                    A320
+                                                  </option>
+
+                                                  <option value="A321">
+                                                    A321
+                                                  </option>
+
+                                                  <option value="A321NX">
+                                                    A321NX
+                                                  </option>
+
+                                                  <option value="A321XF">
+                                                    A321XF
+                                                  </option>
+
+                                                  <option value="A321XLR">
+                                                    A321XLR
+                                                  </option>
+
+                                                  <option value="A330">
+                                                    A330
+                                                  </option>
+
+                                                  <option value="ALL">
+                                                    ALL
+                                                  </option>
+
+                                                  <option value="B737-MAX8">
+                                                    B737-MAX8
+                                                  </option>
+
+                                                  <option value="B737-NG">
+                                                    B737-NG
+                                                  </option>
+
+                                                  <option value="B777">
+                                                    B777
+                                                  </option>
+
+                                                  <option value="B787">
+                                                    B787
+                                                  </option>
+
+                                                  <option value="CFM56-5B">
+                                                    CFM56-5B
+                                                  </option>
+
+                                                  <option value="CFM56-7B">
+                                                    CFM56-7B
+                                                  </option>
+
+                                                  <option value="GE90-100">
+                                                    GE90-100
+                                                  </option>
+
+                                                  <option value="GENX-1B">
+                                                    GENX-1B
+                                                  </option>
+
+                                                  <option value="LEAP-1A">
+                                                    LEAP-1A
+                                                  </option>
+
+                                                  <option value="LEAP-1B">
+                                                    LEAP-1B
+                                                  </option>
+
+                                                  <option value="TRENT 800">
+                                                    TRENT 800
+                                                  </option>
+
+                                                  <option value="V2500 A1/A5">
+                                                    V2500 A1/A5
+                                                  </option>
+                                                </select>
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </td>
+                                      <td valign="top" width="55%">
+                                        <table style="width: 100%">
+                                          <tbody>
+                                            <tr class="eds-pagerstyle">
+                                              <td
+                                                class="inline-table_dark_grey"
+                                                style="
+                                                  width: 35%;
+                                                  text-align: right;
+                                                "
+                                              >
+                                                Route Date Range&nbsp; &nbsp;
+                                              </td>
+                                              <td
+                                                class="inline-table_dark_grey"
+                                                style="width: 65%"
+                                              >
+                                                <input
+                                                  type="text"
+                                                  name="routeStartDate"
+                                                  class=""
+                                                  id="routeDateStartId"
+                                                  value=""
+                                                  size="10"
+                                                  maxlength="10"
+                                                  autocomplete="off"
+                                                />
+
+                                                <span
+                                                  ><img
+                                                    onmouseover="this.style.cursor='hand'"
+                                                    id="routeDateStartId_date"
+                                                    align="ABSMIDDLE"
+                                                    src="assets/images/calendar.gif"
+                                                    style="cursor: pointer"
+                                                /></span>
+                                                -
+                                                <input
+                                                  type="text"
+                                                  name="routeEndDate"
+                                                  class=""
+                                                  id="routeDateEndId"
+                                                  value=""
+                                                  size="10"
+                                                  maxlength="10"
+                                                  autocomplete="off"
+                                                />
+
+                                                <span
+                                                  ><img
+                                                    onmouseover="this.style.cursor='hand'"
+                                                    id="routeDateEndId_date"
+                                                    align="ABSMIDDLE"
+                                                    src="assets/images/calendar.gif"
+                                                    style="cursor: pointer"
+                                                /></span>
+                                              </td>
+                                            </tr>
+                                            <tr style="color: black;">
+                                              <td
+                                                class="inline-table_dark_grey"
+                                                style="
+                                                  vertical-align: middle;
+                                                  text-align: right;
+                                                "
+                                              >
+                                                Route Status&nbsp; &nbsp;
+                                              </td>
+                                              <td
+                                                align="left"
+                                                style="vertical-align: top"
+                                              >
+                                                <input
+                                                  type="radio"
+                                                  name="routeStatusSearchType"
+                                                  value="OPEN"
+                                                />OPEN
+                                                <input
+                                                  type="radio"
+                                                  name="routeStatusSearchType"
+                                                  value="CLOSED"
+                                                />CLOSED
+                                                <input
+                                                  type="radio"
+                                                  name="routeStatusSearchType"
+                                                  value="BOTH"
+                                                  checked="checked"
+                                                />BOTH
+                                              </td>
+                                            </tr>
+                                            <tr></tr>
+                                            <tr
+                                              class="eds-pagerstyle-alt inline-table_dark_grey"
+                                            >
+                                              <td align="right">
+                                                ESO&nbsp; &nbsp;
+                                              </td>
+                                              <td align="left">
+                                                <input
+                                                  type="text"
+                                                  name="eso"
+                                                  class=""
+                                                  id="eso"
+                                                  value=""
+                                                  size="20"
+                                                  maxlength="40"
+                                                />
+                                              </td>
+                                            </tr>
+
+                                            <tr></tr>
+                                            <tr
+                                              class="eds-pagerstyle inline-table_dark_grey"
+                                            >
+                                              <td align="right">
+                                                ATA&nbsp; &nbsp;
+                                              </td>
+                                              <td align="left">
+                                                <input
+                                                  type="text"
+                                                  name="ata"
+                                                  class=""
+                                                  id="ata"
+                                                  value=""
+                                                  size="20"
+                                                  maxlength="20"
+                                                />
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </td>
+                                    </tr>
+
+                                    <tr class="eds-pagerstyle-alt blueColSpan">
+                                      <td colspan="2">
+                                        <span style="float: right">
+                                          <input type="submit" value="Search" />
+                                        </span>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <br />
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+</div>
