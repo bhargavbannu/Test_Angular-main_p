@@ -1,0 +1,295 @@
+<div>
+  <td valign="top" align="left">
+    <div>
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <!-- ERRORS -->
+        <ng-container>
+          <tbody>
+            <tr>
+              <td
+                id="errorMsg"
+                class="eds-messageframe"
+                style="display: none"
+                align="left"
+              >
+                <ul>
+                  <li>
+                    <span class="eds-message-warning" id="errorMsgContents">
+                    </span>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <div>
+              <tr>
+                <td id="emptyRow" style="display: none">&nbsp;</td>
+              </tr>
+            </div>
+            <div>
+              <tr>
+                <td align="left">
+                  <!-- CONTENT -->
+                  <a href=""></a>
+                  <br /><br />
+
+                  <table cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <table
+                            class="eds-tabheader"
+                            cellspacing="0"
+                            cellpadding="0"
+                            border="0"
+                          >
+                            <tbody>
+                              <tr>
+                                <td class="eds-tabtopleftcorner"></td>
+                                <td class="eds-tabtopmiddle" align="center">
+                                  <div class="eds-tabtitle">
+                                    Add New ESO to Document
+                                  </div>
+                                </td>
+                                <td class="eds-tabtoprightcorner"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="eds-tabtoprightcorner"></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <table
+                            cellspacing="0"
+                            cellpadding="0"
+                            width="100%"
+                            border="0"
+                            class="eds-tabtitle"
+                          >
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <form
+                                    name="ESOForm"
+                                    id="esoFormId"
+                                    method="post"
+                                    action=""
+                                  >
+                                    <input
+                                      type="hidden"
+                                      name="submitType"
+                                      value="add"
+                                    />
+                                    <table width="100%">
+                                      <tbody>
+                                        <tr style="height: 1px">
+                                          <td width="200"></td>
+                                          <td width="250"></td>
+                                        </tr>
+
+                                        <tr class="eds-pagerstyle dropdown">
+                                          <td align="right">
+                                            Select Effectivity to generate ESO
+                                            No.&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <select
+                                              name="eso.effectivityId"
+                                              class=""
+                                              id="effectivityStyleId"
+                                              onchange="createESONoSection()"
+                                            >
+                                              <option value="new">
+                                                Enter Custom ESO Number
+                                              </option>
+
+                                              <option value="A330">A330</option>
+                                            </select>
+                                          </td>
+                                        </tr>
+
+                                        <tr class="eds-pagerstyle">
+                                          <td id="esoNoContainerId" colspan="2">
+                                            <input
+                                              type="hidden"
+                                              id="errorTextId"
+                                              value=""
+                                            />
+                                            <table width="100%">
+                                              <tbody>
+                                                <tr style="height: 1px">
+                                                  <td width="200"></td>
+                                                  <td width="250"></td>
+                                                </tr>
+
+                                                <tr
+                                                  class="eds-pagerstyle-alt eds-field-required"
+                                                >
+                                                  <td align="right">
+                                                    ESO Number *&nbsp; &nbsp;
+                                                  </td>
+                                                  <td align="left">
+                                                    <input
+                                                      type="text"
+                                                      name="eso.eso"
+                                                      class=""
+                                                      id="esoTextboxId"
+                                                      value=""
+                                                      size="45"
+                                                      maxlength="10"
+                                                    />
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </td>
+                                        </tr>
+
+                                        <tr class="eds-pagerstyle-alt">
+                                          <td align="right">
+                                            Assign Date&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <input
+                                              type="text"
+                                              name="eso.assigndate"
+                                              class=""
+                                              id="assignDateId"
+                                              value=""
+                                              size="41"
+                                              maxlength="10"
+                                              autocomplete="off"
+                                            />
+
+                                            <span
+                                              ><img
+                                                onmouseover="this.style.cursor='hand'"
+                                                id="assignDateId_date"
+                                                align="ABSMIDDLE"
+                                            /></span>
+                                          </td>
+                                        </tr>
+
+                                        <tr class="eds-pagerstyle">
+                                          <td align="right">
+                                            Subject&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <input
+                                              type="text"
+                                              name="eso.subject"
+                                              class=""
+                                              value=""
+                                              size="45"
+                                              maxlength="30"
+                                            />
+                                          </td>
+                                        </tr>
+
+                                        <tr class="eds-pagerstyle-alt">
+                                          <td align="right">
+                                            Engineer&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <input
+                                              type="text"
+                                              name="eso.engineer"
+                                              class=""
+                                              value=""
+                                              size="45"
+                                              maxlength="30"
+                                            />
+                                          </td>
+                                        </tr>
+
+                                        <tr class="eds-pagerstyle">
+                                          <td align="right">
+                                            Remarks&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <input
+                                              type="text"
+                                              name="eso.remark"
+                                              class=""
+                                              value=""
+                                              size="45"
+                                              maxlength="50"
+                                            />
+                                          </td>
+                                        </tr>
+
+                                        <tr class="eds-pagerstyle-alt">
+                                          <td align="right">
+                                            Cancel Date&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <input
+                                              type="text"
+                                              name="eso.canceldate"
+                                              class=""
+                                              id="cancelDateId"
+                                              value=""
+                                              size="41"
+                                              maxlength="10"
+                                              autocomplete="off"
+                                            />
+
+                                            <span
+                                              ><img
+                                                onmouseover="this.style.cursor='hand'"
+                                                id="cancelDateId_date"
+                                                align="ABSMIDDLE"
+                                                src="assets/images/calendar.gif"
+                                            /></span>
+                                          </td>
+                                        </tr>
+                                        <tr class="eds-pagerstyle dropdown">
+                                          <td align="right">
+                                            Status&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <select name="eso.status" class="">
+                                              <option value="A">Active</option>
+                                              <option value="C">
+                                                Inactive
+                                              </option>
+                                            </select>
+                                          </td>
+                                        </tr>
+
+                                        <!-- BUTTONS SECTION -->
+
+                                        <tr
+                                          class="eds-pagerstyle-alt blueColSpan"
+                                        >
+                                          <td colspan="2">
+                                            <span style="float: right">
+                                              <input
+                                                type="submit"
+                                                value="Submit"
+                                              />
+                                            </span>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </form>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </div>
+          </tbody>
+        </ng-container>
+      </table>
+    </div>
+  </td>
+</div>

@@ -1,0 +1,134 @@
+<div>
+<td valign="top" align="left">
+  <table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <ng-container>
+    <tbody>
+      <tr>
+        <td
+          id="errorMsg"
+          class="eds-messageframe"
+          style="display: none"
+          align="left"
+        >
+          <ul>
+            <li>
+              <span class="eds-message-warning" id="errorMsgContents"> </span>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td id="emptyRow" style="display: none">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="left">
+          <!-- CONTENT -->
+
+          <table cellspacing="0" cellpadding="0" border="0">
+            <tbody>
+              <tr>
+                <td style="padding-top: 12px;">
+                  <table
+                    class="eds-tabheader"
+                    cellspacing="0"
+                    cellpadding="0"
+                    border="0"
+                  >
+                    <tbody>
+                      <tr>
+                        <td class="eds-tabtopleftcorner"></td>
+                        <td class="eds-tabtopmiddle" align="center">
+                          <div class="eds-tabtitle">Select Vendor</div>
+                        </td>
+                        <td class="eds-tabtoprightcorner"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td class="eds-tabtoprightcorner"></td>
+              </tr>
+              <tr>
+                <td>
+                  <table
+                    cellspacing="0"
+                    cellpadding="0"
+                    width="100%"
+                    border="0"
+                    class="eds-tabtitle"
+                  >
+                    <tbody>
+                      <tr>
+                        <td>
+                          <form
+                            name="VendorForm"
+                            method="post"
+                            action="/vdt/SelectVendor.html"
+                          >
+                            <table>
+                              <tbody>
+                                <tr
+                                  class="eds-pagerstyle eds-field-required"
+                                  style=""
+                                >
+                                  <td align="right">
+                                    Vendor Name *&nbsp; &nbsp;
+                                  </td>
+                                  <td align="left">
+                                    <input
+                                      type="text"
+                                      name="vendor.vendorNm"
+                                      class=""
+                                      id="vendorAutoComplete"
+                                      value=""
+                                      size="45"
+                                      maxlength="20"
+                                      autocomplete="off"
+                                    />
+
+                                    <div
+                                      id="vendorAutoComplete_choices"
+                                      class="autoCompleteClass"
+                                      style="display: none"
+                                    ></div>
+                                  </td>
+                                </tr>
+
+                                <!-- BUTTONS SECTION -->
+
+                                <tr class="eds-pagerstyle-alt blueColSpan">
+                                  <td colspan="2">
+                                    <span style="float: left">
+                                      <input
+                                        type="submit"
+                                        value="Edit/Create"
+                                      />
+                                    </span>
+                                    <span style="float: right">
+                                      <input
+                                        type="button"
+                                        value="Supercede"
+                                        onclick="this.form.action='SupercedeVendor.html'; this.form.submit();"
+                                      />
+                                    </span>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </form>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </ng-container>
+  </table>
+</td>
+</div>

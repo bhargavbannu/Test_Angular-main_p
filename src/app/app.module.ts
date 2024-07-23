@@ -18,6 +18,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DocumentComponent } from './component/document/document.component';
 import { SearchAuditComponent } from './component/search-audit/search-audit.component';
 import { SearchRoutesComponent } from './component/search-routes/search-routes.component';
+import { EsoComponent } from './component/ESO Information/eso/eso.component';
+import { EditEsoComponent } from './component/ESO Information/edit-eso/edit-eso.component';
+import { ManageEffectivitiesComponent } from './component/Admin Configuration/manage-effectivities/manage-effectivities.component';
+import { ManageVendorsComponent } from './component/Admin Configuration/manage-vendors/manage-vendors.component';
+import { ManageSectionsComponent } from './component/Admin Configuration/manage-sections/manage-sections.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +34,11 @@ import { SearchRoutesComponent } from './component/search-routes/search-routes.c
     DocumentComponent,
     SearchAuditComponent,
     SearchRoutesComponent,
+    EsoComponent,
+    EditEsoComponent,
+    ManageSectionsComponent,
+    ManageEffectivitiesComponent,
+    ManageVendorsComponent,
   ],
   imports: [
     BrowserModule,

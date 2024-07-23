@@ -1,0 +1,149 @@
+<div>
+  <td valign="top" align="left">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <!-- ERRORS -->
+      <ng-container>
+        <tbody>
+          <div>
+            <tr>
+              <td
+                id="errorMsg"
+                class="eds-messageframe"
+                style="display: none"
+                align="left"
+              >
+                <ul>
+                  <li>
+                    <span class="eds-message-warning" id="errorMsgContents">
+                    </span>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </div>
+          <tr>
+            <td id="emptyRow" style="display: none">&nbsp;</td>
+          </tr>
+          <div>
+            <tr>
+              <td align="left">
+                <!-- CONTENT -->
+                <table cellspacing="0" cellpadding="0" border="0">
+                  <tbody>
+                    <tr>
+                      <td style="padding-top: 20px">
+                        <table
+                          class="eds-tabheader"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                        >
+                          <tbody>
+                            <tr>
+                              <td class="eds-tabtopleftcorner"></td>
+                              <td class="eds-tabtopmiddle" align="center">
+                                <div class="eds-tabtitle">Enter/Select ESO</div>
+                              </td>
+                              <td class="eds-tabtoprightcorner"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="eds-tabtoprightcorner"></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <table
+                          cellspacing="0"
+                          cellpadding="0"
+                          width="100%"
+                          border="0"
+                          class="eds-tabtitle"
+                        >
+                          <tbody>
+                            <tr>
+                              <td>
+                                <form
+                                  name="ESOForm"
+                                  id="esoFormId"
+                                  method="post"
+                                  action="/vdt/SetUpAddEditESO.html"
+                                >
+                                  <input
+                                    type="hidden"
+                                    name="backToLinkText"
+                                    value="Back to Enter/Select ESO"
+                                  />
+                                  <table width="100%">
+                                    <tbody>
+                                      <tr style="height: 1px">
+                                        <td width="200"></td>
+                                        <td width="250"></td>
+                                      </tr>
+
+                                      <tr class="eds-pagerstyle">
+                                        <td align="right">
+                                          Enter or Select a ESO No.&nbsp; &nbsp;
+                                        </td>
+                                        <td align="left">
+                                          <input
+                                            type="text"
+                                            name="eso.eso"
+                                            class=""
+                                            id="esoAutoComplete"
+                                            value=""
+                                            size="45"
+                                            maxlength="10"
+                                            autocomplete="off"
+                                          />
+
+                                          <div
+                                            id="esoAutoComplete_choices"
+                                            class="autoCompleteClass"
+                                            style="display: none"
+                                          ></div>
+                                        </td>
+                                      </tr>
+
+                                      <!-- BUTTONS SECTION -->
+
+                                      <tr
+                                        class="eds-pagerstyle-alt blueColSpan"
+                                      >
+                                        <td colspan="2">
+                                          <span style="float: right">
+                                            <input
+                                              type="submit"
+                                              value=" Edit "
+                                            />
+                                          </span>
+                                          <span style="float: left">
+                                            <input
+                                              type="button"
+                                              value=" View "
+                                              onclick="submitForView();"
+                                            />
+                                          </span>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </form>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </div>
+        </tbody>
+      </ng-container>
+    </table>
+  </td>
+</div>
