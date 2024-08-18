@@ -23,6 +23,11 @@ import { EditEsoComponent } from './component/ESO Information/edit-eso/edit-eso.
 import { ManageEffectivitiesComponent } from './component/Admin Configuration/manage-effectivities/manage-effectivities.component';
 import { ManageVendorsComponent } from './component/Admin Configuration/manage-vendors/manage-vendors.component';
 import { ManageSectionsComponent } from './component/Admin Configuration/manage-sections/manage-sections.component';
+import { ManageAuditStatusesComponent } from './component/Admin Configuration/manage-audit-statuses/manage-audit-statuses.component';
+import { ManageDetailDocTypeComponent } from './component/Admin Configuration/manage-detail-doc-type/manage-detail-doc-type.component';
+import { ManageDocCategoriesComponent } from './component/Admin Configuration/manage-doc-categories/manage-doc-categories.component';
+import { ManageEccnLocationComponent } from './component/Admin Configuration/manage-eccn-location/manage-eccn-location.component';
+import { ManageEccnNumberComponent } from './component/Admin Configuration/manage-eccn-number/manage-eccn-number.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +44,11 @@ import { ManageSectionsComponent } from './component/Admin Configuration/manage-
     ManageSectionsComponent,
     ManageEffectivitiesComponent,
     ManageVendorsComponent,
+    ManageAuditStatusesComponent,
+    ManageDetailDocTypeComponent,
+    ManageDocCategoriesComponent,
+    ManageEccnLocationComponent,
+    ManageEccnNumberComponent,
   ],
   imports: [
     BrowserModule,

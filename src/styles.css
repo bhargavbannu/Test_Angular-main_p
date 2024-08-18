@@ -104,8 +104,7 @@ body {
     vertical-align: top;
   }
   
-  .eds-banner {
-  }
+
   
   .eds-navmenu {
     color: #ffffff;
@@ -419,20 +418,7 @@ body {
     text-align: none;
     vertical-align: none;
   }
-  h1 {
-  }
-  h2 {
-  }
-  h3 {
-  }
-  h4 {
-  }
-  h5 {
-  }
-  h6 {
-  }
-  hr {
-  }
+ 
   img.ms-button {
     cursor: hand;
   }
@@ -466,15 +452,11 @@ body {
     background-color: #9ebff6;
     border: 1px solid #95b7f3;
   }
-  td {
-  }
+ 
   td.ms-titleareaframe {
     color: black;
   }
-  th {
-  }
-  tr {
-  }
+
   tr.ms-imglibselectedrow,
   tr.ms-highlight {
     background-color: #f1f1f1;
@@ -579,13 +561,6 @@ body {
     font-weight: bold;
   }
   
-  .order1 {
-    /* background-image: url("../../images/sortdown.gif");  */
-  }
-  
-  .order2 {
-    /* background-image: url("../../images/sortup.gif");  */
-  }
   
   .eds-spec2000-error {
     color: #ff0000;

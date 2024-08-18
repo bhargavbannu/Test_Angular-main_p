@@ -1,0 +1,12 @@
+::ng-deep .number.eds-tabheader {
+    width: 100%;
+  }
+  
+ ::ng-deep .number.eds-tabheader::after {
+    height: 50%;
+    width: 0;
+    top: 17px;
+    bottom: 0;
+    left: 0;
+    border-top-right-radius: 34px;
+  }

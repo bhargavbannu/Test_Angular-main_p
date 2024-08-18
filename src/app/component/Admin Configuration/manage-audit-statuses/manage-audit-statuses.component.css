@@ -1,0 +1,12 @@
+::ng-deep .statuses.eds-tabheader {
+    width: 55%;
+  }
+  
+ ::ng-deep .statuses.eds-tabheader::after {
+    height: 50%;
+    width: 181%;
+    top: 17px;
+    bottom: 0;
+    left: 0;
+    border-top-right-radius: 34px;
+  }

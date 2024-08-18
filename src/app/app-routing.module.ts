@@ -11,6 +11,11 @@ import { EditEsoComponent } from './component/ESO Information/edit-eso/edit-eso.
 import { ManageEffectivitiesComponent } from './component/Admin Configuration/manage-effectivities/manage-effectivities.component';
 import { ManageSectionsComponent } from './component/Admin Configuration/manage-sections/manage-sections.component';
 import { ManageVendorsComponent } from './component/Admin Configuration/manage-vendors/manage-vendors.component';
+import { ManageAuditStatusesComponent } from './component/Admin Configuration/manage-audit-statuses/manage-audit-statuses.component';
+import { ManageDetailDocTypeComponent } from './component/Admin Configuration/manage-detail-doc-type/manage-detail-doc-type.component';
+import { ManageDocCategoriesComponent } from './component/Admin Configuration/manage-doc-categories/manage-doc-categories.component';
+import { ManageEccnLocationComponent } from './component/Admin Configuration/manage-eccn-location/manage-eccn-location.component';
+import { ManageEccnNumberComponent } from './component/Admin Configuration/manage-eccn-number/manage-eccn-number.component';
 
 const routes: Routes = [
   {
@@ -52,6 +57,26 @@ const routes: Routes = [
     path: 'Manage-Vendors',
     component: ManageVendorsComponent,
   },
+  {
+    path: 'Manage-audit-statuses',
+    component: ManageAuditStatusesComponent,
+  },
+  {
+    path: 'Manage-detail-doc-type',
+    component: ManageDetailDocTypeComponent,
+  },
+  {
+    path: 'Manage-doc-categories',
+    component: ManageDocCategoriesComponent,
+  },
+  {
+    path: 'Manage-eccn-location',
+    component: ManageEccnLocationComponent,
+  },
+  {
+    path: 'Manage-eccn-number',
+    component: ManageEccnNumberComponent,
+  }
 ];
 
 @NgModule({

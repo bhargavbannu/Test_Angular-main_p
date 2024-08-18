@@ -1,0 +1,12 @@
+::ng-deep .doc-type.eds-tabheader {
+    width: 48%;
+  }
+  
+ ::ng-deep .doc-type.eds-tabheader::after {
+    height: 50%;
+    width: 208%;
+    top: 17px;
+    bottom: 0;
+    left: 0;
+    border-top-right-radius: 34px;
+  }
