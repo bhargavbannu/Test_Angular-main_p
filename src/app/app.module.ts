@@ -7,6 +7,8 @@ import { LandingPageComponent } from './component/landing-page/landing-page.comp
 import { HeaderComponent } from './component/header/header.component';
 import { SideNavComponent } from './component/side-nav/side-nav.component';
 import { SearchComponent } from './component/search/search.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -18,6 +20,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DocumentComponent } from './component/document/document.component';
 import { SearchAuditComponent } from './component/search-audit/search-audit.component';
 import { SearchRoutesComponent } from './component/search-routes/search-routes.component';
+import { FormsModule } from '@angular/forms';
+
 import { EsoComponent } from './component/ESO Information/eso/eso.component';
 import { EditEsoComponent } from './component/ESO Information/edit-eso/edit-eso.component';
 import { ManageEffectivitiesComponent } from './component/Admin Configuration/manage-effectivities/manage-effectivities.component';
@@ -60,6 +64,9 @@ import { ManageEccnNumberComponent } from './component/Admin Configuration/manag
     MatListModule,
     MatInputModule,
     MatCheckboxModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

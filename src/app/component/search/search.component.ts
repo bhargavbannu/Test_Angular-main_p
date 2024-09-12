@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { setLines } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-search',
@@ -7,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
+  formData: any;
+  totalFormData: any;
   advancedSearchValue: any;
   documents = [
     { value: '', label: '' },
@@ -112,7 +117,81 @@ export class SearchComponent {
     { value: 'WISE', label: 'WISE' },
     { value: 'WSPG', label: 'WSPG' },
   ];
-  constructor(private router: Router) {}
+  vendorName: any;
+  flagg: any;
+  eso: any;
+  vendorPartRefNbr: any;
+
+  apiData: any;
+  tableHeaders: any;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private apiService: ApiService
+  ) {
+    // this.formData = this.fb.group({
+    //   vendorName: [''],
+    //   email: [''],
+    // });
+  }
+  // "28796727"
+
+  ngOnInIt() {
+    this.Search();
+  }
+  Search() {
+    console.log(this.vendorName, this.eso, this.vendorPartRefNbr);
+
+    const payload = {
+      vendorName: this.vendorName,
+      esos: this.eso,
+      vendorDocRefNbr: this.vendorPartRefNbr,
+    };
+
+    // const payload = {
+    //   currentVendorOnly:'on',
+    //   advancedSearchHidden:true,
+    //   vendorName:'',
+    //   vendorPartRefNbr:'',
+    //   detailDocType:'',
+    //   itar:'',
+    //   eccnNumber:'',
+    //   eso:'',
+    //   eco:'',
+    //   ata:'',
+    //   detailId:'',
+    //   eccnLocation:'',
+    //   docName:'',
+    //   effectivity:'',
+    //   subject:'',
+    //   bin:'',
+    //   documentType:'',
+    //   manualStartDate:'',
+    //   manualEndDate:'',
+    //   reissueStartDate:'',
+    //   reissueEndDate:'',
+    //   documentSubject:''
+    // };
+    this.apiService.postData(payload).subscribe((data) => {
+
+      this.apiData = [...data.results];
+      
+        console.log(data);
+        // this.apiData = data;
+        
+        this.tableHeaders =  Object.keys(this.apiData[0]); // Extract headers from the first object
+        
+        // console.log(this.apiData);
+        console.log(this.tableHeaders);
+     
+    });
+  }
+
+  // advancedSearchHidden=true&currentVendorOnly=true&vendorName=&
+  // currentVendorOnly=on&vendorPartRefNbr=&detailDocType=ASM&itar=YES&eccnNumber=5E991
+  // &eso=&eco=&ata=&detailId=&eccnLocation=CMM&docName=&effectivity=757&subject=&bin=&
+  // documentType=&manualStartDate=&manualEndDate=&reissueStartDate=&reissueEndDate=&documentSubject=
 
   ngOnInit() {
     this.advancedSearchValue = 'Advanced Search (Display)';

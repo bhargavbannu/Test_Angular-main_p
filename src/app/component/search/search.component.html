@@ -1,313 +1,405 @@
 <div>
-<form
-  class="formClass"
-  name="SearchForm"
-  id="searchFormId"
-  method="get"
-  action="/vdt/Search.html"
->
-  <input
-    type="hidden"
-    name="advancedSearchHidden"
-    id="advancedSearchHiddenId"
-    value="true"
-  />
-  <input
-    type="hidden"
-    name="currentVendorOnly"
-    id="currentVendorOnlyId"
-    value="true"
-  />
-<div style="padding-top: 6px;">
-  <table cellspacing="0" cellpadding="0" border="0">
-    <tbody>
-      <tr>
-        <td>
-          <table
-            class="eds-tabheader"
-            cellspacing="0"
-            cellpadding="0"
-            border="0"
-          >
-            <tbody>
-              <tr>
-                <td class="eds-tabtopleftcorner"></td>
-                <td class="eds-tabtopmiddle" align="center">
-                  <div class="eds-tabtitle">Search Criteria</div>
-                </td>
-                <td class="eds-tabtoprightcorner"></td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td class="eds-tabtoprightcorner"></td>
-      </tr>
-      <tr>
-        <td>
-          <table
-            cellspacing="0"
-            cellpadding="0"
-            width="100%"
-            border="0"
-            class="eds-tabtitle"
-          >
-            <tbody>
-              <tr>
-                <td>
-                  <table class="inline-table_dark_grey">
-                    <tbody>
-                      <tr align="left">
-                        <td align="left">
-                          <table>
-                            <tbody>
-                              <tr class="eds-pagerstyle inline-table_dark_grey">
-                                <td align="right">Vendor Name&nbsp; &nbsp;</td>
-                                <td align="left">
-                                  <input
-                                    type="text"
-                                    name="vendorName"
-                                    class=""
-                                    id="detailId"
-                                    value=""
-                                    size="20"
-                                    maxlength="40"
-                                    tabindex="-1"
-                                  />
-                                </td>
-                              </tr>
-                              <tr>
-                                <td
-                                  align="right"
-                                  style="vertical-align: middle; width: 100%"
-                                >
-                                  <div
-                                    class="inline-table_dark_grey"
-                                    style="
-                                      vertical-align: middle;
-                                      width: 85%;
-                                      color: black;
-                                    "
+  <form
+    (submit)="Search()"
+    class="formClass"
+    name="SearchForm"
+    id="searchFormId"
+    method="get"
+  >
+    <input
+      type="hidden"
+      name="advancedSearchHidden"
+      id="advancedSearchHiddenId"
+      value="true"
+    />
+
+    <input
+      type="hidden"
+      name="currentVendorOnly"
+      id="currentVendorOnlyId"
+      value="true"
+    />
+    <div style="padding-top: 6px">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+          <tr>
+            <td>
+              <table
+                class="eds-tabheader"
+                cellspacing="0"
+                cellpadding="0"
+                border="0"
+              >
+                <tbody>
+                  <tr>
+                    <td class="eds-tabtopleftcorner"></td>
+                    <td class="eds-tabtopmiddle" align="center">
+                      <div class="eds-tabtitle">Search Criteria</div>
+                    </td>
+                    <td class="eds-tabtoprightcorner"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="eds-tabtoprightcorner"></td>
+          </tr>
+          <tr>
+            <td>
+              <table
+                cellspacing="0"
+                cellpadding="0"
+                width="100%"
+                border="0"
+                class="eds-tabtitle"
+              >
+                <tbody>
+                  <tr>
+                    <td>
+                      <table class="inline-table_dark_grey">
+                        <tbody>
+                          <tr align="left">
+                            <td align="left">
+                              <table>
+                                <tbody>
+                                  <tr
+                                    class="eds-pagerstyle inline-table_dark_grey"
                                   >
-                                    Current Vendor Only
-                                  </div>
-                                </td>
-                                <td>
-                                  <input
-                                    type="checkbox"
-                                    name="currentVendorOnly"
-                                    value="on"
-                                    checked="checked"
-                                    style="vertical-align: top; width: 15%"
-                                  />
-                                </td>
-                              </tr>
+                                    <td align="right">
+                                      Vendor Name&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        id="vendorName"
+                                        type="text"
+                                        tabindex="-1"
+                                        [(ngModel)]="vendorName"
+                                        [ngModelOptions]="{ standalone: true }"
+                                      />
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td
+                                      align="right"
+                                      style="
+                                        vertical-align: middle;
+                                        width: 100%;
+                                      "
+                                    >
+                                      <div
+                                        class="inline-table_dark_grey"
+                                        style="
+                                          vertical-align: middle;
+                                          width: 85%;
+                                          color: black;
+                                        "
+                                      >
+                                        Current Vendor Only
+                                      </div>
+                                    </td>
+                                    <td>
+                                      <input
+                                        type="checkbox"
+                                        name="currentVendorOnly"
+                                        value="on"
+                                        checked="checked"
+                                        style="vertical-align: top; width: 15%"
+                                      />
+                                    </td>
+                                  </tr>
 
-                              <tr
-                                class="eds-pagerstyle-alt inline-table_dark_grey"
+                                  <tr
+                                    class="eds-pagerstyle-alt inline-table_dark_grey"
+                                  >
+                                    <td align="right">
+                                      Vendor Reference No.&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        name="vendorPartRefNbr"
+                                        class=""
+                                        value=""
+                                        size="20"
+                                        maxlength="40"
+                                        tabindex="-1"
+                                        id="vendorPartRefNbr"
+                                        type="text"
+                                        tabindex="-1"
+                                        [(ngModel)]="vendorPartRefNbr"
+                                        [ngModelOptions]="{ standalone: true }"
+                                      />
+                                    </td>
+                                  </tr>
+
+                                  <tr
+                                    class="eds-pagerstyle dropdown inline-table_dark_grey"
+                                  >
+                                    <td align="right">
+                                      Detail Doc Type&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <select
+                                        name="detailDocType"
+                                        class=""
+                                        tabindex="-1"
+                                      >
+                                        <option *ngFor="let doc of documents">
+                                          {{ doc.label }}
+                                        </option>
+                                      </select>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                            <td valign="top">
+                              <table>
+                                <tbody>
+                                  <tr
+                                    class="eds-pagerstyle-alt inline-table_dark_grey"
+                                  >
+                                    <td align="right">ESO&nbsp; &nbsp;</td>
+                                    <td align="left">
+                                      <input
+                                        name="eso"
+                                        size="20"
+                                        maxlength="40"
+                                        tabindex="-1"
+                                        id="eso"
+                                        type="text"
+                                        tabindex="-1"
+                                        [(ngModel)]="eso"
+                                        [ngModelOptions]="{ standalone: true }"
+                                      />
+                                    </td>
+                                  </tr>
+
+                                  <tr
+                                    class="eds-pagerstyle inline-table_dark_grey"
+                                  >
+                                    <td align="right">ECO&nbsp; &nbsp;</td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        name="eco"
+                                        class=""
+                                        value=""
+                                        size="20"
+                                        maxlength="40"
+                                        tabindex="-1"
+                                      />
+                                    </td>
+                                  </tr>
+
+                                  <tr
+                                    class="eds-pagerstyle-alt inline-table_dark_grey"
+                                  >
+                                    <td align="right">ATA&nbsp; &nbsp;</td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        name="ata"
+                                        class=""
+                                        id="ata"
+                                        value=""
+                                        size="20"
+                                        maxlength="40"
+                                        tabindex="-1"
+                                      />
+                                    </td>
+                                  </tr>
+
+                                  <tr
+                                    class="eds-pagerstyle inline-table_dark_grey"
+                                  >
+                                    <td align="right">
+                                      Detail No.&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        name="detailId"
+                                        class=""
+                                        id="detailId"
+                                        value=""
+                                        size="20"
+                                        maxlength="40"
+                                        tabindex="-1"
+                                      />
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td colspan="2">
+                              <div
+                                id="export-section-id_less"
+                                class="hidableSectionLink"
                               >
-                                <td align="right">
-                                  Vendor Reference No.&nbsp; &nbsp;
-                                </td>
-                                <td align="left">
-                                  <input
-                                    type="text"
-                                    name="vendorPartRefNbr"
-                                    class=""
-                                    value=""
-                                    size="20"
-                                    maxlength="40"
-                                    tabindex="-1"
-                                  />
-                                </td>
-                              </tr>
-
-                              <tr
-                                class="eds-pagerstyle dropdown inline-table_dark_grey"
-                              >
-                                <td align="right">
-                                  Detail Doc Type&nbsp; &nbsp;
-                                </td>
-                                <td align="left">
-                                  <select
-                                  name="detailDocType"
-                                  class=""
-                                  tabindex="-1"
-                                >
-                              <option *ngFor=" let doc of documents">
-                                {{doc.label}}
-
-                              </option></select>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
-                        <td valign="top">
-                          <table>
-                            <tbody>
-                              <tr
-                                class="eds-pagerstyle-alt inline-table_dark_grey"
-                              >
-                                <td align="right">ESO&nbsp; &nbsp;</td>
-                                <td align="left">
-                                  <input
-                                    type="text"
-                                    name="eso"
-                                    class=""
-                                    id="eso"
-                                    value=""
-                                    size="20"
-                                    maxlength="40"
-                                    tabindex="-1"
-                                  />
-                                </td>
-                              </tr>
-
-                              <tr class="eds-pagerstyle inline-table_dark_grey">
-                                <td align="right">ECO&nbsp; &nbsp;</td>
-                                <td align="left">
-                                  <input
-                                    type="text"
-                                    name="eco"
-                                    class=""
-                                    value=""
-                                    size="20"
-                                    maxlength="40"
-                                    tabindex="-1"
-                                  />
-                                </td>
-                              </tr>
-
-                              <tr
-                                class="eds-pagerstyle-alt inline-table_dark_grey"
-                              >
-                                <td align="right">ATA&nbsp; &nbsp;</td>
-                                <td align="left">
-                                  <input
-                                    type="text"
-                                    name="ata"
-                                    class=""
-                                    id="ata"
-                                    value=""
-                                    size="20"
-                                    maxlength="40"
-                                    tabindex="-1"
-                                  />
-                                </td>
-                              </tr>
-
-                              <tr class="eds-pagerstyle inline-table_dark_grey">
-                                <td align="right">Detail No.&nbsp; &nbsp;</td>
-                                <td align="left">
-                                  <input
-                                    type="text"
-                                    name="detailId"
-                                    class=""
-                                    id="detailId"
-                                    value=""
-                                    size="20"
-                                    maxlength="40"
-                                    tabindex="-1"
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td colspan="2">
-                          <div
-                            id="export-section-id_less"
-                            class="hidableSectionLink"
-                          >
-                            <!-- <a
+                                <!-- <a
                             href="javascript:showMore('export-section-id', setIsAdvancedSearchHidden);"
                             >Advanced Search (Display)</a
                           >  -->
-                            <a
-                              style="cursor: pointer; pointer-events: auto"
-                              routerLinkActive="active"
-                              (click)="advancedSearch()"
-                              >{{ advancedSearchValue }}</a
-                            >
-                          </div>
+                                <a
+                                  style="cursor: pointer; pointer-events: auto"
+                                  routerLinkActive="active"
+                                  (click)="advancedSearch()"
+                                  >{{ advancedSearchValue }}</a
+                                >
+                              </div>
 
-                          <div
-                            id="export-section-id_more"
-                            style="display: none"
-                          >
-                            <div class="hidableSectionLink">
-                              <a
-                                href="javascript:showLess('export-section-id',setIsAdvancedSearchHidden);"
-                                >Advanced Search (Hide)</a
+                              <div
+                                id="export-section-id_more"
+                                style="display: none"
                               >
-                            </div>
-                            <table width="100%"></table>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-                <td></td>
-              </tr>
-              <div>
-                <router-outlet></router-outlet>
-              </div>
-              <tr class="eds-pagerstyle-alt blueColSpan">
-                <td colspan="2">
-                  <span style="float: right">
-                    <input type="submit" value="Search" tabindex="-1" />
+                                <div class="hidableSectionLink">
+                                  <a
+                                    href="javascript:showLess('export-section-id',setIsAdvancedSearchHidden);"
+                                    >Advanced Search (Hide)</a
+                                  >
+                                </div>
+                                <table width="100%"></table>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <div>
+                    <router-outlet></router-outlet>
+                  </div>
+                  <tr class="eds-pagerstyle-alt blueColSpan">
+                    <td colspan="2">
+                      <span style="float: right">
+                        <input type="submit" value="Search" tabindex="-1" />
+                      </span>
+                      <span style="float: right">
+                        <input type="button" value="Clear" tabindex="-1" />
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+
+  <div>
+    <td valign="top" align="left">
+      <table border="0" cellspacing="0" cellpadding="0" width="100%">
+        <!-- ERRORS -->
+
+        <tbody>
+          <tr>
+            <td
+              id="errorMsg"
+              class="eds-messageframe"
+              style="display: none"
+              align="left"
+            >
+              <ul>
+                <li>
+                  <span class="eds-message-warning" id="errorMsgContents">
                   </span>
-                  <span style="float: right">
-                    <input type="button" value="Clear" tabindex="-1" />
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td id="emptyRow" style="display: none">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="left">
+              <!-- CONTENT -->
+              <br /><br />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
+  </div>
+</div>
+
+
+
+
+<div >
+<td valign="top" align="left">
+  <br />
+
+  <span class="pagebanner">65,336 items found, displaying 1 to 15.</span
+  ><span class="pagelinks"
+    >[First/Prev] <strong>1</strong>,
+    <a
+      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=2&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
+      title="Go to page 2"
+      >2</a
+    >,
+    <a
+      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=3&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
+      title="Go to page 3"
+      >3</a
+    >,
+    <a
+      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=4&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
+      title="Go to page 4"
+      >4</a
+    >,
+    <a
+      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=5&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
+      title="Go to page 5"
+      >5</a
+    >,
+    <a
+      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=6&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
+      title="Go to page 6"
+      >6</a
+    >,
+    <a
+      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=7&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
+      title="Go to page 7"
+      >7</a
+    >,
+    <a
+      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=8&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
+      title="Go to page 8"
+      >8</a
+    >
+    [<a
+      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=2&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
+      >Next</a
+    >/<a
+      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=4356&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
+      >Last</a
+    >]</span
+  >
+  <table class="inline-table" id="result">
+    <thead>
+      <tr>
+        <th *ngFor="let header of tableHeaders">{{ header }}</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr class="odd" *ngFor="let row of apiData">
+        <td *ngFor="let header of tableHeaders">{{ row[header] }}</td>
       </tr>
     </tbody>
   </table>
-  </div>
-</form>
-
-<div>
-  <td valign="top" align="left">
-    <table border="0" cellspacing="0" cellpadding="0" width="100%">
-      <!-- ERRORS -->
-
-      <tbody>
-        <tr>
-          <td
-            id="errorMsg"
-            class="eds-messageframe"
-            style="display: none"
-            align="left"
-          >
-            <ul>
-              <li>
-                <span class="eds-message-warning" id="errorMsgContents"> </span>
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td id="emptyRow" style="display: none">&nbsp;</td>
-        </tr>
-        <tr>
-          <td align="left">
-            <!-- CONTENT -->
-            <br /><br />
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </td>
-</div>
+  <br />
+  <a href="javascript:exportXLS();">Download XLS</a>
+  <br />(Please note: Depending on the size, this operation might take several
+  minutes)
+</td>
 </div>
