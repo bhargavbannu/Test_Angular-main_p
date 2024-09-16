@@ -1,3 +1,4 @@
+import { sanitizeIdentifier } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { setLines } from '@angular/material/core';
@@ -122,18 +123,23 @@ export class SearchComponent {
   eso: any;
   vendorPartRefNbr: any;
 
+  recordsPerPage: any = 10; // Number of records per page
+  currentPage: any = 1;
+  totalPages: any;
+
   apiData: any;
+  totalCount: any;
   tableHeaders: any;
+  maxVisibleButtons: any = 8;
+  start: any;
+  size: any;
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private apiService: ApiService
   ) {
-    // this.formData = this.fb.group({
-    //   vendorName: [''],
-    //   email: [''],
-    // });
   }
   // "28796727"
 
@@ -141,7 +147,9 @@ export class SearchComponent {
     this.Search();
   }
   Search() {
-    console.log(this.vendorName, this.eso, this.vendorPartRefNbr);
+    this.loading = true;
+    this.start = (this.currentPage - 1) * this.recordsPerPage;
+    this.size = this.recordsPerPage;
 
     const payload = {
       vendorName: this.vendorName,
@@ -149,53 +157,76 @@ export class SearchComponent {
       vendorDocRefNbr: this.vendorPartRefNbr,
     };
 
-    // const payload = {
-    //   currentVendorOnly:'on',
-    //   advancedSearchHidden:true,
-    //   vendorName:'',
-    //   vendorPartRefNbr:'',
-    //   detailDocType:'',
-    //   itar:'',
-    //   eccnNumber:'',
-    //   eso:'',
-    //   eco:'',
-    //   ata:'',
-    //   detailId:'',
-    //   eccnLocation:'',
-    //   docName:'',
-    //   effectivity:'',
-    //   subject:'',
-    //   bin:'',
-    //   documentType:'',
-    //   manualStartDate:'',
-    //   manualEndDate:'',
-    //   reissueStartDate:'',
-    //   reissueEndDate:'',
-    //   documentSubject:''
-    // };
-    this.apiService.postData(payload).subscribe((data) => {
-
-      this.apiData = [...data.results];
-      
-        console.log(data);
-        // this.apiData = data;
+    this.apiService.postData(payload, this.start, this.size).subscribe(
+      (data) => {
+        this.apiData = [...data.results];
+        this.totalCount = data.totalCount;
+        this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
         
-        this.tableHeaders =  Object.keys(this.apiData[0]); // Extract headers from the first object
-        
-        // console.log(this.apiData);
-        console.log(this.tableHeaders);
-     
-    });
+        this.loading = false;
+        this.tableHeaders = Object.keys(this.apiData[0]); // Extract headers from the first object
+       
+      },
+      (error) => {
+        this.loading = false; // Handle error and stop loading
+       alert('Error fetching data');
+      }
+    );
   }
 
-  // advancedSearchHidden=true&currentVendorOnly=true&vendorName=&
-  // currentVendorOnly=on&vendorPartRefNbr=&detailDocType=ASM&itar=YES&eccnNumber=5E991
-  // &eso=&eco=&ata=&detailId=&eccnLocation=CMM&docName=&effectivity=757&subject=&bin=&
-  // documentType=&manualStartDate=&manualEndDate=&reissueStartDate=&reissueEndDate=&documentSubject=
+  getVisiblePages(): number[] {
+    let startPage = Math.max(
+      1,
+      this.currentPage - Math.floor(this.maxVisibleButtons / 2)
+    );
+    let endPage = Math.min(
+      startPage + this.maxVisibleButtons - 1,
+      this.totalPages
+    );
+
+    if (endPage - startPage < this.maxVisibleButtons - 1) {
+      startPage = Math.max(1, endPage - this.maxVisibleButtons + 1);
+    }
+
+    return Array.from(
+      { length: endPage - startPage + 1 },
+      (_, i) => startPage + i
+    );
+  }
+
+  goToPage(page: any) {
+    this.currentPage = page;
+    console.log(this.currentPage);
+
+    this.Search();
+  }
 
   ngOnInit() {
     this.advancedSearchValue = 'Advanced Search (Display)';
     this.router.navigateByUrl('/search');
+  }
+
+  goToFirst() {
+    this.goToPage(1);
+  }
+
+  // Previous page
+  goToPrevious() {
+    if (this.currentPage > 1) {
+      this.goToPage(this.currentPage - 1);
+    }
+  }
+
+  // Next page
+  goToNext() {
+    if (this.currentPage < this.totalPages) {
+      this.goToPage(this.currentPage + 1);
+    }
+  }
+
+  // Last page
+  goToLast() {
+    this.goToPage(this.totalPages);
   }
 
   advancedSearch() {

@@ -331,75 +331,48 @@
   </div>
 </div>
 
-
-
-
 <div >
-<td valign="top" align="left">
-  <br />
+  <div class="loader-container" *ngIf="loading">
+    <div class="loader"></div>
+    <p>Loading data, please wait...</p>
+  </div>
+  <td valign="top" align="left" *ngIf="apiData">
+    <br />
+    <div class="pagination-container">
+    <span class="pagebanner">{{totalCount}} items found, displaying {{start}} to {{start +recordsPerPage}}.</span>
+    <a class="pagination-link" (click)="goToFirst()" 
+    [class.disabled]="currentPage === 1">[First</a> /
+    <a  class="pagination-link" (click)="goToPrevious()"
+     [class.disabled]="currentPage === 1">Prev]</a> /
 
-  <span class="pagebanner">65,336 items found, displaying 1 to 15.</span
-  ><span class="pagelinks"
-    >[First/Prev] <strong>1</strong>,
-    <a
-      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=2&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
-      title="Go to page 2"
-      >2</a
-    >,
-    <a
-      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=3&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
-      title="Go to page 3"
-      >3</a
-    >,
-    <a
-      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=4&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
-      title="Go to page 4"
-      >4</a
-    >,
-    <a
-      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=5&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
-      title="Go to page 5"
-      >5</a
-    >,
-    <a
-      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=6&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
-      title="Go to page 6"
-      >6</a
-    >,
-    <a
-      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=7&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
-      title="Go to page 7"
-      >7</a
-    >,
-    <a
-      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=8&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
-      title="Go to page 8"
-      >8</a
-    >
-    [<a
-      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=2&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
-      >Next</a
-    >/<a
-      href="/vdt/Search.html?eso=&amp;eccnLocation=&amp;eccnNumber=&amp;currentVendorOnly=false&amp;manualEndDate=&amp;documentType=&amp;subject=&amp;bin=&amp;detailId=&amp;d-447263-p=4356&amp;vendorPartRefNbr=&amp;vendorName=&amp;reissueStartDate=&amp;itar=&amp;reissueEndDate=&amp;ata=&amp;eco=&amp;docName=&amp;advancedSearchHidden=true&amp;detailDocType=&amp;documentSubject=&amp;manualStartDate="
-      >Last</a
-    >]</span
-  >
-  <table class="inline-table" id="result">
-    <thead>
-      <tr>
-        <th *ngFor="let header of tableHeaders">{{ header }}</th>
-      </tr>
-    </thead>
-    <tbody>
-    
-      <tr class="odd" *ngFor="let row of apiData">
-        <td *ngFor="let header of tableHeaders">{{ row[header] }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <br />
-  <a href="javascript:exportXLS();">Download XLS</a>
-  <br />(Please note: Depending on the size, this operation might take several
-  minutes)
-</td>
+
+    <!-- Page Numbers -->
+  <a *ngFor="let page of getVisiblePages() let i = index" 
+  class="pagination-link" 
+  (click)="goToPage(i + 1)" 
+  [class.active]="currentPage === i + 1">
+ {{ i + 1 }}
+</a> /
+
+    <!-- Next/Last Buttons -->
+    <a  class="pagination-link" (click)="goToNext()" [class.disabled]="currentPage === totalPages">[Next</a> /
+    <a  class="pagination-link" (click)="goToLast()" [class.disabled]="currentPage === totalPages">Last]</a>
+</div>
+       <table class="inline-table" id="result">
+      <thead>
+        <tr>
+          <th *ngFor="let header of tableHeaders">{{ header }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd" *ngFor="let row of apiData">
+          <td *ngFor="let header of tableHeaders">{{ row[header] }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <!-- <a href="javascript:exportXLS();">Download XLS</a> -->
+    <br />(Please note: Depending on the size, this operation might take several
+    minutes)
+  </td>
 </div>
