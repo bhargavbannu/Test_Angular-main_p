@@ -167,10 +167,7 @@ export class SearchComponent {
         this.tableHeaders = Object.keys(this.apiData[0]); // Extract headers from the first object
        
       },
-      (error) => {
-        this.loading = false; // Handle error and stop loading
-       alert('Error fetching data');
-      }
+     
     );
   }
 
