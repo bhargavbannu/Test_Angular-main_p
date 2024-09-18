@@ -16,7 +16,7 @@ import { ManageDetailDocTypeComponent } from './component/Admin Configuration/ma
 import { ManageDocCategoriesComponent } from './component/Admin Configuration/manage-doc-categories/manage-doc-categories.component';
 import { ManageEccnLocationComponent } from './component/Admin Configuration/manage-eccn-location/manage-eccn-location.component';
 import { ManageEccnNumberComponent } from './component/Admin Configuration/manage-eccn-number/manage-eccn-number.component';
-
+import { HealthTestComponent } from './component/health-test/health-test.component'
 const routes: Routes = [
   {
     path: 'search',
@@ -76,7 +76,12 @@ const routes: Routes = [
   {
     path: 'Manage-eccn-number',
     component: ManageEccnNumberComponent,
-  }
+  },
+  { path: 'health', 
+    component: HealthTestComponent
+   },
+
+   
 ];
 
 @NgModule({

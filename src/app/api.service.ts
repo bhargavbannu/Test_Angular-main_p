@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,14 @@ export class ApiService {
         start: start,
         size: size
       }});
+  }
+
+
+  checkApiHealth(): Observable<any> {
+    return this.http.get('https://mevendtrk-svc-np.maverick.aa.com/vdt/actuator/health').pipe(
+      catchError(error => {
+        return of({ status: 'down', error });
+      })
+    );
   }
 }
