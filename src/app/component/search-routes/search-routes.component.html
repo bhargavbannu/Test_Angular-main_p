@@ -28,6 +28,7 @@
                 id="searchFormId"
                 method="get"
                 action="/vdt/OpenRoutes.html"
+                (submit)="onSearch()">
               >
                 <table cellspacing="0" cellpadding="0" border="0">
                   <tbody>
@@ -802,17 +803,23 @@
                                                   type="radio"
                                                   name="routeStatusSearchType"
                                                   value="OPEN"
+                                                  [(ngModel)]="selectedOption" 
+                                                  (change)="getSelectedRadioValue($event)"
                                                 />OPEN
                                                 <input
                                                   type="radio"
                                                   name="routeStatusSearchType"
                                                   value="CLOSED"
+                                                  [(ngModel)]="selectedOption" 
+                                                  (change)="getSelectedRadioValue($event)"
                                                 />CLOSED
                                                 <input
                                                   type="radio"
                                                   name="routeStatusSearchType"
                                                   value="BOTH"
                                                   checked="checked"
+                                                  [(ngModel)]="selectedOption" 
+                                                  (change)="getSelectedRadioValue($event)"
                                                 />BOTH
                                               </td>
                                             </tr>
@@ -887,3 +894,49 @@
     </td>
   </tr>
 </div>
+
+<div ></div>
+  <div class="loader-container" *ngIf="loading">
+    <div class="loader"></div>
+    <p>Loading data, please wait...</p>
+  </div>
+  <td valign="top" align="left" *ngIf="data">
+    <br />
+    <div class="pagination-container">
+    <span class="pagebanner">{{totalCount}} items found, displaying {{start}} to {{start +recordsPerPage}}.</span>
+    <a class="pagination-link" (click)="goToFirst()" 
+    [class.disabled]="currentPage === 1">[First</a> /
+    <a  class="pagination-link" (click)="goToPrevious()"
+     [class.disabled]="currentPage === 1">Prev]</a> /
+
+
+    <!-- Page Numbers -->
+  <a *ngFor="let page of getVisiblePages() let i = index" 
+  class="pagination-link" 
+  (click)="goToPage(i + 1)" 
+  [class.active]="currentPage === i + 1">
+ {{ i + 1 }}
+</a> /
+
+    <!-- Next/Last Buttons -->
+    <a  class="pagination-link" (click)="goToNext()" [class.disabled]="currentPage === totalPages">[Next</a> /
+    <a  class="pagination-link" (click)="goToLast()" [class.disabled]="currentPage === totalPages">Last]</a>
+</div>
+       <table class="inline-table" id="result">
+      <thead>
+        <tr>
+          <th *ngFor="let header of headers">{{ header }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="odd" *ngFor="let row of data">
+          <td *ngFor="let header of headers">{{ row[header] }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <a href="javascript:exportXLS();">Download XLS</a>
+    <br />(Please note: Depending on the size, this operation might take several
+    minutes)
+  </td>
+

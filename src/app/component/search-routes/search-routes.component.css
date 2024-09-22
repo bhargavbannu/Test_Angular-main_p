@@ -1,0 +1,91 @@
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination-controls button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+    cursor: pointer;
+  }
+  
+  .pagination-controls button[disabled] {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+  }
+  
+  .active-page {
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* position: fixed; */
+    height: 50px; /* Adjust height to fit the page */
+  }
+  
+  
+  
+  .loader {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    /* position: fixed; */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loader-container p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .pagination-container {
+    margin-top: 10px;    /* Add some spacing from the table */
+    font-family: Arial, sans-serif;
+  }
+  
+  .pagination-link {
+    /* Space inside each link for better click area */
+    text-decoration: none;
+    color: #007bff;      /* Blue color for links */
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .pagination-link:hover {
+    color: #0056b3;      /* Darker blue on hover */
+    text-decoration: underline;
+  }
+  
+  .pagination-link.active {
+    font-weight: bold;   /* Highlight the active page */
+    color: black;        /* Black color for active page */
+  }
+  
+  .pagination-link.disabled {
+    color: gray;         /* Gray out disabled links (First/Prev/Next/Last) */
+    pointer-events: none; /* Disable click events for disabled links */
+    cursor: not-allowed;
+  }
+  
+  .pagination-link.active:hover {
+    text-decoration: none; /* Prevent underline on the active page */
+  }
+  

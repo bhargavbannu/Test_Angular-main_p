@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://mevendtrk-svc-np.maverick.aa.com/vdt-dev.me.aa.com",
+    "target": "https://mevendtrk-svc-np.maverick.aa.com/vdt",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {

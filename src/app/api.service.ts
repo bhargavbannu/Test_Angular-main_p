@@ -9,6 +9,8 @@ export class ApiService {
 
   private api ='api/search/documentSearch?'
 
+  private routesAPi="api/search/routeSearch?"
+
   constructor( private http:HttpClient) { }
 
 
@@ -19,6 +21,16 @@ export class ApiService {
         start: start,
         size: size
       }});
+  }
+
+  routesData(payload:any, start:any, size:any):Observable<any>{
+    return this.http.post(this.routesAPi,payload, {
+      params: {
+        start: start,
+        size: size
+      }});
+    
+
   }
 
 
