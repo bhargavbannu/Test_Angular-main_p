@@ -103,8 +103,8 @@
                                       <input
                                         type="checkbox"
                                         name="currentVendorOnly"
-                                        value="on"
-                                        checked="checked"
+                                        [(ngModel)]="checkBoxValue"
+                                        checked
                                         style="vertical-align: top; width: 15%"
                                       />
                                     </td>
@@ -331,7 +331,7 @@
   </div>
 </div>
 
-<div >
+<div>
   <div class="loader-container" *ngIf="loading">
     <div class="loader"></div>
     <p>Loading data, please wait...</p>
@@ -339,26 +339,52 @@
   <td valign="top" align="left" *ngIf="apiData">
     <br />
     <div class="pagination-container">
-    <span class="pagebanner">{{totalCount}} items found, displaying {{start}} to {{start +recordsPerPage}}.</span>
-    <a class="pagination-link" (click)="goToFirst()" 
-    [class.disabled]="currentPage === 1">[First</a> /
-    <a  class="pagination-link" (click)="goToPrevious()"
-     [class.disabled]="currentPage === 1">Prev]</a> /
+      <span class="pagebanner"
+        >{{ totalCount }} items found, displaying {{ start }} to
+        {{ start + recordsPerPage }}.</span
+      >
+      <a
+        class="pagination-link"
+        (click)="goToFirst()"
+        [class.disabled]="currentPage === 1"
+        >[First</a
+      >
+      /
+      <a
+        class="pagination-link"
+        (click)="goToPrevious()"
+        [class.disabled]="currentPage === 1"
+        >Prev]</a
+      >
+      /
 
+      <!-- Page Numbers -->
+      <a
+        *ngFor="let page of getVisiblePages(); let i = index"
+        class="pagination-link"
+        (click)="goToPage(i + 1)"
+        [class.active]="currentPage === i + 1"
+      >
+        {{ i + 1 }}
+      </a>
+      /
 
-    <!-- Page Numbers -->
-  <a *ngFor="let page of getVisiblePages() let i = index" 
-  class="pagination-link" 
-  (click)="goToPage(i + 1)" 
-  [class.active]="currentPage === i + 1">
- {{ i + 1 }}
-</a> /
-
-    <!-- Next/Last Buttons -->
-    <a  class="pagination-link" (click)="goToNext()" [class.disabled]="currentPage === totalPages">[Next</a> /
-    <a  class="pagination-link" (click)="goToLast()" [class.disabled]="currentPage === totalPages">Last]</a>
-</div>
-       <table class="inline-table" id="result">
+      <!-- Next/Last Buttons -->
+      <a
+        class="pagination-link"
+        (click)="goToNext()"
+        [class.disabled]="currentPage === totalPages"
+        >[Next</a
+      >
+      /
+      <a
+        class="pagination-link"
+        (click)="goToLast()"
+        [class.disabled]="currentPage === totalPages"
+        >Last]</a
+      >
+    </div>
+    <table class="inline-table" id="result">
       <thead>
         <tr>
           <th *ngFor="let header of tableHeaders">{{ header }}</th>

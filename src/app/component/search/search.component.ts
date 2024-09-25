@@ -134,6 +134,7 @@ export class SearchComponent {
   start: any;
   size: any;
   loading: boolean = false;
+checkBoxValue: boolean= true;
 
   constructor(
     private fb: FormBuilder,
@@ -145,16 +146,20 @@ export class SearchComponent {
 
   ngOnInIt() {
     this.Search();
+   
+    
   }
   Search() {
+    console.log(this.checkBoxValue);
     this.loading = true;
     this.start = (this.currentPage - 1) * this.recordsPerPage;
     this.size = this.recordsPerPage;
 
     const payload = {
+      currentVendorOnly: this.checkBoxValue,
       vendorName: this.vendorName,
-      esos: this.eso,
-      vendorDocRefNbr: this.vendorPartRefNbr,
+      // esos: this.eso,
+      // vendorDocRefNbr: this.vendorPartRefNbr,
     };
 
     this.apiService.postData(payload, this.start, this.size).subscribe(
