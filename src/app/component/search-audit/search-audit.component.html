@@ -28,6 +28,7 @@
                 id="searchFormId"
                 method="get"
                 action="/vdt/AuditSearch.html"
+                (submit)="onSearch()"
               >
                 <table
                   cellspacing="0"
@@ -957,6 +958,7 @@
                                                     value=""
                                                     size="10"
                                                     maxlength="10"
+                                                    [(ngModel)]="AAResvision" 
                                                   />
                                                 </td>
                                               </tr>
@@ -1010,17 +1012,20 @@
                                             type="radio"
                                             name="searchType"
                                             value="A"
+                                            [(ngModel)]="selectedOption" 
                                           />AUDITED
                                           <input
                                             type="radio"
                                             name="searchType"
                                             value="U"
+                                            [(ngModel)]="selectedOption" 
                                           />UNAUDITED
                                           <input
                                             type="radio"
                                             name="searchType"
                                             value="B"
                                             checked="checked"
+                                            [(ngModel)]="selectedOption" 
                                           />BOTH
                                         </td>
                                       </tr>
@@ -1429,3 +1434,47 @@
     </td>
   </tr>
 </div>
+
+<div class="loader-container" *ngIf="loading">
+  <div class="loader"></div>
+  <p>Loading data, please wait...</p>
+</div>
+<td valign="top" align="left" *ngIf="data">
+  <br />
+  <div class="pagination-container">
+  <span class="pagebanner">{{totalCount}} items found, displaying {{start}} to {{start +recordsPerPage}}.</span>
+  <a class="pagination-link" (click)="goToFirst()" 
+  [class.disabled]="currentPage === 1">[First</a> /
+  <a  class="pagination-link" (click)="goToPrevious()"
+   [class.disabled]="currentPage === 1">Prev]</a> /
+
+
+  <!-- Page Numbers -->
+<a *ngFor="let page of getVisiblePages() let i = index" 
+class="pagination-link" 
+(click)="goToPage(i + 1)" 
+[class.active]="currentPage === i + 1">
+{{ i + 1 }}
+</a> /
+
+  <!-- Next/Last Buttons -->
+  <a  class="pagination-link" (click)="goToNext()" [class.disabled]="currentPage === totalPages">[Next</a> /
+  <a  class="pagination-link" (click)="goToLast()" [class.disabled]="currentPage === totalPages">Last]</a>
+</div>
+     <table class="inline-table" id="result">
+    <thead>
+      <tr>
+        <th *ngFor="let header of headers">{{ header }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="odd" *ngFor="let row of data">
+        <td *ngFor="let header of headers">{{ row[header] }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <a href="javascript:exportXLS();">Download XLS</a>
+  <br />(Please note: Depending on the size, this operation might take several
+  minutes)
+</td>

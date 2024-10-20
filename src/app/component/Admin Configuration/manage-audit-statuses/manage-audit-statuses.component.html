@@ -77,7 +77,12 @@
                                   <th>Description</th>
                                   <th></th>
                                 </tr>
-                                <tr
+                                <tr *ngFor="let status of auditStatuses; let i=index" [ngClass]="i % 2 == 0 ?'eds-pagerstyle':'eds-pagerstyle-alt'">
+                                 <td>{{status.auditStatusCd}}</td>
+                                 <td>{{status.auditStatusDesc}}</td>
+                                 <td><button style="border: 1px solid gray; border-radius: 2px;">Update</button></td>
+                                </tr>
+                                <!-- <tr
                                   class="eds-pagerstyle"
                                   id="inline-table_inlineRow_NO AUDIT"
                                 >
@@ -307,7 +312,7 @@
                                       onclick='cancel("manageAuditStatusesForm","editId","ManageAuditStatuses.html");'
                                     />
                                   </td>
-                                </tr>
+                                </tr> -->
                                 <tr class="eds-pagerstyle-alt">
                                   <input
                                     type="hidden"

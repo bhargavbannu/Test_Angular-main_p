@@ -82,7 +82,16 @@
                                   <th>Inactive Date</th>
                                   <th></th>
                                 </tr>
-                                <tr
+
+                                <tr *ngFor="let status of sections; let i= index" [ngClass]="i % 2 == 0 ?'eds-pagerstyle':'eds-pagerstyle-alt'">
+                                  <td>{{status.section}}</td>
+                                  <td>{{status.description}}</td>
+                                  <td>{{status.inactiveInd}}</td>
+                                  <td>{{status.inactiveDate | date:'MM/dd/YYYY'}}</td>
+                                  <td><button style="border: 1px solid gray; border-radius: 2px;">Update</button></td>
+                                </tr>
+
+                             <!--   <tr
                                   class="eds-pagerstyle"
                                   id="inline-table_inlineRow_0"
                                 >
@@ -5283,7 +5292,7 @@
                                       onclick='cancel("manageSectionForm","editId","ManageSections.html");'
                                     />
                                   </td>
-                                </tr>
+                                </tr> -->
                                 <tr class="eds-pagerstyle">
                                   <input
                                     type="hidden"

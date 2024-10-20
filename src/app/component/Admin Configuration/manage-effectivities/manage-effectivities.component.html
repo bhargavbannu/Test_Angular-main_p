@@ -80,7 +80,17 @@
                                   <th>Next ESO #</th>
                                   <th>Inactive</th>
                                   <th></th>
-                                </tr>
+
+                                  <tr *ngFor="let status of Effectivities; let i=index" [ngClass]="i % 2 == 0 ?'eds-pagerstyle':'eds-pagerstyle-alt'">
+                                    <td>{{status.effectivityId}}</td>
+                                    <td>{{status.effectivityFleet?.esoMinSeqNbr}}</td>
+                                    <td>{{status.effectivityFleet?.esoMaxSeqNbr}}</td>
+                                    <td>{{status.effectivityFleet?.esoCurrSeqNbr}}</td>
+                                    <td>{{status.inactiveInd}}</td>
+                                    <td><button style="border: 1px solid gray; border-radius: 2px;">Update</button></td>
+                                   </tr>
+
+                              <!--  </tr>
                                 <tr
                                   class="eds-pagerstyle"
                                   id="inline-table_inlineRow_A319"
@@ -10046,7 +10056,7 @@
                                       onclick='cancel("manageEffectivityForm","editId","ManageEffectivities.html");'
                                     />
                                   </td>
-                                </tr>
+                                </tr> -->
                                 <tr class="eds-pagerstyle-alt">
                                   <input
                                     type="hidden"

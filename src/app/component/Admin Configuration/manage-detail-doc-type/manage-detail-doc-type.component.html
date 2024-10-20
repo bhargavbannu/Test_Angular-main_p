@@ -84,7 +84,14 @@
                                   <th>Auditable</th>
                                   <th></th>
                                 </tr>
-                                <tr
+                                <tr *ngFor="let doc of docTypes; let i=index" [ngClass]="i % 2 == 0 ?'eds-pagerstyle':'eds-pagerstyle-alt'">
+                                  <td>{{doc.detailDocType}}</td>
+                                  <td>{{doc.detailDocTypeDesc}}</td>
+                                  <td>{{doc.auditableInd}}</td>
+                                  <td><button style="border: 1px solid gray; border-radius: 2px;">Update</button></td>
+                                 </tr>
+
+                               <!-- <tr
                                   class="eds-pagerstyle"
                                   id="inline-table_inlineRow_AA SB"
                                 >
@@ -10075,7 +10082,7 @@
                                       onclick='cancel("manageDetailDocTypeForm","editId","ManageDetailDocTypes.html");'
                                     />
                                   </td>
-                                </tr>
+                                </tr> -->
                                 <tr class="eds-pagerstyle">
                                   <input
                                     type="hidden"
@@ -10160,7 +10167,7 @@
                                       onclick='cancel("manageDetailDocTypeForm","editId","ManageDetailDocTypes.html");'
                                     />
                                   </td>
-                                </tr>
+                                </tr> 
                               </tbody>
                             </table>
                           

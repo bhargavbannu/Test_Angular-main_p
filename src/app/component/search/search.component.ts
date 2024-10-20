@@ -162,7 +162,7 @@ checkBoxValue: boolean= true;
       // vendorDocRefNbr: this.vendorPartRefNbr,
     };
 
-    this.apiService.postData(payload, this.start, this.size).subscribe(
+    this.apiService.postData(payload, this.start/this.size, this.size).subscribe(
       (data) => {
         this.apiData = [...data.results];
         this.totalCount = data.totalCount;

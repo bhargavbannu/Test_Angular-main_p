@@ -81,7 +81,14 @@
                                   <th>ECCN Location Desc</th>
                                   <th></th>
                                 </tr>
-                                <tr
+
+                                <tr *ngFor="let status of EccnLocations; let i=index" [ngClass]="i % 2 == 0 ?'eds-pagerstyle':'eds-pagerstyle-alt'">
+                                  <td>{{status.eccnLocationCd}}</td>
+                                  <td>{{status.eccnLocationDesc}}</td>
+                                  <td><button style="border: 1px solid gray; border-radius: 2px;">Update</button></td>
+                                </tr>
+
+                            <!--    <tr
                                   class="eds-pagerstyle"
                                   id="inline-table_inlineRow_CMM"
                                 >
@@ -388,7 +395,7 @@
                                       onclick='cancel("manageEccnLocationForm","editId","ManageEccnLocations.html");'
                                     />
                                   </td>
-                                </tr>
+                                </tr> -->
                                 <tr class="eds-pagerstyle">
                                   <input
                                     type="hidden"

@@ -35,7 +35,7 @@ export class SearchRoutesComponent {
         "routeStatusSearchType": this.selectedOption
         
     };
-    this.service.routesData(payload, this.start, this.size).subscribe((response) => {
+    this.service.routesData(payload, this.start/this.size, this.size).subscribe((response) => {
       console.log(response);
       this.loading = false;
       this.data = [...response.routes];
