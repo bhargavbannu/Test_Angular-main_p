@@ -4,27 +4,52 @@ import { ApiService } from 'src/app/api.service';
 @Component({
   selector: 'app-manage-audit-statuses',
   templateUrl: './manage-audit-statuses.component.html',
-  styleUrls: ['./manage-audit-statuses.component.css']
+  styleUrls: ['./manage-audit-statuses.component.css'],
 })
 export class ManageAuditStatusesComponent {
-  auditStatuses: any[]=[];
+  auditStatuses: any[] = [];
+  btnIndex: any;
+  clickFlag: boolean = false;
 
-  constructor(private apiService: ApiService){}
+  constructor(private apiService: ApiService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.loadAuditStatuses();
   }
 
-  loadAuditStatuses(){
-    this.apiService.getAuditStatuses().subscribe(data =>{
-      this.auditStatuses = data;  
-    })
+  loadAuditStatuses() {
+    this.apiService.getAuditStatuses().subscribe((data) => {
+      this.auditStatuses = data;
+    });
   }
 
-  // updateStatus(statusCode:string, description:string){
-  //   this.apiService.updateAuditStatuses(statusCode, description).subscribe(()=>{
-  //     this.loadAuditStatuses()
-  //   })
-  // }
+  btnClick(index: any) {
+    this.btnIndex = index;
+    this.clickFlag = true;
+  }
 
+  createRow() {
+    this.auditStatuses.push({ auditStatusCd: '', auditStatusDesc: '' });
+  }
+
+  saveRow(auditStatusCd: any, auditStatusDesc: string) {
+    this.apiService
+      .saveAuditStatus(auditStatusCd, auditStatusDesc)
+      .subscribe(() => {
+        this.loadAuditStatuses();
+      });
+    this.btnIndex = '';
+  }
+
+  deleteRow(auditStatusCd: any) {
+    this.apiService.deleteAuditStatus(auditStatusCd).subscribe(() => {
+      this.loadAuditStatuses();
+    });
+    this.btnIndex = '';
+  }
+
+  cancelRow() {
+    this.loadAuditStatuses();
+    this.btnIndex = '';
+  }
 }

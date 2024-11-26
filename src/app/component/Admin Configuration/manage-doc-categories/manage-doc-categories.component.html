@@ -1,177 +1,248 @@
 <div>
-    <td valign="top" align="left">
-  <table border="0" cellspacing="0" cellpadding="0" width="100%">
-    <tbody>
-      <tr>
-        <td
-          id="errorMsg"
-          class="eds-messageframe"
-          style="display: none"
-          align="left"
-        >
-          <ul>
-            <li>
-              <span class="eds-message-warning" id="errorMsgContents"> </span>
-            </li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td id="emptyRow" style="display: none">&nbsp;</td>
-      </tr>
-      <tr>
-        <td align="left">
-          <!-- CONTENT -->
+  <td valign="top" align="left">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tbody>
+        <tr>
+          <td
+            id="errorMsg"
+            class="eds-messageframe"
+            style="display: none"
+            align="left"
+          >
+            <ul>
+              <li>
+                <span class="eds-message-warning" id="errorMsgContents"> </span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td id="emptyRow" style="display: none">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="left">
+            <!-- CONTENT -->
 
-          <table cellspacing="0" cellpadding="0" border="0">
-            <tbody>
-              <tr>
-                <td style="padding-top: 20px">
-                  <table
-                    class="category eds-tabheader"
-                    cellspacing="0"
-                    cellpadding="0"
-                    border="0"
-                  >
-                    <tbody>
-                      <tr>
-                        <td class="eds-tabtopleftcorner"></td>
-                        <td class="eds-tabtopmiddle" align="center">
-                          <div class="eds-tabtitle">
-                            Manage Document Categories
-                          </div>
-                        </td>
-                        <td class="eds-tabtoprightcorner"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td class="eds-tabtoprightcorner"></td>
-              </tr>
-              <tr>
-                <td>
-                  <table
-                    cellspacing="0"
-                    cellpadding="0"
-                    width="100%"
-                    border="0"
-                    class="eds-tabtitle"
-                  >
-                    <tbody>
-                      <tr>
-                        <td>
-                          <form
-                            name="DocumentCategoryForm"
-                            id="manageDocumentCategoriesForm"
-                            method="post"
-                            action="/vdt/SaveDocumentCategory.html"
-                          >
-                            <input type="hidden" name="editId" value="" />
+            <table cellspacing="0" cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td style="padding-top: 20px">
+                    <table
+                      class="category eds-tabheader"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                    >
+                      <tbody>
+                        <tr>
+                          <td class="eds-tabtopleftcorner"></td>
+                          <td class="eds-tabtopmiddle" align="center">
+                            <div class="eds-tabtitle">
+                              Manage Document Categories
+                            </div>
+                          </td>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      cellspacing="0"
+                      cellpadding="0"
+                      width="100%"
+                      border="0"
+                      class="eds-tabtitle"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <form
+                              name="DocumentCategoryForm"
+                              id="manageDocumentCategoriesForm"
+                              method="post"
+                              action="/vdt/SaveDocumentCategory.html"
+                            >
+                              <input type="hidden" name="editId" value="" />
 
-                            <!-- Inline edit table -->
-                            <style type="text/css">
-                              .hide {
-                                display: none;
-                              }
-                            </style>
-                            <table id="inline-table" class="inline-table">
-                              <tbody>
-                                <tr>
-                                  <th>Doc Category Code *</th>
-                                  <th>Description</th>
-                                  <th></th>
-                                </tr>
-                                
-                                <tr *ngFor="let status of DocCategories; let i=index" [ngClass]="i % 2 == 0 ?'eds-pagerstyle':'eds-pagerstyle-alt'">
-                                  <td>{{status.documentCatgCd}}</td>
-                                  <td>{{status.documentCatgDesc}}</td>
-                                  <td><button style="border: 1px solid gray; border-radius: 2px;">Update</button></td>
-                                </tr>    
-                                     
-                                <tr class="eds-pagerstyle">
-                                  <input
-                                    type="hidden"
-                                    name="inline-table_editId"
-                                    value=""
-                                  />
-                                  <td>
-                                    <span
-                                      id="inline-table_documentCatgCd_field_-1"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
+                              <!-- Inline edit table -->
+                              <style type="text/css">
+                                .hide {
+                                  display: none;
+                                }
+                              </style>
+                              <table id="inline-table" class="inline-table">
+                                <tbody>
+                                  <tr>
+                                    <th>Doc Category Code *</th>
+                                    <th>Description</th>
+                                    <th></th>
+                                  </tr>
+
+                                  <tr
+                                    *ngFor="
+                                      let status of DocCategories;
+                                      let i = index
+                                    "
+                                    [ngClass]="
+                                      i % 2 == 0
+                                        ? 'eds-pagerstyle'
+                                        : 'eds-pagerstyle-alt'
+                                    "
+                                  >
+                                    <td *ngIf="btnIndex !== i">
+                                      {{ status.documentCatgCd }}
+                                    </td>
+                                    <td *ngIf="btnIndex !== i">
+                                      {{ status.documentCatgDesc }}
+                                    </td>
+
+                                    <td *ngIf="btnIndex === i">
+                                      <span>
+                                        <input
+                                          type="text"
+                                          name="inline-table_documentCatgCd_field_-1"
+                                          [(ngModel)]="status.documentCatgCd"
+                                        />
+                                      </span>
+                                    </td>
+
+                                    <td *ngIf="btnIndex === i">
+                                      <span>
+                                        <input
+                                          type="text"
+                                          name="documentCatgDesc"
+                                          [(ngModel)]="status.documentCatgDesc"
+                                        />
+                                      </span>
+                                    </td>
+                                    <td *ngIf="btnIndex !== i">
+                                      <button
+                                        style="
+                                          border: 1px solid gray;
+                                          border-radius: 2px;
+                                        "
+                                        (click)="btnClick(i)"
+                                      >
+                                        Update
+                                      </button>
+                                    </td>
+                                    <td *ngIf="btnIndex === i">
                                       <input
-                                        type="text"
-                                        name="inline-table_documentCatgCd_field_-1"
-                                        value=""
-                                        size="12"
-                                        maxlength="10"
+                                        id="inline-table_save_1"
+                                        type="button"
+                                        value="Save"
+                                        (click)="
+                                          saveRow(
+                                            status.documentCatgCd,
+                                            status.documentCatgDesc
+                                          )
+                                        "
+                                      /><input
+                                        id="inline-table_delete_1"
+                                        type="button"
+                                        value="Delete"
+                                        (click)="
+                                          deleteRow(status.documentCatgCd)
+                                        "
                                       />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <span
-                                      id="inline-table_documentCatgDesc_field_-1"
-                                      style="display: none"
-                                      class=" "
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_documentCatgDesc_field_-1"
-                                        value=""
-                                        size="20"
-                                        maxlength="30"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
+                                      <button
+                                        id="inline-table_cancel_1"
+                                        type="button"
+                                        value="Cancel"
+                                        (click)="cancelRow()"
+                                      >
+                                        cancel
+                                      </button>
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle">
                                     <input
                                       type="hidden"
-                                      name="documentCatgCd"
+                                      name="inline-table_editId"
                                       value=""
-                                    /><input
-                                      type="hidden"
-                                      name="documentCatgDesc"
-                                      value=""
-                                    /><input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_-1"
-                                      type="button"
-                                      value="Create"
-                                      onclick='updateRow("inline-table","-1",null,true,new Array("documentCatgCd","documentCatgDesc"));'
                                     />
-                                    <input
-                                      id="inline-table_save_-1"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageDocumentCategoriesForm","inline-table","-1","editId",null,new Array("documentCatgCd","documentCatgDesc"));'
-                                    /><input
-                                      id="inline-table_cancel_-1"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageDocumentCategoriesForm","editId","ManageDocumentCategories.html");'
-                                    />
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                    
-                          </form>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</td>
+                                    <td>
+                                      <span
+                                        id="inline-table_documentCatgCd_field_-1"
+                                        style="display: none"
+                                        class="eds-field-required"
+                                      >
+                                        <input
+                                          type="text"
+                                          name="inline-table_documentCatgCd_field_-1"
+                                          value=""
+                                          size="12"
+                                          maxlength="10"
+                                        />
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <span
+                                        id="inline-table_documentCatgDesc_field_-1"
+                                        style="display: none"
+                                        class=" "
+                                      >
+                                        <input
+                                          type="text"
+                                          name="inline-table_documentCatgDesc_field_-1"
+                                          value=""
+                                          size="20"
+                                          maxlength="30"
+                                        />
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <input
+                                        type="hidden"
+                                        name="documentCatgCd"
+                                        value=""
+                                      /><input
+                                        type="hidden"
+                                        name="documentCatgDesc"
+                                        value=""
+                                      /><input
+                                        name="inline-table_updateButton"
+                                        id="inline-table_update_-1"
+                                        type="button"
+                                        value="Create"
+                                        (click)="createRow()"
+                                      />
+                                      <input
+                                        id="inline-table_save_-1"
+                                        type="button"
+                                        value="Save"
+                                        style="display: none"
+                                        onclick='saveRow("manageDocumentCategoriesForm","inline-table","-1","editId",null,new Array("documentCatgCd","documentCatgDesc"));'
+                                      /><input
+                                        id="inline-table_cancel_-1"
+                                        type="button"
+                                        value="Cancel"
+                                        style="display: none"
+                                        onclick='cancel("manageDocumentCategoriesForm","editId","ManageDocumentCategories.html");'
+                                      />
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
 </div>

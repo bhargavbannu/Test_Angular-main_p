@@ -1,1237 +1,205 @@
 <div>
-    <td valign="top" align="left">
-  <table border="0" cellspacing="0" cellpadding="0" width="100%">
-    <tbody>
-      <tr>
-        <td
-          id="errorMsg"
-          class="eds-messageframe"
-          style="display: none"
-          align="left"
-        >
-          <ul>
-            <li>
-              <span class="eds-message-warning" id="errorMsgContents"> </span>
-            </li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td id="emptyRow" style="display: none">&nbsp;</td>
-      </tr>
-      <tr>
-        <td align="left">
-          <!-- CONTENT -->
+  <td valign="top" align="left">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tbody>
+        <tr>
+          <td
+            id="errorMsg"
+            class="eds-messageframe"
+            style="display: none"
+            align="left"
+          >
+            <ul>
+              <li>
+                <span class="eds-message-warning" id="errorMsgContents"> </span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td id="emptyRow" style="display: none">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="left">
+            <!-- CONTENT -->
 
-          <table cellspacing="0" cellpadding="0" border="0">
-            <tbody>
-              <tr>
-                <td style="padding-top: 20px">
-                  <table
-                    class="number eds-tabheader"
-                    cellspacing="0"
-                    cellpadding="0"
-                    border="0"
-                  >
-                    <tbody>
-                      <tr>
-                        <td class="eds-tabtopleftcorner"></td>
-                        <td class="eds-tabtopmiddle" align="center">
-                          <div class="eds-tabtitle">Manage ECCN Number</div>
-                        </td>
-                        <td class="eds-tabtoprightcorner"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td class="eds-tabtoprightcorner"></td>
-              </tr>
-              <tr>
-                <td>
-                  <table
-                    cellspacing="0"
-                    cellpadding="0"
-                    width="100%"
-                    border="0"
-                    class="eds-tabtitle"
-                  >
-                    <tbody>
-                      <tr>
-                        <td>
-                          <form
-                            name="EccnNumberForm"
-                            id="manageEccnNumberForm"
-                            method="post"
-                            action="/vdt/SaveEccnNumber.html"
-                          >
-                            <input type="hidden" name="editId" value="" />
+            <table cellspacing="0" cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td style="padding-top: 20px">
+                    <table
+                      class="number eds-tabheader"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                    >
+                      <tbody>
+                        <tr>
+                          <td class="eds-tabtopleftcorner"></td>
+                          <td class="eds-tabtopmiddle" align="center">
+                            <div class="eds-tabtitle">Manage ECCN Number</div>
+                          </td>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      cellspacing="0"
+                      cellpadding="0"
+                      width="100%"
+                      border="0"
+                      class="eds-tabtitle"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <form
+                              name="EccnNumberForm"
+                              id="manageEccnNumberForm"
+                              method="post"
+                              action="/vdt/SaveEccnNumber.html"
+                            >
+                              <input type="hidden" name="editId" value="" />
 
-                            <!-- Inline edit table -->
-                            <style type="text/css">
-                              .hide {
-                                display: none;
-                              }
-                            </style>
-                            <table id="inline-table" class="inline-table">
-                              <tbody>
-                                <tr>
-                                  <th>EECN Number</th>
-                                  <th></th>
-                                </tr>
+                              <!-- Inline edit table -->
+                              <style type="text/css">
+                                .hide {
+                                  display: none;
+                                }
+                              </style>
+                              <table id="inline-table" class="inline-table">
+                                <tbody>
+                                  <tr>
+                                    <th>EECN Number</th>
+                                    <th></th>
+                                  </tr>
 
-                                <tr *ngFor="let status of EccnNumbers; let i=index" [ngClass]="i % 2 == 0 ?'eds-pagerstyle':'eds-pagerstyle-alt'">
-                                  <td>{{status.eccnNumber}}</td>
-                                  <td><button style="border: 1px solid gray; border-radius: 2px;">Update</button></td>
-                                </tr>
+                                  <tr
+                                    *ngFor="
+                                      let status of EccnNumbers;
+                                      let i = index
+                                    "
+                                    [ngClass]="
+                                      i % 2 == 0
+                                        ? 'eds-pagerstyle'
+                                        : 'eds-pagerstyle-alt'
+                                    "
+                                  >
+                                    <td *ngIf="btnIndex !== i">
+                                      {{ status.eccnNumber }}
+                                    </td>
+                                    <td *ngIf="btnIndex === i">
+                                      <span>
+                                        <input
+                                          type="text"
+                                          name="eccnNumber"
+                                          [(ngModel)]="status.eccnNumber"
+                                        />
+                                      </span>
+                                    </td>
+                                    <td *ngIf="btnIndex !== i">
+                                      <button
+                                        style="
+                                          border: 1px solid gray;
+                                          border-radius: 2px;
+                                        "
+                                        (click)="btnClick(i)"
+                                      >
+                                        Update
+                                      </button>
+                                    </td>
+                                    <td *ngIf="btnIndex === i">
+                                      <input
+                                        id="inline-table_save_1"
+                                        type="button"
+                                        value="Save"
+                                        (click)="saveRow(status.eccnNumber)"
+                                      /><input
+                                        id="inline-table_delete_1"
+                                        type="button"
+                                        value="Delete"
+                                        (click)="deleteRow(status.eccnNumber)"
+                                      />
+                                      <button
+                                        id="inline-table_cancel_1"
+                                        type="button"
+                                        value="Cancel"
+                                        (click)="cancelRow()"
+                                      >
+                                        cancel
+                                      </button>
+                                    </td>
+                                  </tr>
 
-                              <!--  <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_1E001"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__1E001"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_1E001"
-                                      >1E001</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_1E001"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_1E001"
-                                        value="1E001"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_1E001"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","1E001",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_1E001"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","1E001","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_1E001"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","1E001","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_1E001"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_4D994"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__4D994"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_4D994"
-                                      >4D994</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_4D994"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_4D994"
-                                        value="4D994"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_4D994"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","4D994",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_4D994"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","4D994","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_4D994"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","4D994","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_4D994"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_5E002"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__5E002"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_5E002"
-                                      >5E002</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_5E002"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_5E002"
-                                        value="5E002"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_5E002"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","5E002",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_5E002"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","5E002","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_5E002"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","5E002","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_5E002"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_5E991"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__5E991"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_5E991"
-                                      >5E991</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_5E991"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_5E991"
-                                        value="5E991"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_5E991"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","5E991",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_5E991"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","5E991","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_5E991"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","5E991","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_5E991"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_5E992"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__5E992"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_5E992"
-                                      >5E992</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_5E992"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_5E992"
-                                        value="5E992"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_5E992"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","5E992",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_5E992"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","5E992","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_5E992"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","5E992","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_5E992"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_6E002"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__6E002"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_6E002"
-                                      >6E002</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_6E002"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_6E002"
-                                        value="6E002"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_6E002"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","6E002",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_6E002"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","6E002","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_6E002"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","6E002","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_6E002"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_6E991"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__6E991"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_6E991"
-                                      >6E991</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_6E991"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_6E991"
-                                        value="6E991"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_6E991"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","6E991",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_6E991"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","6E991","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_6E991"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","6E991","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_6E991"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_7A994"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__7A994"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_7A994"
-                                      >7A994</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_7A994"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_7A994"
-                                        value="7A994"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_7A994"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","7A994",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_7A994"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","7A994","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_7A994"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","7A994","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_7A994"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_7E001"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__7E001"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_7E001"
-                                      >7E001</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_7E001"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_7E001"
-                                        value="7E001"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_7E001"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","7E001",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_7E001"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","7E001","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_7E001"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","7E001","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_7E001"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_7E101"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__7E101"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_7E101"
-                                      >7E101</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_7E101"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_7E101"
-                                        value="7E101"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_7E101"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","7E101",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_7E101"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","7E101","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_7E101"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","7E101","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_7E101"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_7E991"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__7E991"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_7E991"
-                                      >7E991</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_7E991"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_7E991"
-                                        value="7E991"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_7E991"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","7E991",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_7E991"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","7E991","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_7E991"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","7E991","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_7E991"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_7E994"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__7E994"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_7E994"
-                                      >7E994</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_7E994"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_7E994"
-                                        value="7E994"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_7E994"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","7E994",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_7E994"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","7E994","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_7E994"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","7E994","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_7E994"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_99251"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__99251"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_99251"
-                                      >99251</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_99251"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_99251"
-                                        value="99251"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_99251"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","99251",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_99251"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","99251","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_99251"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","99251","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_99251"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_9A991"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__9A991"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_9A991"
-                                      >9A991</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_9A991"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_9A991"
-                                        value="9A991"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_9A991"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","9A991",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_9A991"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","9A991","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_9A991"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","9A991","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_9A991"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_9A992"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__9A992"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_9A992"
-                                      >9A992</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_9A992"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_9A992"
-                                        value="9A992"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_9A992"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","9A992",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_9A992"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","9A992","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_9A992"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","9A992","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_9A992"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_9E991"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__9E991"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_9E991"
-                                      >9E991</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_9E991"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_9E991"
-                                        value="9E991"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_9E991"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","9E991",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_9E991"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","9E991","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_9E991"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","9E991","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_9E991"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_9E993"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__9E993"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_9E993"
-                                      >9E993</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_9E993"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_9E993"
-                                        value="9E993"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_9E993"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","9E993",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_9E993"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","9E993","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_9E993"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","9E993","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_9E993"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_EAR99"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__EAR99"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_EAR99"
-                                      >EAR99</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_EAR99"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_EAR99"
-                                        value="EAR99"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_EAR99"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","EAR99",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_EAR99"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","EAR99","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_EAR99"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","EAR99","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_EAR99"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_NLR"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__NLR"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnNumber_NLR"
-                                      >NLR</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnNumber_field_NLR"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_NLR"
-                                        value="NLR"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_NLR"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","NLR",null,true,new Array("eccnNumber"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_NLR"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","NLR","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_delete_NLR"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnNumberForm","inline-table","NLR","editId",null,"DeleteEccnNumber.html");'
-                                    /><input
-                                      id="inline-table_cancel_NLR"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr> -->
-                                <tr class="eds-pagerstyle-alt">
-                                  <input
-                                    type="hidden"
-                                    name="inline-table_editId"
-                                    value=""
-                                  />
-                                  <td>
-                                    <span
-                                      id="inline-table_eccnNumber_field_-1"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnNumber_field_-1"
-                                        value=""
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
+                                  <tr class="eds-pagerstyle-alt">
                                     <input
                                       type="hidden"
-                                      name="eccnNumber"
+                                      name="inline-table_editId"
                                       value=""
-                                    /><input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_-1"
-                                      type="button"
-                                      value="Create"
-                                      onclick='updateRow("inline-table","-1",null,true,new Array("eccnNumber"));'
                                     />
-                                    <input
-                                      id="inline-table_save_-1"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnNumberForm","inline-table","-1","editId",null,new Array("eccnNumber"));'
-                                    /><input
-                                      id="inline-table_cancel_-1"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
-                                    />
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                
-                          </form>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</td>
+                                    <td>
+                                      <span
+                                        id="inline-table_eccnNumber_field_-1"
+                                        style="display: none"
+                                        class="eds-field-required"
+                                      >
+                                        <input
+                                          type="text"
+                                          name="inline-table_eccnNumber_field_-1"
+                                          value=""
+                                          size="12"
+                                          maxlength="10"
+                                        />
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <input
+                                        type="hidden"
+                                        name="eccnNumber"
+                                        value=""
+                                      /><input
+                                        name="inline-table_updateButton"
+                                        id="inline-table_update_-1"
+                                        type="button"
+                                        value="Create"
+                                        (click)="createRow()"
+                                      />
+                                      <input
+                                        id="inline-table_save_-1"
+                                        type="button"
+                                        value="Save"
+                                        style="display: none"
+                                        onclick='saveRow("manageEccnNumberForm","inline-table","-1","editId",null,new Array("eccnNumber"));'
+                                      /><input
+                                        id="inline-table_cancel_-1"
+                                        type="button"
+                                        value="Cancel"
+                                        style="display: none"
+                                        onclick='cancel("manageEccnNumberForm","editId","ManageEccnNumbers.html");'
+                                      />
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
 </div>

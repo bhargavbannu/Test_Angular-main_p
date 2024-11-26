@@ -1,88 +1,161 @@
 <div>
-<td valign="top" align="left">
-  <table border="0" cellspacing="0" cellpadding="0" width="100%">
-    <tbody>
-      <tr>
-        <td
-          id="errorMsg"
-          class="eds-messageframe"
-          style="display: none"
-          align="left"
-        >
-          <ul>
-            <li>
-              <span class="eds-message-warning" id="errorMsgContents"> </span>
-            </li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td id="emptyRow" style="display: none">&nbsp;</td>
-      </tr>
-      <tr>
-        <td align="left">
-          <!-- CONTENT -->
+  <td valign="top" align="left">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <tbody>
+        <tr>
+          <td
+            id="errorMsg"
+            class="eds-messageframe"
+            style="display: none"
+            align="left"
+          >
+            <ul>
+              <li>
+                <span class="eds-message-warning" id="errorMsgContents"> </span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td id="emptyRow" style="display: none">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="left">
+            <!-- CONTENT -->
 
-          <table cellspacing="0" cellpadding="0" border="0">
-            <tbody>
-              <tr>
-                <td style="padding-top: 20px">
-                  <table
-                    class="statuses eds-tabheader"
-                    cellspacing="0"
-                    cellpadding="0"
-                    border="0"
-                  >
-                    <tbody>
-                      <tr>
-                        <td class="eds-tabtopleftcorner"></td>
-                        <td class="eds-tabtopmiddle" align="center">
-                          <div class="eds-tabtitle">Manage Audit Statuses</div>
-                        </td>
-                        <td class="eds-tabtoprightcorner"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td class="eds-tabtoprightcorner"></td>
-              </tr>
-              <tr>
-                <td>
-                  <table
-                    cellspacing="0"
-                    cellpadding="0"
-                    width="100%"
-                    border="0"
-                    class="eds-tabtitle"
-                  >
-                    <tbody>
-                      <tr>
-                        <td>
-                          <form
-                            name="AuditStatusForm"
-                            id="manageAuditStatusesForm"
-                            method="post"
-                            action="/vdt/SaveAuditStatus.html"
-                          >
-                            <input type="hidden" name="editId" value="" />
+            <table cellspacing="0" cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td style="padding-top: 20px">
+                    <table
+                      class="statuses eds-tabheader"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                    >
+                      <tbody>
+                        <tr>
+                          <td class="eds-tabtopleftcorner"></td>
+                          <td class="eds-tabtopmiddle" align="center">
+                            <div class="eds-tabtitle">
+                              Manage Audit Statuses
+                            </div>
+                          </td>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      cellspacing="0"
+                      cellpadding="0"
+                      width="100%"
+                      border="0"
+                      class="eds-tabtitle"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <form
+                              name="AuditStatusForm"
+                              id="manageAuditStatusesForm"
+                              method="post"
+                              action="/vdt/SaveAuditStatus.html"
+                            >
+                              <input type="hidden" name="editId" value="" />
 
-                            <!-- Inline edit table -->
-                        
-                            <table id="inline-table" class="inline-table">
-                              <tbody>
-                                <tr>
-                                  <th>Status Code *</th>
-                                  <th>Description</th>
-                                  <th></th>
-                                </tr>
-                                <tr *ngFor="let status of auditStatuses; let i=index" [ngClass]="i % 2 == 0 ?'eds-pagerstyle':'eds-pagerstyle-alt'">
-                                 <td>{{status.auditStatusCd}}</td>
-                                 <td>{{status.auditStatusDesc}}</td>
-                                 <td><button style="border: 1px solid gray; border-radius: 2px;">Update</button></td>
-                                </tr>
-                                <!-- <tr
+                              <!-- Inline edit table -->
+
+                              <table id="inline-table" class="inline-table">
+                                <tbody>
+                                  <tr>
+                                    <th>Status Code *</th>
+                                    <th>Description</th>
+                                    <th></th>
+                                  </tr>
+                                  <tr
+                                    *ngFor="
+                                      let status of auditStatuses;
+                                      let i = index
+                                    "
+                                    [ngClass]="
+                                      i % 2 == 0
+                                        ? 'eds-pagerstyle'
+                                        : 'eds-pagerstyle-alt'
+                                    "
+                                  >
+                                    <td *ngIf="btnIndex !== i">
+                                      {{ status.auditStatusCd }}
+                                    </td>
+                                    <td *ngIf="btnIndex !== i">
+                                      {{ status.auditStatusDesc }}
+                                    </td>
+                                    <td *ngIf="btnIndex === i">
+                                      <span>
+                                        <input
+                                          type="text"
+                                          name="auditStatusCd"
+                                          [(ngModel)]="status.auditStatusCd"
+                                        />
+                                      </span>
+                                    </td>
+
+                                    <td *ngIf="btnIndex === i">
+                                      <span>
+                                        <input
+                                          type="text"
+                                          name="auditStatusDesc"
+                                          [(ngModel)]="status.auditStatusDesc"
+                                        />
+                                      </span>
+                                    </td>
+                                    <td *ngIf="btnIndex !== i">
+                                      <button
+                                        style="
+                                          border: 1px solid gray;
+                                          border-radius: 2px;
+                                        "
+                                        (click)="btnClick(i)"
+                                      >
+                                        Update
+                                      </button>
+                                    </td>
+                                    <td *ngIf="btnIndex === i">
+                                      <input
+                                        id="inline-table_save_1"
+                                        type="button"
+                                        value="Save"
+                                        (click)="
+                                          saveRow(
+                                            status.auditStatusCd,
+                                            status.auditStatusDesc
+                                          )
+                                        "
+                                      /><input
+                                        id="inline-table_delete_1"
+                                        type="button"
+                                        value="Delete"
+                                        (click)="
+                                          deleteRow(status.auditStatusCd)
+                                        "
+                                      />
+                                      <button
+                                        id="inline-table_cancel_1"
+                                        type="button"
+                                        value="Cancel"
+                                        (click)="cancelRow()"
+                                      >
+                                        cancel
+                                      </button>
+                                    </td>
+                                  </tr>
+                                  <!-- <tr
                                   class="eds-pagerstyle"
                                   id="inline-table_inlineRow_NO AUDIT"
                                 >
@@ -313,88 +386,87 @@
                                     />
                                   </td>
                                 </tr> -->
-                                <tr class="eds-pagerstyle-alt">
-                                  <input
-                                    type="hidden"
-                                    name="inline-table_editId"
-                                    value=""
-                                  />
-                                  <td>
-                                    <span
-                                      id="inline-table_auditStatusCd_field_-1"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_auditStatusCd_field_-1"
-                                        value=""
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <span
-                                      id="inline-table_auditStatusDesc_field_-1"
-                                      style="display: none"
-                                      class=" "
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_auditStatusDesc_field_-1"
-                                        value=""
-                                        size="20"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
+                                  <tr class="eds-pagerstyle-alt">
                                     <input
                                       type="hidden"
-                                      name="auditStatusCd"
+                                      name="inline-table_editId"
                                       value=""
-                                    /><input
-                                      type="hidden"
-                                      name="auditStatusDesc"
-                                      value=""
-                                    /><input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_-1"
-                                      type="button"
-                                      value="Create"
-                                      onclick='updateRow("inline-table","-1",null,true,new Array("auditStatusCd","auditStatusDesc"));'
                                     />
-                                    <input
-                                      id="inline-table_save_-1"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageAuditStatusesForm","inline-table","-1","editId",null,new Array("auditStatusCd","auditStatusDesc"));'
-                                    /><input
-                                      id="inline-table_cancel_-1"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageAuditStatusesForm","editId","ManageAuditStatuses.html");'
-                                    />
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          
-                          </form>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</td>
+                                    <td>
+                                      <span
+                                        id="inline-table_auditStatusCd_field_-1"
+                                        style="display: none"
+                                        class="eds-field-required"
+                                      >
+                                        <input
+                                          type="text"
+                                          name="inline-table_auditStatusCd_field_-1"
+                                          value=""
+                                          size="12"
+                                          maxlength="10"
+                                        />
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <span
+                                        id="inline-table_auditStatusDesc_field_-1"
+                                        style="display: none"
+                                        class=" "
+                                      >
+                                        <input
+                                          type="text"
+                                          name="inline-table_auditStatusDesc_field_-1"
+                                          value=""
+                                          size="20"
+                                          maxlength="50"
+                                        />
+                                      </span>
+                                    </td>
+                                    <td>
+                                      <input
+                                        type="hidden"
+                                        name="auditStatusCd"
+                                        value=""
+                                      /><input
+                                        type="hidden"
+                                        name="auditStatusDesc"
+                                        value=""
+                                      /><input
+                                        name="inline-table_updateButton"
+                                        id="inline-table_update_-1"
+                                        type="button"
+                                        value="Create"
+                                        (click)="createRow()"
+                                      />
+                                      <input
+                                        id="inline-table_save_-1"
+                                        type="button"
+                                        value="Save"
+                                        style="display: none"
+                                        onclick='saveRow("manageAuditStatusesForm","inline-table","-1","editId",null,new Array("auditStatusCd","auditStatusDesc"));'
+                                      /><input
+                                        id="inline-table_cancel_-1"
+                                        type="button"
+                                        value="Cancel"
+                                        style="display: none"
+                                        onclick='cancel("manageAuditStatusesForm","editId","ManageAuditStatuses.html");'
+                                      />
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
 </div>
