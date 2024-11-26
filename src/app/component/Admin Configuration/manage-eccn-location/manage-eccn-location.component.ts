@@ -28,7 +28,7 @@ export class ManageEccnLocationComponent {
     this.clickFlag = true;
   }
   createRow() {
-    this.EccnLocations.push({ eccnLocationCd: '', eccnLocationDesc: '' });
+    this.EccnLocations.push({ eccnLocationCd: '', eccnLocationDesc: '', newRow: true });
   }
 
   saveRow(eccnLocationCd: any, eccnLocationDesc: any) {

@@ -27,7 +27,7 @@ export class ManageEccnNumberComponent {
     this.clickFlag = true;
   }
   createRow() {
-    this.EccnNumbers.push({ eccnNumber: '' });
+    this.EccnNumbers.push({ eccnNumber: '', newRow:true });
   }
 
   saveRow(eccnNumber: any) {

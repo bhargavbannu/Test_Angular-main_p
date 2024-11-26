@@ -96,28 +96,28 @@
                                           : 'eds-pagerstyle-alt'
                                       "
                                     >
-                                      <td *ngIf="btnIndex !== i">
+                                      <td *ngIf="btnIndex !== i && status.newRow !== true">
                                         {{ status.effectivityId }}
                                       </td>
-                                      <td *ngIf="btnIndex !== i">
+                                      <td *ngIf="btnIndex !== i && status.newRow !== true">
                                         {{
                                           status.effectivityFleet?.esoMinSeqNbr
                                         }}
                                       </td>
-                                      <td *ngIf="btnIndex !== i">
+                                      <td *ngIf="btnIndex !== i && status.newRow !== true">
                                         {{
                                           status.effectivityFleet?.esoMaxSeqNbr
                                         }}
                                       </td>
-                                      <td *ngIf="btnIndex !== i">
+                                      <td *ngIf="btnIndex !== i && status.newRow !== true">
                                         {{
                                           status.effectivityFleet?.esoCurrSeqNbr
                                         }}
                                       </td>
-                                      <td *ngIf="btnIndex !== i">
+                                      <td *ngIf="btnIndex !== i && status.newRow !== true">
                                         {{ status.inactiveInd }}
                                       </td>
-                                      <td *ngIf="btnIndex === i">
+                                      <td *ngIf="btnIndex === i || status.newRow === true">
                                         <span>
                                           <input
                                             type="text"
@@ -127,7 +127,7 @@
                                         </span>
                                       </td>
 
-                                      <td *ngIf="btnIndex === i">
+                                      <td *ngIf="btnIndex === i || status.newRow === true">
                                         <span>
                                           <input
                                             type="text"
@@ -140,7 +140,7 @@
                                         </span>
                                       </td>
 
-                                      <td *ngIf="btnIndex === i">
+                                      <td *ngIf="btnIndex === i || status.newRow === true">
                                         <span>
                                           <input
                                             type="text"
@@ -153,7 +153,7 @@
                                         </span>
                                       </td>
 
-                                      <td *ngIf="btnIndex === i">
+                                      <td *ngIf="btnIndex === i || status.newRow === true">
                                         <span>
                                           <input
                                             type="text"
@@ -166,7 +166,7 @@
                                         </span>
                                       </td>
 
-                                      <td *ngIf="btnIndex === i">
+                                      <td *ngIf="btnIndex === i || status.newRow === true">
                                         <span
                                           class="null"
                                           id="inactiveInd"
@@ -188,7 +188,7 @@
                                           </select>
                                         </span>
                                       </td>
-                                      <td *ngIf="btnIndex !== i">
+                                      <td *ngIf="btnIndex !== i && status.newRow !== true">
                                         <button
                                           style="
                                             border: 1px solid gray;
@@ -199,7 +199,7 @@
                                           Update
                                         </button>
                                       </td>
-                                      <td *ngIf="btnIndex === i">
+                                      <td *ngIf="btnIndex === i || status.newRow === true">
                                         <input
                                           id="inline-table_save_1"
                                           type="button"

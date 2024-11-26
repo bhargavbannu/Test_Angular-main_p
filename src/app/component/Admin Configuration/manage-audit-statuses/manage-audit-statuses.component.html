@@ -90,13 +90,13 @@
                                         : 'eds-pagerstyle-alt'
                                     "
                                   >
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && status.newRow !== true">
                                       {{ status.auditStatusCd }}
                                     </td>
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && status.newRow !== true">
                                       {{ status.auditStatusDesc }}
                                     </td>
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i || status.newRow === true">
                                       <span>
                                         <input
                                           type="text"
@@ -106,7 +106,7 @@
                                       </span>
                                     </td>
 
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i || status.newRow === true">
                                       <span>
                                         <input
                                           type="text"
@@ -115,7 +115,7 @@
                                         />
                                       </span>
                                     </td>
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && status.newRow !== true">
                                       <button
                                         style="
                                           border: 1px solid gray;
@@ -126,7 +126,7 @@
                                         Update
                                       </button>
                                     </td>
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i || status.newRow === true">
                                       <input
                                         id="inline-table_save_1"
                                         type="button"
@@ -155,237 +155,7 @@
                                       </button>
                                     </td>
                                   </tr>
-                                  <!-- <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_NO AUDIT"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__NO AUDIT"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_auditStatusCd_NO AUDIT"
-                                      >NO AUDIT</span
-                                    >
-                                    <span
-                                      id="inline-table_auditStatusCd_field_NO AUDIT"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_auditStatusCd_field_NO AUDIT"
-                                        value="NO AUDIT"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <span
-                                      class="null"
-                                      id="inline-table_auditStatusDesc_NO AUDIT"
-                                      >Please reset description</span
-                                    >
-                                    <span
-                                      id="inline-table_auditStatusDesc_field_NO AUDIT"
-                                      style="display: none"
-                                      class=" "
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_auditStatusDesc_field_NO AUDIT"
-                                        value="Please reset description"
-                                        size="20"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_NO AUDIT"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","NO AUDIT",null,true,new Array("auditStatusCd","auditStatusDesc"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_NO AUDIT"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageAuditStatusesForm","inline-table","NO AUDIT","editId",null,new Array("auditStatusCd","auditStatusDesc"));'
-                                    /><input
-                                      id="inline-table_delete_NO AUDIT"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageAuditStatusesForm","inline-table","NO AUDIT","editId",null,"DeleteAuditStatus.html");'
-                                    /><input
-                                      id="inline-table_cancel_NO AUDIT"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageAuditStatusesForm","editId","ManageAuditStatuses.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_OK"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__OK"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_auditStatusCd_OK"
-                                      >OK</span
-                                    >
-                                    <span
-                                      id="inline-table_auditStatusCd_field_OK"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_auditStatusCd_field_OK"
-                                        value="OK"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <span
-                                      class="null"
-                                      id="inline-table_auditStatusDesc_OK"
-                                      >Please reset description</span
-                                    >
-                                    <span
-                                      id="inline-table_auditStatusDesc_field_OK"
-                                      style="display: none"
-                                      class=" "
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_auditStatusDesc_field_OK"
-                                        value="Please reset description"
-                                        size="20"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_OK"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","OK",null,true,new Array("auditStatusCd","auditStatusDesc"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_OK"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageAuditStatusesForm","inline-table","OK","editId",null,new Array("auditStatusCd","auditStatusDesc"));'
-                                    /><input
-                                      id="inline-table_delete_OK"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageAuditStatusesForm","inline-table","OK","editId",null,"DeleteAuditStatus.html");'
-                                    /><input
-                                      id="inline-table_cancel_OK"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageAuditStatusesForm","editId","ManageAuditStatuses.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_PENDING"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__PENDING"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_auditStatusCd_PENDING"
-                                      >PENDING</span
-                                    >
-                                    <span
-                                      id="inline-table_auditStatusCd_field_PENDING"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_auditStatusCd_field_PENDING"
-                                        value="PENDING"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="10"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <span
-                                      class="null"
-                                      id="inline-table_auditStatusDesc_PENDING"
-                                      >Please reset description</span
-                                    >
-                                    <span
-                                      id="inline-table_auditStatusDesc_field_PENDING"
-                                      style="display: none"
-                                      class=" "
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_auditStatusDesc_field_PENDING"
-                                        value="Please reset description"
-                                        size="20"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_PENDING"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","PENDING",null,true,new Array("auditStatusCd","auditStatusDesc"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_PENDING"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageAuditStatusesForm","inline-table","PENDING","editId",null,new Array("auditStatusCd","auditStatusDesc"));'
-                                    /><input
-                                      id="inline-table_delete_PENDING"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageAuditStatusesForm","inline-table","PENDING","editId",null,"DeleteAuditStatus.html");'
-                                    /><input
-                                      id="inline-table_cancel_PENDING"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageAuditStatusesForm","editId","ManageAuditStatuses.html");'
-                                    />
-                                  </td>
-                                </tr> -->
+                                 
                                   <tr class="eds-pagerstyle-alt">
                                     <input
                                       type="hidden"

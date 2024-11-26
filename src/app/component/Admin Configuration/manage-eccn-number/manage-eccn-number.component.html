@@ -92,10 +92,10 @@
                                         : 'eds-pagerstyle-alt'
                                     "
                                   >
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && status.newRow !== true">
                                       {{ status.eccnNumber }}
                                     </td>
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i ||  status.newRow === true">
                                       <span>
                                         <input
                                           type="text"
@@ -104,7 +104,7 @@
                                         />
                                       </span>
                                     </td>
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && status.newRow !== true ">
                                       <button
                                         style="
                                           border: 1px solid gray;
@@ -115,7 +115,7 @@
                                         Update
                                       </button>
                                     </td>
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i ||  status.newRow === true">
                                       <input
                                         id="inline-table_save_1"
                                         type="button"

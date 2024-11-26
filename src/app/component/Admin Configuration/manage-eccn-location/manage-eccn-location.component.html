@@ -93,13 +93,13 @@
                                         : 'eds-pagerstyle-alt'
                                     "
                                   >
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && status.newRow !== true">
                                       {{ status.eccnLocationCd }}
                                     </td>
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && status.newRow !== true">
                                       {{ status.eccnLocationDesc }}
                                     </td>
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i ||  status.newRow === true">
                                       <span>
                                         <input
                                           type="text"
@@ -108,7 +108,7 @@
                                         />
                                       </span>
                                     </td>
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i ||  status.newRow === true">
                                       <span>
                                         <input
                                           type="text"
@@ -117,7 +117,7 @@
                                         />
                                       </span>
                                     </td>
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && status.newRow !== true">
                                       <button
                                         style="
                                           border: 1px solid gray;
@@ -128,7 +128,7 @@
                                         Update
                                       </button>
                                     </td>
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i ||  status.newRow === true">
                                       <input
                                         id="inline-table_save_1"
                                         type="button"
@@ -158,314 +158,7 @@
                                     </td>
                                   </tr>
 
-                                  <!--    <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_CMM"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__CMM"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnLocationCd_CMM"
-                                      >CMM</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnLocationCd_field_CMM"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnLocationCd_field_CMM"
-                                        value="CMM"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <span
-                                      class="null"
-                                      id="inline-table_eccnLocationDesc_CMM"
-                                      >CMM</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnLocationDesc_field_CMM"
-                                      style="display: none"
-                                      class=" "
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnLocationDesc_field_CMM"
-                                        value="CMM"
-                                        size="20"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_CMM"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","CMM",null,true,new Array("eccnLocationCd","eccnLocationDesc"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_CMM"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnLocationForm","inline-table","CMM","editId",null,new Array("eccnLocationCd","eccnLocationDesc"));'
-                                    /><input
-                                      id="inline-table_delete_CMM"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnLocationForm","inline-table","CMM","editId",null,"DeleteEccnLocation.html");'
-                                    /><input
-                                      id="inline-table_cancel_CMM"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnLocationForm","editId","ManageEccnLocations.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_NA"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__NA"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnLocationCd_NA"
-                                      >NA</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnLocationCd_field_NA"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnLocationCd_field_NA"
-                                        value="NA"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <span
-                                      class="null"
-                                      id="inline-table_eccnLocationDesc_NA"
-                                      >NA</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnLocationDesc_field_NA"
-                                      style="display: none"
-                                      class=" "
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnLocationDesc_field_NA"
-                                        value="NA"
-                                        size="20"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_NA"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","NA",null,true,new Array("eccnLocationCd","eccnLocationDesc"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_NA"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnLocationForm","inline-table","NA","editId",null,new Array("eccnLocationCd","eccnLocationDesc"));'
-                                    /><input
-                                      id="inline-table_delete_NA"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnLocationForm","inline-table","NA","editId",null,"DeleteEccnLocation.html");'
-                                    /><input
-                                      id="inline-table_cancel_NA"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnLocationForm","editId","ManageEccnLocations.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle"
-                                  id="inline-table_inlineRow_SERVICE DOCUMENT"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__SERVICE DOCUMENT"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnLocationCd_SERVICE DOCUMENT"
-                                      >SERVICE DOCUMENT</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnLocationCd_field_SERVICE DOCUMENT"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnLocationCd_field_SERVICE DOCUMENT"
-                                        value="SERVICE DOCUMENT"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <span
-                                      class="null"
-                                      id="inline-table_eccnLocationDesc_SERVICE DOCUMENT"
-                                      >SERVICE DOCUMENT</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnLocationDesc_field_SERVICE DOCUMENT"
-                                      style="display: none"
-                                      class=" "
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnLocationDesc_field_SERVICE DOCUMENT"
-                                        value="SERVICE DOCUMENT"
-                                        size="20"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_SERVICE DOCUMENT"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","SERVICE DOCUMENT",null,true,new Array("eccnLocationCd","eccnLocationDesc"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_SERVICE DOCUMENT"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnLocationForm","inline-table","SERVICE DOCUMENT","editId",null,new Array("eccnLocationCd","eccnLocationDesc"));'
-                                    /><input
-                                      id="inline-table_delete_SERVICE DOCUMENT"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnLocationForm","inline-table","SERVICE DOCUMENT","editId",null,"DeleteEccnLocation.html");'
-                                    /><input
-                                      id="inline-table_cancel_SERVICE DOCUMENT"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnLocationForm","editId","ManageEccnLocations.html");'
-                                    />
-                                  </td>
-                                </tr>
-                                <tr
-                                  class="eds-pagerstyle-alt"
-                                  id="inline-table_inlineRow_TR"
-                                >
-                                  <td>
-                                    <a
-                                      name="inline-table_inline_tag_anchor__TR"
-                                    ></a
-                                    ><span
-                                      class="null"
-                                      id="inline-table_eccnLocationCd_TR"
-                                      >TR</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnLocationCd_field_TR"
-                                      style="display: none"
-                                      class="eds-field-required"
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnLocationCd_field_TR"
-                                        value="TR"
-                                        readonly="readonly"
-                                        size="12"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <span
-                                      class="null"
-                                      id="inline-table_eccnLocationDesc_TR"
-                                      >TR</span
-                                    >
-                                    <span
-                                      id="inline-table_eccnLocationDesc_field_TR"
-                                      style="display: none"
-                                      class=" "
-                                    >
-                                      <input
-                                        type="text"
-                                        name="inline-table_eccnLocationDesc_field_TR"
-                                        value="TR"
-                                        size="20"
-                                        maxlength="50"
-                                      />
-                                    </span>
-                                  </td>
-                                  <td>
-                                    <input
-                                      name="inline-table_updateButton"
-                                      id="inline-table_update_TR"
-                                      type="button"
-                                      value="Update"
-                                      onclick='updateRow("inline-table","TR",null,true,new Array("eccnLocationCd","eccnLocationDesc"));'
-                                    />
-                                    <input
-                                      id="inline-table_save_TR"
-                                      type="button"
-                                      value="Save"
-                                      style="display: none"
-                                      onclick='saveRow("manageEccnLocationForm","inline-table","TR","editId",null,new Array("eccnLocationCd","eccnLocationDesc"));'
-                                    /><input
-                                      id="inline-table_delete_TR"
-                                      type="button"
-                                      value="Delete"
-                                      style="display: none"
-                                      onclick='deleteRow("manageEccnLocationForm","inline-table","TR","editId",null,"DeleteEccnLocation.html");'
-                                    /><input
-                                      id="inline-table_cancel_TR"
-                                      type="button"
-                                      value="Cancel"
-                                      style="display: none"
-                                      onclick='cancel("manageEccnLocationForm","editId","ManageEccnLocations.html");'
-                                    />
-                                  </td>
-                                </tr> -->
+                                
                                   <tr class="eds-pagerstyle">
                                     <input
                                       type="hidden"

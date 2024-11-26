@@ -33,6 +33,7 @@ export class ManageDetailDocTypeComponent {
       detailDocType: '',
       detailDocTypeDesc: '',
       auditableInd: '',
+      newRow:true
     });
   }
 

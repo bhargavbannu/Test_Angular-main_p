@@ -33,7 +33,7 @@ clickFlag: boolean = false
     this.clickFlag = true  
   }
   createRow(){
-    this.sections.push({section:"",description:"",inactiveInd:"",inactiveDate:""})
+    this.sections.push({section:"",description:"",inactiveInd:"",inactiveDate:"", newRow:true})
   }
 
   saveRow(section:any, description:string,inactiveInd:any,inactiveDate:any){

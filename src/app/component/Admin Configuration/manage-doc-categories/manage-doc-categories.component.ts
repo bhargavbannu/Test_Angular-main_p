@@ -28,7 +28,7 @@ export class ManageDocCategoriesComponent {
   }
 
   createRow() {
-    this.DocCategories.push({ documentCatgCd: '', documentCatgDesc: '' });
+    this.DocCategories.push({ documentCatgCd: '', documentCatgDesc: '' , newRow:true});
   }
 
   saveRow(documentCatgCd: any, documentCatgDesc: string) {

@@ -92,16 +92,16 @@
                                         : 'eds-pagerstyle-alt'
                                     "
                                   >
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && doc.newRow !== true">
                                       {{ doc.detailDocType }}
                                     </td>
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && doc.newRow !== true">
                                       {{ doc.detailDocTypeDesc }}
                                     </td>
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && doc.newRow !== true">
                                       {{ doc.auditableInd }}
                                     </td>
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i || doc.newRow === true">
                                       <span>
                                         <input
                                           type="text"
@@ -111,7 +111,7 @@
                                       </span>
                                     </td>
 
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i || doc.newRow === true">
                                       <span>
                                         <input
                                           type="text"
@@ -121,7 +121,7 @@
                                       </span>
                                     </td>
 
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i || doc.newRow === true">
                                       <span
                                         class="null"
                                         id="auditableInd"
@@ -140,7 +140,7 @@
                                         </select>
                                       </span>
                                     </td>
-                                    <td *ngIf="btnIndex !== i">
+                                    <td *ngIf="btnIndex !== i && doc.newRow !== true">
                                       <button
                                         style="
                                           border: 1px solid gray;
@@ -151,7 +151,7 @@
                                         Update
                                       </button>
                                     </td>
-                                    <td *ngIf="btnIndex === i">
+                                    <td *ngIf="btnIndex === i || doc.newRow === true">
                                       <input
                                         id="inline-table_save_1"
                                         type="button"

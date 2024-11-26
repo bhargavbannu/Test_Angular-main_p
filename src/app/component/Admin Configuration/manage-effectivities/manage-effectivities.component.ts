@@ -33,7 +33,8 @@ export class ManageEffectivitiesComponent {
 
 
   createRow(){  
-    this.Effectivities.push({effectivityId:"",effectivityFleet:{esoMinSeqNbr:"",esoMaxSeqNbr:"",esoCurrSeqNbr:""}, inactiveInd:""})
+    this.Effectivities.push({effectivityId:"",effectivityFleet:{esoMinSeqNbr:"",
+      esoMaxSeqNbr:"",esoCurrSeqNbr:""}, inactiveInd:"", newRow:true})
     
 }
 

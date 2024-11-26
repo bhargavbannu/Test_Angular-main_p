@@ -84,8 +84,8 @@
                                 </tr>
 
                                 <tr *ngFor="let status of sections; let i= index" [ngClass]="i % 2 == 0 ?'eds-pagerstyle':'eds-pagerstyle-alt'">                                                                              
-                                  <td *ngIf="btnIndex !==i">{{status.section}}</td>
-                                  <td *ngIf="btnIndex ===i" >
+                                  <td *ngIf="btnIndex !==i && status.newRow !== true">{{status.section}}</td>
+                                  <td *ngIf="btnIndex ===i  ||  status.newRow === true">
                                     <a
                                       name="inline-table_inline_tag_anchor__1"
                                     ></a
@@ -110,7 +110,7 @@
                                       />
                                     </span>
                                   </td>
-                                  <td  *ngIf="btnIndex ===i">
+                                  <td  *ngIf="btnIndex ===i||  status.newRow === true">
                                     <span
                                       class="null"
                                       id="inline-table_description_1"
@@ -131,7 +131,7 @@
                                       />
                                     </span>
                                   </td>
-                                  <td  *ngIf="btnIndex ===i">
+                                  <td  *ngIf="btnIndex ===i ||  status.newRow === true">
                                     <span
                                       class="null"
                                       id="inline-table_inactiveInd_1"
@@ -153,19 +153,19 @@
                                       </select>
                                     </span>
                                   </td>
-                                  <td  *ngIf="btnIndex ===i">
+                                  <td  *ngIf="btnIndex ===i ||  status.newRow === true">
                                     <span
                                       class="null"
                                       id="inline-table_inactiveDateForDisplay_1"
                                       >{{status.inactiveDate | date:'MM/dd/YYYY'}}</span
                                     >
                                   </td>
-                                  <td *ngIf="btnIndex !==i">{{status.description}}</td>
-                                  <td *ngIf="btnIndex !==i">{{status.inactiveInd}}</td>
-                                  <td *ngIf="btnIndex !==i">{{status.inactiveDate | date:'MM/dd/YYYY'}}</td>
-                                  <td *ngIf="btnIndex !==i"><button style="border: 1px solid gray; border-radius: 2px;"
+                                  <td *ngIf="btnIndex !==i &&  status.newRow !== true">{{status.description}}</td>
+                                  <td *ngIf="btnIndex !==i &&  status.newRow !== true">{{status.inactiveInd}}</td>
+                                  <td *ngIf="btnIndex !==i &&  status.newRow !== true">{{status.inactiveDate | date:'MM/dd/YYYY'}}</td>
+                                  <td *ngIf="btnIndex !==i &&  status.newRow !== true"><button style="border: 1px solid gray; border-radius: 2px;"
                                     (click)="btnClick(i)">Update</button></td>
-                                    <td  *ngIf="btnIndex ===i">
+                                    <td  *ngIf="btnIndex ===i ||  status.newRow === true">
                                     <input
                                     id="inline-table_save_1"
                                     type="button"

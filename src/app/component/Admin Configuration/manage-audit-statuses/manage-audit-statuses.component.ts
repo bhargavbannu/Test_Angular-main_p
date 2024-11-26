@@ -11,6 +11,7 @@ export class ManageAuditStatusesComponent {
   btnIndex: any;
   clickFlag: boolean = false;
 
+
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -29,7 +30,11 @@ export class ManageAuditStatusesComponent {
   }
 
   createRow() {
-    this.auditStatuses.push({ auditStatusCd: '', auditStatusDesc: '' });
+    this.auditStatuses.map((item)=>{
+      delete item.newRow
+    })
+    this.auditStatuses.push({ auditStatusCd: '', auditStatusDesc: '', newRow:true });
+
   }
 
   saveRow(auditStatusCd: any, auditStatusDesc: string) {
@@ -39,6 +44,7 @@ export class ManageAuditStatusesComponent {
         this.loadAuditStatuses();
       });
     this.btnIndex = '';
+
   }
 
   deleteRow(auditStatusCd: any) {
