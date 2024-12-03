@@ -128,7 +128,7 @@
                                             name="document.vendor.vendorNm"
                                             class=""
                                             id="vendorAutoComplete"
-                                            value=""
+                                           [(ngModel)]="val"
                                             size="45"
                                             maxlength="20"
                                             autocomplete="off"
@@ -263,6 +263,7 @@
                                           <select
                                             name="document.documentCategory"
                                             class=""
+                                            [(ngModel)]="valueD"
                                           >
                                             <option value="--        ">
                                               -- - null
@@ -383,6 +384,7 @@
                                             name="document.sections"
                                             class=""
                                             multiple="multiple"
+                                            [(ngModel)]="docSection"
                                           >
                                             <option value="0">0 - 0</option>
 
@@ -474,6 +476,7 @@
                                         <td align="left">
                                           <select
                                             name="document.nextRouteType"
+                                            [(ngModel)]="nextRoute"
                                             class=""
                                           >
                                             <option value="ETDT">ETDT</option>
@@ -522,7 +525,7 @@
                                             type="text"
                                             name="document.remarks"
                                             class=""
-                                            value=""
+                                           [(ngModel)]="remarksField"
                                             size="45"
                                             maxlength="100"
                                           />
@@ -688,10 +691,7 @@
                                       >
                                         <td colspan="2">
                                           <span style="float: right">
-                                            <input
-                                              type="submit"
-                                              value="Submit"
-                                            />
+                                           <button (click)="addDocumentSubmit()">submittt</button>
                                           </span>
                                         </td>
                                       </tr>

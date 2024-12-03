@@ -26,6 +26,7 @@ export class ApiService {
   private documentCategoriesApi = 'api/adminConfiguration/documentCategories';
 
   private manageSectionsApi = 'api/adminConfiguration/manageSections';
+  private addDocumentApi =  'api/addDocument/saveDocument';
 
   private saveManageSectionsApi = 'api/adminConfiguration/saveSection';
   private deleteManageSectionsApi = 'api/adminConfiguration/deleteSection';
@@ -77,6 +78,10 @@ export class ApiService {
         size: size,
       },
     });
+  }
+
+  addDocument(payload:any): Observable<any>{
+    return this.http.post<any>(this.addDocumentApi,payload )
   }
 
   getAuditStatuses(): Observable<any> {
@@ -218,6 +223,8 @@ export class ApiService {
       `${this.deleteEccnLocationApi}/${eccnLocationCd}`
     );
   }
+
+
 
   checkApiHealth(): Observable<any> {
     return this.http
