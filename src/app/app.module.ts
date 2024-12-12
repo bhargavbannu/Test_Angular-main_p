@@ -33,6 +33,7 @@ import { ManageDocCategoriesComponent } from './component/Admin Configuration/ma
 import { ManageEccnLocationComponent } from './component/Admin Configuration/manage-eccn-location/manage-eccn-location.component';
 import { ManageEccnNumberComponent } from './component/Admin Configuration/manage-eccn-number/manage-eccn-number.component';
 import { HealthTestComponent } from './component/health-test/health-test.component';
+import { ViewSearchComponent } from './component/viewSearch/view-search/view-search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { HealthTestComponent } from './component/health-test/health-test.compone
     ManageEccnLocationComponent,
     ManageEccnNumberComponent,
     HealthTestComponent,
+    ViewSearchComponent,
   ],
   imports: [
     BrowserModule,

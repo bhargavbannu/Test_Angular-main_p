@@ -240,4 +240,8 @@ checkBoxValue: boolean= true;
       this.router.navigateByUrl('/search');
     }
   }
+
+  viewClick(id:any){
+   this.apiService.viewDocId = id
+  }
 }

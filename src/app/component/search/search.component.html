@@ -388,11 +388,15 @@
       <thead>
         <tr>
           <th *ngFor="let header of tableHeaders">{{ header }}</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="odd" *ngFor="let row of apiData">
+        <tr *ngFor="let row of apiData ; let i= index"
+        [ngClass]="i % 2 == 0 ? 'eds-pagerstyle': 'eds-pagerstyle-alt'"
+       >
           <td *ngFor="let header of tableHeaders">{{ row[header] }}</td>
+         <td><a routerLink="/viewStatus" (click)="viewClick(row.docId)">View</a></td>
         </tr>
       </tbody>
     </table>

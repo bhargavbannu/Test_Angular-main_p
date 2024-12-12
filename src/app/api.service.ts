@@ -51,6 +51,9 @@ export class ApiService {
   private saveEccnLocationApi = 'api/adminConfiguration/saveEccnLocation';
   private deleteEccnLocationApi = 'api/adminConfiguration/deleteEccnLocation';
 
+  private viewSearchApi = "api/addDocument/viewDocument";
+  viewDocId: any;
+
   constructor(private http: HttpClient) {}
 
   postData(payload: any, start: any, size: any): Observable<any> {
@@ -110,6 +113,10 @@ export class ApiService {
 
   getSections(): Observable<any> {
     return this.http.get<any>(this.manageSectionsApi);
+  }
+
+  viewDocuments(): Observable<any> {
+    return this.http.get<any>(`${this.viewSearchApi}?documentNbr=${this.viewDocId}`);
   }
 
   updateManageSections(
