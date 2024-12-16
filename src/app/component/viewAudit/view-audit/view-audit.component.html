@@ -1,0 +1,167 @@
+<td align="left">
+
+  <a
+    style="font-size: larger; font-weight: bolder"
+    routerLink="/search"
+    >Back To Search Results</a
+  >
+  <br />
+
+  <a routerLink="/viewStatus">Back to Document</a>
+  <br /><br />
+
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+      <tr>
+        <td>
+          <table
+            class="eds-tabheader"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+          >
+            <tbody>
+              <tr>
+                <td class="eds-tabtopleftcorner"></td>
+                <td class="eds-tabtopmiddle" align="center">
+                  <div class="eds-tabtitle">View Audit</div>
+                </td>
+                <td class="eds-tabtoprightcorner"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="eds-tabtoprightcorner"></td>
+      </tr>
+      <tr>
+        <td>
+          <table
+            cellspacing="0"
+            cellpadding="0"
+            width="100%"
+            border="0"
+            class="eds-tabtitle"
+          >
+            <tbody>
+              <tr>
+                <td>
+                  <form
+                    name="AuditForm"
+                    id="auditFormId"
+                    method="post"
+                    action="/vdt/SaveAudit.html"
+                  >
+                    <input
+                      type="hidden"
+                      name="audit.documentNbr"
+                      value="28830220"
+                    />
+                    <input type="hidden" name="audit.auditId" value="507095" />
+                    <table width="100%">
+                      <tbody>
+                        <tr style="height: 1px">
+                          <td width="200"></td>
+                          <td width="250"></td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle dropdown">
+                          <td align="right">Audit Category&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText">{{auditDetails.audit?.dodAuditCategory}}</span>
+                          </td>
+                        </tr>
+
+                        <tr
+                          class="eds-pagerstyle-alt eds-field-required"
+                        >
+                          <td align="right">Audit Date *&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText">{{auditDetails.audit?.auditDate | date:"dd/MM/yyyy"}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle dropdown">
+                          <td align="right">Document Detail&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText"
+                              >{{auditDetails.audit?.popno}}</span
+                            >
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt">
+                          <td align="right">
+                            Vendor Revision Nbr&nbsp; &nbsp;
+                          </td>
+                          <td align="left">
+                            <span class="viewFieldText">{{auditDetails.audit?.revisionNbr}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle">
+                          <td align="right">Vndr Rev Dt&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText">{{auditDetails.audit?.revisionDate | date:"dd/MM/yyyy"}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt">
+                          <td align="right">Follow Up Date&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText">{{auditDetails.audit?.followUpDate | date:"dd/MM/yyyy"}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle dropdown">
+                          <td align="right">
+                            Follow Up Required?&nbsp; &nbsp;
+                          </td>
+                          <td align="left">
+                            <span class="viewFieldText">{{auditDetails.audit?.followUpCompleteInd}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt">
+                          <td align="right">Audit Notes&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText">{{auditDetails.audit?.auditNotes}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle">
+                          <td align="right">Audit Status&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText">{{auditDetails.audit?.auditStatus}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt">
+                          <td colspan="2">
+                            <input
+                              type="hidden"
+                              name="submitType"
+                              value="edit"
+                            />
+                            <span style="float: right">
+                              <input
+                                type="button"
+                                value="Edit"
+                                onclick="this.form.action='EditAudit.html'; this.form.submit();"
+                              />
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</td>

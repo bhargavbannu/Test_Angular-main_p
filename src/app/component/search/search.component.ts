@@ -134,23 +134,33 @@ export class SearchComponent {
   start: any;
   size: any;
   loading: boolean = false;
-checkBoxValue: boolean= true;
+  checkBoxValue: boolean = true;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private apiService: ApiService
-  ) {
-  }
+  ) {}
   // "28796727"
 
-  ngOnInIt() {
-    this.Search();
-   
-    
+  ngOnInit() {
+    const formData = this.apiService.getFormData();
+    if (formData) {
+      this.vendorName = formData.vendorName;
+      this.checkBoxValue = formData.checkBoxValue;
+    }
+    if (this.vendorName !== undefined) {
+      this.Search();
+    }
+    this.advancedSearchValue = 'Advanced Search (Display)';
+    this.router.navigateByUrl('/search');
   }
   Search() {
-    console.log(this.checkBoxValue);
+    const formData = {
+      vendorName: this.vendorName,
+      checkBoxValue: this.checkBoxValue,
+    };
+    this.apiService.saveFormData(formData);
     this.loading = true;
     this.start = (this.currentPage - 1) * this.recordsPerPage;
     this.size = this.recordsPerPage;
@@ -162,18 +172,16 @@ checkBoxValue: boolean= true;
       // vendorDocRefNbr: this.vendorPartRefNbr,
     };
 
-    this.apiService.postData(payload, this.start/this.size, this.size).subscribe(
-      (data) => {
+    this.apiService
+      .postData(payload, this.start / this.size, this.size)
+      .subscribe((data) => {
         this.apiData = [...data.results];
         this.totalCount = data.totalCount;
         this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
-        
+
         this.loading = false;
         this.tableHeaders = Object.keys(this.apiData[0]); // Extract headers from the first object
-       
-      },
-     
-    );
+      });
   }
 
   getVisiblePages(): number[] {
@@ -201,11 +209,6 @@ checkBoxValue: boolean= true;
     console.log(this.currentPage);
 
     this.Search();
-  }
-
-  ngOnInit() {
-    this.advancedSearchValue = 'Advanced Search (Display)';
-    this.router.navigateByUrl('/search');
   }
 
   goToFirst() {
@@ -241,7 +244,7 @@ checkBoxValue: boolean= true;
     }
   }
 
-  viewClick(id:any){
-   this.apiService.viewDocId = id
+  viewClick(id: any) {
+    this.apiService.viewDocId = id;
   }
 }

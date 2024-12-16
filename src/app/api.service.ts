@@ -7,54 +7,48 @@ import { catchError, Observable, of } from 'rxjs';
 })
 export class ApiService {
   private api = 'api/search/documentSearch?';
-
   private routesAPi = 'api/search/routeSearch?';
-
   private auditsApi = 'api/search/auditSearch?';
-
   private manageAuditStatusesApi = 'api/adminConfiguration/manageAuditStatuses';
-
-  private manageDetailDocTypesApi =
-    'api/adminConfiguration/manageDetailDocTypes';
-
+  private manageDetailDocTypesApi ='api/adminConfiguration/manageDetailDocTypes';
   private manageEffectivitiesApi = 'api/adminConfiguration/manageEffectivities';
-
   private manageEccnNumbersApi = 'api/adminConfiguration/manageEccnNumbers';
-
   private manageEccnLocationsApi = 'api/adminConfiguration/manageEccnLocations';
-
   private documentCategoriesApi = 'api/adminConfiguration/documentCategories';
-
   private manageSectionsApi = 'api/adminConfiguration/manageSections';
-  private addDocumentApi =  'api/addDocument/saveDocument';
-
+  private addDocumentApi = 'api/addDocument/saveDocument';
   private saveManageSectionsApi = 'api/adminConfiguration/saveSection';
   private deleteManageSectionsApi = 'api/adminConfiguration/deleteSection';
-
-  private saveDocumentCategoryApi =
-    'api/adminConfiguration/saveDocumentCategory';
-  private deleteDocumentCategoryApi =
-    'api/adminConfiguration/deleteDocumentCategory';
-
+  private saveDocumentCategoryApi = 'api/adminConfiguration/saveDocumentCategory';
+  private deleteDocumentCategoryApi = 'api/adminConfiguration/deleteDocumentCategory';
   private saveAuditStatusApi = 'api/adminConfiguration/saveAuditStatus';
   private deleteAuditStatusApi = 'api/adminConfiguration/deleteAuditStatus';
-
   private saveDetailDocTypeApi = 'api/adminConfiguration/saveDetailDocType';
   private deleteDetailDocTypeApi = 'api/adminConfiguration/deleteDetailDocType';
-
   private saveEffectivityApi = 'api/adminConfiguration/saveEffectivity';
   private deleteEffectivityApi = 'api/adminConfiguration/deleteEffectivity';
-
   private saveEccnNumberApi = 'api/adminConfiguration/saveEccnNumber';
   private deleteEccnNumberApi = 'api/adminConfiguration/deleteEccnNumber';
-
   private saveEccnLocationApi = 'api/adminConfiguration/saveEccnLocation';
   private deleteEccnLocationApi = 'api/adminConfiguration/deleteEccnLocation';
+  private viewSearchApi = 'api/addDocument/viewDocument';
+  private viewAuditApi = 'api/audit/viewAudit';
+  private viewAllAuditsApi = 'api/audit/viewAllAudits';
 
-  private viewSearchApi = "api/addDocument/viewDocument";
   viewDocId: any;
+  viewAuditId: any;
+
+  private formData: any;
 
   constructor(private http: HttpClient) {}
+
+  saveFormData(data: any) {
+    this.formData = data;
+  }
+
+  getFormData() {
+    return this.formData;
+  }
 
   postData(payload: any, start: any, size: any): Observable<any> {
     return this.http.post(this.api, payload, {
@@ -83,8 +77,8 @@ export class ApiService {
     });
   }
 
-  addDocument(payload:any): Observable<any>{
-    return this.http.post<any>(this.addDocumentApi,payload )
+  addDocument(payload: any): Observable<any> {
+    return this.http.post<any>(this.addDocumentApi, payload);
   }
 
   getAuditStatuses(): Observable<any> {
@@ -116,7 +110,21 @@ export class ApiService {
   }
 
   viewDocuments(): Observable<any> {
-    return this.http.get<any>(`${this.viewSearchApi}?documentNbr=${this.viewDocId}`);
+    return this.http.get<any>(
+      `${this.viewSearchApi}?documentNbr=${this.viewDocId}`
+    );
+  }
+
+  viewAudit(): Observable<any> {
+    return this.http.get<any>(
+      `${this.viewAuditApi}?auditId=${this.viewAuditId}`
+    );
+  }
+
+  viewAllAudits(): Observable<any> {
+    return this.http.get<any>(
+      `${this.viewAllAuditsApi}?documentNbr=${this.viewDocId}`
+    );
   }
 
   updateManageSections(
@@ -134,7 +142,7 @@ export class ApiService {
   }
 
   deleteManageSections(section: any): Observable<any> {
-    return this.http.delete<any>(`${this.saveManageSectionsApi}/${section}`);
+    return this.http.delete<any>(`${this.deleteManageSectionsApi}/${section}`);
   }
 
   saveDocumentCategory(
@@ -230,8 +238,6 @@ export class ApiService {
       `${this.deleteEccnLocationApi}/${eccnLocationCd}`
     );
   }
-
-
 
   checkApiHealth(): Observable<any> {
     return this.http

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchComponent } from './component/search/search.component';
-import { LandingPageComponent } from './component/landing-page/landing-page.component';
 import { SearchPaginationComponent } from './component/search-pagination/search-pagination.component';
 import { DocumentComponent } from './component/document/document.component';
 import { SearchAuditComponent } from './component/search-audit/search-audit.component';
@@ -18,6 +17,8 @@ import { ManageEccnLocationComponent } from './component/Admin Configuration/man
 import { ManageEccnNumberComponent } from './component/Admin Configuration/manage-eccn-number/manage-eccn-number.component';
 import { HealthTestComponent } from './component/health-test/health-test.component'
 import { ViewSearchComponent } from './component/viewSearch/view-search/view-search.component';
+import { ViewAuditComponent } from './component/viewAudit/view-audit/view-audit.component';
+import { ViewAllAuditsComponent } from './component/viewAllAudits/view-all-audits/view-all-audits.component';
 const routes: Routes = [
   {
     path: 'search',
@@ -81,6 +82,14 @@ const routes: Routes = [
   {
     path: 'viewStatus',
     component: ViewSearchComponent,
+  },
+  {
+    path: 'viewAudit',
+    component: ViewAuditComponent,
+  },
+  {
+    path: 'viewAllAudits',
+    component: ViewAllAuditsComponent,
   },
   { path: 'health', 
     component: HealthTestComponent

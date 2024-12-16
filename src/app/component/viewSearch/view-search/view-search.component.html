@@ -1,5 +1,5 @@
 <tbody>
-    <a routerLink="/search">Back To Search Results</a>
+  <a style="font-weight: bolder" routerLink="/search">Back To Search Results</a>
   <tr>
     <td valign="top" align="left">
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -74,16 +74,14 @@
                                           <td width="250"></td>
                                         </tr>
 
-                                        <tr
-                                          class="eds-pagerstyle readonly"                                          
-                                        >
+                                        <tr class="eds-pagerstyle readonly">
                                           <td align="right">
                                             VDT System ID No.&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
-                                            <span class="viewFieldText"
-                                              >{{documentsDetails.document.documentNbr}}</span
-                                            >
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document?.documentNbr
+                                            }}</span>
                                           </td>
                                         </tr>
 
@@ -94,21 +92,26 @@
                                             Creation Date *&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
-                                            <span class="viewFieldText"
-                                              >{{documentsDetails.document.creationDate | date:"dd/MM/yyyy"}}</span
-                                            >
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document
+                                                ?.creationDate
+                                                | date : "dd/MM/yyyy"
+                                            }}</span>
                                           </td>
                                         </tr>
 
                                         <tr
-                                          class="eds-pagerstyle eds-field-required"                                         
+                                          class="eds-pagerstyle eds-field-required"
                                         >
                                           <td align="right">
                                             Vendor Name *&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
                                             <span class="viewFieldText"
-                                              >{{documentsDetails.document.vendor.vendorNm}}
+                                              >{{
+                                                documentsDetails.document?.vendor
+                                                  .vendorNm
+                                              }}
                                             </span>
                                           </td>
                                         </tr>
@@ -125,22 +128,23 @@
                                                   <td width="250"></td>
                                                 </tr>
 
-                                                <tr
-                                                  class="eds-pagerstyle-alt"
-                                                >
+                                                <tr class="eds-pagerstyle-alt">
                                                   <td align="right">
                                                     Vendor Website&nbsp; &nbsp;
                                                   </td>
                                                   <td align="left">
                                                     <span class="viewFieldText"
-                                                      >{{documentsDetails.document.vendor.vendorWebsite}}
+                                                      >{{
+                                                        documentsDetails
+                                                          .document?.vendor
+                                                          .vendorWebsite
+                                                      }}
                                                     </span>
                                                   </td>
                                                 </tr>
 
                                                 <tr
                                                   class="eds-pagerstyle"
-                                                  style=""
                                                 >
                                                   <td align="right">
                                                     Vendor Contact Person&nbsp;
@@ -149,12 +153,16 @@
                                                   <td align="left">
                                                     <span
                                                       class="viewFieldText"
-                                                    >{{documentsDetails.document.vendor.contactPerson}}</span>
+                                                      >{{
+                                                        documentsDetails
+                                                          .document?.vendor
+                                                          .contactPerson
+                                                      }}</span
+                                                    >
                                                   </td>
                                                 </tr>
 
-                                                <tr
-                                                  class="eds-pagerstyle-alt"                                                >
+                                                <tr class="eds-pagerstyle-alt">
                                                   <td align="right">
                                                     Vendor Contact Phone&nbsp;
                                                     &nbsp;
@@ -162,13 +170,17 @@
                                                   <td align="left">
                                                     <span
                                                       class="viewFieldText"
-                                                    >{{documentsDetails.document.vendor.contactPhone}}</span>
+                                                      >{{
+                                                        documentsDetails
+                                                          .document?.vendor
+                                                          .contactPhone
+                                                      }}</span
+                                                    >
                                                   </td>
                                                 </tr>
 
                                                 <tr
                                                   class="eds-pagerstyle"
-                                                  style=""
                                                 >
                                                   <td align="right">
                                                     Vendor Email&nbsp; &nbsp;
@@ -176,13 +188,17 @@
                                                   <td align="left">
                                                     <span
                                                       class="viewFieldText"
-                                                    >{{documentsDetails.document.vendor.vendorEmailAddress}}</span>
+                                                      >{{
+                                                        documentsDetails
+                                                          .document?.vendor
+                                                          .vendorEmailAddress
+                                                      }}</span
+                                                    >
                                                   </td>
                                                 </tr>
 
                                                 <tr
                                                   class="eds-pagerstyle-alt"
-                                                  style=""
                                                 >
                                                   <td align="right">
                                                     Vendor Remarks&nbsp; &nbsp;
@@ -190,7 +206,12 @@
                                                   <td align="left">
                                                     <span
                                                       class="viewFieldText"
-                                                    >{{documentsDetails.document.vendor.remarks}}</span>
+                                                      >{{
+                                                        documentsDetails
+                                                          .document?.vendor
+                                                          .remarks
+                                                      }}</span
+                                                    >
                                                   </td>
                                                 </tr>
                                               </tbody>
@@ -198,28 +219,30 @@
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle-alt" style="">
+                                        <tr class="eds-pagerstyle-alt">
                                           <td align="right">
                                             Vendor Document Reference
                                             Number&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
-                                            <span class="viewFieldText"
-                                              >{{documentsDetails.document.vendorDocRefNbr}}</span
-                                            >
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document
+                                                ?.vendorDocRefNbr
+                                            }}</span>
                                           </td>
                                         </tr>
 
                                         <tr
                                           class="eds-pagerstyle dropdown"
-                                          style=""
                                         >
                                           <td align="right">
                                             Category&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
                                             <span class="viewFieldText"
-                                              >{{documentsDetails.document.documentCategory
+                                              >{{
+                                                documentsDetails.document
+                                                  ?.documentCategory
                                               }}
                                             </span>
                                           </td>
@@ -227,88 +250,95 @@
 
                                         <tr
                                           class="eds-pagerstyle-alt dropdown"
-                                          style=""
                                         >
                                           <td align="right">
                                             Effectivity&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
                                             <div>
-                                              <span class="viewFieldText"
-                                                >{{documentsDetails.document.effectivityIds}}</span
-                                              >
+                                              <span class="viewFieldText">{{
+                                                documentsDetails.document
+                                                  ?.effectivityIds
+                                              }}</span>
                                             </div>
                                           </td>
                                         </tr>
 
                                         <tr
                                           class="eds-pagerstyle dropdown"
-                                          style=""
                                         >
                                           <td align="right">
                                             Section *&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
                                             <div>
-                                              <span class="viewFieldText"
-                                                >{{documentsDetails.document.sections}}</span
-                                              >
+                                              <span class="viewFieldText">{{
+                                                documentsDetails.document
+                                                  ?.sections
+                                              }}</span>
                                             </div>
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle-alt" style="">
+                                        <tr class="eds-pagerstyle-alt">
                                           <td align="right">
                                             Document Subject&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
                                             <span class="viewFieldText"
-                                              >{{documentsDetails.document.subject}}
-                                              </span
-                                            >
+                                              >{{
+                                                documentsDetails.document
+                                                  ?.subject
+                                              }}
+                                            </span>
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle" style="">
+                                        <tr class="eds-pagerstyle">
                                           <td align="right">
                                             ATA&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
-                                            <span class="viewFieldText"
-                                              >{{documentsDetails.document.ata}}</span
-                                            >
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document?.ata
+                                            }}</span>
                                           </td>
                                         </tr>
 
                                         <tr
                                           class="eds-pagerstyle-alt dropdown"
-                                          style=""
                                         >
                                           <td align="right">
                                             Next Route&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
-                                            <span class="viewFieldText"
-                                              >{{documentsDetails.document.nextRouteType}}</span
-                                            >
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document
+                                                ?.nextRouteType
+                                            }}</span>
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle" style="">
+                                        <tr class="eds-pagerstyle">
                                           <td align="right">
                                             Reissue Date&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
-                                            <span class="viewFieldText">{{documentsDetails.document.reissueDate}}</span>
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document
+                                                ?.reissueDate
+                                            }}</span>
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle-alt" style="">
+                                        <tr class="eds-pagerstyle-alt">
                                           <td align="right">
                                             Remarks&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
-                                            <span class="viewFieldText">{{documentsDetails.document.remarks}}</span>
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document?.remarks
+                                            }}</span>
                                           </td>
                                         </tr>
 
@@ -316,13 +346,14 @@
 
                                         <tr
                                           class="eds-pagerstyle dropdown"
-                                          style=""
                                         >
                                           <td align="right">
                                             ITAR&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
-                                            <span class="viewFieldText">{{documentsDetails.document.itar}}</span>
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document?.itar
+                                            }}</span>
                                           </td>
                                         </tr>
                                         <!-- ITAR END -->
@@ -335,9 +366,10 @@
                                           </td>
                                           <td>
                                             <div>
-                                              <span class="viewFieldText"
-                                                >{{documentsDetails.document.eccnNumber}}</span
-                                              >
+                                              <span class="viewFieldText">{{
+                                                documentsDetails.document
+                                                  ?.eccnNumber
+                                              }}</span>
                                             </div>
                                           </td>
                                         </tr>
@@ -351,9 +383,10 @@
                                           </td>
                                           <td>
                                             <div>
-                                              <span class="viewFieldText"
-                                                >{{documentsDetails.document.eccnLocation}}</span
-                                              >
+                                              <span class="viewFieldText">{{
+                                                documentsDetails.document
+                                                  ?.eccnLocation
+                                              }}</span>
                                             </div>
                                           </td>
                                         </tr>
@@ -365,9 +398,10 @@
                                           </td>
                                           <td>
                                             <div>
-                                              <span class="viewFieldText"
-                                                >{{documentsDetails.document.auditableDocTypes}}</span
-                                              >
+                                              <span class="viewFieldText">{{
+                                                documentsDetails.document
+                                                  ?.auditableDocTypes
+                                              }}</span>
                                             </div>
                                           </td>
                                         </tr>
@@ -379,9 +413,10 @@
                                           </td>
                                           <td>
                                             <div>
-                                              <span class="viewFieldText"
-                                                >{{documentsDetails.document.documentPartNumbers}}</span
-                                              >
+                                              <span class="viewFieldText">{{
+                                                documentsDetails.document
+                                                  ?.documentPartNumbers
+                                              }}</span>
                                             </div>
                                           </td>
                                         </tr>
@@ -534,18 +569,62 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr id="detail202401180" class="odd">
-                                          <td>{{documentsDetails.documentLatestAudit[0].popDetails.popRefNbr}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].popDetails.detailDocType}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].popDetails.docType}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].popDetails.revisionNbr}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].popDetails.detailSubjectDesc}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].popDetails.manualdate | date:"dd/MM/yyyy"}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].popDetails.bin}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].popDetails.remark}}</td>
+                                        <tr id="detail202401180" class="odd" *ngIf="documentsDetails.length !==0 && documentsDetails.documentLatestAudit.length !== 0">
+                                          <td>
+                                            {{documentsDetails.documentLatestAudit[0].popDetails?.popRefNbr}}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .popDetails?.detailDocType
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .popDetails?.docType
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .popDetails?.revisionNbr
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .popDetails?.detailSubjectDesc
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .popDetails?.manualdate
+                                                | date : "dd/MM/yyyy"
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .popDetails?.bin
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .popDetails?.remark
+                                            }}
+                                          </td>
                                           <td>
                                             <a
-                                              href="ViewDetail.html?detail.popno=205686570"
                                               >View</a
                                             >
                                           </td>
@@ -622,21 +701,58 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr class="odd">
-                                          <td>{{documentsDetails.documentLatestAudit[0].auditDate | date:"dd/MM/yyyy"}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].dodAuditCategory}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].detailDocType}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].revisionNbr}}</td>
-                                          <td>{{documentsDetails.documentLatestAudit[0].revisionDate | date:"dd/MM/yyyy"}}</td>
+                                        <tr class="odd" *ngIf="documentsDetails.length !==0 && documentsDetails.documentLatestAudit.length !== 0">
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .auditDate | date : "dd/MM/yyyy"
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .dodAuditCategory
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .detailDocType
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .revisionNbr
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              documentsDetails
+                                                .documentLatestAudit[0]
+                                                .revisionDate
+                                                | date : "dd/MM/yyyy"
+                                            }}
+                                          </td>
                                           <td>
                                             <a
-                                              href="ViewAudit.html?audit.auditId=507670"
+                                              routerLink="/viewAudit"
+                                              (click)="
+                                                viewClick(
+                                                  documentsDetails
+                                                    .documentLatestAudit[0]
+                                                    .auditId
+                                                )
+                                              "
                                               >View</a
                                             >
 
                                             &nbsp;
                                             <a
-                                              href="EditAudit.html?audit.auditId=507670"
                                               >Edit</a
                                             >
                                           </td>
@@ -644,8 +760,7 @@
                                       </tbody>
                                     </table>
 
-                                    <a
-                                      href="ViewAllAudits.html?audit.documentNbr=28889752"
+                                    <a routerLink="/viewAllAudits"
                                       >View All Audits</a
                                     >
 
@@ -723,11 +838,38 @@
                                     <tbody>
                                       <tr>
                                         <td>
-                                          <font color="#ffffff"
-                                            ><b
-                                              >Nothing found to display</b
-                                            ></font
-                                          ><br /><br />
+                                          <table class="inline-table" id="eso">
+                                            <thead>
+                                              <tr>
+                                                <th>ESO #</th>
+                                                <th>Assign Date</th>
+                                                <th>Subject</th>
+                                                <th>Action</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr *ngFor="
+                                              let status of documentsDetails.documentEsos;
+                                              let i = index
+                                            "
+                                            [ngClass]="
+                                              i % 2 == 0
+                                                ? 'eds-pagerstyle'
+                                                : 'eds-pagerstyle-alt'
+                                            ">
+                                                <td>{{status.eso}}</td>
+                                                <td>{{status.assigndate | date:"dd/MM/yyyy"}}</td>
+                                                <td>{{status.subject}}</td>
+                                                <td>
+                                                  <a
+                                                    >View</a
+                                                  >
+                                                </td>
+                                              </tr>
+
+                                            </tbody>
+                                          </table>
+                                          <br /><br />
                                         </td>
                                       </tr>
                                     </tbody>
@@ -846,15 +988,41 @@
                                           >
                                             <input
                                               type="hidden"
-                                              value="28889752"
+                                              value="28877680"
                                               name="document.documentNbr"
                                             />
 
-                                            <font color="#ffffff"
-                                              ><b
-                                                >Nothing found to display</b
-                                              ></font
+                                            <table
+                                              class="inline-table"
+                                              id="formerVendor"
                                             >
+                                              <thead>
+                                                <tr>
+                                                  <th>Former Vendor</th>
+                                                  <th>Superseded Date</th>
+                                                  <th>Action</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                <tr *ngFor="
+                                                let status of documentsDetails.formerVendors;
+                                                let i = index
+                                              "
+                                              [ngClass]="
+                                                i % 2 == 0
+                                                  ? 'eds-pagerstyle'
+                                                  : 'eds-pagerstyle-alt'
+                                              ">
+                                                  <td>{{status.formerVendor}}</td>
+                                                  <td>{{status.supersededDate | date:"dd/MM/yyyy"}}</td>
+                                                  <td>
+                                                    <a
+                                                      >Delete</a
+                                                    >
+                                                  </td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
 
                                             <span style="float: right">
                                               <input

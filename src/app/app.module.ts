@@ -34,6 +34,8 @@ import { ManageEccnLocationComponent } from './component/Admin Configuration/man
 import { ManageEccnNumberComponent } from './component/Admin Configuration/manage-eccn-number/manage-eccn-number.component';
 import { HealthTestComponent } from './component/health-test/health-test.component';
 import { ViewSearchComponent } from './component/viewSearch/view-search/view-search.component';
+import { ViewAuditComponent } from './component/viewAudit/view-audit/view-audit.component';
+import { ViewAllAuditsComponent } from './component/viewAllAudits/view-all-audits/view-all-audits.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +59,8 @@ import { ViewSearchComponent } from './component/viewSearch/view-search/view-sea
     ManageEccnNumberComponent,
     HealthTestComponent,
     ViewSearchComponent,
+    ViewAuditComponent,
+    ViewAllAuditsComponent,
   ],
   imports: [
     BrowserModule,

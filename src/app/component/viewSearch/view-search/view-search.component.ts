@@ -4,22 +4,24 @@ import { ApiService } from 'src/app/api.service';
 @Component({
   selector: 'app-view-search',
   templateUrl: './view-search.component.html',
-  styleUrls: ['./view-search.component.css']
+  styleUrls: ['./view-search.component.css'],
 })
 export class ViewSearchComponent {
-
-documentsDetails:any=[]
+  documentsDetails: any = [];
 
   constructor(private apiService: ApiService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.viewDocuments();
   }
 
-  viewDocuments(){
+  viewDocuments() {
     this.apiService.viewDocuments().subscribe((data) => {
       this.documentsDetails = data;
     });
   }
 
+  viewClick(id: any) {
+    this.apiService.viewAuditId = id;
+  }
 }
