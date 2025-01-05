@@ -676,7 +676,7 @@
                       </tr>
                       <tr>
                         <td>
-                          <table
+                          <table                         
                             cellspacing="0"
                             cellpadding="0"
                             width="100%"
@@ -687,8 +687,8 @@
                               <tr>
                                 <td>
                                   <div style="width: 400">
-                                    <table class="inline-table" id="audit">
-                                      <thead>
+                                    <table class="inline-table" id="audit"                                   >
+                                      <thead *ngIf="documentsDetails.length !==0 && documentsDetails.documentLatestAudit.length !== 0">
                                         <tr>
                                           <th class="sorted order1">
                                             Audit Date
@@ -839,8 +839,8 @@
                                       <tr>
                                         <td>
                                           <table class="inline-table" id="eso">
-                                            <thead>
-                                              <tr>
+                                            <thead *ngIf="documentsDetails">
+                                              <tr >
                                                 <th>ESO #</th>
                                                 <th>Assign Date</th>
                                                 <th>Subject</th>

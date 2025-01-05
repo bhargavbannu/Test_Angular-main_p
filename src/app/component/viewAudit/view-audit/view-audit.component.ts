@@ -17,6 +17,8 @@ export class ViewAuditComponent implements OnInit {
 
   viewAudit() {
     this.apiService.viewAudit().subscribe((data) => {
+      console.log(data);
+      
       this.auditDetails = data;
     });
   }

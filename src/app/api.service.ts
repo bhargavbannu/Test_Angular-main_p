@@ -34,6 +34,9 @@ export class ApiService {
   private viewSearchApi = 'api/addDocument/viewDocument';
   private viewAuditApi = 'api/audit/viewAudit';
   private viewAllAuditsApi = 'api/audit/viewAllAudits';
+  private eccNumberApi='api/adminConfiguration/getEccnNumbers';
+  private eccLocation= 'api/adminConfiguration/getEccnLocations';
+  private docType = 'api/adminConfiguration/getAuditableDetailDocTypes'
 
   viewDocId: any;
   viewAuditId: any;
@@ -50,6 +53,7 @@ export class ApiService {
     return this.formData;
   }
 
+ 
   postData(payload: any, start: any, size: any): Observable<any> {
     return this.http.post(this.api, payload, {
       params: {
@@ -76,6 +80,8 @@ export class ApiService {
       },
     });
   }
+
+ 
 
   addDocument(payload: any): Observable<any> {
     return this.http.post<any>(this.addDocumentApi, payload);
@@ -120,6 +126,31 @@ export class ApiService {
       `${this.viewAuditApi}?auditId=${this.viewAuditId}`
     );
   }
+
+  // eccnNumber(id:any):Observable<any>{
+  //   return this.http.get<any>(
+  //     `${this.eccNumberApi}?sourceElement=${id}`
+  //   )
+  // }
+  // eccnLocation(id:any):Observable<any>{
+  //   return this.http.get<any>(`${this.eccLocation}?sourceElement=${id}`)
+  // }
+
+  eccnNumber():Observable<any>{
+    return this.http.get<any>(
+      `${this.eccNumberApi}?sourceElement=`
+    )
+  }
+  eccnLocation():Observable<any>{
+    return this.http.get<any>(`${this.eccLocation}?sourceElement=`)
+  }
+  audDocType():Observable<any>{
+    return this.http.get<any>(`${this.docType}?sourceElement=`)
+  }
+
+  // audDocType(id:any):Observable<any>{
+  //   return this.http.get<any>(`${this.docType}?sourceElement=${id}`)
+  // }
 
   viewAllAudits(): Observable<any> {
     return this.http.get<any>(

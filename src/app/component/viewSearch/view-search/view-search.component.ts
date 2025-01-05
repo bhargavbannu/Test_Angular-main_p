@@ -17,8 +17,10 @@ export class ViewSearchComponent {
 
   viewDocuments() {
     this.apiService.viewDocuments().subscribe((data) => {
+      console.log(data);     
       this.documentsDetails = data;
-    });
+      console.log(data);      
+    })
   }
 
   viewClick(id: any) {

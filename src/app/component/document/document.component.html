@@ -128,7 +128,7 @@
                                             name="document.vendor.vendorNm"
                                             class=""
                                             id="vendorAutoComplete"
-                                           [(ngModel)]="val"
+                                            [(ngModel)]="val"
                                             size="45"
                                             maxlength="20"
                                             autocomplete="off"
@@ -525,7 +525,7 @@
                                             type="text"
                                             name="document.remarks"
                                             class=""
-                                           [(ngModel)]="remarksField"
+                                            [(ngModel)]="remarksField"
                                             size="45"
                                             maxlength="100"
                                           />
@@ -534,38 +534,68 @@
 
                                       <tr class="eds-pagerstyle-alt">
                                         <td style="text-align: right">
-                                          Auditable Doc Types&nbsp; &nbsp;
+                                          ECCN Number&nbsp; &nbsp;
                                         </td>
                                         <td>
                                           <select
-                                            name="document.auditableDocTypes"
-                                            class=""
-                                            id="document.auditableDocTypes_id"
+                                            name="eccnNumber"
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                          ></select>
+                                          ><option>{{eccnNumber}}</option></select>
 
                                           <br />
 
                                           <input
-                                            type="text"
-                                            name="addInput_document.auditableDocTypes_id"
-                                            class=""
-                                            id="addInput_document.auditableDocTypes_id"
-                                            value=""
+                                          type="text"
+                                          name="Number"
+                                          [(ngModel)]="typedNumber"
+                                          (input)="filterNumbers($any($event.target).value)"
+                                          style="width: 120px"
+                                          maxlength="20"
+                                          autocomplete="off"
+                                        >
+                                        <input type="button" (click)="addNumber()" value="Add" />
+                                        <input type="button" (click)="removeNumber()" value="Remove" />
+                                        <div *ngIf="filteredNumbers.length >0" style="min-width: 120px;background: lightgray;position: absolute;">
+                                          <div *ngFor="let number of filteredNumbers" (click)="selectNumber(number)">
+                                            <span style="cursor: pointer;">{{number}}</span>
+                                          </div>
+                                        </div>
+                                        </td>
+                                      </tr>
+
+                                      <tr class="eds-pagerstyle-alt">
+                                        <td style="text-align: right">
+                                          ECCN Location&nbsp; &nbsp;
+                                        </td>
+                                        <td>
+                                          <select
+                                            name="eccnLocation"
+                                            multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                            autocomplete="off"
-                                          />
+                                        
+                                          ><option>{{eccnLocation}}</option></select>
+                                          <br />
 
-                                          <div
-                                            id="addInput_document.auditableDocTypes_id_choices"
-                                            class="autoCompleteClass"
-                                            style="display: none"
-                                          ></div>
-                                          <input type="button" value="Add" />
-                                          <input type="button" value="Remove" />
+                                          <input
+                                          type="text"
+                                          name="location"
+                                          [(ngModel)]="typedLocation"
+                                          (input)="filterLocations($any($event.target).value)"
+                                          style="width: 120px"
+                                          maxlength="20"
+                                          autocomplete="off"
+                                        >
+                                        <input type="button" (click)="addLocation()" value="Add" />
+                                        <input type="button" (click)="removeLocation()" value="Remove" />
+                                        <div *ngIf="filteredLocations.length >0" style="min-width: 120px;background: lightgray;position: absolute;">
+                                          <div *ngFor="let location of filteredLocations" (click)="selectLocation(location)">
+                                            <span style="cursor: pointer;">{{location}}</span>
+                                          </div>
+                                        </div>
+                                          
                                         </td>
                                       </tr>
 
@@ -577,34 +607,30 @@
                                         <td>
                                           <select
                                             name="document.documentPartNumbers"
-                                            class=""
-                                            id="document.documentPartNumbers_id"
+                                            [(ngModel)]="removedDoc"
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                          ></select>
-
+                                          ><option *ngFor="let doc of allSelectedDocTypes">{{doc}}</option></select>
                                           <br />
 
                                           <input
-                                            type="text"
-                                            name="addInput_document.documentPartNumbers_id"
-                                            class=""
-                                            id="addInput_document.documentPartNumbers_id"
-                                            value=""
-                                            style="width: 120px"
-                                            maxlength="20"
-                                            autocomplete="off"
-                                          />
-
-                                          <div
-                                            id="addInput_document.documentPartNumbers_id_choices"
-                                            class="autoCompleteClass"
-                                            style="display: none"
-                                          ></div>
-
-                                          <input type="button" value="Add" />
-                                          <input type="button" value="Remove" />
+                                          type="text"
+                                          name="documentPartNumbers"
+                                          class=""
+                                          [(ngModel)]="typedDocType"
+                                          (input)="filterDocTypes($any($event.target).value)"
+                                          style="width: 120px"
+                                          maxlength="20"
+                                          autocomplete="off"
+                                        >
+                                        <input type="button" (click)="addDocType()" value="Add" />
+                                        <input type="button" (click)="removeDocType()" value="Remove" />
+                                        <div *ngIf="filteredDocTypes.length >0" style="min-width: 120px;background: lightgray;position: absolute;">
+                                          <div *ngFor="let doc of filteredDocTypes" (click)="selectDocType(doc)">
+                                            <span style="cursor: pointer;">{{doc}}</span>
+                                          </div>
+                                        </div>
                                         </td>
                                       </tr>
 
@@ -691,7 +717,11 @@
                                       >
                                         <td colspan="2">
                                           <span style="float: right">
-                                           <button (click)="addDocumentSubmit()">submittt</button>
+                                            <button
+                                              (click)="addDocumentSubmit()"
+                                            >
+                                              submittt
+                                            </button>
                                           </span>
                                         </td>
                                       </tr>
