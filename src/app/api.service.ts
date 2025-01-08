@@ -165,6 +165,7 @@ export class ApiService {
     inactiveDate: any
   ): Observable<any> {
     return this.http.post<any>(this.saveManageSectionsApi, {
+      editId: "-1",
       section,
       description,
       inactiveInd,
@@ -181,6 +182,7 @@ export class ApiService {
     documentCatgDesc: string
   ): Observable<any> {
     return this.http.post<any>(this.saveDocumentCategoryApi, {
+      editId: "-1",
       documentCatgCd,
       documentCatgDesc,
     });
@@ -197,6 +199,7 @@ export class ApiService {
     auditStatusDesc: string
   ): Observable<any> {
     return this.http.post<any>(this.saveAuditStatusApi, {
+      editId: "-1",
       auditStatusCd,
       auditStatusDesc,
     });
@@ -214,6 +217,7 @@ export class ApiService {
     auditableInd: any
   ): Observable<any> {
     return this.http.post<any>(this.saveDetailDocTypeApi, {
+      editId: "-1",
       detailDocType,
       detailDocTypeDesc,
       auditableInd,
@@ -234,6 +238,7 @@ export class ApiService {
     inactiveInd: any
   ): Observable<any> {
     return this.http.post<any>(this.saveEffectivityApi, {
+      editId: "-1",
       effectivityId,
       effectivityFleet: { esoMinSeqNbr, esoMaxSeqNbr, esoCurrSeqNbr },
       inactiveInd,
@@ -247,7 +252,7 @@ export class ApiService {
   }
 
   saveEccnNumber(eccnNumber: any): Observable<any> {
-    return this.http.post<any>(this.saveEccnNumberApi, { eccnNumber });
+    return this.http.post<any>(this.saveEccnNumberApi, {editId: "-1", eccnNumber });
   }
 
   deleteEccnNumber(eccnNumber: any): Observable<any> {
@@ -259,6 +264,7 @@ export class ApiService {
     eccnLocationDesc: string
   ): Observable<any> {
     return this.http.post<any>(this.saveEccnLocationApi, {
+      editId: "-1",
       eccnLocationCd,
       eccnLocationDesc,
     });
