@@ -10,6 +10,7 @@ export class ManageDocCategoriesComponent {
   DocCategories: any[] = [];
   btnIndex: any;
   clickFlag: boolean = false;
+  saveNewDoc:boolean=false;
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -23,15 +24,18 @@ export class ManageDocCategoriesComponent {
   }
 
   btnClick(index: any) {
+    this.saveNewDoc = false
     this.btnIndex = index;
     this.clickFlag = true;
   }
 
   createRow() {
+    this.saveNewDoc = true;
     this.DocCategories.push({ documentCatgCd: '', documentCatgDesc: '' , newRow:true});
   }
 
   saveRow(documentCatgCd: any, documentCatgDesc: string) {
+    if(this.saveNewDoc){
     this.apiService
       .saveDocumentCategory(documentCatgCd, documentCatgDesc)
       .subscribe(() => {
@@ -39,6 +43,15 @@ export class ManageDocCategoriesComponent {
       });
     this.btnIndex = '';
   }
+  else {
+    this.apiService
+    .saveDocumentCategoryUpdate(documentCatgCd, documentCatgDesc)
+    .subscribe(() => {
+      this.loadDocCategories();
+    });
+  this.btnIndex = '';
+  }
+}
 
   deleteRow(section: any) {
     this.apiService.deleteDocumentCategory(section).subscribe(() => {

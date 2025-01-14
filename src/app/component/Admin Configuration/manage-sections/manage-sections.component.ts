@@ -8,6 +8,7 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ManageSectionsComponent {
   btnIndex: any;
+  saveNew: boolean=false;
 edit() {
 throw new Error('Method not implemented.');
 }
@@ -29,19 +30,31 @@ clickFlag: boolean = false
     })
   }
   btnClick(index: any){
+    this.saveNew = false;
     this.btnIndex = index
     this.clickFlag = true  
   }
   createRow(){
+    this.saveNew = true;
     this.sections.push({section:"",description:"",inactiveInd:"",inactiveDate:"", newRow:true})
   }
 
   saveRow(section:any, description:string,inactiveInd:any,inactiveDate:any){
+  
+    if(this.saveNew){
     this.apiService.updateManageSections(section, description,inactiveInd,inactiveDate).subscribe(()=>{
       this.loadSections()
     })
     this.btnIndex =""
   }
+  else {
+    this.apiService.updateManageSections1(section, description,inactiveInd).subscribe(()=>{
+      this.loadSections()
+    })
+    this.btnIndex =""
+  }
+  
+}
 
   deleteRow(section:any){
     this.apiService.deleteManageSections(section).subscribe(()=>{

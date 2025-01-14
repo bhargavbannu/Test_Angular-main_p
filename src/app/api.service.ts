@@ -17,15 +17,17 @@ export class ApiService {
   private documentCategoriesApi = 'api/adminConfiguration/documentCategories';
   private manageSectionsApi = 'api/adminConfiguration/manageSections';
   private addDocumentApi = 'api/addDocument/saveDocument';
-  private saveManageSectionsApi = 'api/adminConfiguration/saveSection';
+  private saveManageSectionsApi = 'api/adminConfiguration/saveNewSection';
+  private updateManageSectionsApi = 'api/adminConfiguration/editSection';
   private deleteManageSectionsApi = 'api/adminConfiguration/deleteSection';
-  private saveDocumentCategoryApi = 'api/adminConfiguration/saveDocumentCategory';
+  private saveDocumentCategoryApi = 'api/adminConfiguration/saveNewDocumentCategory';
+  private saveDocumentCategoryUpdateApi = 'api/adminConfiguration/updateDocumentCategory';
   private deleteDocumentCategoryApi = 'api/adminConfiguration/deleteDocumentCategory';
   private saveAuditStatusApi = 'api/adminConfiguration/saveAuditStatus';
   private deleteAuditStatusApi = 'api/adminConfiguration/deleteAuditStatus';
   private saveDetailDocTypeApi = 'api/adminConfiguration/saveDetailDocType';
   private deleteDetailDocTypeApi = 'api/adminConfiguration/deleteDetailDocType';
-  private saveEffectivityApi = 'api/adminConfiguration/saveEffectivity';
+  private saveEffectivityApi = 'api/adminConfiguration/saveNewEffectivity';
   private deleteEffectivityApi = 'api/adminConfiguration/deleteEffectivity';
   private saveEccnNumberApi = 'api/adminConfiguration/saveEccnNumber';
   private deleteEccnNumberApi = 'api/adminConfiguration/deleteEccnNumber';
@@ -165,11 +167,25 @@ export class ApiService {
     inactiveDate: any
   ): Observable<any> {
     return this.http.post<any>(this.saveManageSectionsApi, {
-      editId: "-1",
+      // editId: section,
       section,
       description,
       inactiveInd,
       inactiveDate,
+    });
+  }
+
+  updateManageSections1(
+    section: any,
+    description: string,
+    inactiveInd: any,
+    
+  ): Observable<any> {
+    return this.http.put<any>(`${this.updateManageSectionsApi}/${section}`, {
+      // editId: section,
+
+      description,
+      inactiveInd,
     });
   }
 
@@ -182,8 +198,16 @@ export class ApiService {
     documentCatgDesc: string
   ): Observable<any> {
     return this.http.post<any>(this.saveDocumentCategoryApi, {
-      editId: "-1",
       documentCatgCd,
+      documentCatgDesc,
+    });
+  }
+
+  saveDocumentCategoryUpdate(
+    documentCatgCd: any,
+    documentCatgDesc: string
+  ): Observable<any> {
+    return this.http.put<any>(`${this.saveDocumentCategoryUpdateApi}/${documentCatgCd}`, {
       documentCatgDesc,
     });
   }
