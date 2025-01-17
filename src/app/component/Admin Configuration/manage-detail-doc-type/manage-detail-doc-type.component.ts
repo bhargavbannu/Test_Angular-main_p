@@ -10,6 +10,8 @@ export class ManageDetailDocTypeComponent {
   docTypes: any[] = [];
   btnIndex: any;
   clickFlag: boolean = false;
+  savenew:boolean=false;
+  updateRecord:boolean=false;
 
   constructor(private apiService: ApiService) {}
 
@@ -24,11 +26,14 @@ export class ManageDetailDocTypeComponent {
   }
 
   btnClick(index: any) {
+    this.savenew=false;
+    this.updateRecord=true;
     this.btnIndex = index;
     this.clickFlag = true;
   }
 
   createRow() {
+    this.savenew=true;
     this.docTypes.push({
       detailDocType: '',
       detailDocTypeDesc: '',
@@ -38,12 +43,22 @@ export class ManageDetailDocTypeComponent {
   }
 
   saveRow(detailDocType: any, detailDocTypeDesc: string, auditableInd: string) {
+    if(this.savenew){
     this.apiService
       .saveDetailDocType(detailDocType, detailDocTypeDesc, auditableInd)
       .subscribe(() => {
         this.docTypeDetails();
       });
     this.btnIndex = '';
+  }
+  else {
+    this.apiService
+      .saveDetailDocType1(detailDocType, detailDocTypeDesc, auditableInd)
+      .subscribe(() => {
+        this.docTypeDetails();
+      });
+    this.btnIndex = '';
+  }
   }
 
   deleteRow(detailDocType: any) {

@@ -10,6 +10,8 @@ export class ManageAuditStatusesComponent {
   auditStatuses: any[] = [];
   btnIndex: any;
   clickFlag: boolean = false;
+  saveNew: boolean = false;
+  updateRecord: boolean = false;
 
 
   constructor(private apiService: ApiService) {}
@@ -25,11 +27,14 @@ export class ManageAuditStatusesComponent {
   }
 
   btnClick(index: any) {
+    this.saveNew = false;
+    this.updateRecord
     this.btnIndex = index;
     this.clickFlag = true;
   }
 
   createRow() {
+    this.saveNew = true;
     this.auditStatuses.map((item)=>{
       delete item.newRow
     })
@@ -38,6 +43,7 @@ export class ManageAuditStatusesComponent {
   }
 
   saveRow(auditStatusCd: any, auditStatusDesc: string) {
+    if(this.saveNew){
     this.apiService
       .saveAuditStatus(auditStatusCd, auditStatusDesc)
       .subscribe(() => {
@@ -46,6 +52,16 @@ export class ManageAuditStatusesComponent {
     this.btnIndex = '';
 
   }
+  else {
+    this.apiService
+      .saveAuditStatus1(auditStatusCd, auditStatusDesc)
+      .subscribe(() => {
+        this.loadAuditStatuses();
+      });
+    this.btnIndex = '';
+  }
+}
+
 
   deleteRow(auditStatusCd: any) {
     this.apiService.deleteAuditStatus(auditStatusCd).subscribe(() => {

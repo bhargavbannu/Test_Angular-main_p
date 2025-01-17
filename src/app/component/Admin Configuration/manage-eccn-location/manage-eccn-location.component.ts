@@ -10,6 +10,8 @@ export class ManageEccnLocationComponent {
   EccnLocations: any[] = [];
   btnIndex: any;
   clickFlag: boolean = false;
+  saveNew: boolean = false;
+  updateNew: boolean = false;
 
   constructor(private apiService: ApiService) {}
 
@@ -24,14 +26,19 @@ export class ManageEccnLocationComponent {
   }
 
   btnClick(index: any) {
+    this.saveNew = false;
+    this.updateNew = true;
     this.btnIndex = index;
     this.clickFlag = true;
   }
   createRow() {
+    this.saveNew = true;
     this.EccnLocations.push({ eccnLocationCd: '', eccnLocationDesc: '', newRow: true });
   }
 
   saveRow(eccnLocationCd: any, eccnLocationDesc: any) {
+
+    if(this.saveNew){
     this.apiService
       .saveEccnLocation(eccnLocationCd, eccnLocationDesc)
       .subscribe(() => {
@@ -39,6 +46,16 @@ export class ManageEccnLocationComponent {
       });
     this.btnIndex = '';
   }
+  else {
+    this.apiService
+      .saveEccnLocation1(eccnLocationCd, eccnLocationDesc)
+      .subscribe(() => {
+        this.loadEccnLocations();
+      });
+    this.btnIndex
+}
+  }
+
 
   deleteRow(eccnLocationCd: any) {
     this.apiService.deleteEccnLocation(eccnLocationCd).subscribe(() => {

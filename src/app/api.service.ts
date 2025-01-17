@@ -23,15 +23,19 @@ export class ApiService {
   private saveDocumentCategoryApi = 'api/adminConfiguration/saveNewDocumentCategory';
   private saveDocumentCategoryUpdateApi = 'api/adminConfiguration/updateDocumentCategory';
   private deleteDocumentCategoryApi = 'api/adminConfiguration/deleteDocumentCategory';
-  private saveAuditStatusApi = 'api/adminConfiguration/saveAuditStatus';
+  private saveAuditStatusApi = 'api/adminConfiguration/saveNewAuditStatus';
+  private updateAuditStatusApi = 'api/adminConfiguration/editAuditStatus';
   private deleteAuditStatusApi = 'api/adminConfiguration/deleteAuditStatus';
-  private saveDetailDocTypeApi = 'api/adminConfiguration/saveDetailDocType';
+  private saveDetailDocTypeApi = 'api/adminConfiguration/saveNewDetailDocType';
+  private updateDetailDoc = 'api/adminConfiguration/updateDetailDocType';
   private deleteDetailDocTypeApi = 'api/adminConfiguration/deleteDetailDocType';
   private saveEffectivityApi = 'api/adminConfiguration/saveNewEffectivity';
   private deleteEffectivityApi = 'api/adminConfiguration/deleteEffectivity';
-  private saveEccnNumberApi = 'api/adminConfiguration/saveEccnNumber';
+  private saveEccnNumberApi = 'api/adminConfiguration/saveNewEccnNumber';
+  private updateEccnNumberApi = 'api/adminConfiguration/updateEccnNumber';
   private deleteEccnNumberApi = 'api/adminConfiguration/deleteEccnNumber';
-  private saveEccnLocationApi = 'api/adminConfiguration/saveEccnLocation';
+  private updateEccnLoaction = 'api/adminConfiguration/updateEccnLocation';
+  private saveEccnLocationApi = 'api/adminConfiguration/saveNewEccnLocation';
   private deleteEccnLocationApi = 'api/adminConfiguration/deleteEccnLocation';
   private viewSearchApi = 'api/addDocument/viewDocument';
   private viewAuditApi = 'api/audit/viewAudit';
@@ -223,8 +227,16 @@ export class ApiService {
     auditStatusDesc: string
   ): Observable<any> {
     return this.http.post<any>(this.saveAuditStatusApi, {
-      editId: "-1",
       auditStatusCd,
+      auditStatusDesc,
+    });
+  }
+
+  saveAuditStatus1(
+    auditStatusCd: any,
+    auditStatusDesc: string
+  ): Observable<any> {
+    return this.http.put<any>(`${this.updateAuditStatusApi}/${auditStatusCd}`, {
       auditStatusDesc,
     });
   }
@@ -241,13 +253,23 @@ export class ApiService {
     auditableInd: any
   ): Observable<any> {
     return this.http.post<any>(this.saveDetailDocTypeApi, {
-      editId: "-1",
       detailDocType,
       detailDocTypeDesc,
       auditableInd,
     });
   }
 
+  saveDetailDocType1(
+    detailDocType: any,
+    detailDocTypeDesc: string,
+    auditableInd: any
+  ): Observable<any> {
+    return this.http.put<any>(`${this.updateDetailDoc}/${detailDocType}`, {
+    
+      detailDocTypeDesc,
+      auditableInd,
+    });
+  }
   deleteDetailDocType(detailDocType: any): Observable<any> {
     return this.http.delete<any>(
       `${this.deleteDetailDocTypeApi}/${detailDocType}`
@@ -259,6 +281,7 @@ export class ApiService {
     esoMinSeqNbr: string,
     esoMaxSeqNbr: string,
     esoCurrSeqNbr: any,
+
     inactiveInd: any
   ): Observable<any> {
     return this.http.post<any>(this.saveEffectivityApi, {
@@ -276,7 +299,11 @@ export class ApiService {
   }
 
   saveEccnNumber(eccnNumber: any): Observable<any> {
-    return this.http.post<any>(this.saveEccnNumberApi, {editId: "-1", eccnNumber });
+    return this.http.post<any>(this.saveEccnNumberApi, {eccnNumber });
+  }
+
+  saveEccnNumber1(eccnNumber: any): Observable<any> {
+    return this.http.put<any>(`${this.updateEccnNumberApi}/${eccnNumber}`, {eccnNumber });
   }
 
   deleteEccnNumber(eccnNumber: any): Observable<any> {
@@ -288,7 +315,18 @@ export class ApiService {
     eccnLocationDesc: string
   ): Observable<any> {
     return this.http.post<any>(this.saveEccnLocationApi, {
-      editId: "-1",
+     
+      eccnLocationCd,
+      eccnLocationDesc,
+    });
+  }
+
+  saveEccnLocation1(
+    eccnLocationCd: any,
+    eccnLocationDesc: string
+  ): Observable<any> {
+    return this.http.put<any>(`${this.updateEccnLoaction}/${eccnLocationCd}`, {
+     
       eccnLocationCd,
       eccnLocationDesc,
     });

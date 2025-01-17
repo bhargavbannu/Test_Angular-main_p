@@ -10,6 +10,8 @@ export class ManageEccnNumberComponent {
   EccnNumbers: any[] = [];
   btnIndex: any;
   clickFlag: boolean = false;
+  saveNew: boolean = false;
+  updateRecord: boolean = false;
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -23,18 +25,29 @@ export class ManageEccnNumberComponent {
   }
 
   btnClick(index: any) {
+    this.saveNew = false;
+    this.updateRecord = true;
     this.btnIndex = index;
     this.clickFlag = true;
   }
   createRow() {
+    this.saveNew = true;
     this.EccnNumbers.push({ eccnNumber: '', newRow:true });
   }
 
   saveRow(eccnNumber: any) {
+    if(this.saveNew){
     this.apiService.saveEccnNumber(eccnNumber).subscribe(() => {
       this.loadEccnNumbers();
     });
     this.btnIndex = '';
+  }
+  else {
+    this.apiService.saveEccnNumber1(eccnNumber).subscribe(() => {
+      this.loadEccnNumbers();
+    });
+    this.btnIndex = '';
+}
   }
 
   deleteRow(eccnNumber: any) {
