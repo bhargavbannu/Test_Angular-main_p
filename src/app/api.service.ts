@@ -10,7 +10,8 @@ export class ApiService {
   private routesAPi = 'api/search/routeSearch?';
   private auditsApi = 'api/search/auditSearch?';
   private manageAuditStatusesApi = 'api/adminConfiguration/manageAuditStatuses';
-  private manageDetailDocTypesApi ='api/adminConfiguration/manageDetailDocTypes';
+  private manageDetailDocTypesApi =
+    'api/adminConfiguration/manageDetailDocTypes';
   private manageEffectivitiesApi = 'api/adminConfiguration/manageEffectivities';
   private manageEccnNumbersApi = 'api/adminConfiguration/manageEccnNumbers';
   private manageEccnLocationsApi = 'api/adminConfiguration/manageEccnLocations';
@@ -20,9 +21,12 @@ export class ApiService {
   private saveManageSectionsApi = 'api/adminConfiguration/saveNewSection';
   private updateManageSectionsApi = 'api/adminConfiguration/editSection';
   private deleteManageSectionsApi = 'api/adminConfiguration/deleteSection';
-  private saveDocumentCategoryApi = 'api/adminConfiguration/saveNewDocumentCategory';
-  private saveDocumentCategoryUpdateApi = 'api/adminConfiguration/updateDocumentCategory';
-  private deleteDocumentCategoryApi = 'api/adminConfiguration/deleteDocumentCategory';
+  private saveDocumentCategoryApi =
+    'api/adminConfiguration/saveNewDocumentCategory';
+  private saveDocumentCategoryUpdateApi =
+    'api/adminConfiguration/updateDocumentCategory';
+  private deleteDocumentCategoryApi =
+    'api/adminConfiguration/deleteDocumentCategory';
   private saveAuditStatusApi = 'api/adminConfiguration/saveNewAuditStatus';
   private updateAuditStatusApi = 'api/adminConfiguration/editAuditStatus';
   private deleteAuditStatusApi = 'api/adminConfiguration/deleteAuditStatus';
@@ -40,9 +44,11 @@ export class ApiService {
   private viewSearchApi = 'api/addDocument/viewDocument';
   private viewAuditApi = 'api/audit/viewAudit';
   private viewAllAuditsApi = 'api/audit/viewAllAudits';
-  private eccNumberApi='api/adminConfiguration/getEccnNumbers';
-  private eccLocation= 'api/adminConfiguration/getEccnLocations';
-  private docType = 'api/adminConfiguration/getAuditableDetailDocTypes'
+  private eccNumberApi = 'api/adminConfiguration/getEccnNumbers';
+  private eccLocation = 'api/adminConfiguration/getEccnLocations';
+  private docType = 'api/adminConfiguration/getAuditableDetailDocTypes';
+  private manageVendoeAutoPopulate = 'api/adminConfiguration/getVendors';
+  private saveVendors = 'api/adminConfiguration/saveVendor';
 
   viewDocId: any;
   viewAuditId: any;
@@ -55,11 +61,24 @@ export class ApiService {
     this.formData = data;
   }
 
+  savevenodrs(val: any): Observable<any> {
+    return this.http.post<any>(this.saveVendors, {
+      vendor: {
+        vendorNm: val,
+      },
+    });
+  }
+  getAutoPopulateVendors(id: any): Observable<any> {
+    console.log('test');
+
+    return this.http.get<any>(
+      `${this.manageVendoeAutoPopulate}?sourceElement=${id}`
+    );
+  }
   getFormData() {
     return this.formData;
   }
 
- 
   postData(payload: any, start: any, size: any): Observable<any> {
     return this.http.post(this.api, payload, {
       params: {
@@ -86,8 +105,6 @@ export class ApiService {
       },
     });
   }
-
- 
 
   addDocument(payload: any): Observable<any> {
     return this.http.post<any>(this.addDocumentApi, payload);
@@ -142,16 +159,14 @@ export class ApiService {
   //   return this.http.get<any>(`${this.eccLocation}?sourceElement=${id}`)
   // }
 
-  eccnNumber():Observable<any>{
-    return this.http.get<any>(
-      `${this.eccNumberApi}?sourceElement=`
-    )
+  eccnNumber(): Observable<any> {
+    return this.http.get<any>(`${this.eccNumberApi}?sourceElement=`);
   }
-  eccnLocation():Observable<any>{
-    return this.http.get<any>(`${this.eccLocation}?sourceElement=`)
+  eccnLocation(): Observable<any> {
+    return this.http.get<any>(`${this.eccLocation}?sourceElement=`);
   }
-  audDocType():Observable<any>{
-    return this.http.get<any>(`${this.docType}?sourceElement=`)
+  audDocType(): Observable<any> {
+    return this.http.get<any>(`${this.docType}?sourceElement=`);
   }
 
   // audDocType(id:any):Observable<any>{
@@ -182,8 +197,7 @@ export class ApiService {
   updateManageSections1(
     section: any,
     description: string,
-    inactiveInd: any,
-    
+    inactiveInd: any
   ): Observable<any> {
     return this.http.put<any>(`${this.updateManageSectionsApi}/${section}`, {
       // editId: section,
@@ -211,9 +225,12 @@ export class ApiService {
     documentCatgCd: any,
     documentCatgDesc: string
   ): Observable<any> {
-    return this.http.put<any>(`${this.saveDocumentCategoryUpdateApi}/${documentCatgCd}`, {
-      documentCatgDesc,
-    });
+    return this.http.put<any>(
+      `${this.saveDocumentCategoryUpdateApi}/${documentCatgCd}`,
+      {
+        documentCatgDesc,
+      }
+    );
   }
 
   deleteDocumentCategory(documentCatgCd: any): Observable<any> {
@@ -265,7 +282,6 @@ export class ApiService {
     auditableInd: any
   ): Observable<any> {
     return this.http.put<any>(`${this.updateDetailDoc}/${detailDocType}`, {
-    
       detailDocTypeDesc,
       auditableInd,
     });
@@ -285,7 +301,6 @@ export class ApiService {
     inactiveInd: any
   ): Observable<any> {
     return this.http.post<any>(this.saveEffectivityApi, {
-      editId: "-1",
       effectivityId,
       effectivityFleet: { esoMinSeqNbr, esoMaxSeqNbr, esoCurrSeqNbr },
       inactiveInd,
@@ -299,11 +314,13 @@ export class ApiService {
   }
 
   saveEccnNumber(eccnNumber: any): Observable<any> {
-    return this.http.post<any>(this.saveEccnNumberApi, {eccnNumber });
+    return this.http.post<any>(this.saveEccnNumberApi, { eccnNumber });
   }
 
   saveEccnNumber1(eccnNumber: any): Observable<any> {
-    return this.http.put<any>(`${this.updateEccnNumberApi}/${eccnNumber}`, {eccnNumber });
+    return this.http.put<any>(`${this.updateEccnNumberApi}/${eccnNumber}`, {
+      eccnNumber,
+    });
   }
 
   deleteEccnNumber(eccnNumber: any): Observable<any> {
@@ -315,7 +332,6 @@ export class ApiService {
     eccnLocationDesc: string
   ): Observable<any> {
     return this.http.post<any>(this.saveEccnLocationApi, {
-     
       eccnLocationCd,
       eccnLocationDesc,
     });
@@ -326,7 +342,6 @@ export class ApiService {
     eccnLocationDesc: string
   ): Observable<any> {
     return this.http.put<any>(`${this.updateEccnLoaction}/${eccnLocationCd}`, {
-     
       eccnLocationCd,
       eccnLocationDesc,
     });

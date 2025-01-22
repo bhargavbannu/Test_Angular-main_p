@@ -1,134 +1,597 @@
-<div>
-<td valign="top" align="left">
-  <table border="0" cellspacing="0" cellpadding="0" width="100%">
-    <ng-container>
-    <tbody>
-      <tr>
-        <td
-          id="errorMsg"
-          class="eds-messageframe"
-          style="display: none"
-          align="left"
-        >
-          <ul>
-            <li>
-              <span class="eds-message-warning" id="errorMsgContents"> </span>
-            </li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td id="emptyRow" style="display: none">&nbsp;</td>
-      </tr>
-      <tr>
-        <td align="left">
-          <!-- CONTENT -->
+<div *ngIf="error">
+  <tr>
+    <td class="eds-messageframe" align="left">
+      <ul>
+        <li>
+          <span class="eds-message-failure"
+            >FAILED: Vendor Name * is required.</span
+          >
+        </li>
+        <li>
+          <span class="eds-message-failure"
+            >FAILED: The specified vendor does not exist.</span
+          >
+        </li>
+        <li>
+          <span class="eds-message-failure"
+            >FAILED: Vendor does not have documents.</span
+          >
+        </li>
+      </ul>
+    </td>
+  </tr>
+</div>
 
-          <table cellspacing="0" cellpadding="0" border="0">
-            <tbody>
-              <tr>
-                <td style="padding-top: 12px;">
-                  <table
-                    class="eds-tabheader"
-                    cellspacing="0"
-                    cellpadding="0"
-                    border="0"
-                  >
-                    <tbody>
-                      <tr>
-                        <td class="eds-tabtopleftcorner"></td>
-                        <td class="eds-tabtopmiddle" align="center">
-                          <div class="eds-tabtitle">Select Vendor</div>
-                        </td>
-                        <td class="eds-tabtoprightcorner"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td class="eds-tabtoprightcorner"></td>
-              </tr>
-              <tr>
-                <td>
-                  <table
-                    cellspacing="0"
-                    cellpadding="0"
-                    width="100%"
-                    border="0"
-                    class="eds-tabtitle"
-                  >
-                    <tbody>
-                      <tr>
-                        <td>
-                          <form
-                            name="VendorForm"
-                            method="post"
-                            action="/vdt/SelectVendor.html"
-                          >
-                            <table>
-                              <tbody>
-                                <tr
-                                  class="eds-pagerstyle eds-field-required"
-                                  style=""
-                                >
-                                  <td align="right">
-                                    Vendor Name *&nbsp; &nbsp;
-                                  </td>
-                                  <td align="left">
-                                    <input
-                                      type="text"
-                                      name="vendor.vendorNm"
-                                      class=""
-                                      id="vendorAutoComplete"
-                                      value=""
-                                      size="45"
-                                      maxlength="20"
-                                      autocomplete="off"
-                                    />
+<div *ngIf="!isEditVendor">
+  <td valign="top" align="left">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <ng-container>
+        <tbody>
+          <tr>
+            <td
+              id="errorMsg"
+              class="eds-messageframe"
+              style="display: none"
+              align="left"
+            >
+              <ul>
+                <li>
+                  <span class="eds-message-warning" id="errorMsgContents">
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td id="emptyRow" style="display: none">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="left">
+              <!-- CONTENT -->
 
-                                    <div
-                                      id="vendorAutoComplete_choices"
-                                      class="autoCompleteClass"
-                                      style="display: none"
-                                    ></div>
-                                  </td>
-                                </tr>
+              <table cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                  <tr>
+                    <td style="padding-top: 12px">
+                      <table
+                        class="eds-tabheader"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                      >
+                        <tbody>
+                          <tr>
+                            <td class="eds-tabtopleftcorner"></td>
+                            <td class="eds-tabtopmiddle" align="center">
+                              <div class="eds-tabtitle">Select Vendor</div>
+                            </td>
+                            <td class="eds-tabtoprightcorner"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="eds-tabtoprightcorner"></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table
+                        cellspacing="0"
+                        cellpadding="0"
+                        width="100%"
+                        border="0"
+                        class="eds-tabtitle"
+                      >
+                        <tbody>
+                          <tr>
+                            <td>
+                              <form
+                                name="VendorForm"
+                                method="post"
+                                action="/vdt/SelectVendor.html"
+                              >
+                                <table>
+                                  <tbody>
+                                    <tr
+                                      class="eds-pagerstyle eds-field-required"
+                                    >
+                                      <td align="right">
+                                        Vendor Name *&nbsp; &nbsp;
+                                      </td>
+                                      <td align="left">
+                                        <input
+                                          type="text"
+                                          class=""
+                                          value=""
+                                          size="45"
+                                          maxlength="20"
+                                          autocomplete="off"
+                                          [(ngModel)]="vendorName"
+                                          (input)="tettt($event)"
+                                          [ngModelOptions]="{
+                                            standalone: true
+                                          }"
+                                        />
+                                        <div
+                                          *ngIf="dropdownValues.length > 0"
+                                          style="
+                                            min-width: 220px;
+                                            background: rgb(247, 242, 242);
+                                            position: absolute;
+                                          "
+                                        >
+                                          <div
+                                            *ngFor="let val of dropdownValues"
+                                            (click)="setVal(val)"
+                                          >
+                                            <span style="cursor: pointer">{{
+                                              val
+                                            }}</span>
+                                          </div>
+                                        </div>
 
-                                <!-- BUTTONS SECTION -->
+                                        <div
+                                          id="vendorAutoComplete_choices"
+                                          class="autoCompleteClass"
+                                          style="display: none"
+                                        ></div>
+                                      </td>
+                                    </tr>
 
-                                <tr class="eds-pagerstyle-alt blueColSpan">
-                                  <td colspan="2">
-                                    <span style="float: left">
+                                    <!-- BUTTONS SECTION -->
+
+                                    <tr class="eds-pagerstyle-alt blueColSpan">
+                                      <td colspan="2">
+                                        <span style="float: left">
+                                          <input
+                                            type="submit"
+                                            value="Edit/Create"
+                                            (click)="this.isEditVendor = true"
+                                          />
+                                        </span>
+                                        <span style="float: right">
+                                          <input
+                                            type="button"
+                                            value="Supercede"
+                                            (click)="supercedFun()"
+                                          />
+                                        </span>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </form>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </ng-container>
+    </table>
+  </td>
+</div>
+<div *ngIf="isEditVendorTemp">
+  <td valign="top" align="left">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <!-- ERRORS -->
+
+      <tbody>
+        <tr>
+          <td
+            id="errorMsg"
+            class="eds-messageframe"
+            style="display: none"
+            align="left"
+          >
+            <ul>
+              <li>
+                <span class="eds-message-warning" id="errorMsgContents"> </span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td id="emptyRow" style="display: none">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="left">
+            <!-- CONTENT -->
+
+            <script type="text/javascript">
+              <!--
+              function deleteVendor(){
+              $('VendorForm').action = 'DeleteVendor.html';
+              $('VendorForm').submit();
+              }
+
+              //-->
+            </script>
+
+            <table cellspacing="0" cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td>
+                    <table
+                      class="eds-tabheader"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                    >
+                      <tbody>
+                        <tr>
+                          <td class="eds-tabtopleftcorner"></td>
+                          <td class="eds-tabtopmiddle" align="center">
+                            <div class="eds-tabtitle">Edit Vendor</div>
+                          </td>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      cellspacing="0"
+                      cellpadding="0"
+                      width="100%"
+                      border="0"
+                      class="eds-tabtitle"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <form
+                              name="VendorForm"
+                              id="VendorForm"
+                              method="post"
+                              action="/vdt/SaveVendor.html"
+                            >
+                              <input
+                                type="hidden"
+                                name="vendor.vendorid"
+                                value=""
+                              />
+                              <table>
+                                <tbody>
+                                  <tr
+                                    class="eds-pagerstyle eds-field-required"
+                                    style=""
+                                  >
+                                    <td align="right">
+                                      Vendor Name *&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
                                       <input
-                                        type="submit"
-                                        value="Edit/Create"
+                                        type="text"
+                                        name="vendor.vendorNm"
+                                        class=""
+                                        value=""
+                                        size="45"
+                                        maxlength="20"
                                       />
-                                    </span>
-                                    <span style="float: right">
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle-alt" style="">
+                                    <td align="right">
+                                      Vendor Contact Person&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
                                       <input
-                                        type="button"
-                                        value="Supercede"
-                                        onclick="this.form.action='SupercedeVendor.html'; this.form.submit();"
+                                        type="text"
+                                        name="vendor.contactPerson"
+                                        class=""
+                                        value=""
+                                        size="45"
+                                        maxlength="100"
                                       />
-                                    </span>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </form>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </ng-container>
-  </table>
-</td>
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle" style="">
+                                    <td align="right">
+                                      Vendor Contact Phone&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        name="vendor.contactPhone"
+                                        class=""
+                                        value=""
+                                        size="45"
+                                        maxlength="25"
+                                      />
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle-alt" style="">
+                                    <td align="right">
+                                      Vendor Email&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        name="vendor.vendorEmailAddress"
+                                        class=""
+                                        value=""
+                                        size="45"
+                                        maxlength="50"
+                                      />
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle" style="">
+                                    <td align="right">
+                                      Vendor Website&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        name="vendor.vendorWebsite"
+                                        class=""
+                                        value=""
+                                        size="45"
+                                        maxlength="150"
+                                      />
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle-alt" style="">
+                                    <td align="right">
+                                      Vendor Remarks&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        name="vendor.remarks"
+                                        class=""
+                                        value=""
+                                        size="45"
+                                        maxlength="255"
+                                      />
+                                    </td>
+                                  </tr>
+
+                                  <!-- BUTTONS SECTION -->
+
+                                  <tr class="eds-pagerstyle blueColSpan">
+                                    <td colspan="2">
+                                      <span style="float: left">
+                                        <input type="submit" value="Save" />
+                                      </span>
+                                      <span style="float: right">
+                                        <input
+                                          type="button"
+                                          value="Delete"
+                                          onclick="deleteVendor();"
+                                        />
+                                      </span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+</div>
+<div *ngIf="superced">
+  <td valign="top" align="left">
+    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+      <!-- ERRORS -->
+
+      <tbody>
+        <tr>
+          <td
+            id="errorMsg"
+            class="eds-messageframe"
+            style="display: none"
+            align="left"
+          >
+            <ul>
+              <li>
+                <span class="eds-message-warning" id="errorMsgContents"> </span>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td id="emptyRow" style="display: none">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="left">
+            <!-- CONTENT -->
+
+            <script
+              type="text/javascript"
+              src="js/scriptaculous/effects.js"
+            ></script>
+            <script
+              type="text/javascript"
+              src="js/scriptaculous/controls.js"
+            ></script>
+
+            <script type="text/javascript">
+              function formSubmit() {
+                document.getElementById("supercededByVendorName").value =
+                  document.getElementsByName("vendor.vendorNm")[0].value;
+                document.getElementById("supercedVendorFormId").submit();
+              }
+            </script>
+
+            <table cellspacing="0" cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td>
+                    <table
+                      class="eds-tabheader" style="bottom: -5px;"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                    >
+                      <tbody>
+                        <tr>
+                          <td class="eds-tabtopleftcorner"></td>
+                          <td class="eds-tabtopmiddle" align="center">
+                            <div class="eds-tabtitle">
+                              Supercede Vendor for all documents
+                            </div>
+                          </td>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      cellspacing="0"
+                      cellpadding="0"
+                      width="100%"
+                      border="0"
+                      class="eds-tabtitle"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <form
+                              name="SupercedeVendorForm"
+                              id="supercedVendorFormId"
+                              method="post"
+                              action="/vdt/SaveSupercededVendorDetails.html"
+                            >
+                              <input
+                                type="hidden"
+                                name="vendorName"
+                                value="AA PROCEDURE"
+                              />
+                              <input
+                                type="hidden"
+                                name="supercededByVendorName"
+                                value=""
+                              />
+                              <table width="100%">
+                                <tbody>
+                                  <tr
+                                    class="eds-pagerstyle eds-field-required"
+                                    style=""
+                                  >
+                                    <td align="right">
+                                      New Vendor Name&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        name="vendor.vendorNm"
+                                        class=""
+                                        id="vendorAutoComplete"
+                                        value="etsvendi"
+                                        size="45"
+                                        maxlength="20"
+                                        autocomplete="off"
+                                        [(ngModel)]="newVendorName"
+                                      />
+
+                                      <div
+                                        id="vendorAutoComplete_choices"
+                                        class="autoCompleteClass"
+                                        style="display: none"
+                                      ></div>
+                                      <script>
+                                        new Ajax.Autocompleter(
+                                          "vendorAutoComplete",
+                                          "vendorAutoComplete_choices",
+                                          "GetVendors.html",
+                                          { paramName: "sourceElement" }
+                                        );
+                                      </script>
+                                    </td>
+                                  </tr>
+
+                                  <tr
+                                    class="eds-pagerstyle-alt eds-field-required"
+                                    style=""
+                                  >
+                                    <td align="right">
+                                      Superseded Date&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <input
+                                        type="text"
+                                        name="supercedeDate"
+                                        class=""
+                                        id="supercededdt"
+                                        value=""
+                                        size="10"
+                                        maxlength="10"
+                                        autocomplete="off"
+                                      />
+
+                                      <span
+                                        ><img
+                                          onmouseover="this.style.cursor='hand'"
+                                          id="supercededdt_date"
+                                          align="ABSMIDDLE"
+                                          src="images/calendar.gif"
+                                      /></span>
+                                      <script>
+                                        setupCal("supercededdt");
+                                      </script>
+                                    </td>
+                                  </tr>
+
+                                  <!-- BUTTONS SECTION -->
+
+                                  <tr class="eds-pagerstyle blueColSpan">
+                                    <td colspan="2">
+                                      <span style="float: right">
+                                        <input
+                                          type="button"
+                                          value="Save"
+                                          (click)="saveSuper()"
+                                        />
+                                      </span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
 </div>
