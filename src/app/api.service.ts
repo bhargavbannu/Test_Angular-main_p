@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
 
 @Injectable({
@@ -12,6 +12,10 @@ export class ApiService {
   private manageAuditStatusesApi = 'api/adminConfiguration/manageAuditStatuses';
   private manageDetailDocTypesApi =
     'api/adminConfiguration/manageDetailDocTypes';
+    private ecoNumbersValues = 'api/eco/getECOs?sourceElement';
+    private esoNumbersApi = 'api/eso/getESOs?sourceElement';
+    private auditableDocApi = 'api/adminConfiguration/getAuditableDetailDocTypes?sourceElement'
+
   private manageEffectivitiesApi = 'api/adminConfiguration/manageEffectivities';
   private manageEccnNumbersApi = 'api/adminConfiguration/manageEccnNumbers';
   private manageEccnLocationsApi = 'api/adminConfiguration/manageEccnLocations';
@@ -49,14 +53,25 @@ export class ApiService {
   private docType = 'api/adminConfiguration/getAuditableDetailDocTypes';
   private manageVendoeAutoPopulate = 'api/adminConfiguration/getVendors';
   private saveVendors = 'api/adminConfiguration/saveVendor';
+  private saveNewDetailApi = 'api/detail/saveNewDetail';
+  private viewDetailApi = 'api/detail/viewDetail'
+  private saveEditDetailApi = 'api/detail/saveDetail'
+  private deleteDetailApi = 'api/detail/deleteDetail'
 
   viewDocId: any;
   viewAuditId: any;
 
   private formData: any;
+  popno: any;
+  vendorName: any;
+  subject: any;
 
   constructor(private http: HttpClient) {}
 
+
+  auditableService(id:any){
+    return this.http.get<any>(`${this.auditableDocApi}=${id}`)
+  }
   saveFormData(data: any) {
     this.formData = data;
   }
@@ -78,7 +93,14 @@ export class ApiService {
   getFormData() {
     return this.formData;
   }
+esoNumbersApiData(val:any):Observable<any>{
+  return this.http.get<any>(`${this.esoNumbersApi}=${val}`)
 
+}
+
+  ecoNumbers(num:any):Observable<any>{
+    return this.http.get<any>(`${this.ecoNumbersValues}=${num}`)
+  }
   postData(payload: any, start: any, size: any): Observable<any> {
     return this.http.post(this.api, payload, {
       params: {
@@ -351,6 +373,26 @@ export class ApiService {
     return this.http.delete<any>(
       `${this.deleteEccnLocationApi}/${eccnLocationCd}`
     );
+  }
+
+  saveNewDetail(payload:any){
+    const headers = new HttpHeaders({
+      'Content-Type':'application/json',
+      'Transfer-Encoding':'identity'
+    })
+    return this.http.post<any>(this.saveNewDetailApi,{payload},{headers})
+  }
+
+  viewDetail(): Observable<any> {
+    return this.http.get<any>(`${this.viewDetailApi}?popNo=${this.popno}`);
+  }
+
+  saveEditDetail(payload: any): Observable<any> {
+    return this.http.post<any>(this.saveEditDetailApi, payload);
+  }
+
+  deleteDetail(): Observable<any> {
+    return this.http.delete<any>(`${this.deleteDetailApi}?popNo=${this.popno}`);
   }
 
   checkApiHealth(): Observable<any> {

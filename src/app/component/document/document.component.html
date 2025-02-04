@@ -128,7 +128,7 @@
                                             name="document.vendor.vendorNm"
                                             class=""
                                             id="vendorAutoComplete"
-                                            [(ngModel)]="val"
+                                            [(ngModel)]="vendorName"
                                             size="45"
                                             maxlength="20"
                                             autocomplete="off"
@@ -164,6 +164,7 @@
                                                     value=""
                                                     size="45"
                                                     maxlength="150"
+                                                    [(ngModel)]="vendorWebsite"
                                                   />
                                                 </td>
                                               </tr>
@@ -181,6 +182,7 @@
                                                     value=""
                                                     size="45"
                                                     maxlength="100"
+                                                    [(ngModel)]="vendorContactPerson"
                                                   />
                                                 </td>
                                               </tr>
@@ -198,6 +200,7 @@
                                                     value=""
                                                     size="45"
                                                     maxlength="25"
+                                                    [(ngModel)]="vendorContactNumber"
                                                   />
                                                 </td>
                                               </tr>
@@ -214,6 +217,7 @@
                                                     value=""
                                                     size="45"
                                                     maxlength="50"
+                                                    [(ngModel)]="vendorEmail"
                                                   />
                                                 </td>
                                               </tr>
@@ -230,6 +234,7 @@
                                                     value=""
                                                     size="45"
                                                     maxlength="255"
+                                                    [(ngModel)]="vendorRemark"
                                                   />
                                                 </td>
                                               </tr>
@@ -251,6 +256,7 @@
                                             value=""
                                             size="45"
                                             maxlength="50"
+                                            [(ngModel)]="vendorDocRef"
                                           />
                                         </td>
                                       </tr>
@@ -263,7 +269,7 @@
                                           <select
                                             name="document.documentCategory"
                                             class=""
-                                            [(ngModel)]="valueD"
+                                            [(ngModel)]="category"
                                           >
                                             <option value="--        ">
                                               -- - null
@@ -301,6 +307,7 @@
                                             name="document.effectivityIds"
                                             class=""
                                             multiple="multiple"
+                                            [(ngModel)]="docEffectivity"
                                           >
                                             <option value="A319">A319</option>
 
@@ -451,6 +458,7 @@
                                             value=""
                                             size="45"
                                             maxlength="30"
+                                            [(ngModel)]="documentSubject"
                                           />
                                         </td>
                                       </tr>
@@ -465,6 +473,7 @@
                                             value=""
                                             size="45"
                                             maxlength="30"
+                                            [(ngModel)]="ata"
                                           />
                                         </td>
                                       </tr>
@@ -504,6 +513,7 @@
                                             size="41"
                                             maxlength="10"
                                             autocomplete="off"
+                                            [(ngModel)]="reissueDate"
                                           />
 
                                           <span
@@ -542,26 +552,55 @@
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                          ><option>{{eccnNumber}}</option></select>
+                                            [(ngModel)]="eccnNumber[0]"
+                                          >
+                                            <option>{{ eccnNumber[0] }}</option>
+                                          </select>
 
                                           <br />
 
                                           <input
-                                          type="text"
-                                          name="Number"
-                                          [(ngModel)]="typedNumber"
-                                          (input)="filterNumbers($any($event.target).value)"
-                                          style="width: 120px"
-                                          maxlength="20"
-                                          autocomplete="off"
-                                        >
-                                        <input type="button" (click)="addNumber()" value="Add" />
-                                        <input type="button" (click)="removeNumber()" value="Remove" />
-                                        <div *ngIf="filteredNumbers.length >0" style="min-width: 120px;background: lightgray;position: absolute;">
-                                          <div *ngFor="let number of filteredNumbers" (click)="selectNumber(number)">
-                                            <span style="cursor: pointer;">{{number}}</span>
+                                            type="text"
+                                            name="Number"
+                                            [(ngModel)]="typedNumber"
+                                            (input)="
+                                              filterNumbers(
+                                                $any($event.target).value
+                                              )
+                                            "
+                                            style="width: 120px"
+                                            maxlength="20"
+                                            autocomplete="off"
+                                          />
+                                          <input
+                                            type="button"
+                                            (click)="addNumber()"
+                                            value="Add"
+                                          />
+                                          <input
+                                            type="button"
+                                            (click)="removeNumber()"
+                                            value="Remove"
+                                          />
+                                          <div
+                                            *ngIf="filteredNumbers.length > 0"
+                                            style="
+                                              min-width: 120px;
+                                              background: lightgray;
+                                              position: absolute;
+                                            "
+                                          >
+                                            <div
+                                              *ngFor="
+                                                let number of filteredNumbers
+                                              "
+                                              (click)="selectNumber(number)"
+                                            >
+                                              <span style="cursor: pointer">{{
+                                                number
+                                              }}</span>
+                                            </div>
                                           </div>
-                                        </div>
                                         </td>
                                       </tr>
 
@@ -575,29 +614,57 @@
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                        
-                                          ><option>{{eccnLocation}}</option></select>
+                                            [(ngModel)]="eccnLocation[0]"
+                                          >
+                                            <option>{{ eccnLocation[0] }}</option>
+                                          </select>
                                           <br />
 
                                           <input
-                                          type="text"
-                                          name="location"
-                                          [(ngModel)]="typedLocation"
-                                          (input)="filterLocations($any($event.target).value)"
-                                          style="width: 120px"
-                                          maxlength="20"
-                                          autocomplete="off"
-                                        >
-                                        <input type="button" (click)="addLocation()" value="Add" />
-                                        <input type="button" (click)="removeLocation()" value="Remove" />
-                                        <div *ngIf="filteredLocations.length >0" style="min-width: 120px;background: lightgray;position: absolute;">
-                                          <div *ngFor="let location of filteredLocations" (click)="selectLocation(location)">
-                                            <span style="cursor: pointer;">{{location}}</span>
+                                            type="text"
+                                            name="location"
+                                            [(ngModel)]="typedLocation"
+                                            (input)="
+                                              filterLocations(
+                                                $any($event.target).value
+                                              )
+                                            "
+                                            style="width: 120px"
+                                            maxlength="20"
+                                            autocomplete="off"
+                                          />
+                                          <input
+                                            type="button"
+                                            (click)="addLocation()"
+                                            value="Add"
+                                          />
+                                          <input
+                                            type="button"
+                                            (click)="removeLocation()"
+                                            value="Remove"
+                                          />
+                                          <div
+                                            *ngIf="filteredLocations.length > 0"
+                                            style="
+                                              min-width: 120px;
+                                              background: lightgray;
+                                              position: absolute;
+                                            "
+                                          >
+                                            <div
+                                              *ngFor="
+                                                let location of filteredLocations
+                                              "
+                                              (click)="selectLocation(location)"
+                                            >
+                                              <span style="cursor: pointer">{{
+                                                location
+                                              }}</span>
+                                            </div>
                                           </div>
-                                        </div>
-                                          
                                         </td>
                                       </tr>
+                                     
 
                                       <tr class="eds-pagerstyle">
                                         <td style="text-align: right">
@@ -611,28 +678,129 @@
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                          ><option *ngFor="let doc of allSelectedDocTypes">{{doc}}</option></select>
+                                          >
+                                            <option
+                                              *ngFor="
+                                                let doc of allSelectedDocTypes
+                                              "
+                                            >
+                                              {{ doc }}
+                                            </option>
+                                          </select>
                                           <br />
 
                                           <input
-                                          type="text"
-                                          name="documentPartNumbers"
-                                          class=""
-                                          [(ngModel)]="typedDocType"
-                                          (input)="filterDocTypes($any($event.target).value)"
-                                          style="width: 120px"
-                                          maxlength="20"
-                                          autocomplete="off"
-                                        >
-                                        <input type="button" (click)="addDocType()" value="Add" />
-                                        <input type="button" (click)="removeDocType()" value="Remove" />
-                                        <div *ngIf="filteredDocTypes.length >0" style="min-width: 120px;background: lightgray;position: absolute;">
-                                          <div *ngFor="let doc of filteredDocTypes" (click)="selectDocType(doc)">
-                                            <span style="cursor: pointer;">{{doc}}</span>
+                                            type="text"
+                                            name="documentPartNumbers"
+                                            class=""
+                                            [(ngModel)]="typedDocType"
+                                            (input)="
+                                              filterDocTypes(
+                                                $any($event.target).value
+                                              )
+                                            "
+                                            style="width: 120px"
+                                            maxlength="20"
+                                            autocomplete="off"
+                                          />
+                                          <input
+                                            type="button"
+                                            (click)="addDocType()"
+                                            value="Add"
+                                          />
+                                          <input
+                                            type="button"
+                                            (click)="removeDocType()"
+                                            value="Remove"
+                                          />
+                                          <div
+                                            *ngIf="filteredDocTypes.length > 0"
+                                            style="
+                                              min-width: 120px;
+                                              background: lightgray;
+                                              position: absolute;
+                                            "
+                                          >
+                                            <div
+                                              *ngFor="
+                                                let doc of filteredDocTypes
+                                              "
+                                              (click)="selectDocType(doc)"
+                                            >
+                                              <span style="cursor: pointer">{{
+                                                doc
+                                              }}</span>
+                                            </div>
                                           </div>
-                                        </div>
                                         </td>
                                       </tr>
+                                      <tr class="eds-pagerstyle-alt">
+                                        <td style="text-align: right">
+                                          Auditable Doc Type&nbsp; &nbsp;
+                                        </td>
+                                        <td>
+                                          <select
+                                            name="addedValDoc"
+                                            class=""
+                                            id=""
+                                            multiple="multiple"
+                                            style="width: 120px"
+                                            maxlength="20"
+                                            [(ngModel)]="addedValDoc[0]"
+                                          >
+                                            <option>{{ addedValDoc[0] }}</option>
+                                          </select>
+
+                                          <br />
+
+                                          <input
+                                            type="text"
+                                            name="typedAuditable"
+                                            class=""
+                                            id=""
+                                            value="rttt"
+                                            style="width: 120px"
+                                            maxlength="20"
+                                            (input)="auditNext()"
+                                            [(ngModel)]="typedAuditable"
+                                            [ngModelOptions]="{standalone: true}"
+                                          />
+
+                                          <div
+                                            id=""
+                                            class=""
+                                            style="display: none"
+                                          ></div>
+
+                                          <input
+                                            type="button"
+                                            (click)="onAddDoc()"
+                                            value="Add"
+                                          />
+                                          <input
+                                            type="button"
+                                            (click)="removeDoc()"
+                                            value="Remove"
+                                          />
+                                          <div
+                                            style="
+                                              min-width: 120px;
+                                              background: lightgray;
+                                              position: absolute;
+                                            "
+                                          >
+                                            <div
+                                              *ngFor="let doc of auditableResponse"
+                                              (click)="auditableDropDownSelect(doc)"
+                                            >
+                                              <span style="cursor: pointer">{{
+                                                doc
+                                              }}</span>
+                                            </div>
+                                          </div>
+                                        </td>
+                                      </tr>
+
 
                                       <tr class="eds-pagerstyle-alt">
                                         <td style="text-align: right">
@@ -646,7 +814,10 @@
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                          ></select>
+                                            [(ngModel)]="addedVal[0]"
+                                          >
+                                            <option>{{ addedVal[0] }}</option>
+                                          </select>
 
                                           <br />
 
@@ -655,10 +826,11 @@
                                             name="addInput_document.ecos_id"
                                             class=""
                                             id="addInput_document.ecos_id"
-                                            value=""
+                                            value="rttt"
                                             style="width: 120px"
                                             maxlength="20"
-                                            autocomplete="off"
+                                            (input)="ecoNumb()"
+                                            [(ngModel)]="ecoNumber"
                                           />
 
                                           <div
@@ -667,8 +839,32 @@
                                             style="display: none"
                                           ></div>
 
-                                          <input type="button" value="Add" />
-                                          <input type="button" value="Remove" />
+                                          <input
+                                            type="button"
+                                            (click)="addecoVal()"
+                                            value="Add"
+                                          />
+                                          <input
+                                            type="button"
+                                            (click)="removeecoVal()"
+                                            value="Remove"
+                                          />
+                                          <div
+                                            style="
+                                              min-width: 120px;
+                                              background: lightgray;
+                                              position: absolute;
+                                            "
+                                          >
+                                            <div
+                                              *ngFor="let doc of ecoRes"
+                                              (click)="selectesoNum(doc)"
+                                            >
+                                              <span style="cursor: pointer">{{
+                                                doc
+                                              }}</span>
+                                            </div>
+                                          </div>
                                         </td>
                                       </tr>
 
@@ -684,7 +880,12 @@
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                          ></select>
+                                            [(ngModel)]="selectedEsoNumber[0]"
+                                          >
+                                            <option>
+                                              {{ selectedEsoNumber[0] }}
+                                            </option>
+                                          </select>
 
                                           <br />
 
@@ -697,6 +898,8 @@
                                             style="width: 120px"
                                             maxlength="10"
                                             autocomplete="off"
+                                            [(ngModel)]="typedEsoNumber"
+                                            (input)="esoNumb()"
                                           />
 
                                           <div
@@ -705,8 +908,32 @@
                                             style="display: none"
                                           ></div>
 
-                                          <input type="button" value="Add" />
-                                          <input type="button" value="Remove" />
+                                          <input
+                                            type="button"
+                                            (click)="addEsoNum()"
+                                            value="Add"
+                                          />
+                                          <input
+                                            type="button"
+                                            (click)="removeEso()"
+                                            value="Remove"
+                                          />
+                                          <div
+                                            style="
+                                              min-width: 120px;
+                                              background: lightgray;
+                                              position: absolute;
+                                            "
+                                          >
+                                            <div
+                                              *ngFor="let doc of esoNumberRess"
+                                              (click)="selectesoNum1(doc)"
+                                            >
+                                              <span style="cursor: pointer">{{
+                                                doc
+                                              }}</span>
+                                            </div>
+                                          </div>
                                         </td>
                                       </tr>
 
@@ -720,7 +947,7 @@
                                             <button
                                               (click)="addDocumentSubmit()"
                                             >
-                                              submittt
+                                              submit
                                             </button>
                                           </span>
                                         </td>

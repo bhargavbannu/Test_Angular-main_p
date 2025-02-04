@@ -881,4 +881,18 @@ body {
   .pagination-link.active:hover {
     text-decoration: none; /* Prevent underline on the active page */
   }
+
+  .savedDoc {
+    background: lightgray;
+    color: green;
+    padding-left: 38px;
+    margin-top: 6px;
+    border: 1.5px solid #8383b3;
+}
+
+.savedDoc::before {
+   content: "\2022";
+   color: #8383b3;
+   margin-right: 10px;
+}
   

@@ -244,7 +244,9 @@ export class SearchComponent {
     }
   }
 
-  viewClick(id: any) {
+  viewClick(id: any, vendorName:any, subject:any) {
     this.apiService.viewDocId = id;
+    this.apiService.vendorName = vendorName;
+    this.apiService.subject = subject;
   }
 }

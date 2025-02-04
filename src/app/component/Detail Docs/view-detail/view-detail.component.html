@@ -1,0 +1,499 @@
+<td valign="top" align="left">
+  <table border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tbody>
+      <tr>
+        <td
+          id="errorMsg"
+          class="eds-messageframe"
+          style="display: none"
+          align="left"
+        >
+          <ul>
+            <li>
+              <span class="eds-message-warning" id="errorMsgContents"> </span>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td id="emptyRow" style="display: none">&nbsp;</td>
+      </tr>
+      <tr>
+        <td align="left">
+          <div *ngIf="detailSaved" class="savedDoc">SUCCESS: Successfully saved Detail.</div>
+
+          <a
+            style="font-size: larger; font-weight: bolder"
+            routerLink="/search">Back To Search Results</a
+          >
+          <br />
+
+          <a routerLink="/viewStatus"
+            >Back to Document</a
+          >
+          <br /><br />
+
+          <form
+            name="DetailMoveForm"
+            id="moveDetailFormId"
+            method="post"
+            action="/vdt/MoveDetail.html"
+            style="display: none"
+          >
+            <input type="hidden" value="205687476" name="popno" />
+            <input type="hidden" value="28889813" name="oldDocumentNbr" />
+            <input
+              type="hidden"
+              id="newDocumentNbr"
+              value=""
+              name="newDocumentNbr"
+            />
+          </form>
+
+          <div class="whiteSpace-noWrap" style="float: left">
+            <table cellspacing="0" cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td>
+                    <table
+                      class="eds-tabheader"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                    >
+                      <tbody>
+                        <tr>
+                          <td class="eds-tabtopleftcorner"></td>
+                          <td class="eds-tabtopmiddle" align="center">
+                            <div class="eds-tabtitle">View Detail</div>
+                          </td>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      cellspacing="0"
+                      cellpadding="0"
+                      width="100%"
+                      border="0"
+                      class="eds-tabtitle"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <form
+                              name="DetailForm"
+                              id="detailFormId"
+                              method="post"
+                              action="/vdt/SaveDetail.html"
+                            >
+                              <input
+                                type="hidden"
+                                name="documentNbr"
+                                value="28889813"
+                              />
+                              <table width="100%">
+                                <tbody>
+                                  <tr style="height: 1px">
+                                    <td width="200"></td>
+                                    <td width="250"></td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle readonly" >
+                                    <td align="right">
+                                      Vendor Name&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <span class="viewFieldText">{{docDetails?.document.vendor.vendorNm}}</span>
+                                    </td>
+                                  </tr>
+
+                                  <tr
+                                    class="eds-pagerstyle-alt readonly"
+                                   
+                                  >
+                                    <td align="right">
+                                      Document Subject&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <span class="viewFieldText"
+                                        >{{docDetails?.document.subject}}</span
+                                      >
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle readonly" >
+                                    <td align="right">
+                                      Detail No&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <span class="viewFieldText"
+                                        >{{docDetails?.detail.popRefNbr}}</span
+                                      >
+                                    </td>
+                                  </tr>
+
+                                  <tr
+                                    class="eds-pagerstyle-alt dropdown"
+                                  >
+                                    <td align="right">
+                                      Detail Document Type&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <span class="viewFieldText"
+                                        >{{docDetails?.detail.detailDocType}}</span
+                                      >
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle">
+                                    <td align="right">
+                                      Document Type&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <span class="viewFieldText"
+                                        >{{docDetails?.detail.doctype}}</span
+                                      >
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle-alt">
+                                    <td align="right">
+                                      AA Revision Nbr&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <span class="viewFieldText">{{docDetails?.detail.revisionNbr}}</span>
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle">
+                                    <td align="right">
+                                      Detail Subject Desc&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <span class="viewFieldText">{{docDetails?.detail.detailSubjectDesc}}</span>
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle-alt">
+                                    <td align="right">
+                                      AA Rev Dt&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <span class="viewFieldText"
+                                        >{{docDetails?.detail.manualdate}}</span
+                                      >
+                                    </td>
+                                  </tr>
+
+                                  <!-- tiles:put name="additionalFunction" value="<input type='button' value=' + ' onclick='alert(\"Hello\");'>"/ -->
+
+                                  <tr class="eds-pagerstyle dropdown">
+                                    <td align="right">
+                                      Case Class&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <span class="viewFieldText">{{docDetails?.detail.popClass}}</span>
+                                    </td>
+                                  </tr>
+
+                                  <tr
+                                    class="eds-pagerstyle-alt dropdown"
+                                  >
+                                    <td align="right">
+                                      Media Type&nbsp; &nbsp;
+                                    </td>
+                                    <td align="left">
+                                      <div>
+                                        <span class="viewFieldText"
+                                          >{{docDetails?.detail.mediaTypes}}</span
+                                        >
+                                      </div>
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle">
+                                    <td align="right">Bin&nbsp; &nbsp;</td>
+                                    <td align="left">
+                                      <span class="viewFieldText">{{docDetails?.detail.bin}}</span>
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle-alt">
+                                    <td align="right">Remark&nbsp; &nbsp;</td>
+                                    <td align="left">
+                                      <span class="viewFieldText">{{docDetails?.detail.remark}}</span>
+                                    </td>
+                                  </tr>
+
+                                  <tr class="eds-pagerstyle">
+                                    <td colspan="2">
+                                      <span style="float: right">
+                                        <input
+                                          type="button"
+                                          value="Move"
+                                          onclick="moveToAnotherDocument();"
+                                        />
+                                      </span>
+                                      <span style="float: right">
+                                        <input
+                                          type="button"
+                                          routerLink="/editDetail"
+                                          value="Edit"
+                                        />
+                                      </span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <input
+                                type="hidden"
+                                name="detail.hasChildRecords"
+                                id="detail.hasChildRecords"
+                                value="true"
+                              />
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- </div> -->
+
+            <!-- <div style="clear: both">	 -->
+
+            <table cellspacing="0" cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td>
+                    <table
+                      class="eds-tabheader"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                    >
+                      <tbody>
+                        <tr>
+                          <td class="eds-tabtopleftcorner"></td>
+                          <td class="eds-tabtopmiddle" align="center">
+                            <div class="eds-tabtitle">Routes</div>
+                          </td>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      cellspacing="0"
+                      cellpadding="0"
+                      width="100%"
+                      border="0"
+                      class="eds-tabtitle"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <form
+                              id="createRouteForm"
+                              action="CreateNewRoute.html"
+                              method="post"
+                            >
+
+                              <table class="inline-table" id="route">
+                                <thead>
+                                  <tr>
+                                    <th>Detail #</th>
+                                    <th>Section</th>
+                                    <th>Route Date</th>
+                                    <th>Routing</th>
+                                    <th>Disposition</th>
+                                    <th>Close Date</th>
+                                    <th>Remark</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="
+                                        let status of docDetails?.simpleDetailRoute?.routes;
+                                        let i = index
+                                      "
+                                      [ngClass]="
+                                        i % 2 == 0
+                                          ? 'eds-pagerstyle'
+                                          : 'eds-pagerstyle-alt'
+                                      ">
+                                    <td>{{status.pop}}</td>
+                                    <td>{{status.sectionId}}</td>
+                                    <td>{{status.routeDate | date:"dd/MM/yyyy"}}</td>
+                                    <td>{{status.routeType}}</td>
+                                    <td>{{status.disposition}}</td>
+                                    <td>{{status.closedate | date:"dd/MM/yyyy"}}</td>
+                                    <td>{{status.remark}}</td>
+                                    <td>
+                                      <a
+                                        href="ViewRoute.html?route.routeId=5572075"
+                                        >View</a
+                                      >
+                                      &nbsp;
+
+                                      <a
+                                        href="DownloadRoutingSlip.html?route.routeId=5572075"
+                                        >Route Slip</a
+                                      >
+
+                                      <br />
+
+                                      <a
+                                        href="ReRoute.html?route.detailId=205687476"
+                                        >Re-Issue</a
+                                      >
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                              <span style="float: right">
+                                <input type="submit" value="New Route" />
+                              </span>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="whiteSpace-noWrap" style="float: left; margin-left: 5px">
+            <table width="98%">
+              <tbody>
+                <tr>
+                  <td width="40%" valign="top">
+                    <table cellspacing="0" cellpadding="0" border="0">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <table
+                              class="eds-tabheader"
+                              cellspacing="0"
+                              cellpadding="0"
+                              border="0"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td class="eds-tabtopleftcorner"></td>
+                                  <td class="eds-tabtopmiddle" align="center">
+                                    <div class="eds-tabtitle">ESO</div>
+                                  </td>
+                                  <td class="eds-tabtoprightcorner"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table
+                              cellspacing="0"
+                              cellpadding="0"
+                              width="100%"
+                              border="0"
+                              class="eds-tabtitle"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <font color="#ffffff"
+                                      ><b>Nothing found to display</b></font
+                                    ><br /><br />
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="40%" valign="top">
+                    <table cellspacing="0" cellpadding="0" border="0">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <table
+                              class="eds-tabheader"
+                              cellspacing="0"
+                              cellpadding="0"
+                              border="0"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td class="eds-tabtopleftcorner"></td>
+                                  <td class="eds-tabtopmiddle" align="center">
+                                    <div class="eds-tabtitle">ECO</div>
+                                  </td>
+                                  <td class="eds-tabtoprightcorner"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <table
+                              cellspacing="0"
+                              cellpadding="0"
+                              width="100%"
+                              border="0"
+                              class="eds-tabtitle"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <font color="#ffffff"
+                                      ><b>Nothing found to display</b></font
+                                    ><br /><br />
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</td>

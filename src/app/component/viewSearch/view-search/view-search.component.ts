@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-search',
@@ -8,11 +9,17 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ViewSearchComponent {
   documentsDetails: any = [];
+  docAdded :any;
+  detailDeleted: any;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private route:ActivatedRoute) {}
 
   ngOnInit() {
     this.viewDocuments();
+    this.route.params.subscribe(params =>{
+      this.docAdded = params['docAdded']
+      this.detailDeleted = params['detailDeleted']
+    })
   }
 
   viewDocuments() {
@@ -26,4 +33,8 @@ export class ViewSearchComponent {
   viewClick(id: any) {
     this.apiService.viewAuditId = id;
   }
+  viewDetail(popno:any){
+  this.apiService.popno = popno;
+  }
+
 }

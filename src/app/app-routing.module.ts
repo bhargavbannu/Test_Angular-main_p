@@ -19,6 +19,9 @@ import { HealthTestComponent } from './component/health-test/health-test.compone
 import { ViewSearchComponent } from './component/viewSearch/view-search/view-search.component';
 import { ViewAuditComponent } from './component/viewAudit/view-audit/view-audit.component';
 import { ViewAllAuditsComponent } from './component/viewAllAudits/view-all-audits/view-all-audits.component';
+import { NewDetailComponent } from './component/Detail Docs/new-detail/new-detail.component';
+import { ViewDetailComponent } from './component/Detail Docs/view-detail/view-detail.component';
+import { EditDetailComponent } from './component/Detail Docs/edit-detail/edit-detail.component';
 const routes: Routes = [
   {
     path: 'search',
@@ -91,6 +94,15 @@ const routes: Routes = [
     path: 'viewAllAudits',
     component: ViewAllAuditsComponent,
   },
+  { path: 'newDetail', 
+    component: NewDetailComponent
+   },
+   { path: 'viewDetail', 
+    component: ViewDetailComponent
+   },
+   { path: 'editDetail', 
+    component: EditDetailComponent
+   },
   { path: 'health', 
     component: HealthTestComponent
    },

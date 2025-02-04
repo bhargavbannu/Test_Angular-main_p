@@ -1,5 +1,7 @@
 <tbody>
-  <a style="font-weight: bolder" routerLink="/search">Back To Search Results</a>
+  <div *ngIf="detailDeleted" class="savedDoc">SUCCESS: Successfully deleted Detail.</div>
+  <div *ngIf="docAdded" class="savedDoc">SUCCESS: Document saved successfully.</div>
+  <a *ngIf="!docAdded" style="font-weight: bolder" routerLink="/search">Back To Search Results</a>
   <tr>
     <td valign="top" align="left">
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -116,17 +118,17 @@
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle">
+                                        <!-- <tr class="eds-pagerstyle">
                                           <td
                                             id="vendorContainerId"
                                             colspan="2"
                                           >
                                             <table width="100%">
-                                              <tbody>
-                                                <tr style="height: 1px">
+                                              <tbody> -->
+                                                <!-- <tr style="height: 1px">
                                                   <td width="200"></td>
                                                   <td width="250"></td>
-                                                </tr>
+                                                </tr> -->
 
                                                 <tr class="eds-pagerstyle-alt">
                                                   <td align="right">
@@ -214,12 +216,12 @@
                                                     >
                                                   </td>
                                                 </tr>
-                                              </tbody>
+                                              <!-- </tbody>
                                             </table>
                                           </td>
-                                        </tr>
+                                        </tr> -->
 
-                                        <tr class="eds-pagerstyle-alt">
+                                        <tr class="eds-pagerstyle">
                                           <td align="right">
                                             Vendor Document Reference
                                             Number&nbsp; &nbsp;
@@ -233,7 +235,7 @@
                                         </tr>
 
                                         <tr
-                                          class="eds-pagerstyle dropdown"
+                                          class="eds-pagerstyle-alt dropdown"
                                         >
                                           <td align="right">
                                             Category&nbsp; &nbsp;
@@ -249,7 +251,7 @@
                                         </tr>
 
                                         <tr
-                                          class="eds-pagerstyle-alt dropdown"
+                                          class="eds-pagerstyle dropdown"
                                         >
                                           <td align="right">
                                             Effectivity&nbsp; &nbsp;
@@ -265,7 +267,7 @@
                                         </tr>
 
                                         <tr
-                                          class="eds-pagerstyle dropdown"
+                                          class="eds-pagerstyle-alt dropdown"
                                         >
                                           <td align="right">
                                             Section *&nbsp; &nbsp;
@@ -280,7 +282,7 @@
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle-alt">
+                                        <tr class="eds-pagerstyle">
                                           <td align="right">
                                             Document Subject&nbsp; &nbsp;
                                           </td>
@@ -294,7 +296,7 @@
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle">
+                                        <tr class="eds-pagerstyle-alt">
                                           <td align="right">
                                             ATA&nbsp; &nbsp;
                                           </td>
@@ -306,7 +308,7 @@
                                         </tr>
 
                                         <tr
-                                          class="eds-pagerstyle-alt dropdown"
+                                          class="eds-pagerstyle dropdown"
                                         >
                                           <td align="right">
                                             Next Route&nbsp; &nbsp;
@@ -319,7 +321,7 @@
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle">
+                                        <tr class="eds-pagerstyle-alt">
                                           <td align="right">
                                             Reissue Date&nbsp; &nbsp;
                                           </td>
@@ -331,7 +333,7 @@
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle-alt">
+                                        <tr class="eds-pagerstyle">
                                           <td align="right">
                                             Remarks&nbsp; &nbsp;
                                           </td>
@@ -345,7 +347,7 @@
                                         <!-- ITAR START-->
 
                                         <tr
-                                          class="eds-pagerstyle dropdown"
+                                          class="eds-pagerstyle-alt dropdown"
                                         >
                                           <td align="right">
                                             ITAR&nbsp; &nbsp;
@@ -360,7 +362,7 @@
 
                                         <!-- ECCN NUMBER START -->
 
-                                        <tr class="eds-pagerstyle-alt">
+                                        <tr class="eds-pagerstyle">
                                           <td style="text-align: right">
                                             ECCN Number&nbsp; &nbsp;
                                           </td>
@@ -377,7 +379,7 @@
 
                                         <!-- ECCN LOCATION START -->
 
-                                        <tr class="eds-pagerstyle">
+                                        <tr class="eds-pagerstyle-alt">
                                           <td style="text-align: right">
                                             ECCN Location&nbsp; &nbsp;
                                           </td>
@@ -392,7 +394,7 @@
                                         </tr>
                                         <!-- ECCN LOCATION END -->
 
-                                        <tr class="eds-pagerstyle-alt">
+                                        <tr class="eds-pagerstyle">
                                           <td style="text-align: right">
                                             Auditable Doc Types&nbsp; &nbsp;
                                           </td>
@@ -406,7 +408,7 @@
                                           </td>
                                         </tr>
 
-                                        <tr class="eds-pagerstyle">
+                                        <tr class="eds-pagerstyle-alt">
                                           <td style="text-align: right">
                                             Vendor Part Reference Numbers&nbsp;
                                             &nbsp;
@@ -569,7 +571,30 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr id="detail202401180" class="odd" *ngIf="documentsDetails.length !==0 && documentsDetails.documentLatestAudit.length !== 0">
+                                        <tr *ngFor="
+                                        let status of documentsDetails?.detail?.simpleDetailPop?.pops;
+                                        let i = index
+                                      "
+                                      [ngClass]="
+                                        i % 2 == 0
+                                          ? 'eds-pagerstyle'
+                                          : 'eds-pagerstyle-alt'
+                                      ">
+                                          <td>{{status.popRefNbr}}</td>
+                                          <td>{{status.detailDocType}}</td>
+                                          <td>{{status.doctype}}</td>
+                                          <td>{{status.revisionNbr}}</td>
+                                          <td>{{status.detailSubjectDesc}}</td>
+                                          <td>{{status.manualdate | date:"dd/MM/yyyy"}}</td>
+                                          <td>{{status.bin}}</td>
+                                          <td>{{status.remark}}</td>
+                                          <td>
+                                            <a routerLink="/viewDetail" (click)="viewDetail(status.popno)"
+                                              >View</a
+                                            >
+                                          </td>
+                                        </tr>
+                                        <!-- <tr id="detail202401180" class="odd" *ngIf="documentsDetails.length !==0 && documentsDetails.detail?.simpleDetailPop?.pops.le !== 0">
                                           <td>
                                             {{documentsDetails.documentLatestAudit[0].popDetails?.popRefNbr}}
                                           </td>
@@ -628,12 +653,12 @@
                                               >View</a
                                             >
                                           </td>
-                                        </tr>
+                                        </tr> -->
                                       </tbody>
                                     </table>
 
                                     <span style="float: right">
-                                      <input type="submit" value="New Detail" />
+                                      <input type="submit" routerLink="/newDetail" value="New Detail" />
                                     </span>
                                   </form>
                                 </td>

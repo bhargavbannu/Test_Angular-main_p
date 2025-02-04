@@ -391,7 +391,7 @@
         [ngClass]="i % 2 == 0 ? 'eds-pagerstyle': 'eds-pagerstyle-alt'"
        >
           <td *ngFor="let header of tableHeaders">{{ row[header] }}</td>
-         <td><a routerLink="/viewStatus" (click)="viewClick(row.docId)">View</a></td>
+         <td><a routerLink="/viewStatus" (click)="viewClick(row.docId, row.vendorName,row.subject)">View</a></td>
         </tr>
       </tbody>
     </table>

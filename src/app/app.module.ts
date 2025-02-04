@@ -36,6 +36,9 @@ import { HealthTestComponent } from './component/health-test/health-test.compone
 import { ViewSearchComponent } from './component/viewSearch/view-search/view-search.component';
 import { ViewAuditComponent } from './component/viewAudit/view-audit/view-audit.component';
 import { ViewAllAuditsComponent } from './component/viewAllAudits/view-all-audits/view-all-audits.component';
+import { ViewDetailComponent } from './component/Detail Docs/view-detail/view-detail.component';
+import { NewDetailComponent } from './component/Detail Docs/new-detail/new-detail.component';
+import { EditDetailComponent } from './component/Detail Docs/edit-detail/edit-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +64,9 @@ import { ViewAllAuditsComponent } from './component/viewAllAudits/view-all-audit
     ViewSearchComponent,
     ViewAuditComponent,
     ViewAllAuditsComponent,
+    ViewDetailComponent,
+    NewDetailComponent,
+    EditDetailComponent,
   ],
   imports: [
     BrowserModule,
