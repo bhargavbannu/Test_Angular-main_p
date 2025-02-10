@@ -204,6 +204,15 @@ body {
     content: "";
     border-top-right-radius: 34px;
   }
+
+  .formerVendor.eds-tabheader {
+    width: 60% !important;
+  }
+
+  .formerVendor.eds-tabheader::after {
+    width: 167% !important;
+  }
+
   .eds-tabtitle {
     font-size: 14px;
     /* font-weight: bold; */

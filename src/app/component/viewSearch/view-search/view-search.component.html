@@ -777,7 +777,14 @@
                                             >
 
                                             &nbsp;
-                                            <a
+                                            <a routerLink="/editAudit"
+                                            (click)="
+                                              editAudit(
+                                                documentsDetails
+                                                  .documentLatestAudit[0]
+                                                  .auditId
+                                              )
+                                            "
                                               >Edit</a
                                             >
                                           </td>
@@ -791,8 +798,6 @@
 
                                     <form
                                       id="createAuditForm"
-                                      action="CreateNewAudit.html"
-                                      method="post"
                                     >
                                       <input
                                         type="hidden"
@@ -804,6 +809,7 @@
                                         <input
                                           type="submit"
                                           value="New Audit"
+                                          routerLink="/newAudit"
                                         />
                                       </span>
                                     </form>
@@ -969,7 +975,7 @@
                               <tr>
                                 <td>
                                   <table
-                                    class="eds-tabheader"
+                                    class="formerVendor eds-tabheader"
                                     cellspacing="0"
                                     cellpadding="0"
                                     border="0"
@@ -1038,11 +1044,10 @@
                                                   ? 'eds-pagerstyle'
                                                   : 'eds-pagerstyle-alt'
                                               ">
-                                                  <td>{{status.formerVendor}}</td>
-                                                  <td>{{status.supersededDate | date:"dd/MM/yyyy"}}</td>
+                                                  <td>{{status.id.vendor.vendorNm}}</td>
+                                                  <td>{{status.id.supercededDt | date:"MM/dd/yyyy"}}</td>
                                                   <td>
-                                                    <a
-                                                      >Delete</a
+                                                    <a href="javascript:void(0)" (click)="deleteFormerVendor()">Delete</a
                                                     >
                                                   </td>
                                                 </tr>
@@ -1053,7 +1058,7 @@
                                               <input
                                                 type="button"
                                                 value="Add Former Vendor"
-                                                onclick="this.form.action='CreateSupercededVendor.html';this.form.submit();"
+                                                routerLink="/addFormerVendor"
                                               />
                                             </span>
                                           </form>

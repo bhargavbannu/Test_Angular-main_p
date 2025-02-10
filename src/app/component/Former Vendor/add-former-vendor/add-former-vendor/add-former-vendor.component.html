@@ -1,0 +1,127 @@
+<td align="left">
+  <!-- CONTENT -->
+  <a href="/viewStatus"
+    >Back to View Document</a
+  >
+  <br /><br />
+
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+      <tr>
+        <td>
+          <table
+            class="formerVendor eds-tabheader"
+            cellspacing="0"
+            cellpadding="0"
+            style="width: 60%;"
+          >
+            <tbody>
+              <tr>
+                <td class="eds-tabtopleftcorner"></td>
+                <td class="eds-tabtopmiddle" align="center">
+                  <div class="eds-tabtitle">
+                    Create Superseded Vendor Details
+                  </div>
+                </td>
+                <td class="eds-tabtoprightcorner"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="eds-tabtoprightcorner"></td>
+      </tr>
+      <tr>
+        <td>
+          <table
+            cellspacing="0"
+            cellpadding="0"
+            width="100%"
+            border="0"
+            class="eds-tabtitle"
+          >
+            <tbody>
+              <tr>
+                <td>
+                  <form
+                    name="SupercedeVendorForm"
+                    id="supercedVendorFormId"
+                  >
+                    <table width="100%">
+                      <tbody>
+                        <tr class="eds-pagerstyle eds-field-required">
+                          <td align="right">Former Vendor Name&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="supercededByVendorName"
+                              class=""
+                              id="vendorAutoComplete"
+                              value=""
+                              size="45"
+                              maxlength="20"
+                              autocomplete="off"
+                              [(ngModel)]="vendorName"
+                            />
+
+                            <div
+                              id="vendorAutoComplete_choices"
+                              class="autoCompleteClass"
+                              style="display: none"
+                            ></div>
+                          </td>
+                        </tr>
+
+                        <tr
+                          class="eds-pagerstyle-alt eds-field-required"
+                        >
+                          <td align="right">Superseded Date&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="supercedeDate"
+                              class=""
+                              id="supercededdt"
+                              value=""
+                              size="10"
+                              maxlength="10"
+                              autocomplete="off"
+                              [(ngModel)]="supercedeDate"
+                            />
+
+                            <span
+                              ><img
+                                onmouseover="this.style.cursor='hand'"
+                                id="supercededdt_date"
+                                align="ABSMIDDLE"
+                                src="assets/images/calendar.gif"
+                            /></span>
+                          </td>
+                        </tr>
+
+                        <!-- BUTTONS SECTION -->
+
+                        <tr class="eds-pagerstyle blueColSpan">
+                          <td colspan="2">
+                            <span style="float: right">
+                              <input
+                                type="button"
+                                value="Save"
+                                (click)="saveFormerVendor()"
+                              />
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</td>

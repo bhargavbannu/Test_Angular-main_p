@@ -33,8 +33,17 @@ export class ViewSearchComponent {
   viewClick(id: any) {
     this.apiService.viewAuditId = id;
   }
+
+  editAudit(id:any){
+    this.apiService.viewAuditId = id;
+  }
+
   viewDetail(popno:any){
   this.apiService.popno = popno;
+  }
+
+  deleteFormerVendor(){
+    this.apiService.deleteFormerVendor()
   }
 
 }

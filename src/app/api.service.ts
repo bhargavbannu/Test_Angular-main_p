@@ -57,6 +57,10 @@ export class ApiService {
   private viewDetailApi = 'api/detail/viewDetail'
   private saveEditDetailApi = 'api/detail/saveDetail'
   private deleteDetailApi = 'api/detail/deleteDetail'
+  private saveFormerVendorApi ='api/formerVendor/createSupercededVendorDetails'
+  private deleteFormerVendorApi ='api/formerVendor/deleteFormerVendorDetails'
+  private saveNewAuditApi ='api/audit/saveNewAudit'
+  private saveExistingAuditApi ='api/audit/saveExistingAudit'
 
   viewDocId: any;
   viewAuditId: any;
@@ -376,11 +380,7 @@ esoNumbersApiData(val:any):Observable<any>{
   }
 
   saveNewDetail(payload:any){
-    const headers = new HttpHeaders({
-      'Content-Type':'application/json',
-      'Transfer-Encoding':'identity'
-    })
-    return this.http.post<any>(this.saveNewDetailApi,{payload},{headers})
+    return this.http.post<any>(this.saveNewDetailApi,payload)
   }
 
   viewDetail(): Observable<any> {
@@ -393,6 +393,22 @@ esoNumbersApiData(val:any):Observable<any>{
 
   deleteDetail(): Observable<any> {
     return this.http.delete<any>(`${this.deleteDetailApi}?popNo=${this.popno}`);
+  }
+
+  saveFormerVendor(payload:any){
+    return this.http.post<any>(this.saveFormerVendorApi,payload)
+  }
+
+  deleteFormerVendor(): Observable<any> {
+    return this.http.delete<any>(this.deleteFormerVendorApi);
+  }
+
+  saveNewAudit(payload:any){
+    return this.http.post<any>(this.saveNewAuditApi,payload)
+  }
+
+  saveExistingAudit(payload:any){
+    return this.http.post<any>(this.saveExistingAuditApi,payload)
   }
 
   checkApiHealth(): Observable<any> {

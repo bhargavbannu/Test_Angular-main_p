@@ -17,11 +17,14 @@ import { ManageEccnLocationComponent } from './component/Admin Configuration/man
 import { ManageEccnNumberComponent } from './component/Admin Configuration/manage-eccn-number/manage-eccn-number.component';
 import { HealthTestComponent } from './component/health-test/health-test.component'
 import { ViewSearchComponent } from './component/viewSearch/view-search/view-search.component';
-import { ViewAuditComponent } from './component/viewAudit/view-audit/view-audit.component';
-import { ViewAllAuditsComponent } from './component/viewAllAudits/view-all-audits/view-all-audits.component';
+import { ViewAuditComponent } from './component/Audit docs/view-audit/view-audit.component';
+import { ViewAllAuditsComponent } from './component/Audit docs/view-all-audits/view-all-audits.component';
 import { NewDetailComponent } from './component/Detail Docs/new-detail/new-detail.component';
 import { ViewDetailComponent } from './component/Detail Docs/view-detail/view-detail.component';
 import { EditDetailComponent } from './component/Detail Docs/edit-detail/edit-detail.component';
+import { AddFormerVendorComponent } from './component/Former Vendor/add-former-vendor/add-former-vendor/add-former-vendor.component';
+import { EditAuditComponent } from './component/Audit docs/edit-audit/edit-audit/edit-audit.component';
+import { NewAuditComponent } from './component/Audit docs/new-audit/new-audit/new-audit.component';
 const routes: Routes = [
   {
     path: 'search',
@@ -102,6 +105,15 @@ const routes: Routes = [
    },
    { path: 'editDetail', 
     component: EditDetailComponent
+   },
+   { path: 'addFormerVendor', 
+    component: AddFormerVendorComponent
+   },
+   { path: 'editAudit', 
+    component: EditAuditComponent
+   },
+   { path: 'newAudit', 
+    component: NewAuditComponent
    },
   { path: 'health', 
     component: HealthTestComponent

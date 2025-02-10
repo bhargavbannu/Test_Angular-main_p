@@ -1,0 +1,105 @@
+<td align="left">
+
+  <a routerLink="/viewStatus">Back to Document</a>
+
+  <br /><br />
+
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+      <tr>
+        <td>
+          <table
+            class="eds-tabheader"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+          >
+            <tbody>
+              <tr>
+                <td class="eds-tabtopleftcorner"></td>
+                <td class="eds-tabtopmiddle" align="center">
+                  <div class="eds-tabtitle">Audit Information</div>
+                </td>
+                <td class="eds-tabtoprightcorner"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="eds-tabtoprightcorner"></td>
+      </tr>
+      <tr>
+        <td>
+          <table
+            cellspacing="0"
+            cellpadding="0"
+            width="100%"
+            border="0"
+            class="eds-tabtitle"
+          >
+            <tbody>
+              <tr>
+                <td>
+                  <div style="width: 400">
+                    <table class="inline-table" id="audit">
+                      <thead>
+                        <tr>
+                          <th class="sorted order1">Audit Date</th>
+                          <th>Audit Category</th>
+                          <th>Detail Doc Type</th>
+                          <th>VND Rev Nbr</th>
+                          <th>Vndr Rev Dt</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                        *ngFor="
+                          let status of auditDetails;
+                          let i = index
+                        "
+                        [ngClass]="
+                          i % 2 == 0
+                            ? 'eds-pagerstyle'
+                            : 'eds-pagerstyle-alt'
+                        "
+                      >
+                          <td>{{status.auditDate | date:"dd/MM/yyyy"}}</td>
+                          <td>{{status.dodAuditCategory}}</td>
+                          <td>{{status.detailDocType}}</td>
+                          <td>{{status.revisionNbr}}</td>
+                          <td>{{status.revisionDate | date:"dd/MM/yyyy"}}</td>
+                          <td>
+                            <a routerLink="/viewAudit" (click)="viewAudit(status.auditId)"
+                              >View</a
+                            >
+
+                            &nbsp;
+                            <a routerLink="/editAudit"
+                              >Edit</a
+                            >
+                          </td>
+                        </tr>                     
+                      </tbody>
+                    </table>
+
+                    <form
+                      id="createAuditForm"
+                      action="CreateNewAudit.html"
+                      method="post"
+                    >
+                      <input type="hidden" value="" name="audit.documentNbr" />
+
+                      <span style="float: right"> </span>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</td>

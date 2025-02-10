@@ -1,0 +1,270 @@
+<td align="left">
+  <!-- CONTENT -->
+
+
+  <a routerLink="/viewStatus">Back to Document</a>
+  <br /><br />
+
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+      <tr>
+        <td>
+          <table
+            class="eds-tabheader"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+          >
+            <tbody>
+              <tr>
+                <td class="eds-tabtopleftcorner"></td>
+                <td class="eds-tabtopmiddle" align="center">
+                  <div class="eds-tabtitle">Edit Audit</div>
+                </td>
+                <td class="eds-tabtoprightcorner"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="eds-tabtoprightcorner"></td>
+      </tr>
+      <tr>
+        <td>
+          <table
+            cellspacing="0"
+            cellpadding="0"
+            width="100%"
+            border="0"
+            class="eds-tabtitle"
+          >
+            <tbody>
+              <tr>
+                <td>
+                  <form
+                    name="AuditForm"
+                    id="auditFormId"
+                  >
+                    <table width="100%">
+                      <tbody>
+                        <tr style="height: 1px">
+                          <td width="200"></td>
+                          <td width="250"></td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle dropdown" >
+                          <td align="right">Audit Category&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <select name="audit.dodAuditCategory" class="" [(ngModel)]="auditData?.audit.dodAuditCategory">
+                              <option value="A">A</option>
+
+                              <option value="B">B</option>
+
+                              <option value="C">C</option>
+
+                              <option value="X">X</option>
+                            </select>
+                          </td>
+                        </tr>
+
+                        <tr
+                          class="eds-pagerstyle-alt eds-field-required"
+                        >
+                          <td align="right">Audit Date *&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="audit.auditDate"
+                              class=""
+                              value=""
+                              size="41"
+                              autocomplete="off"
+                              [(ngModel)]="auditData?.audit.auditDate"
+                            />
+
+                            <span
+                              ><img
+                                onmouseover="this.style.cursor='hand'"
+                                id="auditDateId_date"
+                                align="ABSMIDDLE"
+                                src="assets/images/calendar.gif"
+                            /></span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle dropdown" >
+                          <td align="right">Document Detail&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <select
+                              name="audit.popno"
+                              class=""
+                              [(ngModel)]="auditData?.audit.popno"
+                            >
+                              <option value="">&nbsp;</option>
+
+                              <option value="200804092 (CMM/IPL) - R4">
+                                200804092 (CMM/IPL) - R4
+                              </option>
+
+                              <option value="200103326 (CMM/IPL) - R3">
+                                200103326 (CMM/IPL) - R3
+                              </option>
+
+                              <option value="9700271 (CMM/IPL) - R2">
+                                9700271 (CMM/IPL) - R2
+                              </option>
+
+                              <option value="8703079 (CMM/IPL)">
+                                8703079 (CMM/IPL)
+                              </option>
+
+                              <option value="6015721 (CMM/IPL) - R1">
+                                6015721 (CMM/IPL) - R1
+                              </option>
+                            </select>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt" >
+                          <td align="right">
+                            Vendor Revision Nbr&nbsp; &nbsp;
+                          </td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="audit.revisionNbr"
+                              class=""
+                              value=""
+                              size="45"
+                              maxlength="10"
+                              [(ngModel)]="auditData?.audit.revisionNbr"
+                            />
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle" >
+                          <td align="right">Vndr Rev Dt&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="audit.revisionDate"
+                              class=""
+                              value=""
+                              size="41"
+                              maxlength="10"
+                              autocomplete="off"
+                              [(ngModel)]="auditData?.audit.revisionDate"
+                            />
+
+                            <span
+                              ><img
+                                onmouseover="this.style.cursor='hand'"
+                                id="revisionDateId_date"
+                                align="ABSMIDDLE"
+                                src="assets/images/calendar.gif"
+                            /></span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt" >
+                          <td align="right">Follow Up Date&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="audit.followUpDate"
+                              class=""
+                              value=""
+                              size="41"
+                              maxlength="10"
+                              autocomplete="off"
+                              [(ngModel)]="auditData?.audit.followUpDate"
+                            />
+
+                            <span
+                              ><img
+                                onmouseover="this.style.cursor='hand'"
+                                id="followUpDateId_date"
+                                align="ABSMIDDLE"
+                                src="assets/images/calendar.gif"
+                            /></span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle dropdown" >
+                          <td align="right">
+                            Follow Up Required?&nbsp; &nbsp;
+                          </td>
+                          <td align="left">
+                            <select name="audit.followUpCompleteInd" class="" [(ngModel)]="followUpCompleteInd" >
+                              <option value="Y">Yes</option>
+                              <option value="N">No</option>
+                            </select>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt" >
+                          <td align="right">Audit Notes&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="audit.auditNotes"
+                              class=""
+                              value=""
+                              size="45"
+                              maxlength="200"
+                              [(ngModel)]="auditData?.audit.auditNotes"
+                            />
+                          </td>
+                        </tr>
+
+                        <tr
+                          class="eds-pagerstyle dropdown inline-table_dark_grey"
+                        >
+                          <td align="right">Audit Status&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <select name="audit.auditStatus" class="" [(ngModel)]="auditData?.audit.auditStatus">
+                              <option value=""></option>
+
+                              <option value="NO AUDIT">
+                                NO AUDIT
+                              </option>
+
+                              <option value="OK">OK</option>
+
+                              <option value="PENDING">PENDING</option>
+                            </select>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt">
+                          <td colspan="2">
+                            <span style="float: left">
+                              <input
+                                type="button"
+                                value="Delete"
+                              />
+                            </span>
+
+                            <input
+                              type="hidden"
+                              name="submitType"
+                              value="edit"
+                            />
+                            <span style="float: right">
+                              <input type="submit" value="Save" (click)="saveAudit()" />
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</td>

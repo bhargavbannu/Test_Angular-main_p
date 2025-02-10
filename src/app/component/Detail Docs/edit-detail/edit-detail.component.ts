@@ -6,7 +6,7 @@ import { ApiService } from 'src/app/api.service';
   selector: 'app-edit-detail',
   templateUrl: './edit-detail.component.html',
   styleUrls: ['./edit-detail.component.css'],
-  providers:[DatePipe]
+  providers: [DatePipe],
 })
 export class EditDetailComponent {
   docDetails: any;
@@ -16,13 +16,17 @@ export class EditDetailComponent {
   docSubject: any;
   formattedDate: any;
 
-  constructor(private apiService: ApiService, private router: Router, private datePipe:DatePipe) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private datePipe: DatePipe
+  ) {}
 
   ngOnInit() {
     this.loadDetails();
-    this.docNmbr = this.apiService.viewDocId
-    this.vendorName = this.apiService.vendorName
-    this.docSubject = this.apiService.subject
+    this.docNmbr = this.apiService.viewDocId;
+    this.vendorName = this.apiService.vendorName;
+    this.docSubject = this.apiService.subject;
   }
 
   loadDetails() {
@@ -31,13 +35,20 @@ export class EditDetailComponent {
     });
   }
   saveEditDetail() {
-    this.formattedDate = this.datePipe.transform(this.docDetails?.detail.manualdate, 'MM/dd/yyyy HH:mm:ss')
+    if (this.formattedDate !== null && this.formattedDate!==undefined) {
+      this.formattedDate = this.datePipe.transform(
+        this.docDetails?.detail.manualdate,
+        'MM/dd/yyyy HH:mm:ss'
+      );
+    } else {
+      this.formattedDate = '';
+    }
     const payload = {
       documentNbr: this.docNmbr,
       vendor: this.vendorName,
       subject: this.docSubject,
       detail: {
-        popno:this.docDetails?.detail.popno,
+        popno: this.docDetails?.detail.popno,
         popRefNbr: this.docDetails?.detail.popRefNbr,
         doctype: this.docDetails?.detail.doctype,
         bin: this.docDetails?.detail.bin,
@@ -54,13 +65,13 @@ export class EditDetailComponent {
 
     this.apiService.saveEditDetail(payload).subscribe((res: any) => {
       this.apiService.popno = res.detailResponse.detail.popno;
-      this.router.navigate(['/viewDetail', {detailSaved:true}]);
+      this.router.navigate(['/viewDetail', { detailSaved: true }]);
     });
   }
 
-  deleteDetail(){
+  deleteDetail() {
     this.apiService.deleteDetail().subscribe(() => {
-      this.router.navigate(['/viewSearch', {detailDeleted:true}]);
+      this.router.navigate(['/viewStatus', { detailDeleted: true }]);
     });
   }
 }
