@@ -1,0 +1,9 @@
+::ng-deep .hidden-calendar .p-inputtext {
+    display: none !important;
+}
+
+::ng-deep .p-datepicker {
+    position: absolute;
+    top: 32% !important;
+    left: 59% !important;
+}

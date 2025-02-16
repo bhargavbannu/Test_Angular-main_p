@@ -16,11 +16,7 @@ export class EditAuditComponent {
   constructor(private apiService: ApiService, private router:Router){}
 
   ngOnInit() {
-    this.loadAuditData();
-    console.log(this.auditData?.audit.followUpCompleteInd);
-    console.log(this.auditData?.audit.dodAuditCategory);
-
-    
+    this.loadAuditData();    
   }
 
   loadAuditData() {

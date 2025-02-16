@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-search',
@@ -12,7 +12,7 @@ export class ViewSearchComponent {
   docAdded :any;
   detailDeleted: any;
 
-  constructor(private apiService: ApiService, private route:ActivatedRoute) {}
+  constructor(private apiService: ApiService, private route:ActivatedRoute, private router:Router) {}
 
   ngOnInit() {
     this.viewDocuments();
@@ -30,6 +30,11 @@ export class ViewSearchComponent {
     })
   }
 
+  editDoc(){
+    this.apiService.viewDocId = this.documentsDetails.document.documentNbr
+    this.router.navigate(['/document', { editDoc: true }]);
+  }
+
   viewClick(id: any) {
     this.apiService.viewAuditId = id;
   }
@@ -40,6 +45,10 @@ export class ViewSearchComponent {
 
   viewDetail(popno:any){
   this.apiService.popno = popno;
+  }
+
+  viewEso(eso:any){
+    this.apiService.eso = eso;
   }
 
   deleteFormerVendor(){

@@ -41,7 +41,8 @@
                             <tr>
                               <td class="eds-tabtopleftcorner"></td>
                               <td class="eds-tabtopmiddle" align="center">
-                                <div class="eds-tabtitle">Add New Document</div>
+                                <div *ngIf="!editDoc" class="eds-tabtitle">Add New Document</div>
+                                <div *ngIf="editDoc" class="eds-tabtitle">Edit Document</div>
                               </td>
 
                               <td class="eds-tabtoprightcorner"></td>

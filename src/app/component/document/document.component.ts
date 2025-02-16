@@ -13,7 +13,7 @@ import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
 //   switchMap,
 // } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -93,7 +93,9 @@ typedAuditable: any;
 ata: any;
 reissueDate: any;
  formattedDate:any;
-  constructor(private apiService: ApiService, private http: HttpClient, private router:Router, private datePipe:DatePipe) {}
+ editDoc:any;
+  documentsDetails: any;
+  constructor(private apiService: ApiService, private http: HttpClient, private router:Router, private datePipe:DatePipe, private route: ActivatedRoute) {}
 
   
   ngOnInit() {
@@ -178,6 +180,39 @@ reissueDate: any;
     this.apiService.audDocType().subscribe((data) => {
       this.audDocTypes = data;
     });
+
+    this.route.params.subscribe(params =>{
+      this.editDoc = params['editDoc']
+    })
+
+    if(this.editDoc){
+    this.apiService.viewDocuments().subscribe((data) => {   
+      this.documentsDetails = data;
+      this.vendorName = this.documentsDetails.document?.vendor.vendorNm;
+      this.vendorWebsite = this.documentsDetails.document?.vendor.vendorWebsite
+      this.vendorContactPerson = this.documentsDetails.document?.vendor.contactPerson
+      this.vendorContactNumber = this.documentsDetails.document?.vendor.contactPhone
+      this.vendorEmail = this.documentsDetails.document?.vendor.vendorEmailAddress
+      this.vendorRemark = this.documentsDetails.document?.vendor.remarks       
+      this.docSection = this.documentsDetails.document?.sections
+      this.vendorDocRef =  this.documentsDetails.document?.vendorDocRefNbr
+      this.docEffectivity =  this.documentsDetails.document?.effectivityIds
+      this.ata =  this.documentsDetails.document?.ata
+      this.documentSubject =  this.documentsDetails.document?.subject
+      this.reissueDate =  this.documentsDetails.document?.reissueDate
+      this.formattedDate =  this.documentsDetails.document?.creationDate
+      this.category =  this.documentsDetails.document?.documentCategory
+      this.remarksField =  this.documentsDetails.document?.remarks
+      this.nextRoute =  this.documentsDetails.document?.nextRouteType
+      this.eccnNumber =  this.documentsDetails.document?.eccnNumber
+      this.eccnLocation =  this.documentsDetails.document?.eccnLocation
+      this.addedValDoc =  this.documentsDetails.document?.auditableDocTypes
+      this.selectedEsoNumber =  this.documentsDetails.documentEsos.map((res:any) => res.eso)
+      this.allSelectedDocTypes = this.documentsDetails.document?.documentPartNumbers
+      this.formattedDate = this.datePipe.transform(this.formattedDate, 'MM/dd/yyyy HH:mm:ss')
+
+    })
+  }
   }
 auditableDropDownSelect(doc:any){
   // this.addedValDoc = doc;

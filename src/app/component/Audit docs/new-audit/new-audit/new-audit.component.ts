@@ -18,7 +18,7 @@ export class NewAuditComponent {
   revNmbr: any;
   revDate: any;
   auditNotes: any;
- documentDetail: any;
+  documentDetail: any;
 
   constructor(private apiService: ApiService, private datePipe:DatePipe, private router:Router){}
 
@@ -39,6 +39,7 @@ export class NewAuditComponent {
       }
     }
   this.apiService.saveNewAudit(payload).subscribe((res)=>{
+    this.apiService.viewAuditId = res.successResult.data.auditData.auditId
     this.router.navigate(["/viewAudit", {auditSaved:true}])
   })
   }

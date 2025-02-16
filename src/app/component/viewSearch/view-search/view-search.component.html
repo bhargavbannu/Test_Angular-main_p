@@ -433,6 +433,7 @@
                                               <input
                                                 type="submit"
                                                 value=" Edit "
+                                                (click)="editDoc()"
                                               />
                                             </span>
                                           </td>
@@ -892,8 +893,8 @@
                                                 <td>{{status.assigndate | date:"dd/MM/yyyy"}}</td>
                                                 <td>{{status.subject}}</td>
                                                 <td>
-                                                  <a
-                                                    >View</a
+                                                  <a routerLink="/view-eso"
+                                                    (click)="viewEso(status.eso)">View</a
                                                   >
                                                 </td>
                                               </tr>

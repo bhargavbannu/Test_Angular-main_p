@@ -42,6 +42,9 @@ import { EditDetailComponent } from './component/Detail Docs/edit-detail/edit-de
 import { EditAuditComponent } from './component/Audit docs/edit-audit/edit-audit/edit-audit.component';
 import { NewAuditComponent } from './component/Audit docs/new-audit/new-audit/new-audit.component';
 import { AddFormerVendorComponent } from './component/Former Vendor/add-former-vendor/add-former-vendor/add-former-vendor.component';
+import { ViewEsoComponent } from './component/ESO Docs/view-eso/view-eso/view-eso.component';
+import { EditEsoDocComponent } from './component/ESO Docs/edit-eso/edit-eso/edit-eso.component';
+import {CalendarModule } from 'primeng/calendar'
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +76,8 @@ import { AddFormerVendorComponent } from './component/Former Vendor/add-former-v
     EditAuditComponent,
     NewAuditComponent,
     AddFormerVendorComponent,
+    ViewEsoComponent,
+    EditEsoDocComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +91,8 @@ import { AddFormerVendorComponent } from './component/Former Vendor/add-former-v
     MatCheckboxModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

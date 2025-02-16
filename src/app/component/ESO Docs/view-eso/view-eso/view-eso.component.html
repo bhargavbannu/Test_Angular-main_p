@@ -1,0 +1,138 @@
+<td align="left">
+  <!-- CONTENT -->
+
+  <div *ngIf="esoSaved" class="savedDoc">SUCCESS: Successfully saved Eso.</div>
+
+  <a routerLink="/search"
+    style="font-size: larger; font-weight: bolder"
+    >Back To Search Results</a
+  >
+  <br />
+
+  <a routerLink="/viewStatus"
+    >Back to View Document</a
+  >
+  <br /><br />
+
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tbody>
+      <tr>
+        <td>
+          <table
+            class="eds-tabheader"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+          >
+            <tbody>
+              <tr>
+                <td class="eds-tabtopleftcorner"></td>
+                <td class="eds-tabtopmiddle" align="center">
+                  <div class="eds-tabtitle">View ESO</div>
+                </td>
+                <td class="eds-tabtoprightcorner"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="eds-tabtoprightcorner"></td>
+      </tr>
+      <tr>
+        <td>
+          <table
+            cellspacing="0"
+            cellpadding="0"
+            width="100%"
+            border="0"
+            class="eds-tabtitle"
+          >
+            <tbody>
+              <tr>
+                <td>
+                  <form
+                    name="ESOForm"
+                    id="esoFormId"
+                  >
+                    <table width="100%">
+                      <tbody>
+                        <tr style="height: 1px">
+                          <td width="200"></td>
+                          <td width="250"></td>
+                        </tr>
+
+                        <input type="hidden" name="eso.eso" value="TESS" />
+
+                        <tr class="eds-pagerstyle eds-field-required">
+                          <td align="right">ESO Number *&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText">{{esoData?.eso}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt">
+                          <td align="right">Assign Date&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span *ngIf="esoData?.assigndate !== null" class="viewFieldText">{{esoData?.assigndate | date:"MM/dd/yyyy"}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle">
+                          <td align="right">Subject&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText"
+                              >{{esoData?.subject}}</span
+                            >
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt">
+                          <td align="right">Engineer&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText">{{esoData?.engineer}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle">
+                          <td align="right">Remarks&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText">{{esoData?.remark}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt">
+                          <td align="right">Cancel Date&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span *ngIf="esoData?.canceldate !== null" class="viewFieldText">{{esoData?.canceldate | date:"MM/dd/yyyy"}}</span>
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle dropdown">
+                          <td align="right">Status&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText">{{esoData?.status}}</span>
+                          </td>
+                        </tr>
+
+                        <!-- BUTTONS SECTION -->
+
+                        <tr class="eds-pagerstyle-alt blueColSpan">
+                          <td colspan="2">
+                            <span style="float: right">
+                              <input type="submit" routerLink="/edit-eso" value=" Edit " />
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</td>

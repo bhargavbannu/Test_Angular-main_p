@@ -25,6 +25,8 @@ import { EditDetailComponent } from './component/Detail Docs/edit-detail/edit-de
 import { AddFormerVendorComponent } from './component/Former Vendor/add-former-vendor/add-former-vendor/add-former-vendor.component';
 import { EditAuditComponent } from './component/Audit docs/edit-audit/edit-audit/edit-audit.component';
 import { NewAuditComponent } from './component/Audit docs/new-audit/new-audit/new-audit.component';
+import { ViewEsoComponent } from './component/ESO Docs/view-eso/view-eso/view-eso.component';
+import { EditEsoDocComponent } from './component/ESO Docs/edit-eso/edit-eso/edit-eso.component';
 const routes: Routes = [
   {
     path: 'search',
@@ -114,6 +116,12 @@ const routes: Routes = [
    },
    { path: 'newAudit', 
     component: NewAuditComponent
+   },
+   { path: 'view-eso', 
+    component: ViewEsoComponent
+   },
+   { path: 'edit-eso', 
+    component: EditEsoDocComponent
    },
   { path: 'health', 
     component: HealthTestComponent

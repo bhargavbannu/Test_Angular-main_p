@@ -61,6 +61,10 @@ export class ApiService {
   private deleteFormerVendorApi ='api/formerVendor/deleteFormerVendorDetails'
   private saveNewAuditApi ='api/audit/saveNewAudit'
   private saveExistingAuditApi ='api/audit/saveExistingAudit'
+  private viewEsoApi ='api/eso/viewESO'
+  private saveEsoApi ='api/eso/saveESO'
+  private deleteEsoApi ='api/eso/deleteESO'
+
 
   viewDocId: any;
   viewAuditId: any;
@@ -69,6 +73,7 @@ export class ApiService {
   popno: any;
   vendorName: any;
   subject: any;
+  eso: any;
 
   constructor(private http: HttpClient) {}
 
@@ -409,6 +414,18 @@ esoNumbersApiData(val:any):Observable<any>{
 
   saveExistingAudit(payload:any){
     return this.http.post<any>(this.saveExistingAuditApi,payload)
+  }
+
+  viewEso(): Observable<any> {
+    return this.http.get<any>(`${this.viewEsoApi}/${this.eso}`);
+  }
+
+  saveEso(payload: any): Observable<any> {
+    return this.http.post<any>(this.saveEsoApi, payload);
+  }
+
+  deleteEso(payload:any): Observable<any> {
+    return this.http.delete<any>(this.deleteEsoApi, payload);
   }
 
   checkApiHealth(): Observable<any> {
