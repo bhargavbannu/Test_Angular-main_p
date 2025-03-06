@@ -49,7 +49,13 @@ export class SearchAuditComponent {
       this.headers = Object.keys(this.data[0])
     });
   }
-
+  viewClick(id: any, vendorName:any, subject:any) {
+    console.log(id, vendorName, subject);
+    
+    this.service.viewDocId = id;
+    this.service.vendorName = vendorName;
+    this.service.subject = subject;
+  }
   goToFirst() {
     this.goToPage(1);
   }

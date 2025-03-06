@@ -1470,6 +1470,7 @@ class="pagination-link"
     <tbody>
       <tr class="odd" *ngFor="let row of data">
         <td *ngFor="let header of headers">{{ row[header] }}</td>
+         <td><a routerLink="/viewStatus" (click)="viewClick(row.documentId, row.vendorName,row.subject)">View</a></td>
       </tr>
     </tbody>
   </table>

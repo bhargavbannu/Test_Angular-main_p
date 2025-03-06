@@ -26,6 +26,7 @@ dropdownValues:any[]=[]
         distinctUntilChanged(),
         switchMap(() => {
           console.log(this.vendorName);
+          console.log()
           
           return this.appservice.getAutoPopulateVendors(this.vendorName);
         })

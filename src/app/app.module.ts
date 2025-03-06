@@ -44,7 +44,8 @@ import { NewAuditComponent } from './component/Audit docs/new-audit/new-audit/ne
 import { AddFormerVendorComponent } from './component/Former Vendor/add-former-vendor/add-former-vendor/add-former-vendor.component';
 import { ViewEsoComponent } from './component/ESO Docs/view-eso/view-eso/view-eso.component';
 import { EditEsoDocComponent } from './component/ESO Docs/edit-eso/edit-eso/edit-eso.component';
-import {CalendarModule } from 'primeng/calendar'
+import {CalendarModule } from 'primeng/calendar';
+import { ViewRouteChildComponent } from './component/Detail Docs/view-route-child/view-route-child.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +78,8 @@ import {CalendarModule } from 'primeng/calendar'
     NewAuditComponent,
     AddFormerVendorComponent,
     ViewEsoComponent,
-    EditEsoDocComponent
+    EditEsoDocComponent,
+    ViewRouteChildComponent
   ],
   imports: [
     BrowserModule,

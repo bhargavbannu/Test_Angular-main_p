@@ -15,7 +15,7 @@ export class ApiService {
     private ecoNumbersValues = 'api/eco/getECOs?sourceElement';
     private esoNumbersApi = 'api/eso/getESOs?sourceElement';
     private auditableDocApi = 'api/adminConfiguration/getAuditableDetailDocTypes?sourceElement'
-
+ private viewRouteInDetail = 'api/routing/viewRoute?routeId'
   private manageEffectivitiesApi = 'api/adminConfiguration/manageEffectivities';
   private manageEccnNumbersApi = 'api/adminConfiguration/manageEccnNumbers';
   private manageEccnLocationsApi = 'api/adminConfiguration/manageEccnLocations';
@@ -65,7 +65,7 @@ export class ApiService {
   private saveEsoApi ='api/eso/saveESO'
   private deleteEsoApi ='api/eso/deleteESO'
 
-
+detailRoute:any
   viewDocId: any;
   viewAuditId: any;
 
@@ -77,7 +77,9 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-
+ viewRouteDetailApi(id:any){
+  return this.http.get<any>(`${this.viewRouteInDetail}=${id}`)
+ }
   auditableService(id:any){
     return this.http.get<any>(`${this.auditableDocApi}=${id}`)
   }

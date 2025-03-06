@@ -27,6 +27,7 @@ import { EditAuditComponent } from './component/Audit docs/edit-audit/edit-audit
 import { NewAuditComponent } from './component/Audit docs/new-audit/new-audit/new-audit.component';
 import { ViewEsoComponent } from './component/ESO Docs/view-eso/view-eso/view-eso.component';
 import { EditEsoDocComponent } from './component/ESO Docs/edit-eso/edit-eso/edit-eso.component';
+import { ViewRouteChildComponent } from './component/Detail Docs/view-route-child/view-route-child.component';
 const routes: Routes = [
   {
     path: 'search',
@@ -125,6 +126,9 @@ const routes: Routes = [
    },
   { path: 'health', 
     component: HealthTestComponent
+   },
+   { path: 'viewRoute', 
+    component: ViewRouteChildComponent
    },
 
    

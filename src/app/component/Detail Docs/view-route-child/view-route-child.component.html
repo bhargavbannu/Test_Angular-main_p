@@ -1,0 +1,603 @@
+<td align="left" *ngIf="edit">
+  <!-- CONTENT -->
+
+  <input
+    type="hidden"
+    name="previousUrl"
+    value="/vdt/Search.html?advancedSearchHidden=true&amp;currentVendorOnly=true&amp;vendorName=&amp;currentVendorOnly=on&amp;vendorPartRefNbr=&amp;detailDocType=&amp;itar=&amp;eccnNumber=&amp;eso=&amp;eco=&amp;ata=&amp;detailId=&amp;eccnLocation=&amp;docName=&amp;subject=&amp;bin=&amp;documentType=&amp;manualStartDate=&amp;manualEndDate=&amp;reissueStartDate=&amp;reissueEndDate=&amp;documentSubject="
+    id="previousUrl"
+  />
+  <a
+    style="font-size: larger; font-weight: bolder"
+    href="javascript:setBackToUrl(document.getElementById('previousUrl').value);"
+    >Back To Search Results</a
+  >
+  <br />
+
+  <a href="ViewDetail.html?detail.popno=205687471">Back to Detail/POP</a>
+  <br /><br />
+  <div style="float: left">
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+        <tr>
+          <td>
+            <table
+              class="eds-tabheader"
+              cellspacing="0"
+              cellpadding="0"
+              border="0"
+            >
+              <tbody>
+                <tr>
+                  <td class="eds-tabtopleftcorner"></td>
+                  <td class="eds-tabtopmiddle" align="center">
+                    <div class="eds-tabtitle">View Route</div>
+                  </td>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="eds-tabtoprightcorner"></td>
+        </tr>
+        <tr>
+          <td>
+            <table
+              cellspacing="0"
+              cellpadding="0"
+              width="100%"
+              border="0"
+              class="eds-tabtitle"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <form
+                      name="RouteForm"
+                      method="post"
+                      action="/vdt/SaveRoute.html"
+                    >
+                      <table width="100%">
+                        <tbody>
+                          <tr style="height: 1px">
+                            <td width="200"></td>
+                            <td width="250"></td>
+                          </tr>
+
+                          <input
+                            type="hidden"
+                            name="route.detailId"
+                            value="205687471"
+                          />
+                          <input
+                            type="hidden"
+                            name="route.detailRefNbr"
+                            value="202500136"
+                          />
+
+                          <tr class="eds-pagerstyle readonly" style="">
+                            <td align="right">Detail #&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <span class="viewFieldText">{{
+                                viewRoute.route?.detailId
+                              }}</span>
+                            </td>
+                          </tr>
+
+                          <input
+                            type="hidden"
+                            name="route.routeId"
+                            value="5572070"
+                          />
+
+                          <tr class="eds-pagerstyle-alt readonly" style="">
+                            <td align="right">Section *&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <span class="viewFieldText">{{
+                                viewRoute.route.sectionForDisplay
+                              }}</span>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle readonly" style="">
+                            <td align="right">Routing&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <span class="viewFieldText">{{
+                                viewRoute.route.routeType
+                              }}</span>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle-alt readonly" style="">
+                            <td align="right">Route Date *&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <span class="viewFieldText">{{
+                                viewRoute.route.routeDate
+                              }}</span>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle" style="">
+                            <td align="right">Disposition&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <span class="viewFieldText">{{
+                                viewRoute.route.Disposition
+                              }}</span>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle-alt" style="">
+                            <td align="right">Close Date&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <span class="viewFieldText">{{
+                                viewRoute.route.closedate
+                              }}</span>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle" style="">
+                            <td align="right">Remark&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <span class="viewFieldText">{{
+                                viewRoute.route.remark
+                              }}</span>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle-alt">
+                            <td colspan="2">
+                              <input
+                                type="hidden"
+                                name="submitType"
+                                value="edit"
+                              />
+                              <span style="float: right">
+                                <input
+                                  type="button"
+                                  value="Edit"
+                                  (click)="routee()"
+                                />
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </form>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="float: right; margin-left: 5px">
+    <table width="98%">
+      <tbody>
+        <tr>
+          <td width="40%" valign="top">
+            <table cellspacing="0" cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td>
+                    <table
+                      class="eds-tabheader"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                    >
+                      <tbody>
+                        <tr>
+                          <td class="eds-tabtopleftcorner"></td>
+                          <td class="eds-tabtopmiddle" align="center">
+                            <div class="eds-tabtitle">ESO</div>
+                          </td>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      cellspacing="0"
+                      cellpadding="0"
+                      width="100%"
+                      border="0"
+                      class="eds-tabtitle"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <font color="#ffffff"
+                              ><b>Nothing found to display</b></font
+                            ><br /><br />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td width="40%" valign="top">
+            <table cellspacing="0" cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td>
+                    <table
+                      class="eds-tabheader"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                    >
+                      <tbody>
+                        <tr>
+                          <td class="eds-tabtopleftcorner"></td>
+                          <td class="eds-tabtopmiddle" align="center">
+                            <div class="eds-tabtitle">ECO</div>
+                          </td>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      cellspacing="0"
+                      cellpadding="0"
+                      width="100%"
+                      border="0"
+                      class="eds-tabtitle"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <font color="#ffffff"
+                              ><b>Nothing found to display</b></font
+                            ><br /><br />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</td>
+
+<div *ngIf="!edit">
+  <td align="left">
+    <a href="ViewDetail.html?detail.popno=205687471">Back to Detail/POP</a>
+    <br /><br />
+    <div style="float: left">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+          <tr>
+            <td>
+              <table
+                class="eds-tabheader"
+                cellspacing="0"
+                cellpadding="0"
+                border="0"
+              >
+                <tbody>
+                  <tr>
+                    <td class="eds-tabtopleftcorner"></td>
+                    <td class="eds-tabtopmiddle" align="center">
+                      <div class="eds-tabtitle">Edit Route</div>
+                    </td>
+                    <td class="eds-tabtoprightcorner"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="eds-tabtoprightcorner"></td>
+          </tr>
+          <tr>
+            <td>
+              <table
+                cellspacing="0"
+                cellpadding="0"
+                width="100%"
+                border="0"
+                class="eds-tabtitle"
+              >
+                <tbody>
+                  <tr>
+                    <td>
+                      <form
+                        name="RouteForm"
+                        method="post"
+                        action="/vdt/SaveRoute.html"
+                      >
+                        <table width="100%">
+                          <tbody>
+                            <tr style="height: 1px">
+                              <td width="200"></td>
+                              <td width="250"></td>
+                            </tr>
+
+                            <input
+                              type="hidden"
+                              name="route.detailId"
+                              value="205687471"
+                            />
+                            <input
+                              type="hidden"
+                              name="route.detailRefNbr"
+                              value="202500136"
+                            />
+
+                            <tr class="eds-pagerstyle readonly" style="">
+                              <td align="right">Detail #&nbsp; &nbsp;</td>
+                              <td align="left">
+                                <input
+                                  type="text"
+                                  name="route.detailId"
+                                  class=""
+                                  value="202500136"
+                                  readonly="readonly"
+                                  size="45"
+                                />
+                              </td>
+                            </tr>
+                            <input
+                              type="hidden"
+                              name="route.routeId"
+                              value="5572070"
+                            />
+
+                            <tr class="eds-pagerstyle-alt readonly" style="">
+                              <td align="right">Section *&nbsp; &nbsp;</td>
+                              <td align="left">
+                                <input
+                                  type="text"
+                                  name="route.section"
+                                  class=""
+                                  value="61"
+                                  readonly="readonly"
+                                  size="45"
+                                />
+                              </td>
+                            </tr>
+
+                            <tr class="eds-pagerstyle readonly" style="">
+                              <td align="right">Routing&nbsp; &nbsp;</td>
+                              <td align="left">
+                                <input
+                                  type="text"
+                                  name="route.routeType"
+                                  class=""
+                                  value="RR"
+                                  readonly="readonly"
+                                  size="45"
+                                />
+                              </td>
+                            </tr>
+
+                            <tr class="eds-pagerstyle-alt readonly" style="">
+                              <td align="right">Route Date *&nbsp; &nbsp;</td>
+                              <td align="left">
+                                <input
+                                  type="text"
+                                  name="route.routeDate"
+                                  class=""
+                                  value="01/30/2025"
+                                  readonly="readonly"
+                                  size="41"
+                                />
+                              </td>
+                            </tr>
+
+                            <tr class="eds-pagerstyle" style="">
+                              <td align="right">Disposition&nbsp; &nbsp;</td>
+                              <td align="left">
+                                <input
+                                  type="text"
+                                  name="route.disposition"
+                                  class=""
+                                  id="dispositionId"
+                                  value="Closed"
+                                  size="45"
+                                  maxlength="20"
+                                  autocomplete="off"
+                                />
+
+                                <div
+                                  id="dispositionId_choices"
+                                  class="autoCompleteClass"
+                                  style="display: none"
+                                ></div>
+                              </td>
+                            </tr>
+
+                            <tr class="eds-pagerstyle-alt" style="">
+                              <td align="right">Close Date&nbsp; &nbsp;</td>
+                              <td align="left">
+                                <input
+                                  type="text"
+                                  name="route.closedate"
+                                  class=""
+                                  id="closeDateId"
+                                  value="01/30/2025"
+                                  size="41"
+                                  onkeypress="beforeCloseDateChange(this)"
+                                  onkeyup="onCloseDateChange(this)"
+                                  autocomplete="off"
+                                />
+
+                                <span
+                                  ><img
+                                    onmouseover="this.style.cursor='hand'"
+                                    id="closeDateId_date"
+                                    align="ABSMIDDLE"
+                                    src="images/calendar.gif"
+                                /></span>
+                                <script>
+                                  setupCal("closeDateId");
+                                </script>
+                              </td>
+                            </tr>
+
+                            <tr class="eds-pagerstyle" style="">
+                              <td align="right">Remark&nbsp; &nbsp;</td>
+                              <td align="left">
+                                <textarea
+                                  rows="4"
+                                  cols="28"
+                                  name="route.remark"
+                                  class=""
+                                ></textarea>
+                              </td>
+                            </tr>
+
+                            <tr class="eds-pagerstyle-alt">
+                              <td style="text-align: right">
+                                ECO Numbers&nbsp; &nbsp;
+                              </td>
+                              <td>
+                                <select
+                                  name="route.ecos"
+                                  class=""
+                                  id="route.ecos_id"
+                                  multiple="multiple"
+                                  style="width: 120px"
+                                  maxlength="20"
+                                ></select>
+
+                                <br />
+
+                                <input
+                                  type="text"
+                                  name="addInput_route.ecos_id"
+                                  class=""
+                                  id="addInput_route.ecos_id"
+                                  value=""
+                                  style="width: 120px"
+                                  maxlength="20"
+                                  autocomplete="off"
+                                />
+
+                                <div
+                                  id="addInput_route.ecos_id_choices"
+                                  class="autoCompleteClass"
+                                  style="display: none"
+                                ></div>
+
+                                <input
+                                  type="button"
+                                  value="Add"
+                                  onclick="addItemToMultiSelect('route.ecos_id','addInput_route.ecos_id',null);"
+                                />
+                                <input
+                                  type="button"
+                                  value="Remove"
+                                  onclick="removeFromMultiSelect('route.ecos_id',null);"
+                                />
+                              </td>
+                            </tr>
+
+                            <tr class="eds-pagerstyle">
+                              <td style="text-align: right">
+                                ESO Numbers&nbsp; &nbsp;
+                              </td>
+                              <td>
+                                <select
+                                  name="route.esos"
+                                  class=""
+                                  id="route.esos_id"
+                                  multiple="multiple"
+                                  style="width: 120px"
+                                  maxlength="20"
+                                ></select>
+
+                                <br />
+
+                                <input
+                                  type="text"
+                                  name="addInput_route.esos_id"
+                                  class=""
+                                  id="addInput_route.esos_id"
+                                  value=""
+                                  style="width: 120px"
+                                  maxlength="10"
+                                  autocomplete="off"
+                                />
+
+                                <div
+                                  id="addInput_route.esos_id_choices"
+                                  class="autoCompleteClass"
+                                  style="display: none"
+                                ></div>
+
+                                <input
+                                  type="button"
+                                  value="Add"
+                                  onclick="addItemToMultiSelect('route.esos_id','addInput_route.esos_id',addEsoFunc);"
+                                />
+                                <input
+                                  type="button"
+                                  value="Remove"
+                                  onclick="removeFromMultiSelect('route.esos_id',null);"
+                                />
+                              </td>
+                            </tr>
+
+                            <tr class="eds-pagerstyle-alt">
+                              <td colspan="2">
+                                <span style="float: left">
+                                  <input
+                                    type="button"
+                                    value="Delete"
+                                    onclick="deleteRoute();"
+                                  />
+                                </span>
+
+                                <input
+                                  type="hidden"
+                                  name="submitType"
+                                  value="edit"
+                                />
+                                <span style="float: right">
+                                  <input type="submit" value="Save" />
+                                </span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </form>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </td>
+</div>
