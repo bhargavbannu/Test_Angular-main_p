@@ -1,0 +1,227 @@
+<p>reissue-route works!</p>
+<td align="left">
+  <!-- CONTENT -->
+
+  <a href="ViewDetail.html?detail.popno=205687471">Back to Detail/POP</a>
+  <br /><br />
+  <div style="float: left">
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+        <tr>
+          <td>
+            <table
+              class="eds-tabheader"
+              cellspacing="0"
+              cellpadding="0"
+              border="0"
+            >
+              <tbody>
+                <tr>
+                  <td class="eds-tabtopleftcorner"></td>
+                  <td class="eds-tabtopmiddle" align="center">
+                    <div class="eds-tabtitle">Add New Route</div>
+                  </td>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="eds-tabtoprightcorner"></td>
+        </tr>
+        <tr>
+          <td>
+            <table
+              cellspacing="0"
+              cellpadding="0"
+              width="100%"
+              border="0"
+              class="eds-tabtitle"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <form
+                      name="RouteForm"
+                      method="post"
+                      action="/vdt/SaveRoute.html"
+                    >
+                      <table width="100%">
+                        <tbody>
+                          <tr style="height: 1px">
+                            <td width="200"></td>
+                            <td width="250"></td>
+                          </tr>
+
+                          <input
+                            type="hidden"
+                            name="route.detailId"
+                            value="205687471"
+                          />
+                          <input
+                            type="hidden"
+                            name="route.detailRefNbr"
+                            value="202500136"
+                          />
+
+                          <tr class="eds-pagerstyle readonly" style="">
+                            <td align="right">Detail #&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <input
+                                type="text"
+                                name="route.detailId"
+                                class=""
+                                value="202500136"
+                                readonly="readonly"
+                                size="45"
+                              />
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle-alt dropdown" style="">
+                            <td align="right">Section *&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <select
+                                name="route.sections"
+                                class=""
+                                multiple="multiple"
+                              >
+                                <option value="61">61 - 61</option>
+                              </select>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle dropdown" style="">
+                            <td align="right">Routing&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <select
+                                name="route.routeType"
+                                class=""
+                                id="routeTypeSelectId"
+                                onchange="autoCloseIfRR();"
+                              >
+                                <option value="ETDT">ETDT</option>
+
+                                <option value="RR">RR</option>
+
+                                <option value="T5">T5</option>
+
+                                <option value="T6">T6</option>
+                              </select>
+                            </td>
+                          </tr>
+
+                          <tr
+                            class="eds-pagerstyle-alt eds-field-required"
+                            style=""
+                          >
+                            <td align="right">Route Date *&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <input
+                                type="text"
+                                name="route.routeDate"
+                                class=""
+                                id="routeDateId"
+                                value="02/23/2025"
+                                size="41"
+                                autocomplete="off"
+                              />
+
+                              <span
+                                ><img
+                                  onmouseover="this.style.cursor='hand'"
+                                  id="routeDateId_date"
+                                  align="ABSMIDDLE"
+                                  src="images/calendar.gif"
+                              /></span>
+                              <script>
+                                setupCal("routeDateId");
+                              </script>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle" style="">
+                            <td align="right">Disposition&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <input
+                                type="text"
+                                name="route.disposition"
+                                class=""
+                                id="dispositionId"
+                                value=""
+                                size="45"
+                                maxlength="20"
+                                autocomplete="off"
+                              />
+
+                              <div
+                                id="dispositionId_choices"
+                                class="autoCompleteClass"
+                                style="display: none"
+                              ></div>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle-alt" style="">
+                            <td align="right">Close Date&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <input
+                                type="text"
+                                name="route.closedate"
+                                class=""
+                                id="closeDateId"
+                                value=""
+                                size="41"
+                                onkeypress="beforeCloseDateChange(this)"
+                                onkeyup="onCloseDateChange(this)"
+                                autocomplete="off"
+                              />
+
+                              <span
+                                ><img
+                                  onmouseover="this.style.cursor='hand'"
+                                  id="closeDateId_date"
+                                  align="ABSMIDDLE"
+                                  src="images/calendar.gif"
+                              /></span>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle" style="">
+                            <td align="right">Remark&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <textarea
+                                rows="4"
+                                cols="28"
+                                name="route.remark"
+                                class=""
+                              ></textarea>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle-alt">
+                            <td colspan="2">
+                              <input
+                                type="hidden"
+                                name="submitType"
+                                value="add"
+                              />
+                              <span style="float: right">
+                                <input type="submit" value="Save" />
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </form>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</td>

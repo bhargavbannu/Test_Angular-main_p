@@ -24,10 +24,7 @@ dropdownValues:any[]=[]
       .pipe(
         debounceTime(1000),
         distinctUntilChanged(),
-        switchMap(() => {
-          console.log(this.vendorName);
-          console.log()
-          
+        switchMap(() => {          
           return this.appservice.getAutoPopulateVendors(this.vendorName);
         })
       )

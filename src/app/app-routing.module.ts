@@ -15,7 +15,7 @@ import { ManageDetailDocTypeComponent } from './component/Admin Configuration/ma
 import { ManageDocCategoriesComponent } from './component/Admin Configuration/manage-doc-categories/manage-doc-categories.component';
 import { ManageEccnLocationComponent } from './component/Admin Configuration/manage-eccn-location/manage-eccn-location.component';
 import { ManageEccnNumberComponent } from './component/Admin Configuration/manage-eccn-number/manage-eccn-number.component';
-import { HealthTestComponent } from './component/health-test/health-test.component'
+// import { HealthTestComponent } from './component/health-test/health-test.component'
 import { ViewSearchComponent } from './component/viewSearch/view-search/view-search.component';
 import { ViewAuditComponent } from './component/Audit docs/view-audit/view-audit.component';
 import { ViewAllAuditsComponent } from './component/Audit docs/view-all-audits/view-all-audits.component';
@@ -28,6 +28,7 @@ import { NewAuditComponent } from './component/Audit docs/new-audit/new-audit/ne
 import { ViewEsoComponent } from './component/ESO Docs/view-eso/view-eso/view-eso.component';
 import { EditEsoDocComponent } from './component/ESO Docs/edit-eso/edit-eso/edit-eso.component';
 import { ViewRouteChildComponent } from './component/Detail Docs/view-route-child/view-route-child.component';
+import { ReissueRouteComponent } from './component/Detail Docs/reissue-route/reissue-route.component';
 const routes: Routes = [
   {
     path: 'search',
@@ -93,6 +94,10 @@ const routes: Routes = [
     component: ViewSearchComponent,
   },
   {
+    path: 'reissue',
+    component: ReissueRouteComponent,
+  },
+  {
     path: 'viewAudit',
     component: ViewAuditComponent,
   },
@@ -124,9 +129,7 @@ const routes: Routes = [
    { path: 'edit-eso', 
     component: EditEsoDocComponent
    },
-  { path: 'health', 
-    component: HealthTestComponent
-   },
+
    { path: 'viewRoute', 
     component: ViewRouteChildComponent
    },

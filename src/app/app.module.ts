@@ -32,7 +32,7 @@ import { ManageDetailDocTypeComponent } from './component/Admin Configuration/ma
 import { ManageDocCategoriesComponent } from './component/Admin Configuration/manage-doc-categories/manage-doc-categories.component';
 import { ManageEccnLocationComponent } from './component/Admin Configuration/manage-eccn-location/manage-eccn-location.component';
 import { ManageEccnNumberComponent } from './component/Admin Configuration/manage-eccn-number/manage-eccn-number.component';
-import { HealthTestComponent } from './component/health-test/health-test.component';
+// import { HealthTestComponent } from './component/health-test/health-test.component';
 import { ViewSearchComponent } from './component/viewSearch/view-search/view-search.component';
 import { ViewAuditComponent } from './component/Audit docs/view-audit/view-audit.component';
 import { ViewAllAuditsComponent } from './component/Audit docs/view-all-audits/view-all-audits.component';
@@ -45,7 +45,8 @@ import { AddFormerVendorComponent } from './component/Former Vendor/add-former-v
 import { ViewEsoComponent } from './component/ESO Docs/view-eso/view-eso/view-eso.component';
 import { EditEsoDocComponent } from './component/ESO Docs/edit-eso/edit-eso/edit-eso.component';
 import {CalendarModule } from 'primeng/calendar';
-import { ViewRouteChildComponent } from './component/Detail Docs/view-route-child/view-route-child.component'
+import { ViewRouteChildComponent } from './component/Detail Docs/view-route-child/view-route-child.component';
+import { ReissueRouteComponent } from './component/Detail Docs/reissue-route/reissue-route.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,6 @@ import { ViewRouteChildComponent } from './component/Detail Docs/view-route-chil
     ManageDocCategoriesComponent,
     ManageEccnLocationComponent,
     ManageEccnNumberComponent,
-    HealthTestComponent,
     ViewSearchComponent,
     ViewAuditComponent,
     ViewAllAuditsComponent,
@@ -79,7 +79,8 @@ import { ViewRouteChildComponent } from './component/Detail Docs/view-route-chil
     AddFormerVendorComponent,
     ViewEsoComponent,
     EditEsoDocComponent,
-    ViewRouteChildComponent
+    ViewRouteChildComponent,
+    ReissueRouteComponent
   ],
   imports: [
     BrowserModule,

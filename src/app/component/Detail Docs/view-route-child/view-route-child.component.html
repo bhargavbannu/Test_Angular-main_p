@@ -359,8 +359,9 @@
                                   type="text"
                                   name="route.detailId"
                                   class=""
-                                  value="202500136"
-                                  readonly="readonly"
+                                  value=""
+                                  [(ngModel)]="viewRoute.route.detailId"
+                                
                                   size="45"
                                 />
                               </td>
@@ -378,8 +379,7 @@
                                   type="text"
                                   name="route.section"
                                   class=""
-                                  value="61"
-                                  readonly="readonly"
+                               [(ngModel)]="viewRoute.route.sectionForDisplay"
                                   size="45"
                                 />
                               </td>
@@ -392,8 +392,7 @@
                                   type="text"
                                   name="route.routeType"
                                   class=""
-                                  value="RR"
-                                  readonly="readonly"
+                                 [(ngModel)]="viewRoute.route.routeType"
                                   size="45"
                                 />
                               </td>
@@ -406,8 +405,7 @@
                                   type="text"
                                   name="route.routeDate"
                                   class=""
-                                  value="01/30/2025"
-                                  readonly="readonly"
+                                 [(ngModel)]="viewRoute.route.routeDate"
                                   size="41"
                                 />
                               </td>
@@ -421,7 +419,7 @@
                                   name="route.disposition"
                                   class=""
                                   id="dispositionId"
-                                  value="Closed"
+                                 [(ngModel)]="viewRoute.route.Disposition"
                                   size="45"
                                   maxlength="20"
                                   autocomplete="off"
@@ -443,7 +441,7 @@
                                   name="route.closedate"
                                   class=""
                                   id="closeDateId"
-                                  value="01/30/2025"
+                               [(ngModel)]="viewRoute.route.closedate"
                                   size="41"
                                   onkeypress="beforeCloseDateChange(this)"
                                   onkeyup="onCloseDateChange(this)"
@@ -470,6 +468,7 @@
                                   rows="4"
                                   cols="28"
                                   name="route.remark"
+                                  [(ngModel)]="viewRoute.route.remark"
                                   class=""
                                 ></textarea>
                               </td>
@@ -583,7 +582,7 @@
                                   value="edit"
                                 />
                                 <span style="float: right">
-                                  <input type="submit" value="Save" />
+                                  <input type="submit" value="Save" (click)="save()" />
                                 </span>
                               </td>
                             </tr>
