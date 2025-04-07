@@ -146,6 +146,7 @@
                       value=""
                       size="10"
                       autocomplete="off"
+                      [ngModel]="this.manualStartDate | date: 'MM/dd/yyyy'" 
                     />
 
                     <span
@@ -154,7 +155,10 @@
                         id="manualStartDateId_date"
                         align="ABSMIDDLE"
                         src="assets/images/calendar.gif"
+                        (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
                     /></span>
+                    <p-calendar name="calendarDate" #calendar1  [(ngModel)]="this.manualStartDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                     -
                     <input
                       type="text"
@@ -165,6 +169,7 @@
                       size="10"
                       tabindex="-1"
                       autocomplete="off"
+                      [ngModel]="this.manualEndDate | date: 'MM/dd/yyyy'" 
                     />
 
                     <span
@@ -173,7 +178,10 @@
                         id="manualEndDateId_date"
                         align="ABSMIDDLE"
                         src="assets/images/calendar.gif"
+                        (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild.nativeElement.click()"
                     /></span>
+                    <p-calendar name="calendarDate" #calendar2 [(ngModel)]="this.manualEndDate"  [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                   </td>
                 </tr>
 
@@ -193,6 +201,7 @@
                       size="10"
                       tabindex="-1"
                       autocomplete="off"
+                      [ngModel]="this.reissueStartDate | date: 'MM/dd/yyyy'"
                     />
 
                     <span
@@ -201,7 +210,10 @@
                         id="reissueStartDateId_date"
                         align="ABSMIDDLE"
                         src="assets/images/calendar.gif"
+                        (click)="calendar3.overlayVisible = !calendar3.overlayVisible; calendar3.inputfieldViewChild.nativeElement.click()"
                     /></span>
+                    <p-calendar name="calendarDate" #calendar3 [(ngModel)]="this.reissueStartDate"  [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                     -
                     <input
                       type="text"
@@ -212,6 +224,7 @@
                       size="10"
                       tabindex="-1"
                       autocomplete="off"
+                      [ngModel]="this.reissueEndDate | date: 'MM/dd/yyyy'"
                     />
 
                     <span
@@ -220,7 +233,10 @@
                         id="reissueEndDateId_date"
                         align="ABSMIDDLE"
                         src="assets/images/calendar.gif"
+                        (click)="calendar4.overlayVisible = !calendar4.overlayVisible; calendar4.inputfieldViewChild.nativeElement.click()"
                     /></span>
+                    <p-calendar name="calendarDate" #calendar4 [(ngModel)]="this.reissueEndDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                   </td>
                 </tr>
 

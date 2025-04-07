@@ -1,5 +1,5 @@
 <td align="left">
-  <a href="ViewDetail.html?detail.popno=205687471">Back to Detail/POP</a>
+  <a routerLink="/viewDetail">Back to Detail/POP</a>
   <br /><br />
   <div style="float: left">
     <table cellspacing="0" cellpadding="0" border="0">
@@ -51,15 +51,15 @@
                             <td width="250"></td>
                           </tr>
 
-                          <input
-                            type="hidden"
-                            name="route.detailId"
-                            value="205687471"
-                          />
                           <!-- <input
                             type="hidden"
+                            name="route.detailId"
+                            value="205687568"
+                          />
+                          <input
+                            type="hidden"
                             name="route.detailRefNbr"
-                            value="202500136"
+                            value="202500231"
                           /> -->
 
                           <tr class="eds-pagerstyle readonly" style="">
@@ -69,8 +69,7 @@
                                 type="text"
                                 name="route.detailId"
                                 class=""
-                                value="202500136"
-                                [(ngModel)]="DetailId"
+                                [(ngModel)]="DetailIdRefNmbr"
                                 readonly="readonly"
                                 size="45"
                               />
@@ -84,13 +83,12 @@
                                 name="route.sections"
                                 class=""
                                 multiple="multiple"
+                                [(ngModel)]="Section"
                               >
-                                <option value="61">61 - 61</option>
+                              <option value={{Section}} selected>{{Section}}</option>
                               </select>
                             </td>
                           </tr>
-
-                          <!-- tiles:put name="additionalFunction" value="<input type='button' value=' + ' onclick='alert(\"Hello\");'>"/ -->
 
                           <tr class="eds-pagerstyle dropdown" style="">
                             <td align="right">Routing&nbsp; &nbsp;</td>
@@ -99,11 +97,13 @@
                                 name="route.routeType"
                                 class=""
                                 id="routeTypeSelectId"
-                                onchange="autoCloseIfRR();"
+                                [(ngModel)]="routeType"
                               >
                                 <option value="ETDT">ETDT</option>
 
-                                <option value="RR">RR</option>
+                                <option value="RR" >
+                                  RR
+                                </option>
 
                                 <option value="T5">T5</option>
 
@@ -123,10 +123,10 @@
                                 name="route.routeDate"
                                 class=""
                                 id="routeDateId"
-                                value="02/23/2025"
+                                value="03/12/2025"
                                 size="41"
                                 autocomplete="off"
-                                [ngModel]="this.routeDate | date: 'MM/dd/yyyy'"
+                                [ngModel]="routeDate | date: 'MM/dd/yyyy'"
                               />
 
                               <span
@@ -137,11 +137,8 @@
                                   src="assets/images/calendar.gif"
                                   (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
                               /></span>
-                              <p-calendar name="calendarDate" #calendar1  [(ngModel)]="this.routeDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                              <p-calendar name="calendarDate" #calendar1  [(ngModel)]="routeDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
-                              <script>
-                                setupCal("routeDateId");
-                              </script>
                             </td>
                           </tr>
 
@@ -157,6 +154,7 @@
                                 size="45"
                                 maxlength="20"
                                 autocomplete="off"
+                                [(ngModel)]="disposition"
                               />
 
                               <div
@@ -178,7 +176,7 @@
                                 value=""
                                 size="41"
                                 autocomplete="off"
-                                [ngModel]="this.closeDate | date: 'MM/dd/yyyy'"
+                                [ngModel]="closeDate | date: 'MM/dd/yyyy'"
                               />
 
                               <span
@@ -189,7 +187,7 @@
                                   src="assets/images/calendar.gif"
                                   (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild.nativeElement.click()"
                               /></span>
-                              <p-calendar name="calendarDate" #calendar2  [(ngModel)]="this.closeDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                              <p-calendar name="calendarDate" #calendar2 [(ngModel)]="closeDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
                             </td>
                           </tr>
@@ -202,6 +200,7 @@
                                 cols="28"
                                 name="route.remark"
                                 class=""
+                                [(ngModel)]="remark"
                               ></textarea>
                             </td>
                           </tr>
@@ -214,7 +213,7 @@
                                 value="add"
                               />
                               <span style="float: right">
-                                <input type="submit" value="Save"  />
+                                <input type="submit" value="Save" (click)="save()"/>
                               </span>
                             </td>
                           </tr>

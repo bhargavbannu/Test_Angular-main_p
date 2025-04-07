@@ -97,6 +97,7 @@
                                             size="45"
                                             maxlength="10"
                                             autocomplete="off"
+                                            [(ngModel)]="this.eso"
                                           />
 
                                           <div
@@ -117,13 +118,16 @@
                                             <input
                                               type="submit"
                                               value=" Edit "
+                                              routerLink="/edit-eso"
+                                              (click)="editESO()"
                                             />
                                           </span>
                                           <span style="float: left">
                                             <input
                                               type="button"
                                               value=" View "
-                                              onclick="submitForView();"
+                                              routerLink="/view-eso"
+                                              (click)="viewESO()"
                                             />
                                           </span>
                                         </td>

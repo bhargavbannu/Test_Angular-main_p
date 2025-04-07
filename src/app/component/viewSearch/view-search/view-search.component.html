@@ -1,6 +1,7 @@
 <tbody>
   <div *ngIf="detailDeleted" class="savedDoc">SUCCESS: Successfully deleted Detail.</div>
   <div *ngIf="docAdded" class="savedDoc">SUCCESS: Document saved successfully.</div>
+  <div *ngIf="docMoved" class="savedDoc">SUCCESS: Document moved successfully.</div>
   <a *ngIf="!docAdded" style="font-weight: bolder" routerLink="/search">Back To Search Results</a>
   <tr>
     <td valign="top" align="left">
@@ -590,7 +591,7 @@
                                           <td>{{status.bin}}</td>
                                           <td>{{status.remark}}</td>
                                           <td>
-                                            <a routerLink="/viewDetail" (click)="viewDetail(status.popno)"
+                                            <a routerLink="/viewDetail" (click)="viewDetail(status.popno, status.popRefNbr)"
                                               >View</a
                                             >
                                           </td>

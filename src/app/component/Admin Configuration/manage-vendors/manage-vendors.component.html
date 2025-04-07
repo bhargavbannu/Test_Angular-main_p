@@ -550,6 +550,7 @@
                                         size="10"
                                         maxlength="10"
                                         autocomplete="off"
+                                        [ngModel]="this.supercedDate | date: 'MM/dd/yyyy'"
                                       />
 
                                       <span
@@ -557,8 +558,10 @@
                                           onmouseover="this.style.cursor='hand'"
                                           id="supercededdt_date"
                                           align="ABSMIDDLE"
-                                          src="images/calendar.gif"
+                                          src="assets/images/calendar.gif"
+                                          (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
                                       /></span>
+                                      <p-calendar name="calendarDate" #calendar1 [(ngModel)]="this.supercedDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
                                       <script>
                                         setupCal("supercededdt");
                                       </script>

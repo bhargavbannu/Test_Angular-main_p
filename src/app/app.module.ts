@@ -46,7 +46,8 @@ import { ViewEsoComponent } from './component/ESO Docs/view-eso/view-eso/view-es
 import { EditEsoDocComponent } from './component/ESO Docs/edit-eso/edit-eso/edit-eso.component';
 import {CalendarModule } from 'primeng/calendar';
 import { ViewRouteChildComponent } from './component/Detail Docs/view-route-child/view-route-child.component';
-import { ReissueRouteComponent } from './component/Detail Docs/reissue-route/reissue-route.component'
+import { ReissueRouteComponent } from './component/Detail Docs/reissue-route/reissue-route.component';
+import { NewrouteComponent } from './component/newroute/newroute.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +81,8 @@ import { ReissueRouteComponent } from './component/Detail Docs/reissue-route/rei
     ViewEsoComponent,
     EditEsoDocComponent,
     ViewRouteChildComponent,
-    ReissueRouteComponent
+    ReissueRouteComponent,
+    NewrouteComponent
   ],
   imports: [
     BrowserModule,

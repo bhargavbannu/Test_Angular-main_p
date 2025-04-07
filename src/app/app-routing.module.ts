@@ -29,6 +29,8 @@ import { ViewEsoComponent } from './component/ESO Docs/view-eso/view-eso/view-es
 import { EditEsoDocComponent } from './component/ESO Docs/edit-eso/edit-eso/edit-eso.component';
 import { ViewRouteChildComponent } from './component/Detail Docs/view-route-child/view-route-child.component';
 import { ReissueRouteComponent } from './component/Detail Docs/reissue-route/reissue-route.component';
+import { NewrouteComponent } from './component/newroute/newroute.component';
+
 const routes: Routes = [
   {
     path: 'search',
@@ -133,6 +135,14 @@ const routes: Routes = [
    { path: 'viewRoute', 
     component: ViewRouteChildComponent
    },
+   
+   { path: 'viewnewRoutw', 
+    component: NewrouteComponent
+   },
+   { path: 'reissueRoute', 
+    component: ReissueRouteComponent
+   },
+  
 
    
 ];

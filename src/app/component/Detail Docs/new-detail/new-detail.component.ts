@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { Calendar } from 'primeng/calendar';
 
 
 @Component({
@@ -25,6 +26,9 @@ export class NewDetailComponent {
   remark: any;
   detailDocType: any;
   formattedDate: any;
+
+  @ViewChild('calendar1') calendar1!: Calendar;
+
 
   constructor(private apiService: ApiService, private http: HttpClient, private datePipe:DatePipe, private router:Router) {}
 

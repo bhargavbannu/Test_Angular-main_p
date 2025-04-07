@@ -21,7 +21,8 @@
       <tr>
         <td align="left">
           <div *ngIf="detailSaved" class="savedDoc">SUCCESS: Successfully saved Detail.</div>
-
+          <div *ngIf="routeSaved" class="savedDoc">SUCCESS: Successfully saved Route.</div>
+          <div *ngIf="routeAdded" class="savedDoc">SUCCESS: Successfully Added Route.</div>
           <a
             style="font-size: larger; font-weight: bolder"
             routerLink="/search">Back To Search Results</a
@@ -239,7 +240,7 @@
                                         <input
                                           type="button"
                                           value="Move"
-                                          onclick="moveToAnotherDocument();"
+                                          (click)="moveDocument();"
                                         />
                                       </span>
                                       <span style="float: right">
@@ -361,7 +362,7 @@
                                       <br />
 
                                       <a
-                                       routerLink="/reissue"
+                                       routerLink="/viewnewRoutw"
                                         >Re-Issue</a
                                       >
                                       <!-- <a routerLink="/viewStatus">Back to Document</a> -->
@@ -371,7 +372,7 @@
                               </table>
 
                               <span style="float: right">
-                                <input type="submit" value="New Route" />
+                                <button type="submit" value="New Route"  routerLink="/viewnewRoutw" >New Route</button>
                               </span>
                             </form>
                           </td>

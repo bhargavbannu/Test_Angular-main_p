@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -11,6 +12,8 @@ export class SearchRoutesComponent {
   data: any;
   size: any;
   totalPages: any;
+routeStartDate: any;
+routeEndDate: any;
   constructor(private service: ApiService) {}
 
 
@@ -21,6 +24,10 @@ export class SearchRoutesComponent {
   start: any;
   maxVisibleButtons: any = 8;
   loading: boolean = false;
+
+@ViewChild('calendar1') calendar1!: Calendar;
+@ViewChild('calendar2') calendar2!: Calendar;
+
   ngOnInIt(){
    
     

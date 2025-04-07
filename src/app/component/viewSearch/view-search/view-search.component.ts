@@ -11,6 +11,7 @@ export class ViewSearchComponent {
   documentsDetails: any = [];
   docAdded :any;
   detailDeleted: any;
+  docMoved:any;
 
   constructor(private apiService: ApiService, private route:ActivatedRoute, private router:Router) {}
 
@@ -19,6 +20,7 @@ export class ViewSearchComponent {
     this.route.params.subscribe(params =>{
       this.docAdded = params['docAdded']
       this.detailDeleted = params['detailDeleted']
+      this.docMoved = params['docMoved']
     })
   }
 
@@ -43,8 +45,9 @@ export class ViewSearchComponent {
     this.apiService.viewAuditId = id;
   }
 
-  viewDetail(popno:any){
+  viewDetail(popno:any, popRefNbr:any){
   this.apiService.popno = popno;
+  this.apiService.popRefNbr = popRefNbr;
   }
 
   viewEso(eso:any){

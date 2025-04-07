@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
 // import {
 //   debounce,
@@ -15,6 +15,7 @@ import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { Calendar } from 'primeng/calendar';
 
 @Component({
   selector: 'app-document',
@@ -95,6 +96,11 @@ reissueDate: any;
  formattedDate:any;
  editDoc:any;
   documentsDetails: any;
+
+@ViewChild('calendar1') calendar1!: Calendar;
+@ViewChild('calendar2') calendar2!: Calendar;
+creationDate: any;
+
   constructor(private apiService: ApiService, private http: HttpClient, private router:Router, private datePipe:DatePipe, private route: ActivatedRoute) {}
 
   
@@ -210,7 +216,7 @@ reissueDate: any;
       this.selectedEsoNumber =  this.documentsDetails.documentEsos.map((res:any) => res.eso)
       this.allSelectedDocTypes = this.documentsDetails.document?.documentPartNumbers
       this.formattedDate = this.datePipe.transform(this.formattedDate, 'MM/dd/yyyy HH:mm:ss')
-
+      this.reissueDate = this.datePipe.transform(this.reissueDate, 'MM/dd/yyyy HH:mm:ss')
     })
   }
   }
@@ -257,6 +263,10 @@ removeDoc(){
     //     nextRouteType: this.nextRoute,
     //   },
     // };
+    if(this.reissueDate !== null && this.reissueDate !== undefined) {
+    this.reissueDate = this.datePipe.transform(this.reissueDate, 'MM/dd/yyyy HH:mm:ss')
+    }
+
     const payload = {
       "document": {
         "vendor": {        
@@ -269,6 +279,7 @@ removeDoc(){
         },
         "sections": this.docSection,
         "vendorDocRefNbr":this.vendorDocRef,
+        "documentPartNumbers":this.allSelectedDocTypes,
         "effectivityIds":this.docEffectivity,
         "ata":this.ata,
         "subject":this.documentSubject,

@@ -87,7 +87,7 @@
                               size="10"
                               maxlength="10"
                               autocomplete="off"
-                              [(ngModel)]="supercedeDate"
+                              [ngModel]="supercedeDate | date: 'MM/dd/yyyy'"
                             />
 
                             <span
@@ -96,7 +96,10 @@
                                 id="supercededdt_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
+                                (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
                             /></span>
+                            <p-calendar name="calendarDate" #calendar1  [(ngModel)]="supercedeDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                           </td>
                         </tr>
 

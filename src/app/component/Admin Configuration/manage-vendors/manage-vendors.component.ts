@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Calendar } from 'primeng/calendar';
 import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 
@@ -16,6 +17,8 @@ superced: boolean = false;
 isEditVendorTemp: boolean = false;
 newVendorName: any;
   error: boolean = false;
+  @ViewChild('calendar1') calendar1!: Calendar;
+supercedDate: any;
   constructor(private http: HttpClient, private appservice: ApiService) {}
 dropdownValues:any[]=[]
   subb = new Subject();

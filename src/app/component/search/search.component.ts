@@ -123,7 +123,7 @@ export class SearchComponent {
   eso: any;
   vendorPartRefNbr: any;
 
-  recordsPerPage: any = 10; // Number of records per page
+  recordsPerPage: any = 15; // Number of records per page
   currentPage: any = 1;
   totalPages: any;
 
@@ -162,40 +162,91 @@ export class SearchComponent {
     };
     this.apiService.saveFormData(formData);
     this.loading = true;
+
     this.start = (this.currentPage - 1) * this.recordsPerPage;
     this.size = this.recordsPerPage;
 
     const payload = {
       currentVendorOnly: this.checkBoxValue,
       vendorName: this.vendorName,
-      // esos: this.eso,
-      // vendorDocRefNbr: this.vendorPartRefNbr,
-    };
+        };
 
     this.apiService
-      .postData(payload, this.start / this.size, this.size)
+      .postData(payload, (this.start / this.size)+1, this.size)
       .subscribe((data) => {
         this.apiData = [...data.results];
-        this.totalCount = data.totalCount;
-        this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
-
+        // this.totalCount = data.totalCount;
+        // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
+          this.totalCount = data.totalRevisions
+          this.totalPages = data.totalPages
         this.loading = false;
         this.tableHeaders = Object.keys(this.apiData[0]); // Extract headers from the first object
       });
   }
 
+  Search1(){
+    const formData = {
+      vendorName: this.vendorName,
+      checkBoxValue: this.checkBoxValue,
+    };
+    this.apiService.saveFormData(formData);
+    this.loading = true;
+    this.start = (this.currentPage - 1) * this.recordsPerPage;
+    this.size = this.recordsPerPage;
+    const payload = 
+    {
+      "currentVendorOnly":true,
+      "advancedSearchHidden":false,
+      "vendorName":"HARCO",
+      "vendorPartRefNbr":"30404-000",
+      "section":["21","75"],
+      "documentSubject":"THERMOCOUPLE PROBE ASSEMBLY",
+      "subject":null,
+      "itar":"NO",
+      "eccnNumber":"9E991",
+      "eccnLocation":"CMM",
+      "ata":"77-21-15",
+      "effectivity":["A321","A319","A320"],
+      "docName":"28859458",
+      "detailId":null,
+      "bin":null,
+      "documentType":null,
+      "manualStartDate":null,
+      "manualEndDate":null,
+      "reissueStartDate":null,
+      "reissueEndDate":null,
+      "eco":null,
+      "eso":null
+    }
+    this.apiService
+    .postData(payload, (this.start / this.size)+1, this.size)
+    .subscribe((data) => {
+      this.apiData = [...data.results];
+      // this.totalCount = data.totalCount;
+      // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
+        this.totalCount = data.totalRevisions
+        this.totalPages = data.totalPages
+      this.loading = false;
+      this.tableHeaders = Object.keys(this.apiData[0]); // Extract headers from the first object
+    });
+    
+  }
+
   getVisiblePages(): number[] {
+    let totalVisible = this.maxVisibleButtons
     let startPage = Math.max(
       1,
-      this.currentPage - Math.floor(this.maxVisibleButtons / 2)
+      this.currentPage - Math.floor(totalVisible / 2)
     );
     let endPage = Math.min(
       startPage + this.maxVisibleButtons - 1,
       this.totalPages
     );
 
-    if (endPage - startPage < this.maxVisibleButtons - 1) {
-      startPage = Math.max(1, endPage - this.maxVisibleButtons + 1);
+
+    if(endPage > this.totalPages) {
+      endPage = this.totalPages;
+      startPage = Math.max(1, endPage - totalVisible + 1);
     }
 
     return Array.from(

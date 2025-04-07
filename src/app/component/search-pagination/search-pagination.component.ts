@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Calendar } from 'primeng/calendar';
 
 export interface PeriodicElement {
   id_no: string;
@@ -47,6 +48,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./search-pagination.component.css'],
 })
 export class SearchPaginationComponent {
+
+@ViewChild('calendar1') calendar1!: Calendar;
+@ViewChild('calendar2') calendar2!: Calendar;
+@ViewChild('calendar3') calendar3!: Calendar;
+@ViewChild('calendar4') calendar4!: Calendar;
+
   displayedColumns: string[] = [
     'id_no',
     'doc_ref',
@@ -193,6 +200,10 @@ export class SearchPaginationComponent {
     { value: '77', label: '77 - 77' },
   ];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+manualStartDate: any;
+manualEndDate: any;
+reissueStartDate: any;
+reissueEndDate: any;
 
   constructor() {}
 

@@ -1,6 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
-/* @import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css"; */
+
+@import "primeicons/primeicons.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -905,4 +904,34 @@ body {
    color: #8383b3;
    margin-right: 10px;
 }
+
+.hidden-calendar .p-inputtext {
+  display: none !important;
+}
+
+ .p-datepicker {
+  position: absolute !important;
+  top: -20px !important;
+  left: 5px !important;
+  transform-origin: top left !important;
+  transform: scale(0.75) !important;
+  z-index: 1001 !important;
+  width: auto !important;
+}
+
+.p-datepicker .p-yearpicker {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  width: max-content !important;
+}
+
+.p-datepicker .p-monthpicker {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  width: max-content !important;
+}
+
+
+
+
   

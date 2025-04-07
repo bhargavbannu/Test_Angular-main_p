@@ -64,6 +64,10 @@ export class ApiService {
   private viewEsoApi ='api/eso/viewESO'
   private saveEsoApi ='api/eso/saveESO'
   private deleteEsoApi ='api/eso/deleteESO'
+  private saveExistingRouteApi ='api/routing/saveRoute'
+  private addNewEsoApi='api/eso/addNewEso'
+  private moveDetailApi = 'api/detail/moveDetail'
+  private newRouteApi = 'api/routing/newRouteSave'
 
 detailRoute:any
   viewDocId: any;
@@ -74,8 +78,14 @@ detailRoute:any
   vendorName: any;
   subject: any;
   eso: any;
+  popRefNbr: any;
+  section: any;
 
   constructor(private http: HttpClient) {}
+
+saveExistingRouteView(viewRoute:any, payload:any){
+  return this.http.post<any>(`${this.saveExistingRouteApi}?routeId=${viewRoute}`, payload)
+}
 
  viewRouteDetailApi(id:any){
   return this.http.get<any>(`${this.viewRouteInDetail}=${id}`)
@@ -198,6 +208,7 @@ esoNumbersApiData(val:any):Observable<any>{
   eccnLocation(): Observable<any> {
     return this.http.get<any>(`${this.eccLocation}?sourceElement=`);
   }
+  
   audDocType(): Observable<any> {
     return this.http.get<any>(`${this.docType}?sourceElement=`);
   }
@@ -428,6 +439,18 @@ esoNumbersApiData(val:any):Observable<any>{
 
   deleteEso(payload:any): Observable<any> {
     return this.http.delete<any>(this.deleteEsoApi, payload);
+  }
+
+  addNewEso(payload:any): Observable<any> {
+    return this.http.post<any>(this.addNewEsoApi, payload);
+  }
+
+  moveDetail(payload:any): Observable<any> {
+    return this.http.post<any>(this.moveDetailApi, payload);
+  }
+
+  newRoute(payload:any){
+    return this.http.post<any>(this.newRouteApi, payload);
   }
 
   checkApiHealth(): Observable<any> {

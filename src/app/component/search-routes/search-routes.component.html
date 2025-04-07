@@ -753,6 +753,7 @@
                                                   size="10"
                                                   maxlength="10"
                                                   autocomplete="off"
+                                                  [ngModel]="this.routeStartDate | date:'MM/dd/yyyy'"
                                                 />
 
                                                 <span
@@ -761,8 +762,11 @@
                                                     id="routeDateStartId_date"
                                                     align="ABSMIDDLE"
                                                     src="assets/images/calendar.gif"
+                                                    (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
                                                     style="cursor: pointer"
                                                 /></span>
+                                                <p-calendar name="calendarDate" #calendar1 [(ngModel)]="this.routeStartDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                                                 -
                                                 <input
                                                   type="text"
@@ -773,6 +777,7 @@
                                                   size="10"
                                                   maxlength="10"
                                                   autocomplete="off"
+                                                  [ngModel]="this.routeEndDate | date:'MM/dd/yyyy'"
                                                 />
 
                                                 <span
@@ -781,8 +786,11 @@
                                                     id="routeDateEndId_date"
                                                     align="ABSMIDDLE"
                                                     src="assets/images/calendar.gif"
+                                                    (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild.nativeElement.click()"
                                                     style="cursor: pointer"
                                                 /></span>
+                                                <p-calendar name="calendarDate" #calendar2 [(ngModel)]="this.routeEndDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                                               </td>
                                             </tr>
                                             <tr style="color: black;">

@@ -335,7 +335,7 @@
     <br />
     <div class="pagination-container">
       <span class="pagebanner"
-        >{{ totalCount }} items found, displaying {{ start }} to
+        >{{ totalCount }} items found, displaying {{ start + 1 }} to
         {{ start + recordsPerPage }}.</span
       >
       <a
@@ -357,10 +357,10 @@
       <a
         *ngFor="let page of getVisiblePages(); let i = index"
         class="pagination-link"
-        (click)="goToPage(i + 1)"
-        [class.active]="currentPage === i + 1"
+        (click)="goToPage(page)"
+        [class.active]="currentPage === page"
       >
-        {{ i + 1 }}
+        {{ page }}
       </a>
       /
 

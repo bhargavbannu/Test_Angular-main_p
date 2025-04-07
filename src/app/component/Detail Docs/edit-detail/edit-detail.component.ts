@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 @Component({
   selector: 'app-edit-detail',
@@ -15,6 +16,9 @@ export class EditDetailComponent {
   vendorName: any;
   docSubject: any;
   formattedDate: any;
+
+  @ViewChild('calendar1') calendar1!: Calendar;
+
 
   constructor(
     private apiService: ApiService,
@@ -35,14 +39,13 @@ export class EditDetailComponent {
     });
   }
   saveEditDetail() {
-    if (this.formattedDate !== null && this.formattedDate!==undefined) {
+     if(this.docDetails?.detail.manualdate !== null && this.docDetails?.detail.manualdate !== undefined) {
       this.formattedDate = this.datePipe.transform(
         this.docDetails?.detail.manualdate,
         'MM/dd/yyyy HH:mm:ss'
       );
-    } else {
-      this.formattedDate = '';
     }
+ 
     const payload = {
       documentNbr: this.docNmbr,
       vendor: this.vendorName,

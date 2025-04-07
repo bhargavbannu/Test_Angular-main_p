@@ -1086,6 +1086,7 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
+                                                      [ngModel]="this.auditDateStart | date:'MM/dd/yyyy'"
                                                     />
 
                                                     <span
@@ -1094,7 +1095,10 @@
                                                         id="auditDateStartId_date"
                                                         align="ABSMIDDLE"
                                                         src="assets/images/calendar.gif"
+                                                        (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
                                                     /></span>
+                                                   <p-calendar name="calendarDate" #calendar1  [(ngModel)]="this.auditDateStart" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                                                     -
                                                     <input
                                                       type="text"
@@ -1105,6 +1109,7 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
+                                                      [ngModel]="this.auditDateEnd | date:'MM/dd/yyyy'"
                                                     />
 
                                                     <span
@@ -1113,7 +1118,10 @@
                                                         id="auditDateEndId_date"
                                                         align="ABSMIDDLE"
                                                         src="assets/images/calendar.gif"
+                                                        (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild.nativeElement.click()"
                                                     /></span>
+                                                    <p-calendar name="calendarDate" #calendar2 [(ngModel)]="this.auditDateEnd" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                                                   </td>
                                                 </tr>
                                               </tbody>
@@ -1162,6 +1170,7 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
+                                                      [ngModel]="this.unauditedDateStart | date:'MM/dd/yyyy'"
                                                     />
 
                                                     <span
@@ -1170,7 +1179,9 @@
                                                         id="unauditedDateStartId_date"
                                                         align="ABSMIDDLE"
                                                         src="assets/images/calendar.gif"
+                                                        (click)="calendar3.overlayVisible = !calendar3.overlayVisible; calendar3.inputfieldViewChild.nativeElement.click()"
                                                     /></span>
+                                                    <p-calendar name="calendarDate" #calendar3 [(ngModel)]="this.unauditedDateStart" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
                                                     -
 
@@ -1183,6 +1194,7 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
+                                                      [ngModel]="this.unauditedDateEnd | date:'MM/dd/yyyy'"
                                                     />
 
                                                     <span
@@ -1191,7 +1203,10 @@
                                                         id="unauditedDateEndId_date"
                                                         align="ABSMIDDLE"
                                                         src="assets/images/calendar.gif"
+                                                        (click)="calendar4.overlayVisible = !calendar4.overlayVisible; calendar4.inputfieldViewChild.nativeElement.click()"
                                                     /></span>
+                                                    <p-calendar name="calendarDate" #calendar4  [(ngModel)]="this.unauditedDateEnd" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                                                   </td>
                                                 </tr>
                                               </tbody>
@@ -1262,6 +1277,7 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
+                                                      [ngModel]="this.currentVendorRevisionDateStart | date:'MM/dd/yyyy'"
                                                     />
 
                                                     <span
@@ -1269,8 +1285,11 @@
                                                         onmouseover="this.style.cursor='hand'"
                                                         id="currentVendorRevisionDateStartId_date"
                                                         align="ABSMIDDLE"
-                                                        src="images/calendar.gif"
+                                                        src="assets/images/calendar.gif"
+                                                        (click)="calendar5.overlayVisible = !calendar5.overlayVisible; calendar5.inputfieldViewChild.nativeElement.click()"
                                                     /></span>
+                                                    <p-calendar name="calendarDate" #calendar5  [(ngModel)]="this.currentVendorRevisionDateStart" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                                                     -
                                                     <input
                                                       type="text"
@@ -1281,6 +1300,7 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
+                                                      [ngModel]="this.currentVendorRevisionDateEnd | date:'MM/dd/yyyy'"
                                                     />
 
                                                     <span
@@ -1289,7 +1309,10 @@
                                                         id="currentVendorRevisionDateEndId_date"
                                                         align="ABSMIDDLE"
                                                         src="assets/images/calendar.gif"
+                                                        (click)="calendar6.overlayVisible = !calendar6.overlayVisible; calendar6.inputfieldViewChild.nativeElement.click()"
                                                     /></span>
+                                                    <p-calendar name="calendarDate" #calendar6  [(ngModel)]="this.currentVendorRevisionDateEnd" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                                                   </td>
                                                 </tr>
                                               </tbody>

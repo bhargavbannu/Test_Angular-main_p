@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
@@ -13,12 +13,16 @@ import { ApiService } from 'src/app/api.service';
 export class EditEsoDocComponent {
   esoDetails:any
   showIcon: boolean = false;
-  @ViewChild('calendar') calendar!: Calendar;
+   @ViewChild('calendar1') calendar1!: Calendar;
+   @ViewChild('calendar2') calendar2!: Calendar;
+ // @ViewChildren('calendar') calendars!: QueryList<Calendar>;
+
     constructor(private apiService: ApiService, private router:Router,  private datePipe: DatePipe){}
 
   ngOnInit() {
     this.loadEso();
   }
+
 
   loadEso() {
     this.apiService.viewEso().subscribe((data) => {
@@ -32,6 +36,10 @@ export class EditEsoDocComponent {
       this.esoDetails?.esoData.assigndate,
       'MM/dd/yyyy HH:mm:ss'
     );
+    this.esoDetails.esoData.canceldate = this.datePipe.transform(
+      this.esoDetails?.esoData.canceldate,
+      'MM/dd/yyyy HH:mm:ss'
+    );
   let payload ={
     "submitType": "edit", 
     "eso": {
@@ -40,6 +48,7 @@ export class EditEsoDocComponent {
       "subject": this.esoDetails?.esoData.subject,
       "engineer": this.esoDetails?.esoData.engineer,
       "remark": this.esoDetails?.esoData.remark,
+      "canceldate":this.esoDetails?.esoData.canceldate,
       "status": this.esoDetails?.esoData.status
     }  
   }
@@ -53,17 +62,17 @@ export class EditEsoDocComponent {
    let payload={
       "submitType": "edit", 
       "eso": {
-        "eso": "61186"
+        "eso": this.esoDetails?.esoData.eso
       }
     }
     this.apiService.deleteEso(payload).subscribe()
    
   }
 
-  openCalendar(){
-    this.calendar.overlayVisible = !this.calendar.overlayVisible;
-    this.calendar.inputfieldViewChild.nativeElement.click()
 
-  }
+//   openCalendar(calendar: any){
+//    calendar.overlayVisible = !calendar.overlayVisible;
+//     calendar.inputfieldViewChild.nativeElement.click()
+// }
 
 }

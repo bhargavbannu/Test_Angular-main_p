@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -19,6 +20,10 @@ export class NewAuditComponent {
   revDate: any;
   auditNotes: any;
   documentDetail: any;
+
+  @ViewChild('calendar1') calendar1!: Calendar;
+  @ViewChild('calendar2') calendar2!: Calendar;
+  @ViewChild('calendar3') calendar3!: Calendar;
 
   constructor(private apiService: ApiService, private datePipe:DatePipe, private router:Router){}
 

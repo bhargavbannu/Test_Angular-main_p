@@ -366,7 +366,7 @@
                               size="41"
                               maxlength="10"
                               autocomplete="off"
-                              [(ngModel)]="revDate"
+                              [ngModel]="revDate | date: 'MM/dd/yyyy'"
                             />
 
                             <span
@@ -375,7 +375,10 @@
                                 id="manualDate_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
+                                (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
                             /></span>
+                            <p-calendar name="calendarDate" #calendar1 [(ngModel)]="revDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                           </td>
                         </tr>
 

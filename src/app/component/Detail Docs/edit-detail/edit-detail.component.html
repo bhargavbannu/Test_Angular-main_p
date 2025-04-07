@@ -400,7 +400,7 @@
                                 value=""
                                 size="41"
                                 autocomplete="off"
-                                [(ngModel)]="docDetails?.detail.manualdate"
+                                [ngModel]="docDetails?.detail.manualdate | date: 'MM/dd/yyyy'"
                               />
 
                               <span
@@ -409,7 +409,10 @@
                                   id="manualDate_date"
                                   align="ABSMIDDLE"
                                   src="assets/images/calendar.gif"
+                                  (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
                               /></span>
+                              <p-calendar name="calendarDate" #calendar1  [(ngModel)]="docDetails?.detail.manualdate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                             </td>
                           </tr>
 

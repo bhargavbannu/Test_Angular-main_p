@@ -80,7 +80,7 @@
                               value=""
                               size="41"
                               autocomplete="off"
-                              [(ngModel)]="auditData?.audit.auditDate"
+                              [ngModel]="auditData?.audit.auditDate | date:'MM/dd/yyyy'"
                             />
 
                             <span
@@ -89,7 +89,10 @@
                                 id="auditDateId_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
+                                (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
                             /></span>
+                            <p-calendar name="calendarDate" #calendar1 [showIcon]="false" [(ngModel)]="auditData?.audit.auditDate"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                           </td>
                         </tr>
 
@@ -154,7 +157,7 @@
                               size="41"
                               maxlength="10"
                               autocomplete="off"
-                              [(ngModel)]="auditData?.audit.revisionDate"
+                              [ngModel]="auditData?.audit.revisionDate | date:'MM/dd/yyyy'"
                             />
 
                             <span
@@ -163,7 +166,10 @@
                                 id="revisionDateId_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
+                                (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild.nativeElement.click()"
                             /></span>
+                            <p-calendar name="calendarDate" #calendar2 [showIcon]="false" [(ngModel)]="auditData?.audit.revisionDate"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                           </td>
                         </tr>
 
@@ -178,7 +184,7 @@
                               size="41"
                               maxlength="10"
                               autocomplete="off"
-                              [(ngModel)]="auditData?.audit.followUpDate"
+                              [ngModel]="auditData?.audit.followUpDate | date:'MM/dd/yyyy'"
                             />
 
                             <span
@@ -187,7 +193,10 @@
                                 id="followUpDateId_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
+                                (click)="calendar3.overlayVisible = !calendar3.overlayVisible; calendar3.inputfieldViewChild.nativeElement.click()"
                             /></span>
+                            <p-calendar name="calendarDate" #calendar3 [showIcon]="false" [(ngModel)]="auditData?.audit.followUpDate"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+
                           </td>
                         </tr>
 

@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -11,6 +12,8 @@ import { ApiService } from 'src/app/api.service';
 export class AddFormerVendorComponent {
   vendorName: any;
   supercedeDate: any;
+
+  @ViewChild('calendar1') calendar1!: Calendar;
 
   constructor(private apiService:ApiService, private datePipe:DatePipe){}
 
