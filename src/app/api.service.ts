@@ -71,6 +71,7 @@ export class ApiService {
   private moveDetailApi = 'api/detail/moveDetail'
   private newRouteApi = 'api/routing/newRouteSave'
   private esoByEffectivityAPi = 'api/eso/getEsoByEffectivityId'
+  private dispositionApi = 'api/routing/getDispositions'
 
 detailRoute:any
   viewDocId: any;
@@ -458,6 +459,10 @@ esoNumbersApiData(val:any):Observable<any>{
 
   esoByEffectivity(id:any){
     return this.http.get<any>(`${this.esoByEffectivityAPi}?effectivityId=${id}`)
+  }
+
+  disposition(value:any){
+    return this.http.get<any>(`${this.dispositionApi}?sourceElement=${value}`)
   }
 
   checkApiHealth(): Observable<any> {
