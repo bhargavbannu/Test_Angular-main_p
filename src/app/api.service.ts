@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -15,12 +16,13 @@ export class ApiService {
     private ecoNumbersValues = 'api/eco/getECOs?sourceElement';
     private esoNumbersApi = 'api/eso/getESOs?sourceElement';
     private auditableDocApi = 'api/adminConfiguration/getAuditableDetailDocTypes?sourceElement'
- private viewRouteInDetail = 'api/routing/viewRoute?routeId'
-  private manageEffectivitiesApi = 'api/adminConfiguration/manageEffectivities';
+ private viewRouteInDetail = 'api/routing/viewRoute?routeId';
+//  `${environment.apiBaseUrl}
+  private manageEffectivitiesApi = `${environment.apiBaseUrl}/adminConfiguration/manageEffectivities`;
   private manageEccnNumbersApi = 'api/adminConfiguration/manageEccnNumbers';
   private manageEccnLocationsApi = 'api/adminConfiguration/manageEccnLocations';
   private documentCategoriesApi = 'api/adminConfiguration/documentCategories';
-  private manageSectionsApi = 'api/adminConfiguration/manageSections';
+  private manageSectionsApi = `${environment.apiBaseUrl}/adminConfiguration/manageSections`;
   private addDocumentApi = 'api/addDocument/saveDocument';
   private saveManageSectionsApi = 'api/adminConfiguration/saveNewSection';
   private updateManageSectionsApi = 'api/adminConfiguration/editSection';
@@ -68,6 +70,7 @@ export class ApiService {
   private addNewEsoApi='api/eso/addNewEso'
   private moveDetailApi = 'api/detail/moveDetail'
   private newRouteApi = 'api/routing/newRouteSave'
+  private esoByEffectivityAPi = 'api/eso/getEsoByEffectivityId'
 
 detailRoute:any
   viewDocId: any;
@@ -451,6 +454,10 @@ esoNumbersApiData(val:any):Observable<any>{
 
   newRoute(payload:any){
     return this.http.post<any>(this.newRouteApi, payload);
+  }
+
+  esoByEffectivity(id:any){
+    return this.http.get<any>(`${this.esoByEffectivityAPi}?effectivityId=${id}`)
   }
 
   checkApiHealth(): Observable<any> {
