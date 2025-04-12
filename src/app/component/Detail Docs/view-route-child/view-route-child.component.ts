@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
@@ -16,6 +16,7 @@ export class ViewRouteChildComponent implements OnInit {
   viewRoute: any;
   routeData: any;
   edit: boolean = true;
+  ClosedRoute:any;
 
   private ecoNum = new Subject<any>();
   private esoNum = new Subject<any>();
@@ -24,11 +25,13 @@ export class ViewRouteChildComponent implements OnInit {
   ecoRes: any[] = [];
   typedEsoNumber: any;
   esoNumberRess: any[] = [];
+  disposition: any;
+  dispositionValues: any[] = [];
 
 
   @ViewChild('calendar1') calendar1!: Calendar;
 
-  constructor(private apiService: ApiService,  private router: Router, private datePipe: DatePipe) {}
+  constructor(private apiService: ApiService,  private router: Router, private datePipe: DatePipe, private route:ActivatedRoute) {}
 
   ngOnInit() {
     this.test();
@@ -56,6 +59,10 @@ export class ViewRouteChildComponent implements OnInit {
             console.log(res);
             
             this.esoNumberRess = res;
+          });
+
+          this.route.params.subscribe((params) => {
+            this.ClosedRoute = params['ClosedRoute'];          
           });
   }
 
@@ -131,7 +138,7 @@ test(){
         "routeType":  this.viewRoute.route.routeType,
         "section": this.viewRoute.route.section,
         "routeDate": this.viewRoute.route.routeDate,
-        "disposition": this.viewRoute.route.Disposition,
+        "disposition": this.viewRoute.route.disposition,
         "closedate": this.viewRoute.route.closedate,
         "remark": this.viewRoute.route.remark,
         "esos": this.viewRoute.route.esos,
@@ -147,4 +154,20 @@ test(){
     })
     // this.test();
    }
+
+   onDispositionChange(disposition: any) {
+    if (disposition.trim() !== '') {
+      this.apiService.disposition(disposition).subscribe((res) => {
+        this.dispositionValues = res;
+      });
+    } else {
+      this.dispositionValues = [];
+    }
+  }
+
+  selectValue(val: any) {
+    this.viewRoute.route.disposition = val;
+    this.dispositionValues = [];
+  }
+
 }

@@ -30,6 +30,8 @@
                 <!-- CONTENT -->
                 <table cellspacing="0" cellpadding="0" border="0">
                   <tbody>
+                    <div *ngIf="showError" class="errMsg">ESO number does not exist.</div>
+
                     <tr>
                       <td style="padding-top: 20px">
                         <table
@@ -38,6 +40,7 @@
                           cellpadding="0"
                           border="0"
                         >
+
                           <tbody>
                             <tr>
                               <td class="eds-tabtopleftcorner"></td>
@@ -98,7 +101,27 @@
                                             maxlength="10"
                                             autocomplete="off"
                                             [(ngModel)]="this.eso"
+                                            (ngModelChange)="onESOChange(this.eso)"
                                           />
+                                          <div
+                                          *ngIf="esoNumbers.length > 0"
+                                          style="
+                                            min-width: 120px;
+                                            background: lightgray;
+                                            position: absolute;
+                                          "
+                                        >
+                                          <div
+                                            *ngFor="
+                                              let eso of esoNumbers
+                                            "
+                                            (click)="selectEso(eso)"
+                                          >
+                                            <span style="cursor: pointer">{{
+                                              eso
+                                            }}</span>
+                                          </div>
+                                        </div>
 
                                           <div
                                             id="esoAutoComplete_choices"
@@ -118,7 +141,6 @@
                                             <input
                                               type="submit"
                                               value=" Edit "
-                                              routerLink="/edit-eso"
                                               (click)="editESO()"
                                             />
                                           </span>
@@ -126,7 +148,6 @@
                                             <input
                                               type="button"
                                               value=" View "
-                                              routerLink="/view-eso"
                                               (click)="viewESO()"
                                             />
                                           </span>

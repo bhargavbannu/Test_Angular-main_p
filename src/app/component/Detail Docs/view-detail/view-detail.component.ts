@@ -9,14 +9,12 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./view-detail.component.css'],
 })
 export class ViewDetailComponent implements OnInit {
-  viewRoute(arg0: any) {
-    this.apiService.detailRoute = arg0;
-
-  }
+  closedbtn: any;
   docDetails: any;
   detailSaved: any;
   routeSaved:any;
   routeAdded:any
+  type: any;
   constructor(private apiService: ApiService, private route: ActivatedRoute, private http:HttpClient, private router:Router) {}
 
   ngOnInit() {
@@ -25,7 +23,13 @@ export class ViewDetailComponent implements OnInit {
       this.detailSaved = params['detailSaved'];
       this.routeSaved = params['routeSaved'];
       this.routeAdded = params['routeAdded'];
+      this.closedbtn = params['closedbtn'];
     });
+    this.type = this.apiService.type;
+  }
+
+  viewRoute(arg0: any) {
+    this.apiService.detailRoute = arg0;
   }
 
   loadDetails() {
@@ -50,4 +54,16 @@ export class ViewDetailComponent implements OnInit {
       
     }
   }
+
+  closed(routeId:any){
+    this.apiService.detailRoute = routeId;
+    this.router.navigate(['/viewRoute', { ClosedRoute: true }]);
+  }
+  reIssue(){
+    this.apiService.type ="reIssue"
+  }
+  newRoute(){
+    this.apiService.type ="new"
+  }
+
 }

@@ -18,6 +18,7 @@
                       size="20"
                       maxlength="40"
                       tabindex="-1"
+                      [(ngModel)]="vdtId"
                     />
                   </td>
                 </tr>
@@ -34,8 +35,8 @@
                       multiple="multiple"
                       style="font-family: Arial; font-size: 12px"
                       tabindex="-1"
+                      [(ngModel)]=selectedEffectivity
                     >
-                      <option value=""></option>
                       <option
                         *ngFor="let option of options"
                         [value]="option.value"
@@ -53,11 +54,12 @@
                       type="text"
                       name="subject"
                       class=""
-                      id="detailId"
+                      id="subject"
                       value=""
                       size="20"
                       maxlength="40"
                       tabindex="-1"
+                      [(ngModel)]="subject"
                     />
                   </td>
                 </tr>
@@ -73,6 +75,7 @@
                       size="20"
                       maxlength="40"
                       tabindex="-1"
+                      [(ngModel)]="bin"
                     />
                   </td>
                 </tr>
@@ -88,6 +91,7 @@
                       size="20"
                       maxlength="42"
                       tabindex="-1"
+                      [(ngModel)]="documentType"
                     />
                   </td>
                 </tr>
@@ -105,7 +109,7 @@
                           <td align="right"></td>
                         </tr>
                         <tr
-                          class="eds-pagerstyle inline-table_dark_grey search-style"
+                          class="eds-pagerstyle search-style dropdown inline-table_dark_grey"
                         >
                           <td align="right">Section&nbsp; &nbsp;</td>
                           <td align="left">
@@ -120,8 +124,9 @@
                                 font-size: 12px;
                               "
                               tabindex="-1"
+                              [(ngModel)]=selectedSection
                             >
-                              <option *ngFor="let option of sectionsList">
+                              <option *ngFor="let option of sectionsList"  [value]="option.value">
                                 {{ option.label }}
                               </option>
                             </select>
@@ -253,6 +258,7 @@
                       size="34"
                       maxlength="40"
                       tabindex="-1"
+                      [(ngModel)]="documentSubject"
                     />
 
                     &nbsp;

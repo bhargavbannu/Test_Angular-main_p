@@ -905,6 +905,20 @@ body {
    margin-right: 10px;
 }
 
+.errMsg {
+  background: lightgray;
+  color: red;
+  padding-left: 38px;
+  margin-top: 6px;
+  border: 1.5px solid #8383b3;
+}
+
+.errMsg::before {
+ content: "\2022";
+ color: red;
+ margin-right: 10px;
+}
+
 .hidden-calendar .p-inputtext {
   display: none !important;
 }

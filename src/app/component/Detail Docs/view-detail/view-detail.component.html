@@ -363,8 +363,15 @@
 
                                       <a
                                        routerLink="/viewnewRoutw"
+                                       (click)="reIssue()"
                                         >Re-Issue</a
                                       >
+                                      &nbsp;
+                                      <a *ngIf ="closedbtn && type ==='reIssue'"
+                                      routerLink="/viewRoute"
+                                      (click)="closed(status.routeId)"
+                                       >Closed</a
+                                     >
                                       <!-- <a routerLink="/viewStatus">Back to Document</a> -->
                                     </td>
                                   </tr>
@@ -372,7 +379,7 @@
                               </table>
 
                               <span style="float: right">
-                                <button type="submit" value="New Route"  routerLink="/viewnewRoutw" >New Route</button>
+                                <button type="submit" value="New Route"  routerLink="/viewnewRoutw"  (click)="newRoute()">New Route</button>
                               </span>
                             </form>
                           </td>

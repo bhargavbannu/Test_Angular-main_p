@@ -1,4 +1,4 @@
-<td align="left" *ngIf="edit">
+<td align="left" *ngIf="edit && !ClosedRoute">
   <!-- CONTENT -->
 
   <input
@@ -123,7 +123,7 @@
                             <td align="right">Disposition&nbsp; &nbsp;</td>
                             <td align="left">
                               <span class="viewFieldText">{{
-                                viewRoute?.route.Disposition
+                                viewRoute?.route.disposition
                               }}</span>
                             </td>
                           </tr>
@@ -287,7 +287,7 @@
   </div>
 </td>
 
-<div *ngIf="!edit">
+<div *ngIf="!edit || ClosedRoute">
   <td align="left">
     <a routerLink="/viewDetail">Back to Detail/POP</a>
     <br /><br />
@@ -360,7 +360,7 @@
                                   name="route.detailId"
                                   class=""
                                   value=""
-                                  [(ngModel)]="viewRoute.route.detailId"
+                                  [(ngModel)]="viewRoute?.route.detailId"
                                   readonly="readonly"
                                   size="45"
                                 />
@@ -379,7 +379,7 @@
                                   type="text"
                                   name="route.section"
                                   class=""
-                                  [(ngModel)]="viewRoute.route.sectionForDisplay"
+                                  [(ngModel)]="viewRoute?.route.sectionForDisplay"
                                   size="45"
                                   readonly="readonly"
                                 />
@@ -393,7 +393,7 @@
                                   type="text"
                                   name="route.routeType"
                                   class=""
-                                 [(ngModel)]="viewRoute.route.routeType"
+                                 [(ngModel)]="viewRoute?.route.routeType"
                                   size="45"
                                   readonly="readonly"
                                 />
@@ -407,7 +407,7 @@
                                   type="text"
                                   name="route.routeDate"
                                   class=""
-                                  [(ngModel)]="viewRoute.route.routeDate"
+                                  [(ngModel)]="viewRoute?.route.routeDate"
                                   size="41"
                                   readonly="readonly"
                                 />
@@ -422,11 +422,31 @@
                                   name="route.disposition"
                                   class=""
                                   id="dispositionId"
-                                 [(ngModel)]="viewRoute.route.Disposition"
+                                 [(ngModel)]="viewRoute?.route.disposition"
                                   size="45"
                                   maxlength="20"
                                   autocomplete="off"
+                                  (ngModelChange)="onDispositionChange(viewRoute?.route.disposition)"
                                 />
+                                <div
+                                *ngIf="dispositionValues.length > 0"
+                                style="
+                                  min-width: 256px;
+                                  background: lightgray;
+                                  position: absolute;
+                                "
+                              >
+                                <div
+                                  *ngFor="
+                                    let val of dispositionValues
+                                  "
+                                  (click)="selectValue(val)"
+                                >
+                                  <span style="cursor: pointer">{{
+                                    val
+                                  }}</span>
+                                </div>
+                              </div>
 
                                 <div
                                   id="dispositionId_choices"
@@ -444,7 +464,7 @@
                                   name="route.closedate"
                                   class=""
                                   id="closeDateId"
-                                  [ngModel]="viewRoute.route.closedate | date: 'MM/dd/yyyy'"
+                                  [ngModel]="viewRoute?.route.closedate | date: 'MM/dd/yyyy'"
                                   size="41"
                                   autocomplete="off"
                                 />
@@ -457,7 +477,7 @@
                                     src="assets/images/calendar.gif"
                                     (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
                                 /></span>
-                                <p-calendar name="calendarDate" #calendar1 [(ngModel)]="viewRoute.route.closedate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                                <p-calendar name="calendarDate" #calendar1 [(ngModel)]="viewRoute?.route.closedate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
                                 <script>
                                   setupCal("closeDateId");
@@ -472,7 +492,7 @@
                                   rows="4"
                                   cols="28"
                                   name="route.remark"
-                                  [(ngModel)]="viewRoute.route.remark"
+                                  [(ngModel)]="viewRoute?.route.remark"
                                   class=""
                                 ></textarea>
                               </td>
@@ -490,9 +510,9 @@
                                   multiple="multiple"
                                   style="width: 120px"
                                   maxlength="20"
-                                  [(ngModel)]="viewRoute.route.ecos[0]"
+                                  [(ngModel)]="viewRoute?.route.ecos[0]"
                                 >
-                                <option>{{ viewRoute.route.ecos[0] }}</option>
+                                <option>{{ viewRoute?.route.ecos[0] }}</option>
                               </select>
 
                                 <br />
@@ -555,10 +575,10 @@
                                   multiple="multiple"
                                   style="width: 120px"
                                   maxlength="20"
-                                  [(ngModel)]="viewRoute.route.esos[0]"
+                                  [(ngModel)]="viewRoute?.route.esos[0]"
                                 >
                                 <option>
-                                  {{ viewRoute.route.esos[0] }}
+                                  {{ viewRoute?.route.esos[0] }}
                                 </option>
                               </select>
 

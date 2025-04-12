@@ -84,6 +84,7 @@ detailRoute:any
   eso: any;
   popRefNbr: any;
   section: any;
+  type: any;
 
   constructor(private http: HttpClient) {}
 

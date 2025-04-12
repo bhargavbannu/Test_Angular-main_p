@@ -140,6 +140,9 @@ creationDate: any;
     // })
     const date = new Date();
     this.formattedDate = this.datePipe.transform(date, 'MM/dd/yyyy HH:mm:ss')
+    if(this.reissueDate !== null && this.reissueDate !== undefined && this.reissueDate !=='null') {
+      this.reissueDate = this.datePipe.transform(this.reissueDate, 'MM/dd/yyyy')
+      }
 
     this.auditableSubject.pipe(
       switchMap(()=>{
@@ -192,6 +195,9 @@ creationDate: any;
     })
 
     if(this.editDoc){
+      if(this.reissueDate !== null && this.reissueDate !== undefined && this.reissueDate !=='null') {
+        this.reissueDate = this.datePipe.transform(this.reissueDate, 'MM/dd/yyyy HH:mm:ss')
+        }
     this.apiService.viewDocuments().subscribe((data) => {   
       this.documentsDetails = data;
       this.vendorName = this.documentsDetails.document?.vendor.vendorNm;
@@ -216,7 +222,7 @@ creationDate: any;
       this.selectedEsoNumber =  this.documentsDetails.documentEsos.map((res:any) => res.eso)
       this.allSelectedDocTypes = this.documentsDetails.document?.documentPartNumbers
       this.formattedDate = this.datePipe.transform(this.formattedDate, 'MM/dd/yyyy HH:mm:ss')
-      this.reissueDate = this.datePipe.transform(this.reissueDate, 'MM/dd/yyyy HH:mm:ss')
+      this.reissueDate = this.reissueDate
     })
   }
   }
@@ -263,7 +269,7 @@ removeDoc(){
     //     nextRouteType: this.nextRoute,
     //   },
     // };
-    if(this.reissueDate !== null && this.reissueDate !== undefined) {
+    if(this.reissueDate !== null && this.reissueDate !== undefined && this.reissueDate !=='null') {
     this.reissueDate = this.datePipe.transform(this.reissueDate, 'MM/dd/yyyy HH:mm:ss')
     }
 

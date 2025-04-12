@@ -1,5 +1,5 @@
 <td align="left">
-  <a routerLink="/viewDetail">Back to Detail/POP</a>
+  <a routerLink="/viewDetail" (click)="backToDetail()">Back to Detail/POP</a>
   <br /><br />
   <div style="float: left">
     <table cellspacing="0" cellpadding="0" border="0">
@@ -155,7 +155,27 @@
                                 maxlength="20"
                                 autocomplete="off"
                                 [(ngModel)]="disposition"
+                                (ngModelChange)="onDispositionChange(disposition)"
                               />
+                              <div
+                              *ngIf="dispositionValues.length > 0"
+                              style="
+                                min-width: 256px;
+                                background: lightgray;
+                                position: absolute;
+                              "
+                            >
+                              <div
+                                *ngFor="
+                                  let val of dispositionValues
+                                "
+                                (click)="selectValue(val)"
+                              >
+                                <span style="cursor: pointer">{{
+                                  val
+                                }}</span>
+                              </div>
+                            </div>
 
                               <div
                                 id="dispositionId_choices"

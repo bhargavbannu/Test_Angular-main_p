@@ -399,55 +399,55 @@
                                             multiple="multiple"
                                             [(ngModel)]="docSection"
                                           >
-                                            <option value="0">0 - 0</option>
+                                            <option value="0-0">0 - 0</option>
 
-                                            <option value="10">10 - 10</option>
+                                            <option value="10-10">10 - 10</option>
 
-                                            <option value="12">12 - 12</option>
+                                            <option value="12-12">12 - 12</option>
 
-                                            <option value="14">14 - 14</option>
+                                            <option value="14-14">14 - 14</option>
 
-                                            <option value="17">17 - 17</option>
+                                            <option value="17-17">17 - 17</option>
 
-                                            <option value="20">20 - 20</option>
+                                            <option value="20-20">20 - 20</option>
 
-                                            <option value="21">21 - 21</option>
+                                            <option value="21-21">21 - 21</option>
 
-                                            <option value="23">23 - 23</option>
+                                            <option value="23-23">23 - 23</option>
 
-                                            <option value="30">30 - 30</option>
+                                            <option value="30-30">30 - 30</option>
 
-                                            <option value="36">36 - 36</option>
+                                            <option value="36-36">36 - 36</option>
 
-                                            <option value="38">38 - 38</option>
+                                            <option value="38-38">38 - 38</option>
 
-                                            <option value="39">39 - 39</option>
+                                            <option value="39-39">39 - 39</option>
 
-                                            <option value="40">40 - 40</option>
+                                            <option value="40-40">40 - 40</option>
 
-                                            <option value="44">44 - 44</option>
+                                            <option value="44-44">44 - 44</option>
 
-                                            <option value="47">47 - 47</option>
+                                            <option value="47-47">47 - 47</option>
 
-                                            <option value="60">60 - 60</option>
+                                            <option value="60-60">60 - 60</option>
 
-                                            <option value="61">61 - 61</option>
+                                            <option value="61-61">61 - 61</option>
 
-                                            <option value="63">63 - 63</option>
+                                            <option value="63-63">63 - 63</option>
 
-                                            <option value="71">71 - 71</option>
+                                            <option value="71-71">71 - 71</option>
 
-                                            <option value="72">72 - 72</option>
+                                            <option value="72-72">72 - 72</option>
 
-                                            <option value="73">73 - 73</option>
+                                            <option value="73-73">73 - 73</option>
 
-                                            <option value="74">
+                                            <option value="74 - 74-CHRISTOPHER REEVES">
                                               74 - 74-CHRISTOPHER REEVES
                                             </option>
 
-                                            <option value="75">75 - 75</option>
+                                            <option value="75-75">75 - 75</option>
 
-                                            <option value="77">77 - 77</option>
+                                            <option value="77-77">77 - 77</option>
                                           </select>
                                         </td>
                                       </tr>
@@ -518,8 +518,9 @@
                                             value=""
                                             size="41"
                                             maxlength="10"
-                                            autocomplete="off"
-                                            [ngModel]="this.reissueDate | date:'MM/dd/yyyy'"
+                                            autocomplete="off"                  
+                                            [ngModel]="this.reissueDate !=='null' && this.reissueDate !==undefined && this.reissueDate !==null ? (this.reissueDate | date:'MM/dd/yyyy') : ''"
+                                           
                                           />
 
                                           <span

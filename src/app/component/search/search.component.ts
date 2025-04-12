@@ -1,9 +1,10 @@
 import { sanitizeIdentifier } from '@angular/compiler';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { setLines } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
+import { SearchPaginationComponent } from '../search-pagination/search-pagination.component';
 
 @Component({
   selector: 'app-search',
@@ -135,26 +136,45 @@ export class SearchComponent {
   size: any;
   loading: boolean = false;
   checkBoxValue: boolean = true;
+  advancedSearchHidden: boolean = true;
+  detailDocType: any;
+  eco: any;
+  ata: any;
+  detailId: any;
+  @ViewChild(SearchPaginationComponent) searchPagination!: SearchPaginationComponent;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private apiService: ApiService
-  ) {}
+    private apiService: ApiService,
+    private cdr : ChangeDetectorRef
+  ) {
+  }
   // "28796727"
 
   ngOnInit() {
+    this.advancedSearchValue = 'Advanced Search (Display)';
+   // this.router.navigateByUrl('/search');
+  }
+  ngAfterViewInit() {
     const formData = this.apiService.getFormData();
     if (formData) {
       this.vendorName = formData.vendorName;
       this.checkBoxValue = formData.checkBoxValue;
+      this.detailDocType = formData.detailDocType, 
+      this.eso = formData.eso,
+      this.eco = formData.eco,
+      this.ata = formData.ata,
+      this.detailId = formData.detailId,
+      this.advancedSearchHidden = formData.advancedSearchHidden
+      setTimeout(() => {
+        this.Search1();
+      }, 0);
     }
-    if (this.vendorName !== undefined) {
-      this.Search();
-    }
-    this.advancedSearchValue = 'Advanced Search (Display)';
-    this.router.navigateByUrl('/search');
+    this.cdr.detectChanges();
+
   }
+
   Search() {
     const formData = {
       vendorName: this.vendorName,
@@ -169,71 +189,89 @@ export class SearchComponent {
     const payload = {
       currentVendorOnly: this.checkBoxValue,
       vendorName: this.vendorName,
-        };
+    };
 
     this.apiService
-      .postData(payload, (this.start / this.size)+1, this.size)
+      .postData(payload, this.start / this.size + 1, this.size)
       .subscribe((data) => {
         this.apiData = [...data.results];
         // this.totalCount = data.totalCount;
         // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
-          this.totalCount = data.totalRevisions
-          this.totalPages = data.totalPages
+        this.totalCount = data.totalRevisions;
+        this.totalPages = data.totalPages;
         this.loading = false;
         this.tableHeaders = Object.keys(this.apiData[0]); // Extract headers from the first object
       });
   }
 
-  Search1(){
+  Search1() {  
     const formData = {
       vendorName: this.vendorName,
       checkBoxValue: this.checkBoxValue,
+      detailDocType: this.detailDocType, 
+      eso: this.eso,
+      eco: this.eco,
+      ata: this.ata,
+      detailId: this.detailId,
+      advancedSearchHidden: this.advancedSearchHidden, 
+      vdtId: this.searchPagination?.vdtId,
+      selectedEffectivity: this.searchPagination?.selectedEffectivity,
+      subject: this.searchPagination?.subject,
+      bin: this.searchPagination?.bin,
+      selectedSection:this.searchPagination?.selectedSection,
+      manualStartDate: this.searchPagination?.manualStartDate,
+      manualEndDate: this.searchPagination?.manualEndDate,
+      reissueStartDate: this.searchPagination?.reissueStartDate,
+      reissueEndDate: this.searchPagination?.reissueEndDate,
+      documentSubject: this.searchPagination?.documentSubject
     };
     this.apiService.saveFormData(formData);
     this.loading = true;
     this.start = (this.currentPage - 1) * this.recordsPerPage;
     this.size = this.recordsPerPage;
-    const payload = 
-    {
-      "currentVendorOnly":true,
-      "advancedSearchHidden":false,
-      "vendorName":"HARCO",
-      "vendorPartRefNbr":"30404-000",
-      "section":["21","75"],
-      "documentSubject":"THERMOCOUPLE PROBE ASSEMBLY",
-      "subject":null,
-      "itar":"NO",
-      "eccnNumber":"9E991",
-      "eccnLocation":"CMM",
-      "ata":"77-21-15",
-      "effectivity":["A321","A319","A320"],
-      "docName":"28859458",
-      "detailId":null,
-      "bin":null,
-      "documentType":null,
-      "manualStartDate":null,
-      "manualEndDate":null,
-      "reissueStartDate":null,
-      "reissueEndDate":null,
-      "eco":null,
-      "eso":null
-    }
+    const payload = {
+      vendorName: this.vendorName,
+      currentVendorOnly: this.checkBoxValue,
+      vendorPartRefNbr: this.vendorPartRefNbr,
+      documentType: this.detailDocType, 
+      eso: this.eso,
+      eco: this.eco,
+      ata: this.ata,
+      detailId: this.detailId,
+      advancedSearchHidden: this.advancedSearchHidden, 
+      docName: this.searchPagination?.vdtId,
+      effectivity: this.searchPagination?.selectedEffectivity,
+      subject: this.searchPagination?.subject,
+      bin: this.searchPagination?.bin,
+      section:this.searchPagination?.selectedSection,
+      manualStartDate: this.searchPagination?.manualStartDate,
+      manualEndDate: this.searchPagination?.manualEndDate,
+      reissueStartDate: this.searchPagination?.reissueStartDate,
+      reissueEndDate: this.searchPagination?.reissueEndDate,
+      documentSubject: this.searchPagination?.documentSubject,
+      //itar: 'NO',
+      // eccnNumber: '9E991',
+      // eccnLocation: 'CMM',
+
+
+    };
     this.apiService
-    .postData(payload, (this.start / this.size)+1, this.size)
-    .subscribe((data) => {
-      this.apiData = [...data.results];
-      // this.totalCount = data.totalCount;
-      // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
-        this.totalCount = data.totalRevisions
-        this.totalPages = data.totalPages
-      this.loading = false;
-      this.tableHeaders = Object.keys(this.apiData[0]); // Extract headers from the first object
-    });
-    
+      .postData(payload, this.start / this.size + 1, this.size)
+      .subscribe((data) => {
+        this.apiData = [...data.results];
+        // this.totalCount = data.totalCount;
+        // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
+        this.totalCount = data.totalRevisions;
+        this.totalPages = data.totalPages;
+        this.loading = false;
+        if(this.apiData.length > 0){
+        this.tableHeaders = Object.keys(this.apiData[0]); 
+        }// Extract headers from the first object
+      });
   }
 
   getVisiblePages(): number[] {
-    let totalVisible = this.maxVisibleButtons
+    let totalVisible = this.maxVisibleButtons;
     let startPage = Math.max(
       1,
       this.currentPage - Math.floor(totalVisible / 2)
@@ -243,8 +281,7 @@ export class SearchComponent {
       this.totalPages
     );
 
-
-    if(endPage > this.totalPages) {
+    if (endPage > this.totalPages) {
       endPage = this.totalPages;
       startPage = Math.max(1, endPage - totalVisible + 1);
     }
@@ -288,14 +325,16 @@ export class SearchComponent {
   advancedSearch() {
     if (this.advancedSearchValue === 'Advanced Search (Display)') {
       this.advancedSearchValue = 'Advanced Search (Hide)';
-      this.router.navigateByUrl('/search/advance-search');
+      this.advancedSearchHidden = false;
+      // this.router.navigateByUrl('/search/advance-search');
     } else {
       this.advancedSearchValue = 'Advanced Search (Display)';
-      this.router.navigateByUrl('/search');
+      this.advancedSearchHidden = true;
+      // this.router.navigateByUrl('/search');
     }
   }
 
-  viewClick(id: any, vendorName:any, subject:any) {
+  viewClick(id: any, vendorName: any, subject: any) {
     this.apiService.viewDocId = id;
     this.apiService.vendorName = vendorName;
     this.apiService.subject = subject;

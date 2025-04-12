@@ -1,6 +1,6 @@
 <div>
   <form
-    (submit)="Search()"
+    (submit)="Search1()"
     class="formClass"
     name="SearchForm"
     id="searchFormId"
@@ -145,6 +145,7 @@
                                         name="detailDocType"
                                         class=""
                                         tabindex="-1"
+                                        [(ngModel)]="detailDocType"
                                       >
                                         <option *ngFor="let doc of documents">
                                           {{ doc.label }}
@@ -190,6 +191,7 @@
                                         size="20"
                                         maxlength="40"
                                         tabindex="-1"
+                                        [(ngModel)]="eco"
                                       />
                                     </td>
                                   </tr>
@@ -208,6 +210,7 @@
                                         size="20"
                                         maxlength="40"
                                         tabindex="-1"
+                                        [(ngModel)]="ata"
                                       />
                                     </td>
                                   </tr>
@@ -228,6 +231,7 @@
                                         size="20"
                                         maxlength="40"
                                         tabindex="-1"
+                                        [(ngModel)]="detailId"
                                       />
                                     </td>
                                   </tr>
@@ -268,8 +272,9 @@
                     </td>
                     <td></td>
                   </tr>
-                  <div>
-                    <router-outlet></router-outlet>
+                  <div *ngIf="advancedSearchHidden === false">
+                    <app-search-pagination></app-search-pagination>
+                    <!-- <router-outlet></router-outlet> -->
                   </div>
                   <tr class="eds-pagerstyle-alt blueColSpan">
                     <td colspan="2">

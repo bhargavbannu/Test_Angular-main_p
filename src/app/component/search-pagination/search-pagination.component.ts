@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Calendar } from 'primeng/calendar';
+import { ApiService } from 'src/app/api.service';
 
 export interface PeriodicElement {
   id_no: string;
@@ -204,8 +205,31 @@ manualStartDate: any;
 manualEndDate: any;
 reissueStartDate: any;
 reissueEndDate: any;
+vdtId: any;
+selectedEffectivity: any[]=[];
+subject: any;
+bin: any;
+documentType: any;
+selectedSection: any[]=[];
+documentSubject: any;
 
-  constructor() {}
+  constructor(private apiService:ApiService) {}
+
+  ngOnInit(){
+    const formData = this.apiService.getFormData();
+    if (formData) {
+      this.vdtId = formData.vdtId,
+      this.selectedEffectivity = formData.selectedEffectivity,
+      this.subject = formData.subject,
+      this.bin = formData.bin,
+      this.selectedSection = formData.selectedSection,
+      this.manualStartDate = formData.manualStartDate,
+      this.manualEndDate = formData.manualEndDate,
+      this.reissueStartDate = formData.reissueStartDate,
+      this.reissueEndDate = formData.reissueEndDate,
+      this.documentSubject = formData.documentSubject
+    }
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

@@ -99,14 +99,17 @@
                                               name="eso.effectivityId"
                                               class=""
                                               id="effectivityStyleId"
-                                              onchange="createESONoSection()"
                                               [(ngModel)]="this.effectivityId"
+                                              (ngModelChange)="getEsoNumber(this.effectivityId)"
                                             >
                                               <option value="new">
                                                 Enter Custom ESO Number
                                               </option>
-
+                                              <option value="737">737</option>
+                                              <option value="757">757</option>
+                                              <option value="767">767</option>
                                               <option value="A330">A330</option>
+                                              <option value="MD80">MD80</option>
                                             </select>
                                           </td>
                                         </tr>
