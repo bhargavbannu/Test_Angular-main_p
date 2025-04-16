@@ -1,10 +1,8 @@
 <td align="left">
 
-  <a
-    style="font-size: larger; font-weight: bolder"
-    routerLink="/search"
-    >Back To Search Results</a
-  >
+  <a *ngIf="searchType ==='search'" style="font-size: larger;font-weight: bolder" routerLink="/search">Back To Search Results</a>
+  <a *ngIf="searchType ==='audit'" style="font-size: larger;font-weight: bolder" routerLink="/search-audits">Back To Search Results</a>
+  <a *ngIf="searchType ==='route' " style="font-size: larger;font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
   <br />
   <div *ngIf="auditSaved" class="savedDoc">SUCCESS: Successfully saved Audit.</div>
 

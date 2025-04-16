@@ -945,6 +945,10 @@ body {
   width: max-content !important;
 }
 
+.p-datepicker table td > span {
+  font-size: large;
+}
+
 
 
 

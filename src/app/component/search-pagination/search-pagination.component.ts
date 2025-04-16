@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Calendar } from 'primeng/calendar';
@@ -212,6 +213,7 @@ bin: any;
 documentType: any;
 selectedSection: any[]=[];
 documentSubject: any;
+@ViewChild('childForm') childForm!: NgForm
 
   constructor(private apiService:ApiService) {}
 
@@ -233,5 +235,9 @@ documentSubject: any;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  clearFields(){
+    this.childForm.resetForm();
   }
 }

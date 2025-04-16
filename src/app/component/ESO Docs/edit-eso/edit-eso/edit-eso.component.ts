@@ -72,7 +72,7 @@ export class EditEsoDocComponent {
 
 //   openCalendar(calendar: any){
 //    calendar.overlayVisible = !calendar.overlayVisible;
-//     calendar.inputfieldViewChild.nativeElement.click()
+//     calendar.inputfieldViewChild?.nativeElement.click()
 // }
 
 }

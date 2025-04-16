@@ -1,5 +1,5 @@
 <div>
-  <form
+  <form #myForm="ngForm"
     (submit)="Search1()"
     class="formClass"
     name="SearchForm"
@@ -73,10 +73,10 @@
                                       <input
                                         type="text"
                                         id="vendorName"
+                                        name="vendorName"
                                         type="text"
                                         tabindex="-1"
                                         [(ngModel)]="vendorName"
-                                        [ngModelOptions]="{ standalone: true }"
                                       />
                                     </td>
                                   </tr>
@@ -129,7 +129,6 @@
                                         type="text"
                                         tabindex="-1"
                                         [(ngModel)]="vendorPartRefNbr"
-                                        [ngModelOptions]="{ standalone: true }"
                                       />
                                     </td>
                                   </tr>
@@ -172,8 +171,8 @@
                                         id="eso"
                                         type="text"
                                         tabindex="-1"
+                                        value=""
                                         [(ngModel)]="eso"
-                                        [ngModelOptions]="{ standalone: true }"
                                       />
                                     </td>
                                   </tr>
@@ -282,7 +281,7 @@
                         <input type="submit" value="Search" tabindex="-1" />
                       </span>
                       <span style="float: right">
-                        <input type="button" value="Clear" tabindex="-1" />
+                        <input type="button" value="Clear" (click)="clear(myForm)" tabindex="-1" />
                       </span>
                     </td>
                   </tr>
@@ -294,41 +293,6 @@
       </table>
     </div>
   </form>
-
-  <div>
-    <td valign="top" align="left">
-      <table border="0" cellspacing="0" cellpadding="0" width="100%">
-        <!-- ERRORS -->
-
-        <tbody>
-          <tr>
-            <td
-              id="errorMsg"
-              class="eds-messageframe"
-              style="display: none"
-              align="left"
-            >
-              <ul>
-                <li>
-                  <span class="eds-message-warning" id="errorMsgContents">
-                  </span>
-                </li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td id="emptyRow" style="display: none">&nbsp;</td>
-          </tr>
-          <tr>
-            <td align="left">
-              <!-- CONTENT -->
-              <br /><br />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </td>
-  </div>
 </div>
 
 <div>
@@ -338,7 +302,7 @@
   </div>
   <td valign="top" align="left" *ngIf="apiData">
     <br />
-    <div class="pagination-container">
+    <div class="pagination-container" *ngIf="tableHeaders.length > 0">
       <span class="pagebanner"
         >{{ totalCount }} items found, displaying {{ start + 1 }} to
         {{ start + recordsPerPage }}.</span
@@ -384,11 +348,12 @@
         >Last]</a
       >
     </div>
+    <span *ngIf="tableHeaders.length === 0">No documents matched the search criteria.</span>
     <table class="inline-table" id="result">
       <thead>
         <tr>
           <th *ngFor="let header of tableHeaders">{{ header }}</th>
-          <th>Action</th>
+          <th *ngIf="tableHeaders.length > 0">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -401,8 +366,10 @@
       </tbody>
     </table>
     <br />
-    <a>Download XLS</a>
-    <br />(Please note: Depending on the size, this operation might take several
-    minutes)
+    <a *ngIf="tableHeaders.length > 0">Download XLS</a>
+    <br /><span *ngIf="tableHeaders.length > 0">(Please note: Depending on the size, this operation might take several
+    minutes)</span>
   </td>
 </div>
+
+<button (click)="downloadExcel()">Download Excel</button>

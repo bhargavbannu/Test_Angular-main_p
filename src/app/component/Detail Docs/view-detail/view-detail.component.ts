@@ -15,6 +15,7 @@ export class ViewDetailComponent implements OnInit {
   routeSaved:any;
   routeAdded:any
   type: any;
+  searchType: any;
   constructor(private apiService: ApiService, private route: ActivatedRoute, private http:HttpClient, private router:Router) {}
 
   ngOnInit() {
@@ -26,6 +27,7 @@ export class ViewDetailComponent implements OnInit {
       this.closedbtn = params['closedbtn'];
     });
     this.type = this.apiService.type;
+    this.searchType = this.apiService.searchType;
   }
 
   viewRoute(arg0: any) {

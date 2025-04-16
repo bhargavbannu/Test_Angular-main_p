@@ -7,11 +7,10 @@
     value="/vdt/Search.html?advancedSearchHidden=true&amp;currentVendorOnly=true&amp;vendorName=&amp;currentVendorOnly=on&amp;vendorPartRefNbr=&amp;detailDocType=&amp;itar=&amp;eccnNumber=&amp;eso=&amp;eco=&amp;ata=&amp;detailId=&amp;eccnLocation=&amp;docName=&amp;subject=&amp;bin=&amp;documentType=&amp;manualStartDate=&amp;manualEndDate=&amp;reissueStartDate=&amp;reissueEndDate=&amp;documentSubject="
     id="previousUrl"
   />
-  <a
-    style="font-size: larger; font-weight: bolder"
-    routerLink="/search"
-    >Back To Search Results</a
-  >
+  
+  <a *ngIf="searchType ==='search'" style="font-weight: bolder" routerLink="/search">Back To Search Results</a>
+  <a *ngIf="searchType ==='audit'" style="font-weight: bolder" routerLink="/search-audits">Back To Search Results</a>
+  <a *ngIf="searchType ==='route' " style="font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
   <br />
 
   <a routerLink="/viewDetail">Back to Detail/POP</a>
@@ -475,7 +474,7 @@
                                     id="closeDateId_date"
                                     align="ABSMIDDLE"
                                     src="assets/images/calendar.gif"
-                                    (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
+                                    (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
                                 /></span>
                                 <p-calendar name="calendarDate" #calendar1 [(ngModel)]="viewRoute?.route.closedate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 

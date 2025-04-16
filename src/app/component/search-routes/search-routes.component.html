@@ -1,4 +1,4 @@
-<div style="margin-top: 15px;">
+<div style="margin-top: 15px">
   <tr>
     <td valign="top" align="left">
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -28,7 +28,7 @@
                 id="searchFormId"
                 method="get"
                 action="/vdt/OpenRoutes.html"
-                (submit)="onSearch()">
+                (submit)="onSearch()"
               >
                 <table cellspacing="0" cellpadding="0" border="0">
                   <tbody>
@@ -90,10 +90,13 @@
                                                   name="routeType"
                                                   class=""
                                                   id="routeTypeId"
-                                                  style="width: 171.333334px;
-                                                  height: 19.333334px"
+                                                  style="
+                                                    width: 171.333334px;
+                                                    height: 19.333334px;
+                                                  "
+                                                  [(ngModel)]="routeType"
                                                 >
-                                                  <option value="">ALL</option>
+                                                  <option value="" >ALL</option>
 
                                                   <option value="ETDT">
                                                     ETDT
@@ -128,12 +131,15 @@
                                                 <select
                                                   name="section"
                                                   class=""
-                                                  style="width: 171.333334px;
-                                                  height: 19.333334px"
+                                                  style="
+                                                    width: 171.333334px;
+                                                    height: 19.333334px;
+                                                  "
+                                                  id="sectionId"
+                                                  [(ngModel)]="section"
                                                 >
                                                   <option
                                                     value="-1"
-                                                    selected="selected"
                                                   >
                                                     ALL
                                                   </option>
@@ -247,8 +253,12 @@
                                                 <select
                                                   name="detailDocType"
                                                   class=""
-                                                  style="width: 171.333334px;
-                                                  height: 19.333334px"
+                                                  style="
+                                                    width: 171.333334px;
+                                                    height: 19.333334px;
+                                                  "
+                                                  id="detailDocTypeId"
+                                                  [(ngModel)]="detailDocType"
                                                 >
                                                   <option value="">ALL</option>
 
@@ -637,6 +647,7 @@
                                                   class=""
                                                   id="effectivity"
                                                   multiple="multiple"
+                                                  [(ngModel)]="effectivity"
                                                 >
                                                   <option value="A319">
                                                     A319
@@ -753,7 +764,10 @@
                                                   size="10"
                                                   maxlength="10"
                                                   autocomplete="off"
-                                                  [ngModel]="this.routeStartDate | date:'MM/dd/yyyy'"
+                                                  [ngModel]="
+                                                    this.routeStartDate
+                                                      | date : 'MM/dd/yyyy'
+                                                  "
                                                 />
 
                                                 <span
@@ -762,10 +776,23 @@
                                                     id="routeDateStartId_date"
                                                     align="ABSMIDDLE"
                                                     src="assets/images/calendar.gif"
-                                                    (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
+                                                    (click)="
+                                                      calendar1.overlayVisible =
+                                                        !calendar1.overlayVisible;
+                                                      calendar1.inputfieldViewChild?.nativeElement.click()
+                                                    "
                                                     style="cursor: pointer"
                                                 /></span>
-                                                <p-calendar name="calendarDate" #calendar1 [(ngModel)]="this.routeStartDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                                                <p-calendar
+                                                  name="calendarDate"
+                                                  #calendar1
+                                                  [(ngModel)]="
+                                                    this.routeStartDate
+                                                  "
+                                                  [showIcon]="false"
+                                                  [showOnFocus]="false"
+                                                  class="hidden-calendar"
+                                                ></p-calendar>
 
                                                 -
                                                 <input
@@ -777,7 +804,10 @@
                                                   size="10"
                                                   maxlength="10"
                                                   autocomplete="off"
-                                                  [ngModel]="this.routeEndDate | date:'MM/dd/yyyy'"
+                                                  [ngModel]="
+                                                    this.routeEndDate
+                                                      | date : 'MM/dd/yyyy'
+                                                  "
                                                 />
 
                                                 <span
@@ -786,14 +816,26 @@
                                                     id="routeDateEndId_date"
                                                     align="ABSMIDDLE"
                                                     src="assets/images/calendar.gif"
-                                                    (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild.nativeElement.click()"
+                                                    (click)="
+                                                      calendar2.overlayVisible =
+                                                        !calendar2.overlayVisible;
+                                                      calendar2.inputfieldViewChild?.nativeElement.click()
+                                                    "
                                                     style="cursor: pointer"
                                                 /></span>
-                                                <p-calendar name="calendarDate" #calendar2 [(ngModel)]="this.routeEndDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                                                <p-calendar
+                                                  name="calendarDate"
+                                                  #calendar2
+                                                  [(ngModel)]="
+                                                    this.routeEndDate
+                                                  "
+                                                  [showIcon]="false"
+                                                  [showOnFocus]="false"
+                                                  class="hidden-calendar"
+                                                ></p-calendar>
                                               </td>
                                             </tr>
-                                            <tr style="color: black;">
+                                            <tr style="color: black">
                                               <td
                                                 class="inline-table_dark_grey"
                                                 style="
@@ -811,23 +853,35 @@
                                                   type="radio"
                                                   name="routeStatusSearchType"
                                                   value="OPEN"
-                                                  [(ngModel)]="selectedOption" 
-                                                  (change)="getSelectedRadioValue($event)"
+                                                  [(ngModel)]="selectedOption"
+                                                  (change)="
+                                                    getSelectedRadioValue(
+                                                      $event
+                                                    )
+                                                  "
                                                 />OPEN
                                                 <input
                                                   type="radio"
                                                   name="routeStatusSearchType"
                                                   value="CLOSED"
-                                                  [(ngModel)]="selectedOption" 
-                                                  (change)="getSelectedRadioValue($event)"
+                                                  [(ngModel)]="selectedOption"
+                                                  (change)="
+                                                    getSelectedRadioValue(
+                                                      $event
+                                                    )
+                                                  "
                                                 />CLOSED
                                                 <input
                                                   type="radio"
                                                   name="routeStatusSearchType"
                                                   value="BOTH"
                                                   checked="checked"
-                                                  [(ngModel)]="selectedOption" 
-                                                  (change)="getSelectedRadioValue($event)"
+                                                  [(ngModel)]="selectedOption"
+                                                  (change)="
+                                                    getSelectedRadioValue(
+                                                      $event
+                                                    )
+                                                  "
                                                 />BOTH
                                               </td>
                                             </tr>
@@ -847,6 +901,7 @@
                                                   value=""
                                                   size="20"
                                                   maxlength="40"
+                                                  [(ngModel)]="eso"
                                                 />
                                               </td>
                                             </tr>
@@ -867,6 +922,7 @@
                                                   value=""
                                                   size="20"
                                                   maxlength="20"
+                                                  [(ngModel)]="ata"
                                                 />
                                               </td>
                                             </tr>
@@ -903,48 +959,82 @@
   </tr>
 </div>
 
-<div ></div>
-  <div class="loader-container" *ngIf="loading">
-    <div class="loader"></div>
-    <p>Loading data, please wait...</p>
-  </div>
-  <td valign="top" align="left" *ngIf="data">
-    <br />
-    <div class="pagination-container">
-    <span class="pagebanner">{{totalCount}} items found, displaying {{start}} to {{start +recordsPerPage}}.</span>
-    <a class="pagination-link" (click)="goToFirst()" 
-    [class.disabled]="currentPage === 1">[First</a> /
-    <a  class="pagination-link" (click)="goToPrevious()"
-     [class.disabled]="currentPage === 1">Prev]</a> /
-
+<div></div>
+<div class="loader-container" *ngIf="loading">
+  <div class="loader"></div>
+  <p>Loading data, please wait...</p>
+</div>
+<td valign="top" align="left" *ngIf="data">
+  <br />
+  <div class="pagination-container" *ngIf="headers.length > 0">
+    <span class="pagebanner"
+      >{{ totalCount }} items found, displaying {{ start + 1 }} to
+      {{ start + recordsPerPage }}.</span
+    >
+    <a
+      class="pagination-link"
+      (click)="goToFirst()"
+      [class.disabled]="currentPage === 1"
+      >[First</a
+    >
+    /
+    <a
+      class="pagination-link"
+      (click)="goToPrevious()"
+      [class.disabled]="currentPage === 1"
+      >Prev]</a
+    >
+    /
 
     <!-- Page Numbers -->
-  <a *ngFor="let page of getVisiblePages() let i = index" 
-  class="pagination-link" 
-  (click)="goToPage(i + 1)" 
-  [class.active]="currentPage === i + 1">
- {{ i + 1 }}
-</a> /
+    <a
+      *ngFor="let page of getVisiblePages(); let i = index"
+      class="pagination-link"
+      (click)="goToPage(page)"
+      [class.active]="currentPage === page"
+    >
+      {{ page }}
+    </a>
+    /
 
     <!-- Next/Last Buttons -->
-    <a  class="pagination-link" (click)="goToNext()" [class.disabled]="currentPage === totalPages">[Next</a> /
-    <a  class="pagination-link" (click)="goToLast()" [class.disabled]="currentPage === totalPages">Last]</a>
-</div>
-       <table class="inline-table" id="result">
-      <thead>
-        <tr>
-          <th *ngFor="let header of headers">{{ header }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="odd" *ngFor="let row of data">
-          <td *ngFor="let header of headers">{{ row[header] }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <br />
-    <a href="javascript:exportXLS();">Download XLS</a>
-    <br />(Please note: Depending on the size, this operation might take several
-    minutes)
-  </td>
-
+    <a
+      class="pagination-link"
+      (click)="goToNext()"
+      [class.disabled]="currentPage === totalPages"
+      >[Next</a
+    >
+    /
+    <a
+      class="pagination-link"
+      (click)="goToLast()"
+      [class.disabled]="currentPage === totalPages"
+      >Last]</a
+    >
+  </div>
+  <span *ngIf="headers.length === 0">No routes for the specified criteria.</span>
+  <table class="inline-table" id="result">
+    <thead>
+      <tr>
+        <th *ngFor="let header of headers">{{ header }}</th>
+        <th *ngIf="headers.length > 0">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="odd" *ngFor="let row of data">
+        <td *ngFor="let header of headers">{{ row[header] }}</td>
+        <td>
+          <a
+            routerLink="/viewRoute"
+            (click)="viewClick()"
+            >View</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <a href="javascript:exportXLS();" *ngIf="headers.length > 0">Download XLS</a>
+  <br /><span *ngIf="headers.length > 0">(Please note: Depending on the size, this operation might take several
+  minutes)</span>
+</td>

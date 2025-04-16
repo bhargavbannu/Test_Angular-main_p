@@ -89,7 +89,7 @@
                                 id="assignDateId_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
-                                (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
+                                (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
                             /></span>
                             <p-calendar name="calendarDate" #calendar1 [(ngModel)]="esoDetails?.esoData.assigndate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
                           </td>
@@ -162,7 +162,7 @@
                                 id="cancelDateId_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
-                                (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild.nativeElement.click()"
+                                (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild?.nativeElement.click()"
                             /></span>
                             <p-calendar name="calendarDate2" #calendar2 [(ngModel)]="esoDetails?.esoData.canceldate" [showIcon]="false" [showOnFocus]="false" class="hidden-calendar"></p-calendar>
                           </td>

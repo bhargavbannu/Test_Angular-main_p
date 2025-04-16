@@ -30,10 +30,12 @@ export class ViewRouteChildComponent implements OnInit {
 
 
   @ViewChild('calendar1') calendar1!: Calendar;
+  searchType!: string;
 
   constructor(private apiService: ApiService,  private router: Router, private datePipe: DatePipe, private route:ActivatedRoute) {}
 
   ngOnInit() {
+    this.searchType = this.apiService.searchType;
     this.test();
       this.ecoNum
           .pipe(

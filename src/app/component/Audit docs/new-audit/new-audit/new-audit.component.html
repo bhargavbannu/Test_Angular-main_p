@@ -99,7 +99,7 @@
                                     id="auditDateId_date"
                                     align="ABSMIDDLE"
                                     src="assets/images/calendar.gif"
-                                    (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
+                                    (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
                                 /></span>
                                 <p-calendar name="calendarDate" #calendar1 [(ngModel)]="auditDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
@@ -180,7 +180,7 @@
                                     id="revisionDateId_date"
                                     align="ABSMIDDLE"
                                     src="assets/images/calendar.gif"
-                                    (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild.nativeElement.click()"
+                                    (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild?.nativeElement.click()"
                                 /></span>
                                 <p-calendar name="calendarDate" #calendar2 [(ngModel)]="revDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
@@ -208,7 +208,7 @@
                                     id="followUpDateId_date"
                                     align="ABSMIDDLE"
                                     src="assets/images/calendar.gif"
-                                    (click)="calendar3.overlayVisible = !calendar3.overlayVisible; calendar3.inputfieldViewChild.nativeElement.click()"
+                                    (click)="calendar3.overlayVisible = !calendar3.overlayVisible; calendar3.inputfieldViewChild?.nativeElement.click()"
                                 /></span>
                                 <p-calendar name="calendarDate" #calendar3 [(ngModel)]="followUpDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 

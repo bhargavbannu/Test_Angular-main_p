@@ -23,10 +23,10 @@
           <div *ngIf="detailSaved" class="savedDoc">SUCCESS: Successfully saved Detail.</div>
           <div *ngIf="routeSaved" class="savedDoc">SUCCESS: Successfully saved Route.</div>
           <div *ngIf="routeAdded" class="savedDoc">SUCCESS: Successfully Added Route.</div>
-          <a
-            style="font-size: larger; font-weight: bolder"
-            routerLink="/search">Back To Search Results</a
-          >
+
+          <a *ngIf="searchType ==='search'" style="font-size: larger;font-weight: bolder" routerLink="/search">Back To Search Results</a>
+          <a *ngIf="searchType ==='audit'" style="font-size: larger;font-weight: bolder" routerLink="/search-audits">Back To Search Results</a>
+          <a *ngIf="searchType ==='route' " style="font-size: larger;font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
           <br />
 
           <a routerLink="/viewStatus"

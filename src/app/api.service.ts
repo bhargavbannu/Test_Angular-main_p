@@ -2,82 +2,111 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private api = 'api/search/documentSearch?';
-  private routesAPi = 'api/search/routeSearch?';
-  private auditsApi = 'api/search/auditSearch?';
-  private manageAuditStatusesApi = 'api/adminConfiguration/manageAuditStatuses';
+
+  exportToExcel(data: any[], fileName: string): void {
+    // Create worksheet from data
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    
+    // Create workbook and add the worksheet
+    const workbook: XLSX.WorkBook = {
+      Sheets: { 'Sheet1': worksheet },
+      SheetNames: ['Sheet1']
+    };
+    
+    // Generate Excel file buffer
+    const excelBuffer: any = XLSX.write(workbook, {
+      bookType: 'xlsx',
+      type: 'array'
+    });
+    
+    // Save the file
+    this.saveAsExcelFile(excelBuffer, fileName);
+  }
+
+  private saveAsExcelFile(buffer: any, fileName: string): void {
+    const data: Blob = new Blob([buffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    });
+    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + '.xlsx');
+  }
+  private api = `${environment.apiBaseUrl}/search/documentSearch?`;
+  private routesAPi = `${environment.apiBaseUrl}/search/routeSearch?`;
+  private auditsApi = `${environment.apiBaseUrl}/search/auditSearch?`;
+  private manageAuditStatusesApi = `${environment.apiBaseUrl}/adminConfiguration/manageAuditStatuses`;
   private manageDetailDocTypesApi =
-    'api/adminConfiguration/manageDetailDocTypes';
-    private ecoNumbersValues = 'api/eco/getECOs?sourceElement';
-    private esoNumbersApi = 'api/eso/getESOs?sourceElement';
-    private auditableDocApi = 'api/adminConfiguration/getAuditableDetailDocTypes?sourceElement'
- private viewRouteInDetail = 'api/routing/viewRoute?routeId';
+    `${environment.apiBaseUrl}/adminConfiguration/manageDetailDocTypes`;
+    private ecoNumbersValues = `${environment.apiBaseUrl}/eco/getECOs?sourceElement`;
+    private esoNumbersApi = `${environment.apiBaseUrl}/eso/getESOs?sourceElement`;
+    private auditableDocApi = `${environment.apiBaseUrl}/adminConfiguration/getAuditableDetailDocTypes?sourceElement`
+ private viewRouteInDetail = `${environment.apiBaseUrl}/routing/viewRoute?routeId`;
 //  `${environment.apiBaseUrl}
   private manageEffectivitiesApi = `${environment.apiBaseUrl}/adminConfiguration/manageEffectivities`;
-  private manageEccnNumbersApi = 'api/adminConfiguration/manageEccnNumbers';
-  private manageEccnLocationsApi = 'api/adminConfiguration/manageEccnLocations';
-  private documentCategoriesApi = 'api/adminConfiguration/documentCategories';
+  private manageEccnNumbersApi = `${environment.apiBaseUrl}/adminConfiguration/manageEccnNumbers`;
+  private manageEccnLocationsApi = `${environment.apiBaseUrl}/adminConfiguration/manageEccnLocations`;
+  private documentCategoriesApi = `${environment.apiBaseUrl}/adminConfiguration/documentCategories`;
   private manageSectionsApi = `${environment.apiBaseUrl}/adminConfiguration/manageSections`;
-  private addDocumentApi = 'api/addDocument/saveDocument';
-  private saveManageSectionsApi = 'api/adminConfiguration/saveNewSection';
-  private updateManageSectionsApi = 'api/adminConfiguration/editSection';
-  private deleteManageSectionsApi = 'api/adminConfiguration/deleteSection';
+  private addDocumentApi = `${environment.apiBaseUrl}/addDocument/saveDocument`;
+  private saveManageSectionsApi = `${environment.apiBaseUrl}/adminConfiguration/saveNewSection`;
+  private updateManageSectionsApi = `${environment.apiBaseUrl}/adminConfiguration/editSection`;
+  private deleteManageSectionsApi = `${environment.apiBaseUrl}/adminConfiguration/deleteSection`;
   private saveDocumentCategoryApi =
-    'api/adminConfiguration/saveNewDocumentCategory';
+    `${environment.apiBaseUrl}/adminConfiguration/saveNewDocumentCategory`;
   private saveDocumentCategoryUpdateApi =
-    'api/adminConfiguration/updateDocumentCategory';
+    `${environment.apiBaseUrl}/adminConfiguration/updateDocumentCategory`;
   private deleteDocumentCategoryApi =
-    'api/adminConfiguration/deleteDocumentCategory';
-  private saveAuditStatusApi = 'api/adminConfiguration/saveNewAuditStatus';
-  private updateAuditStatusApi = 'api/adminConfiguration/editAuditStatus';
-  private deleteAuditStatusApi = 'api/adminConfiguration/deleteAuditStatus';
-  private saveDetailDocTypeApi = 'api/adminConfiguration/saveNewDetailDocType';
-  private updateDetailDoc = 'api/adminConfiguration/updateDetailDocType';
-  private deleteDetailDocTypeApi = 'api/adminConfiguration/deleteDetailDocType';
-  private saveEffectivityApi = 'api/adminConfiguration/saveNewEffectivity';
-  private deleteEffectivityApi = 'api/adminConfiguration/deleteEffectivity';
-  private saveEccnNumberApi = 'api/adminConfiguration/saveNewEccnNumber';
-  private updateEccnNumberApi = 'api/adminConfiguration/updateEccnNumber';
-  private deleteEccnNumberApi = 'api/adminConfiguration/deleteEccnNumber';
-  private updateEccnLoaction = 'api/adminConfiguration/updateEccnLocation';
-  private saveEccnLocationApi = 'api/adminConfiguration/saveNewEccnLocation';
-  private deleteEccnLocationApi = 'api/adminConfiguration/deleteEccnLocation';
-  private viewSearchApi = 'api/addDocument/viewDocument';
-  private viewAuditApi = 'api/audit/viewAudit';
-  private viewAllAuditsApi = 'api/audit/viewAllAudits';
-  private eccNumberApi = 'api/adminConfiguration/getEccnNumbers';
-  private eccLocation = 'api/adminConfiguration/getEccnLocations';
-  private docType = 'api/adminConfiguration/getAuditableDetailDocTypes';
-  private manageVendoeAutoPopulate = 'api/adminConfiguration/getVendors';
-  private saveVendors = 'api/adminConfiguration/saveVendor';
-  private saveNewDetailApi = 'api/detail/saveNewDetail';
-  private viewDetailApi = 'api/detail/viewDetail'
-  private saveEditDetailApi = 'api/detail/saveDetail'
-  private deleteDetailApi = 'api/detail/deleteDetail'
-  private saveFormerVendorApi ='api/formerVendor/createSupercededVendorDetails'
-  private deleteFormerVendorApi ='api/formerVendor/deleteFormerVendorDetails'
-  private saveNewAuditApi ='api/audit/saveNewAudit'
-  private saveExistingAuditApi ='api/audit/saveExistingAudit'
-  private viewEsoApi ='api/eso/viewESO'
-  private saveEsoApi ='api/eso/saveESO'
-  private deleteEsoApi ='api/eso/deleteESO'
-  private saveExistingRouteApi ='api/routing/saveRoute'
-  private addNewEsoApi='api/eso/addNewEso'
-  private moveDetailApi = 'api/detail/moveDetail'
-  private newRouteApi = 'api/routing/newRouteSave'
-  private esoByEffectivityAPi = 'api/eso/getEsoByEffectivityId'
-  private dispositionApi = 'api/routing/getDispositions'
+    `${environment.apiBaseUrl}/adminConfiguration/deleteDocumentCategory`;
+  private saveAuditStatusApi = `${environment.apiBaseUrl}/adminConfiguration/saveNewAuditStatus`;
+  private updateAuditStatusApi = `${environment.apiBaseUrl}/adminConfiguration/editAuditStatus`;
+  private deleteAuditStatusApi = `${environment.apiBaseUrl}/adminConfiguration/deleteAuditStatus`;
+  private saveDetailDocTypeApi = `${environment.apiBaseUrl}/adminConfiguration/saveNewDetailDocType`;
+  private updateDetailDoc = `${environment.apiBaseUrl}/adminConfiguration/updateDetailDocType`;
+  private deleteDetailDocTypeApi = `${environment.apiBaseUrl}/adminConfiguration/deleteDetailDocType`;
+  private saveEffectivityApi = `${environment.apiBaseUrl}/adminConfiguration/saveNewEffectivity`;
+  private deleteEffectivityApi = `${environment.apiBaseUrl}/adminConfiguration/deleteEffectivity`;
+  private saveEccnNumberApi = `${environment.apiBaseUrl}/adminConfiguration/saveNewEccnNumber`;
+  private updateEccnNumberApi = `${environment.apiBaseUrl}/adminConfiguration/updateEccnNumber`;
+  private deleteEccnNumberApi = `${environment.apiBaseUrl}/adminConfiguration/deleteEccnNumber`;
+  private updateEccnLoaction = `${environment.apiBaseUrl}/adminConfiguration/updateEccnLocation`;
+  private saveEccnLocationApi = `${environment.apiBaseUrl}/adminConfiguration/saveNewEccnLocation`;
+  private deleteEccnLocationApi = `${environment.apiBaseUrl}/adminConfiguration/deleteEccnLocation`;
+  private viewSearchApi = `${environment.apiBaseUrl}/addDocument/viewDocument`;
+  private viewAuditApi = `${environment.apiBaseUrl}/audit/viewAudit`;
+  private viewAllAuditsApi = `${environment.apiBaseUrl}/audit/viewAllAudits`;
+  private eccNumberApi = `${environment.apiBaseUrl}/adminConfiguration/getEccnNumbers`;
+  private eccLocation = `${environment.apiBaseUrl}/adminConfiguration/getEccnLocations`;
+  private docType = `${environment.apiBaseUrl}/adminConfiguration/getAuditableDetailDocTypes`;
+  private manageVendoeAutoPopulate = `${environment.apiBaseUrl}/adminConfiguration/getVendors`;
+  private saveVendors = `${environment.apiBaseUrl}/adminConfiguration/saveVendor`;
+  private saveNewDetailApi = `${environment.apiBaseUrl}/detail/saveNewDetail`;
+  private viewDetailApi = `${environment.apiBaseUrl}/detail/viewDetail`;
+  private saveEditDetailApi = `${environment.apiBaseUrl}/detail/saveDetail`
+  private deleteDetailApi = `${environment.apiBaseUrl}/detail/deleteDetail`
+  private saveFormerVendorApi =`${environment.apiBaseUrl}/formerVendor/createSupercededVendorDetails`
+  private deleteFormerVendorApi =`${environment.apiBaseUrl}/formerVendor/deleteFormerVendorDetails`
+  private saveNewAuditApi =`${environment.apiBaseUrl}/audit/saveNewAudit`
+  private saveExistingAuditApi =`${environment.apiBaseUrl}/audit/saveExistingAudit`
+  private viewEsoApi =`${environment.apiBaseUrl}/eso/viewESO`
+  private saveEsoApi =`${environment.apiBaseUrl}/eso/saveESO`
+  private deleteEsoApi =`${environment.apiBaseUrl}/eso/deleteESO`
+  private saveExistingRouteApi =`${environment.apiBaseUrl}/routing/saveRoute`
+  private addNewEsoApi=`${environment.apiBaseUrl}/eso/addNewEso`
+  private moveDetailApi = `${environment.apiBaseUrl}/detail/moveDetail`
+  private newRouteApi = `${environment.apiBaseUrl}/routing/newRouteSave`
+  private esoByEffectivityAPi = `${environment.apiBaseUrl}/eso/getEsoByEffectivityId`
+  private dispositionApi = `${environment.apiBaseUrl}/routing/getDispositions`
 
 detailRoute:any
   viewDocId: any;
   viewAuditId: any;
 
-  private formData: any;
+  formData: any;
   popno: any;
   vendorName: any;
   subject: any;
@@ -85,6 +114,7 @@ detailRoute:any
   popRefNbr: any;
   section: any;
   type: any;
+  searchType!: string;
 
   constructor(private http: HttpClient) {}
 

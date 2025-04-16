@@ -58,12 +58,15 @@ dropdownValues:any[]=[]
   }
   setVal(val:any){
    this.vendorName = val;
+   this.dropdownValues = [];
   }
 
   saveSuper() {
     this.appservice.savevenodrs(this.newVendorName).subscribe((res) => {
-      console.log(res);
-    
+      console.log(res);    
     })
+}
+onFocusOut(){
+  this.dropdownValues = [];
 }
 }

@@ -1,4 +1,5 @@
 <div>
+  <form #childForm="ngForm" >
   <table>
     <div>
       <tbody>
@@ -160,7 +161,7 @@
                         id="manualStartDateId_date"
                         align="ABSMIDDLE"
                         src="assets/images/calendar.gif"
-                        (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
+                        (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
                     /></span>
                     <p-calendar name="calendarDate" #calendar1  [(ngModel)]="this.manualStartDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
@@ -183,7 +184,7 @@
                         id="manualEndDateId_date"
                         align="ABSMIDDLE"
                         src="assets/images/calendar.gif"
-                        (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild.nativeElement.click()"
+                        (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild?.nativeElement.click()"
                     /></span>
                     <p-calendar name="calendarDate" #calendar2 [(ngModel)]="this.manualEndDate"  [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
@@ -215,7 +216,7 @@
                         id="reissueStartDateId_date"
                         align="ABSMIDDLE"
                         src="assets/images/calendar.gif"
-                        (click)="calendar3.overlayVisible = !calendar3.overlayVisible; calendar3.inputfieldViewChild.nativeElement.click()"
+                        (click)="calendar3.overlayVisible = !calendar3.overlayVisible; calendar3.inputfieldViewChild?.nativeElement.click()"
                     /></span>
                     <p-calendar name="calendarDate" #calendar3 [(ngModel)]="this.reissueStartDate"  [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
@@ -238,7 +239,7 @@
                         id="reissueEndDateId_date"
                         align="ABSMIDDLE"
                         src="assets/images/calendar.gif"
-                        (click)="calendar4.overlayVisible = !calendar4.overlayVisible; calendar4.inputfieldViewChild.nativeElement.click()"
+                        (click)="calendar4.overlayVisible = !calendar4.overlayVisible; calendar4.inputfieldViewChild?.nativeElement.click()"
                     /></span>
                     <p-calendar name="calendarDate" #calendar4 [(ngModel)]="this.reissueEndDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
@@ -271,4 +272,5 @@
       </tbody>
     </div>
   </table>
+  </form>
 </div>

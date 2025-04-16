@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 
@@ -12,46 +12,89 @@ export class SearchRoutesComponent {
   data: any;
   size: any;
   totalPages: any;
-routeStartDate: any;
-routeEndDate: any;
-  constructor(private service: ApiService) {}
+  routeStartDate: any;
+  routeEndDate: any;
+  routeType: any;
+  section: any;
+  detailDocType: any;
+  effectivity: any[] = [];
+  eso: any;
+  ata: any;
+  constructor(private service: ApiService, private cdr: ChangeDetectorRef) {}
 
-
-  selectedOption:any;
-  totalCount:any;
-  recordsPerPage: any = 10; // Number of records per page
+  selectedOption: any;
+  totalCount: any;
+  recordsPerPage: any = 15; // Number of records per page
   currentPage: any = 1;
   start: any;
   maxVisibleButtons: any = 8;
   loading: boolean = false;
 
-@ViewChild('calendar1') calendar1!: Calendar;
-@ViewChild('calendar2') calendar2!: Calendar;
+  @ViewChild('calendar1') calendar1!: Calendar;
+  @ViewChild('calendar2') calendar2!: Calendar;
 
-  ngOnInIt(){
-   
-    
+  ngOnInit() {
+    const formData = this.service.getFormData();
+    if (formData) {
+      this.eso = formData.eso;
+      this.ata = formData.ata;
+      this.routeType = formData.routeType;
+      this.section = formData.section;
+      this.detailDocType = formData.detailDocType;
+      this.selectedOption = formData.routeStatusSearchType;
+      this.routeStartDate = formData.routeStartDate;
+      this.routeEndDate = formData.routeEndDate;
+      this.effectivity = formData.effectivity;
+      this.onSearch();
+    } else {
+      this.routeType = '';
+      this.section = '-1';
+      this.detailDocType = '';
+    }
+    this.cdr.detectChanges();
   }
   onSearch() {
-    console.log(this.selectedOption);
+    this.service.searchType = 'route';
+    const formData = {
+      routeType: this.routeType,
+      section: this.section,
+      routeStartDate: this.routeStartDate,
+      routeEndDate: this.routeEndDate,
+      routeStatusSearchType: this.selectedOption,
+      detailDocType: this.detailDocType,
+      eso: this.eso,
+      ata: this.ata,
+      effectivity: this.effectivity,
+    };
+    this.service.saveFormData(formData);
     this.loading = true;
     this.start = (this.currentPage - 1) * this.recordsPerPage;
     this.size = this.recordsPerPage;
     const payload = {
-      
-        "routeStatusSearchType": this.selectedOption
-        
+      routeType: this.routeType,
+      section: this.section,
+      routeStartDate: this.routeStartDate,
+      routeEndDate: this.routeEndDate,
+      routeStatusSearchType: this.selectedOption,
+      detailDocType: this.detailDocType,
+      eso: this.eso,
+      ata: this.ata,
+      effectivity: this.effectivity,
     };
-    this.service.routesData(payload, this.start/this.size, this.size).subscribe((response) => {
-      console.log(response);
-      this.loading = false;
-      this.data = [...response.routes];
-      this.totalCount = response.totalCount;
-      this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
-      // this.tottalCount = response.totalCount;
-      
-      this.headers = Object.keys(this.data[0])
-    });
+    this.service
+      .routesData(payload, this.start / this.size + 1, this.size)
+      .subscribe((response) => {
+        console.log(response);
+        this.loading = false;
+        this.data = [...response.routes];
+        this.totalCount = response.totalRevisions;
+        this.totalPages = response.totalPages;
+        if (this.data.length > 0) {
+          this.headers = Object.keys(this.data[0]);
+        } else {
+          this.headers = [];
+        }
+      });
   }
 
   goToFirst() {
@@ -63,7 +106,6 @@ routeEndDate: any;
       this.goToPage(this.currentPage - 1);
     }
   }
-
 
   getVisiblePages(): number[] {
     let startPage = Math.max(
@@ -91,9 +133,8 @@ routeEndDate: any;
     this.onSearch();
   }
 
-  getSelectedRadioValue(eve:any){
+  getSelectedRadioValue(eve: any) {
     console.log(eve.target.value);
-    
   }
 
   goToNext() {
@@ -105,4 +146,6 @@ routeEndDate: any;
   goToLast() {
     this.goToPage(this.totalPages);
   }
+
+  viewClick() {}
 }

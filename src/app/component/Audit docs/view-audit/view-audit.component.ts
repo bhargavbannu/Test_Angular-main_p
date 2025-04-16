@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/api.service';
 export class ViewAuditComponent implements OnInit {
   auditDetails: any = [];
   auditSaved: any;
+  searchType: any;
 
   constructor(private apiService: ApiService, private route:ActivatedRoute) {}
 
@@ -18,6 +19,7 @@ export class ViewAuditComponent implements OnInit {
     this.route.params.subscribe(params =>{
       this.auditSaved = params['auditSaved']
     })
+    this.searchType = this.apiService.searchType;
   }
 
   viewAudit() {

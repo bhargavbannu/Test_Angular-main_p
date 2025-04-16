@@ -1,6 +1,6 @@
 import { sanitizeIdentifier } from '@angular/compiler';
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { setLines } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
@@ -12,6 +12,15 @@ import { SearchPaginationComponent } from '../search-pagination/search-paginatio
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
+
+  records = [
+    { id: 1, name: 'John', age: 25 },
+    { id: 2, name: 'Jane', age: 30 },
+    { id: 3, name: 'Bob', age: 35 }
+  ];
+
+
+ 
   formData: any;
   totalFormData: any;
   advancedSearchValue: any;
@@ -151,7 +160,9 @@ export class SearchComponent {
   ) {
   }
   // "28796727"
-
+  downloadExcel(): void {
+    this.apiService.exportToExcel(this.records, 'my_records');
+  }
   ngOnInit() {
     this.advancedSearchValue = 'Advanced Search (Display)';
    // this.router.navigateByUrl('/search');
@@ -175,36 +186,37 @@ export class SearchComponent {
 
   }
 
-  Search() {
-    const formData = {
-      vendorName: this.vendorName,
-      checkBoxValue: this.checkBoxValue,
-    };
-    this.apiService.saveFormData(formData);
-    this.loading = true;
+  // Search() {
+  //   const formData = {
+  //     vendorName: this.vendorName,
+  //     checkBoxValue: this.checkBoxValue,
+  //   };
+  //   this.apiService.saveFormData(formData);
+  //   this.loading = true;
 
-    this.start = (this.currentPage - 1) * this.recordsPerPage;
-    this.size = this.recordsPerPage;
+  //   this.start = (this.currentPage - 1) * this.recordsPerPage;
+  //   this.size = this.recordsPerPage;
 
-    const payload = {
-      currentVendorOnly: this.checkBoxValue,
-      vendorName: this.vendorName,
-    };
+  //   const payload = {
+  //     currentVendorOnly: this.checkBoxValue,
+  //     vendorName: this.vendorName,
+  //   };
 
-    this.apiService
-      .postData(payload, this.start / this.size + 1, this.size)
-      .subscribe((data) => {
-        this.apiData = [...data.results];
-        // this.totalCount = data.totalCount;
-        // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
-        this.totalCount = data.totalRevisions;
-        this.totalPages = data.totalPages;
-        this.loading = false;
-        this.tableHeaders = Object.keys(this.apiData[0]); // Extract headers from the first object
-      });
-  }
+  //   this.apiService
+  //     .postData(payload, this.start / this.size + 1, this.size)
+  //     .subscribe((data) => {
+  //       this.apiData = [...data.results];
+  //       // this.totalCount = data.totalCount;
+  //       // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
+  //       this.totalCount = data.totalRevisions;
+  //       this.totalPages = data.totalPages;
+  //       this.loading = false;
+  //       this.tableHeaders = Object.keys(this.apiData[0]); // Extract headers from the first object
+  //     });
+  // }
 
   Search1() {  
+    this.apiService.searchType = "search";
     const formData = {
       vendorName: this.vendorName,
       checkBoxValue: this.checkBoxValue,
@@ -267,6 +279,9 @@ export class SearchComponent {
         if(this.apiData.length > 0){
         this.tableHeaders = Object.keys(this.apiData[0]); 
         }// Extract headers from the first object
+        else {
+          this.tableHeaders = [];
+        }
       });
   }
 
@@ -296,7 +311,7 @@ export class SearchComponent {
     this.currentPage = page;
     console.log(this.currentPage);
 
-    this.Search();
+    this.Search1();
   }
 
   goToFirst() {
@@ -338,5 +353,10 @@ export class SearchComponent {
     this.apiService.viewDocId = id;
     this.apiService.vendorName = vendorName;
     this.apiService.subject = subject;
+  }
+
+  clear(form: NgForm){
+    form.resetForm()
+    this.searchPagination.clearFields()
   }
 }

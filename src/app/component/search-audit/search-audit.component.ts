@@ -1,4 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 
@@ -13,17 +14,25 @@ export class SearchAuditComponent {
   size: any;
   totalPages: any;
   AAResvision: any;
-auditDateStart: any;
-auditDateEnd!: string|number|Date;
-unauditedDateStart!: string|number|Date;
-unauditedDateEnd!: string|number|Date;
-currentVendorRevisionDateStart: any;
-currentVendorRevisionDateEnd: any;
-  constructor(private service: ApiService) {}
+  auditDateStart: any;
+  auditDateEnd!: string | number | Date;
+  unauditedDateStart!: string | number | Date;
+  unauditedDateEnd!: string | number | Date;
+  currentVendorRevisionDateStart: any;
+  currentVendorRevisionDateEnd: any;
+eso: any;
+ata: any;
+vendorName: any;
+detailDocType: any;
+effectivity: any[]=[];
+currentVendorRevision: any;
+auditCategory: any[]=[];
+auditStatus: any;
+  constructor(private service: ApiService, private cdr:ChangeDetectorRef) {}
 
   selectedOption: any;
   totalCount: any;
-  recordsPerPage: any = 10; // Number of records per page
+  recordsPerPage: any = 15; // Number of records per page
   currentPage: any = 1;
   start: any;
   maxVisibleButtons: any = 8;
@@ -36,27 +45,85 @@ currentVendorRevisionDateEnd: any;
   @ViewChild('calendar5') calendar5!: Calendar;
   @ViewChild('calendar6') calendar6!: Calendar;
 
-  ngOnInIt() {}
+  ngOnInit() {
+    const formData = this.service.getFormData();
+    if (formData) {
+      this.eso = formData.eso;
+      this.ata = formData.ata;
+      this.vendorName = formData.vendorName, 
+      this.detailDocType = formData.detailDocType,
+      this.AAResvision = formData.currentAARevision,
+      this.selectedOption = formData.searchType,
+      this.auditDateStart = formData.auditDateStart,
+      this.auditDateEnd = formData.auditDateEnd,
+      this.unauditedDateStart = formData.unauditedDateStart,
+      this.unauditedDateEnd = formData.unauditedDateEnd,
+      this.currentVendorRevision = formData.currentVendorRevision,
+      this.currentVendorRevisionDateStart = formData.currentVendorRevisionDateStart,
+      this.currentVendorRevisionDateEnd = formData.currentVendorRevisionDateEnd,
+      this.auditStatus = formData.auditStatus,
+      this.auditCategory = formData.auditCategory,
+      this.effectivity = formData.effectivity
+      this.onSearch();
+    }
+    this.cdr.detectChanges();
+  }
   onSearch() {
-    console.log(this.selectedOption);
+    this.service.searchType = "audit";
+    const formData = {
+      eso: this.eso,
+      ata: this.ata,
+      vendorName: this.vendorName, 
+      detailDocType: this.detailDocType,
+      currentAARevision: this.AAResvision,
+      searchType: this.selectedOption,
+      auditDateStart: this.auditDateStart,
+      auditDateEnd: this.auditDateEnd, 
+      unauditedDateStart: this.unauditedDateStart,
+      unauditedDateEnd: this.unauditedDateEnd,
+      currentVendorRevision: this.currentVendorRevision,
+      currentVendorRevisionDateStart: this.currentVendorRevisionDateStart,
+      currentVendorRevisionDateEnd:this.currentVendorRevisionDateEnd,
+      auditStatus: this.auditStatus,
+      auditCategory: this.auditCategory,
+      effectivity: this.effectivity
+    };
+    this.service.saveFormData(formData);
     this.loading = true;
     this.start = (this.currentPage - 1) * this.recordsPerPage;
     this.size = this.recordsPerPage;
     const payload = {
-      searchType: this.selectedOption,
+      eso: this.eso,
+      ata: this.ata,
+      vendorName: this.vendorName,
+      detailDocType: this.detailDocType,
       currentAARevision: this.AAResvision,
+      searchType: this.selectedOption,
+      auditDateStart: this.auditDateStart,
+      auditDateEnd: this.auditDateEnd,
+      unauditedDateStart: this.unauditedDateStart,
+      unauditedDateEnd: this.unauditedDateEnd,
+      currentVendorRevision: this.currentVendorRevision,
+      currentVendorRevisionDateStart: this.currentVendorRevisionDateStart,
+      currentVendorRevisionDateEnd: this.currentVendorRevisionDateEnd,
+      auditStatus: this.auditStatus,
+      auditCategory: this.auditCategory,
+      effectivity: this.effectivity
     };
     this.service
-      .auditsData(payload, this.start / this.size, this.size)
+      .auditsData(payload, this.start / this.size + 1, this.size)
       .subscribe((response) => {
         console.log(response);
         this.loading = false;
         this.data = [...response.results];
-        this.totalCount = response.totalCount;
-        this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
+        this.totalCount = response.totalRevisions;
+        this.totalPages = response.totalPages;
         // this.tottalCount = response.totalCount;
-
-        this.headers = Object.keys(this.data[0]);
+        if (this.data.length > 0) {
+          this.headers = Object.keys(this.data[0]);
+        } else {
+          this.headers = [];        
+        }
       });
   }
   viewClick(id: any, vendorName: any, subject: any) {
@@ -86,7 +153,11 @@ currentVendorRevisionDateEnd: any;
       this.totalPages
     );
 
-    if (endPage - startPage < this.maxVisibleButtons - 1) {
+    // if (endPage - startPage < this.maxVisibleButtons - 1) {
+    //   startPage = Math.max(1, endPage - this.maxVisibleButtons + 1);
+    // }
+    if (endPage > this.totalPages) {
+      endPage = this.totalPages;
       startPage = Math.max(1, endPage - this.maxVisibleButtons + 1);
     }
 
@@ -114,5 +185,9 @@ currentVendorRevisionDateEnd: any;
 
   goToLast() {
     this.goToPage(this.totalPages);
+  }
+
+  clear(form: NgForm){
+    form.resetForm()
   }
 }

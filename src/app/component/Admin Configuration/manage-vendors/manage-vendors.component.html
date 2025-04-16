@@ -101,6 +101,8 @@
                                       </td>
                                       <td align="left">
                                         <input
+                                          id="vendorName"
+                                          name="vendorName"
                                           type="text"
                                           class=""
                                           value=""
@@ -109,9 +111,7 @@
                                           autocomplete="off"
                                           [(ngModel)]="vendorName"
                                           (input)="tettt($event)"
-                                          [ngModelOptions]="{
-                                            standalone: true
-                                          }"
+                                          (focusout)="onFocusOut()"
                                         />
                                         <div
                                           *ngIf="dropdownValues.length > 0"
@@ -559,7 +559,7 @@
                                           id="supercededdt_date"
                                           align="ABSMIDDLE"
                                           src="assets/images/calendar.gif"
-                                          (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild.nativeElement.click()"
+                                          (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
                                       /></span>
                                       <p-calendar name="calendarDate" #calendar1 [(ngModel)]="this.supercedDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
                                       <script>
