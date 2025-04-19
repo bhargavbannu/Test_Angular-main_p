@@ -68,4 +68,19 @@ export class ViewDetailComponent implements OnInit {
     this.apiService.type ="new"
   }
 
+  downloadRouteSlip(id:any){
+    this.apiService.routeSlipDownload(id,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
+      const contentDisposition = response.headers.get('Content-Disposition');
+      const filename = contentDisposition.split('filename=')[1].trim().replace(/"/g, '');
+      const blob = new Blob([response.body], { type: 'application/msword' });
+       const url = window.URL.createObjectURL(blob);
+       const a = document.createElement('a');
+       a.href = url;
+       a.download = filename;
+       a.click();
+       window.URL.revokeObjectURL(url);
+    });
+
+  }
+
 }

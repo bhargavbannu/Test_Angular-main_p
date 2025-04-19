@@ -430,4 +430,13 @@ removeDoc(){
     }
   }
   }
+
+  onFocusOut(){
+    this.filteredLocations = [];
+    this.filteredNumbers = [];
+    this.filteredDocTypes = [];
+    this.esoNumberRess=[];
+    this.ecoRes=[];
+    this.auditableResponse=[];
+  }
 }

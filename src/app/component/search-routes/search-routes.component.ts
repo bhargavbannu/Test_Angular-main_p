@@ -48,8 +48,9 @@ export class SearchRoutesComponent {
       this.onSearch();
     } else {
       this.routeType = '';
-      this.section = '-1';
+      this.section = '';
       this.detailDocType = '';
+      this.selectedOption = 'BOTH'
     }
     this.cdr.detectChanges();
   }
@@ -147,5 +148,11 @@ export class SearchRoutesComponent {
     this.goToPage(this.totalPages);
   }
 
-  viewClick() {}
+  viewClick(id:any) {
+    this.service.detailRoute = id;
+  }
+
+  downloadExcel(): void {
+    this.service.exportToExcel(this.data, 'my_records');
+  }
 }

@@ -366,10 +366,10 @@
       </tbody>
     </table>
     <br />
-    <a *ngIf="tableHeaders.length > 0">Download XLS</a>
+    <a *ngIf="tableHeaders.length > 0" style="cursor: pointer;" (click)="downloadExcel()">Download XLS</a>
     <br /><span *ngIf="tableHeaders.length > 0">(Please note: Depending on the size, this operation might take several
     minutes)</span>
   </td>
 </div>
 
-<button (click)="downloadExcel()">Download Excel</button>
+<!-- <button (click)="downloadExcel()">Download Excel</button> -->

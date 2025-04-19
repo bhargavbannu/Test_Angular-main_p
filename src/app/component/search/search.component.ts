@@ -161,7 +161,7 @@ export class SearchComponent {
   }
   // "28796727"
   downloadExcel(): void {
-    this.apiService.exportToExcel(this.records, 'my_records');
+    this.apiService.exportToExcel(this.apiData, 'my_records');
   }
   ngOnInit() {
     this.advancedSearchValue = 'Advanced Search (Display)';

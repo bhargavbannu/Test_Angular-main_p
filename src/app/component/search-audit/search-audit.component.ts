@@ -190,4 +190,16 @@ auditStatus: any;
   clear(form: NgForm){
     form.resetForm()
   }
+
+  downloadExcel(): void {
+    this.service.exportToExcel(this.data, 'my_records');
+  }
+
+  getYears(row:any, header:any){
+    if(header === 'auditYears'){
+     return row[header].map((item :any)=> item.year).join(', ')
+    } else {
+     return row[header].year
+    }
+  }
 }

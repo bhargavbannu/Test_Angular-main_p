@@ -101,6 +101,7 @@ export class ApiService {
   private newRouteApi = `${environment.apiBaseUrl}/routing/newRouteSave`
   private esoByEffectivityAPi = `${environment.apiBaseUrl}/eso/getEsoByEffectivityId`
   private dispositionApi = `${environment.apiBaseUrl}/routing/getDispositions`
+  private routeSlipDownloadApi = `${environment.apiBaseUrl}/routing/downloadRoutingSlip`
 
 detailRoute:any
   viewDocId: any;
@@ -494,6 +495,10 @@ esoNumbersApiData(val:any):Observable<any>{
 
   disposition(value:any){
     return this.http.get<any>(`${this.dispositionApi}?sourceElement=${value}`)
+  }
+
+  routeSlipDownload(id:any, options:any){
+    return this.http.get<any>(`${this.routeSlipDownloadApi}?routeId=${id}`, options);
   }
 
   checkApiHealth(): Observable<any> {

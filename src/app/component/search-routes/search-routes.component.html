@@ -139,7 +139,7 @@
                                                   [(ngModel)]="section"
                                                 >
                                                   <option
-                                                    value="-1"
+                                                    value=""
                                                   >
                                                     ALL
                                                   </option>
@@ -1026,7 +1026,7 @@
         <td>
           <a
             routerLink="/viewRoute"
-            (click)="viewClick()"
+            (click)="viewClick(row.routeId)"
             >View</a
           >
         </td>
@@ -1034,7 +1034,7 @@
     </tbody>
   </table>
   <br />
-  <a href="javascript:exportXLS();" *ngIf="headers.length > 0">Download XLS</a>
+  <a style="cursor: pointer;" (click)="downloadExcel()" *ngIf="headers.length > 0">Download XLS</a>
   <br /><span *ngIf="headers.length > 0">(Please note: Depending on the size, this operation might take several
   minutes)</span>
 </td>

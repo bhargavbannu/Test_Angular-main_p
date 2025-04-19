@@ -1627,7 +1627,7 @@
     </thead>
     <tbody>
       <tr class="odd" *ngFor="let row of data">
-        <td *ngFor="let header of headers">{{ row[header] }}</td>
+        <td *ngFor="let header of headers">{{ header !== 'auditYears' && header !== 'thisYearAudit' ? row[header] : getYears(row,header) }}</td>
         <td>
           <a
             routerLink="/viewStatus"
@@ -1639,7 +1639,7 @@
     </tbody>
   </table>
   <br />
-  <a href="javascript:exportXLS();" *ngIf="headers.length > 0">Download XLS</a>
+  <a *ngIf="headers.length > 0" style="cursor: pointer;" (click)="downloadExcel()">Download XLS</a>
   <br /><span *ngIf="headers.length > 0">(Please note: Depending on the size, this operation might take several
   minutes)</span>
 </td>
