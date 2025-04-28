@@ -90,11 +90,7 @@ export class SearchRoutesComponent {
         this.data = [...response.routes];
         this.totalCount = response.totalRevisions;
         this.totalPages = response.totalPages;
-        if (this.data.length > 0) {
-          this.headers = Object.keys(this.data[0]);
-        } else {
-          this.headers = [];
-        }
+        
       });
   }
 

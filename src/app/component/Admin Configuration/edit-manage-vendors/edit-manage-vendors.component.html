@@ -1,0 +1,171 @@
+<td align="left">
+  <!-- CONTENT -->
+
+  <table cellspacing="0" cellpadding="0" border="0">
+    <tbody style="display: block; margin-top: 12px;">
+      <tr>
+        <td>
+          <table
+            class="eds-tabheader"
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+          >
+            <tbody>
+              <tr>
+                <td class="eds-tabtopleftcorner"></td>
+                <td class="eds-tabtopmiddle" align="center">
+                  <div class="eds-tabtitle">Edit Vendor</div>
+                </td>
+                <td class="eds-tabtoprightcorner"></td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td class="eds-tabtoprightcorner"></td>
+      </tr>
+      <tr>
+        <td>
+          <table
+            cellspacing="0"
+            cellpadding="0"
+            width="100%"
+            border="0"
+            class="eds-tabtitle"
+          >
+            <tbody>
+              <tr>
+                <td>
+                  <form
+                    name="VendorForm"
+                    id="VendorForm"
+                    method="post"
+                    action="/vdt/SaveVendor.html"
+                  >
+                    <input type="hidden" name="vendor.vendorid" value="" />
+                    <table>
+                      <tbody>
+                        <tr class="eds-pagerstyle eds-field-required" style="">
+                          <td align="right">Vendor Name *&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="vendor.vendorNm"
+                              class=""
+                              value=""
+                              size="45"
+                              maxlength="20"
+                              [(ngModel)]="vendorName"
+                            />
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt" style="">
+                          <td align="right">
+                            Vendor Contact Person&nbsp; &nbsp;
+                          </td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="vendor.contactPerson"
+                              class=""
+                              value=""
+                              size="45"
+                              maxlength="100"
+                              [(ngModel)]="contactPerson"
+                            />
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle" style="">
+                          <td align="right">
+                            Vendor Contact Phone&nbsp; &nbsp;
+                          </td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="vendor.contactPhone"
+                              class=""
+                              value=""
+                              size="45"
+                              maxlength="25"
+                              [(ngModel)]="contactPhone"
+                            />
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt" style="">
+                          <td align="right">Vendor Email&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="vendor.vendorEmailAddress"
+                              class=""
+                              value=""
+                              size="45"
+                              maxlength="50"
+                              [(ngModel)]="email"
+                            />
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle" style="">
+                          <td align="right">Vendor Website&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="vendor.vendorWebsite"
+                              class=""
+                              value=""
+                              size="45"
+                              maxlength="150"
+                              [(ngModel)]="vendorWebsite"
+                            />
+                          </td>
+                        </tr>
+
+                        <tr class="eds-pagerstyle-alt" style="">
+                          <td align="right">Vendor Remarks&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <input
+                              type="text"
+                              name="vendor.remarks"
+                              class=""
+                              value=""
+                              size="45"
+                              maxlength="255"
+                              [(ngModel)]="remarks"
+                            />
+                          </td>
+                        </tr>
+
+                        <!-- BUTTONS SECTION -->
+
+                        <tr class="eds-pagerstyle blueColSpan">
+                          <td colspan="2">
+                            <span style="float: left">
+                              <input type="submit" value="Save" (click)="save()"/>
+                            </span>
+                            <span style="float: right">
+                              <input
+                                type="button"
+                                value="Delete"
+                                onclick="deleteVendor();"
+                              />
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</td>

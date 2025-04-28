@@ -1571,7 +1571,7 @@
 </div>
 <td valign="top" align="left" *ngIf="data">
   <br />
-  <div class="pagination-container" *ngIf="headers.length > 0">
+  <div class="pagination-container" *ngIf="data.length > 0">
     <span class="pagebanner"
       >{{ totalCount }} items found, displaying {{ start + 1 }} to
       {{ start + recordsPerPage }}.</span
@@ -1617,9 +1617,9 @@
       >Last]</a
     >
   </div>
-  <span *ngIf="headers.length === 0">No documents matched the search criteria.</span>
+  <span *ngIf="data.length === 0">No documents matched the search criteria.</span>
   <table class="inline-table" id="result">
-    <thead>
+    <!-- <thead>
       <tr>
         <th *ngFor="let header of headers">{{ header }}</th>
         <th *ngIf="headers.length > 0">Action</th>
@@ -1636,10 +1636,53 @@
           >
         </td>
       </tr>
+    </tbody> -->
+    <tbody *ngIf="data.length > 0">
+      <tr>
+        <th>Vendor</th>
+        <th>ATA</th>
+        <th>Detail Doc Type</th>
+        <th>AA Rev.</th>
+        <th>AA Rev Dt</th>
+        <th>VND Rev.</th>
+        <th>Vndr Rev Dt</th>
+        <th>ESO #</th>       
+        <th *ngFor="let year of auditYears">{{year}} Audit(Category)</th>
+        <th>VND Website</th>
+        <th>Follow-up Dt.</th>
+        <th>Notes</th>
+        <th>Action</th>
+      </tr>
+
+      <tr
+        *ngFor="let row of data; let i = index"
+        [ngClass]="i % 2 == 0 ? 'eds-pagerstyle' : 'eds-pagerstyle-alt'"
+      >
+        <td>{{ row.vendorName }}</td>
+        <td>{{ row.ata }}</td>
+        <td>{{ row.detailDocType }}</td>
+        <td>{{ row.revisionNbr }}</td>
+        <td>{{ row.revisionDate }}</td>
+        <td>{{ row.vendorRevision }}</td>
+        <td>{{ row.vendorRevisionDt }}</td>
+        <td>{{ row.eso }}</td>
+        <td *ngFor="let year of getYears(row); let colIndex=index"><a routerLink="/viewAudit" (click)="viewAudit(row, colIndex)">{{ year | date:'YYYY-MM-dd'}}</a> {{ year && row.dodAuditCatgory ? '('+row.dodAuditCatgory+')':''}}</td>
+        <td>{{ row.vendorWebsite }}</td>
+        <td>{{ row.followupDateForDisplay }}</td>
+        <td>{{ row.notes }}</td>
+
+        <td>
+          <a
+            routerLink="/viewStatus"
+            (click)="viewClick(row.documentId, row.vendorName, row.subject)"
+            >View Document</a
+          >
+        </td>
+      </tr>
     </tbody>
   </table>
   <br />
-  <a *ngIf="headers.length > 0" style="cursor: pointer;" (click)="downloadExcel()">Download XLS</a>
-  <br /><span *ngIf="headers.length > 0">(Please note: Depending on the size, this operation might take several
+  <a *ngIf="data.length > 0" style="cursor: pointer;" (click)="downloadExcel()">Download XLS</a>
+  <br /><span *ngIf="data.length > 0">(Please note: Depending on the size, this operation might take several
   minutes)</span>
 </td>

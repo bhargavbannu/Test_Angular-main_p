@@ -1,5 +1,6 @@
 <div>
-  <form #myForm="ngForm"
+  <form
+    #myForm="ngForm"
     (submit)="Search1()"
     class="formClass"
     name="SearchForm"
@@ -258,9 +259,7 @@
                                 style="display: none"
                               >
                                 <div class="hidableSectionLink">
-                                  <a
-                                    >Advanced Search (Hide)</a
-                                  >
+                                  <a>Advanced Search (Hide)</a>
                                 </div>
                                 <table width="100%"></table>
                               </div>
@@ -281,7 +280,12 @@
                         <input type="submit" value="Search" tabindex="-1" />
                       </span>
                       <span style="float: right">
-                        <input type="button" value="Clear" (click)="clear(myForm)" tabindex="-1" />
+                        <input
+                          type="button"
+                          value="Clear"
+                          (click)="clear(myForm)"
+                          tabindex="-1"
+                        />
                       </span>
                     </td>
                   </tr>
@@ -302,7 +306,7 @@
   </div>
   <td valign="top" align="left" *ngIf="apiData">
     <br />
-    <div class="pagination-container" *ngIf="tableHeaders.length > 0">
+    <div class="pagination-container" *ngIf="apiData.length > 0">
       <span class="pagebanner"
         >{{ totalCount }} items found, displaying {{ start + 1 }} to
         {{ start + recordsPerPage }}.</span
@@ -348,9 +352,11 @@
         >Last]</a
       >
     </div>
-    <span *ngIf="tableHeaders.length === 0">No documents matched the search criteria.</span>
+    <span *ngIf="apiData.length === 0"
+      >No documents matched the search criteria.</span
+    >
     <table class="inline-table" id="result">
-      <thead>
+      <!-- <thead>
         <tr>
           <th *ngFor="let header of tableHeaders">{{ header }}</th>
           <th *ngIf="tableHeaders.length > 0">Action</th>
@@ -363,12 +369,58 @@
           <td *ngFor="let header of tableHeaders">{{ row[header] }}</td>
          <td><a routerLink="/viewStatus" (click)="viewClick(row.docId, row.vendorName,row.subject)">View</a></td>
         </tr>
+      </tbody> -->
+
+      <tbody *ngIf="apiData.length > 0">
+        <tr>
+          <th>VDT System ID No.</th>
+          <th>Vnd. Doc. Ref. #</th>
+          <th>ATA</th>
+          <th>Vendor</th>
+          <th>Effectivity</th>
+          <th>Subject</th>
+          <th>ESO#</th>
+          <th>ECO#</th>
+          <th>Vendor Part#</th>
+          <th>Sections</th>
+          <th>Action</th>
+        </tr>
+
+        <tr
+          *ngFor="let row of apiData; let i = index"
+          [ngClass]="i % 2 == 0 ? 'eds-pagerstyle' : 'eds-pagerstyle-alt'"
+        >
+          <td>{{ row.docId }}</td>
+          <td>{{ row.vendorDocRefNbr }}</td>
+          <td>{{ row.ata }}</td>
+          <td>{{ row.vendorName }}</td>
+          <td>{{ row.effectivity }}</td>
+          <td>{{ row.subject }}</td>
+          <td>{{ row.esos }}</td>
+          <td>{{ row.ecos }}</td>
+          <td>{{ row.documentPartNumbers }}</td>
+          <td>{{ row.engineeringSections }}</td>
+          <td>
+            <a
+              routerLink="/viewStatus"
+              (click)="viewClick(row.docId, row.vendorName, row.subject)"
+              >View</a
+            >
+          </td>
+        </tr>
       </tbody>
     </table>
     <br />
-    <a *ngIf="tableHeaders.length > 0" style="cursor: pointer;" (click)="downloadExcel()">Download XLS</a>
-    <br /><span *ngIf="tableHeaders.length > 0">(Please note: Depending on the size, this operation might take several
-    minutes)</span>
+    <a
+      *ngIf="apiData.length > 0"
+      style="cursor: pointer"
+      (click)="downloadExcel()"
+      >Download XLS</a
+    >
+    <br /><span *ngIf="apiData.length > 0"
+      >(Please note: Depending on the size, this operation might take several
+      minutes)</span
+    >
   </td>
 </div>
 

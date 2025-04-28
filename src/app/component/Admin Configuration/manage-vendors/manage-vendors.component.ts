@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
@@ -11,7 +12,7 @@ import { ApiService } from 'src/app/api.service';
 })
 export class ManageVendorsComponent implements OnInit {
 
-  vendorName: any = 'heloo';
+  vendorName: any = '';
   isEditVendor:boolean=false
 superced: boolean = false;
 isEditVendorTemp: boolean = false;
@@ -19,7 +20,8 @@ newVendorName: any;
   error: boolean = false;
   @ViewChild('calendar1') calendar1!: Calendar;
 supercedDate: any;
-  constructor(private http: HttpClient, private appservice: ApiService) {}
+  vendorSaved: any;
+  constructor(private http: HttpClient, private appservice: ApiService, private route: ActivatedRoute) {}
 dropdownValues:any[]=[]
   subb = new Subject();
   ngOnInit() {
@@ -28,18 +30,23 @@ dropdownValues:any[]=[]
         debounceTime(1000),
         distinctUntilChanged(),
         switchMap(() => {          
-          return this.appservice.getAutoPopulateVendors(this.vendorName);
+          return this.appservice.getAutoPopulateVendors(this.vendorName);          
         })
       )
       .subscribe((res: any) => {
-        console.log(res);
         this.dropdownValues = res;
-
       });
+
+      this.route.params.subscribe(params =>{
+        this.vendorSaved = params['vendorSaved']
+      })
   }
 
   tettt(val: any) {
     this.subb.next(val.target.value);
+    if(val.target.value === ''){
+      this.dropdownValues = [];
+    }
   }
 
   supercedFun(){

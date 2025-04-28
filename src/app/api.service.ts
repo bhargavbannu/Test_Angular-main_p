@@ -140,6 +140,11 @@ saveExistingRouteView(viewRoute:any, payload:any){
       },
     });
   }
+
+  savevendor(val: any): Observable<any> {
+    return this.http.post<any>(this.saveVendors, val)
+  }
+
   getAutoPopulateVendors(id: any): Observable<any> {
     console.log('test');
 

@@ -151,7 +151,7 @@ export class SearchComponent {
   ata: any;
   detailId: any;
   @ViewChild(SearchPaginationComponent) searchPagination!: SearchPaginationComponent;
-
+  downloadPayload: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -160,7 +160,7 @@ export class SearchComponent {
   ) {
   }
   // "28796727"
-  downloadExcel(): void {
+  downloadExcel(): void {     
     this.apiService.exportToExcel(this.apiData, 'my_records');
   }
   ngOnInit() {
@@ -267,6 +267,7 @@ export class SearchComponent {
 
 
     };
+    this.downloadPayload = payload;
     this.apiService
       .postData(payload, this.start / this.size + 1, this.size)
       .subscribe((data) => {
@@ -276,12 +277,12 @@ export class SearchComponent {
         this.totalCount = data.totalRevisions;
         this.totalPages = data.totalPages;
         this.loading = false;
-        if(this.apiData.length > 0){
-        this.tableHeaders = Object.keys(this.apiData[0]); 
-        }// Extract headers from the first object
-        else {
-          this.tableHeaders = [];
-        }
+      //  if(this.apiData.length > 0){
+      //  this.tableHeaders = Object.keys(this.apiData[0]); 
+      //  }// Extract headers from the first object
+      //  else {
+      //    this.tableHeaders = [];
+       // }
       });
   }
 

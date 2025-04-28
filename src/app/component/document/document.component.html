@@ -1,5 +1,6 @@
 <!-- <p-button label="Check" /> -->
 <div>
+  
   <td valign="top" align="left">
     <table border="0" cellspacing="0" cellpadding="0" width="100%">
       <tbody>
@@ -20,11 +21,13 @@
         <tr>
           <td id="emptyRow" style="display: none">&nbsp;</td>
         </tr>
+        <a *ngIf="editDoc" style="font-size: larger;font-weight: bolder" routerLink="/viewStatus">Back To Document</a>
         <tr>
           <td align="left">
             <!-- CONTENT -->
 
             <br /><br />
+
 
             <div class="documentContainer">
               <div style="float: left">
@@ -135,10 +138,30 @@
                                             class=""
                                             id="vendorAutoComplete"
                                             [(ngModel)]="vendorName"
+                                            (input)="vName($event)"
                                             size="45"
                                             maxlength="20"
                                             autocomplete="off"
+                                            (focusout)="onFocusOut()"
                                           />
+
+                                          <div
+                                          *ngIf="vendorNamesList.length > 0"
+                                          style="
+                                            min-width: 220px;
+                                            background: rgb(247, 242, 242);
+                                            position: absolute;
+                                          "
+                                        >
+                                          <div
+                                            *ngFor="let val of vendorNamesList"
+                                            (mousedown)="setVal(val)"
+                                          >
+                                            <span style="cursor: pointer">{{
+                                              val
+                                            }}</span>
+                                          </div>
+                                        </div>
 
                                           <div
                                             id="vendorAutoComplete_choices"
@@ -606,7 +629,7 @@
                                               *ngFor="
                                                 let number of filteredNumbers
                                               "
-                                              (click)="selectNumber(number)"
+                                              (mousedown)="selectNumber(number)"
                                             >
                                               <span style="cursor: pointer">{{
                                                 number
@@ -668,7 +691,7 @@
                                               *ngFor="
                                                 let location of filteredLocations
                                               "
-                                              (click)="selectLocation(location)"
+                                              (mousedown)="selectLocation(location)"
                                             >
                                               <span style="cursor: pointer">{{
                                                 location
@@ -739,7 +762,7 @@
                                               *ngFor="
                                                 let doc of filteredDocTypes
                                               "
-                                              (click)="selectDocType(doc)"
+                                              (mousedown)="selectDocType(doc)"
                                             >
                                               <span style="cursor: pointer">{{
                                                 doc
@@ -806,7 +829,7 @@
                                           >
                                             <div
                                               *ngFor="let doc of auditableResponse"
-                                              (click)="auditableDropDownSelect(doc)"
+                                              (mousedown)="auditableDropDownSelect(doc)"
                                             >
                                               <span style="cursor: pointer">{{
                                                 doc
@@ -874,7 +897,7 @@
                                           >
                                             <div
                                               *ngFor="let doc of ecoRes"
-                                              (click)="selectesoNum(doc)"
+                                              (mousedown)="selectesoNum(doc)"
                                             >
                                               <span style="cursor: pointer">{{
                                                 doc
@@ -944,7 +967,7 @@
                                           >
                                             <div
                                               *ngFor="let doc of esoNumberRess"
-                                              (click)="selectesoNum1(doc)"
+                                              (mousedown)="selectesoNum1(doc)"
                                             >
                                               <span style="cursor: pointer">{{
                                                 doc
@@ -960,6 +983,11 @@
                                         class="eds-pagerstyle-alt blueColSpan"
                                       >
                                         <td colspan="2">
+                                          <button
+                                          *ngIf="editDoc"
+                                         >
+                                          Delete
+                                        </button>
                                           <span style="float: right">
                                             <button
                                               (click)="addDocumentSubmit()"

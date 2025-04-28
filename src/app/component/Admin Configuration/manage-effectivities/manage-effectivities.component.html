@@ -30,7 +30,7 @@
                   <tr>
                     <td style="padding-top: 12px">
                       <table
-                        class="eds-tabheader"
+                        class="effectivity eds-tabheader"
                         cellspacing="0"
                         cellpadding="0"
                         border="0"
@@ -123,6 +123,7 @@
                                             type="text"
                                             name="effectivityId"
                                             [(ngModel)]="status.effectivityId"
+                                            [readonly]="status.newRow !== true"
                                           />
                                         </span>
                                       </td>
@@ -132,9 +133,9 @@
                                           <input
                                             type="text"
                                             name="esoMinSeqNb"
-                                            [(ngModel)]="
-                                              status.effectivityFleet
-                                                .esoMinSeqNbr
+                                            [ngModel]="
+                                              status?.effectivityFleet
+                                                ?.esoMinSeqNbr
                                             "
                                           />
                                         </span>
@@ -145,9 +146,9 @@
                                           <input
                                             type="text"
                                             name="esoMaxSeqNbr"
-                                            [(ngModel)]="
-                                              status.effectivityFleet
-                                                .esoMaxSeqNbr
+                                            [ngModel]="
+                                              status?.effectivityFleet
+                                                ?.esoMaxSeqNbr
                                             "
                                           />
                                         </span>
@@ -158,9 +159,9 @@
                                           <input
                                             type="text"
                                             name="esoCurrSeqNbr"
-                                            [(ngModel)]="
-                                              status.effectivityFleet
-                                                .esoCurrSeqNbr
+                                            [ngModel]="
+                                              status?.effectivityFleet
+                                                ?.esoCurrSeqNbr
                                             "
                                           />
                                         </span>
@@ -206,14 +207,14 @@
                                           value="Save"
                                           (click)="
                                             saveRow(
-                                              status.effectivityId,
-                                              status.effectivityFleet
-                                                .esoMinSeqNbr,
-                                              status.effectivityFleet
-                                                .esoMaxSeqNbr,
-                                              status.effectivityFleet
-                                                .esoCurrSeqNbr,
-                                              status.inactiveInd
+                                              status?.effectivityId,
+                                              status?.effectivityFleet
+                                                ?.esoMinSeqNbr,
+                                              status?.effectivityFleet
+                                                ?.esoMaxSeqNbr,
+                                              status?.effectivityFleet
+                                                ?.esoCurrSeqNbr,
+                                              status?.inactiveInd
                                             )
                                           "
                                         /><input

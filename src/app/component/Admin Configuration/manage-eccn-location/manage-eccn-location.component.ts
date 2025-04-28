@@ -52,7 +52,7 @@ export class ManageEccnLocationComponent {
       .subscribe(() => {
         this.loadEccnLocations();
       });
-    this.btnIndex
+    this.btnIndex = ''
 }
   }
 

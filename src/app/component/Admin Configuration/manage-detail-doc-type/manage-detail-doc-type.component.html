@@ -79,7 +79,7 @@
                               <table id="inline-table" class="inline-table">
                                 <tbody>
                                   <tr>
-                                    <th>Detail Doc Type Cd</th>
+                                    <th>Detail Doc Type Cd *</th>
                                     <th>Detail Doc Type Desc</th>
                                     <th>Auditable</th>
                                     <th></th>
@@ -107,6 +107,7 @@
                                           type="text"
                                           name="detailDocType"
                                           [(ngModel)]="doc.detailDocType"
+                                          [readonly]="doc.newRow !== true"
                                         />
                                       </span>
                                     </td>

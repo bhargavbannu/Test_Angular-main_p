@@ -28,6 +28,7 @@ effectivity: any[]=[];
 currentVendorRevision: any;
 auditCategory: any[]=[];
 auditStatus: any;
+  auditYears: any[]=[];
   constructor(private service: ApiService, private cdr:ChangeDetectorRef) {}
 
   selectedOption: any;
@@ -46,6 +47,7 @@ auditStatus: any;
   @ViewChild('calendar6') calendar6!: Calendar;
 
   ngOnInit() {
+    this.selectedOption = 'B';
     const formData = this.service.getFormData();
     if (formData) {
       this.eso = formData.eso;
@@ -118,12 +120,13 @@ auditStatus: any;
         this.data = [...response.results];
         this.totalCount = response.totalRevisions;
         this.totalPages = response.totalPages;
-        // this.tottalCount = response.totalCount;
-        if (this.data.length > 0) {
-          this.headers = Object.keys(this.data[0]);
-        } else {
-          this.headers = [];        
-        }
+
+     this.auditYears = this.data[0].auditYears.map((item :any)=> {    
+           return item.year
+        })
+      
+        console.log(this.auditYears);
+        
       });
   }
   viewClick(id: any, vendorName: any, subject: any) {
@@ -195,11 +198,23 @@ auditStatus: any;
     this.service.exportToExcel(this.data, 'my_records');
   }
 
-  getYears(row:any, header:any){
-    if(header === 'auditYears'){
-     return row[header].map((item :any)=> item.year).join(', ')
-    } else {
-     return row[header].year
-    }
+  getYears(row:any):any{
+    // if(header === 'auditYears'){
+    //  return row[header].map((item :any)=> item.year).join(', ')
+    // } else {
+    //  return row[header].year
+    // }
+  return row.auditYears.map((item :any)=> 
+    item.mostRecentAuditForYear.auditDate)
+    
+}
+
+viewAudit(row:any, colIndex:any){
+ const auditYear =  row.auditYears[colIndex]; 
+  if(auditYear && auditYear.mostRecentAuditForYear){
+    const auditId = auditYear.mostRecentAuditForYear.auditId
+    this.service.viewAuditId = auditId
   }
+
+}
 }

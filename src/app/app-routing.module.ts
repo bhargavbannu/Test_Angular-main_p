@@ -30,8 +30,16 @@ import { EditEsoDocComponent } from './component/ESO Docs/edit-eso/edit-eso/edit
 import { ViewRouteChildComponent } from './component/Detail Docs/view-route-child/view-route-child.component';
 import { ReissueRouteComponent } from './component/Detail Docs/reissue-route/reissue-route.component';
 import { NewrouteComponent } from './component/newroute/newroute.component';
+import { EditManageVendorsComponent } from './component/Admin Configuration/edit-manage-vendors/edit-manage-vendors.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: SearchComponent,
+    children: [ 
+      { path: 'advance-search', component: SearchPaginationComponent },
+    ],
+  },
   {
     path: 'search',
     component: SearchComponent,
@@ -142,9 +150,10 @@ const routes: Routes = [
    { path: 'reissueRoute', 
     component: ReissueRouteComponent
    },
+   { path: 'edit-manage-vendors', 
+    component: EditManageVendorsComponent
+   }
   
-
-   
 ];
 
 @NgModule({

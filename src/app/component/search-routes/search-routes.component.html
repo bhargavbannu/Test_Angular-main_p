@@ -966,7 +966,7 @@
 </div>
 <td valign="top" align="left" *ngIf="data">
   <br />
-  <div class="pagination-container" *ngIf="headers.length > 0">
+  <div class="pagination-container" *ngIf="data.length > 0">
     <span class="pagebanner"
       >{{ totalCount }} items found, displaying {{ start + 1 }} to
       {{ start + recordsPerPage }}.</span
@@ -1012,9 +1012,9 @@
       >Last]</a
     >
   </div>
-  <span *ngIf="headers.length === 0">No routes for the specified criteria.</span>
+  <span *ngIf="data.length === 0">No routes for the specified criteria.</span>
   <table class="inline-table" id="result">
-    <thead>
+    <!-- <thead>
       <tr>
         <th *ngFor="let header of headers">{{ header }}</th>
         <th *ngIf="headers.length > 0">Action</th>
@@ -1031,10 +1031,52 @@
           >
         </td>
       </tr>
+    </tbody> -->
+    <tbody *ngIf="data.length > 0">
+      <tr>
+        <th>Detail #</th>
+        <th>Route Date</th>
+        <th>Vendor</th>
+        <th>ATA</th>
+        <th>VendorDocNo</th>
+        <th>Subject</th>
+        <th>Effectivity</th>
+        <th>Section</th>
+        <th>AA Revision #</th>
+        <th>Detail Doc Type</th>
+        <th>Case Class</th>
+        <th>ESO #</th>
+        <th>Action</th>
+      </tr>
+
+      <tr
+        *ngFor="let row of data; let i = index"
+        [ngClass]="i % 2 == 0 ? 'eds-pagerstyle' : 'eds-pagerstyle-alt'"
+      >
+        <td>{{ row.detailRefNumber }}</td>
+        <td>{{ row.routeDate }}</td>
+        <td>{{ row.vendorNm }}</td>
+        <td>{{ row.ata }}</td>
+        <td>{{ row.vendorDocNo }}</td>
+        <td>{{ row.subject }}</td>
+        <td>{{ row.effectivity }}</td>
+        <td>{{ row.section }}</td>
+        <td>{{ row.aaRevision }}</td>
+        <td>{{ row.detailDocType }}</td>
+        <td>{{ row.caseClass }}</td>
+        <td>{{ row.eso }}</td>
+        <td>
+          <a
+            routerLink="/viewRoute"
+            (click)="viewClick(row.routeId)"
+            >View</a
+          >
+        </td>
+      </tr>
     </tbody>
   </table>
   <br />
-  <a style="cursor: pointer;" (click)="downloadExcel()" *ngIf="headers.length > 0">Download XLS</a>
-  <br /><span *ngIf="headers.length > 0">(Please note: Depending on the size, this operation might take several
+  <a style="cursor: pointer;" (click)="downloadExcel()" *ngIf="data.length > 0">Download XLS</a>
+  <br /><span *ngIf="data.length > 0">(Please note: Depending on the size, this operation might take several
   minutes)</span>
 </td>

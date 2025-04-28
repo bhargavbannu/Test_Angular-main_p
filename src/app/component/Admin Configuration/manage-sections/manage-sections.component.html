@@ -104,7 +104,7 @@
                                         type="text"
                                         name="inline-table_section_field_1"
                                         [(ngModel)]="status.section"
-                                      
+                                        [readonly]="status.newRow !== true"
                                         size="12"
                                         maxlength="20"
                                       />

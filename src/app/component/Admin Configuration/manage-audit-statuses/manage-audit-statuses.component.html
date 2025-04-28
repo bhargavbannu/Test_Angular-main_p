@@ -102,6 +102,7 @@
                                           type="text"
                                           name="auditStatusCd"
                                           [(ngModel)]="status.auditStatusCd"
+                                          [readonly]="status.newRow !== true"
                                         />
                                       </span>
                                     </td>

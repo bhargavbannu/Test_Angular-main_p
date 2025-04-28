@@ -1,0 +1,7 @@
+::ng-deep .supercede.eds-tabheader {
+    width: 60%;
+  }
+  
+  ::ng-deep .supercede.eds-tabheader::after {
+    width: 167%;
+  }

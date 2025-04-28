@@ -21,14 +21,11 @@ import { Calendar } from 'primeng/calendar';
   selector: 'app-document',
   templateUrl: './document.component.html',
   styleUrls: ['./document.component.css'],
-  providers:[DatePipe]
+  providers: [DatePipe],
 })
 export class DocumentComponent implements OnInit {
- 
-typedAuditable: any;
+  typedAuditable: any;
 
-
- 
   //    [x: string]: any;
   // selectValue(item: any) {
   // this.selectedItem = item;
@@ -56,8 +53,8 @@ typedAuditable: any;
   docSection: any;
   nextRoute: any;
   vendorName: any;
-  eccnLocation: any[]=[];
-  eccnNumber: any[]=[];
+  eccnLocation: any[] = [];
+  eccnNumber: any[] = [];
   allSelectedDocTypes: any[] = [];
   eccnNumbers: any[] = [];
   eccnLocations: any[] = [];
@@ -76,34 +73,41 @@ typedAuditable: any;
   removedDoc: any;
   ecoNumber: any;
   ecoRes: any[] = [];
-  addedVal: any[]=[];
+  addedVal: any[] = [];
   typedEsoNumber: any;
   esoNumberRess: any[] = [];
-  selectedEsoNumber: any[]=[];
-  auditableResponse:any[]=[]
+  selectedEsoNumber: any[] = [];
+  auditableResponse: any[] = [];
   dropDownAuditbale: any;
-  addedValDoc: any[]=[];
+  addedValDoc: any[] = [];
   vendorEmail: any;
   vendorContactPerson: any;
   vendorContactNumber: any;
   vendorWebsite: any;
   vendorRemark: any;
   vendorDocRef: any;
-  docEffectivity:any;
+  docEffectivity: any;
   documentSubject: any;
-ata: any;
-reissueDate: any;
- formattedDate:any;
- editDoc:any;
+  ata: any;
+  reissueDate: any;
+  formattedDate: any;
+  editDoc: any;
   documentsDetails: any;
 
-@ViewChild('calendar1') calendar1!: Calendar;
-@ViewChild('calendar2') calendar2!: Calendar;
-creationDate: any;
+  @ViewChild('calendar1') calendar1!: Calendar;
+  @ViewChild('calendar2') calendar2!: Calendar;
+  creationDate: any;
+  vendorSub = new Subject();
+  vendorNamesList: any[] = [];
 
-  constructor(private apiService: ApiService, private http: HttpClient, private router:Router, private datePipe:DatePipe, private route: ActivatedRoute) {}
+  constructor(
+    private apiService: ApiService,
+    private http: HttpClient,
+    private router: Router,
+    private datePipe: DatePipe,
+    private route: ActivatedRoute
+  ) {}
 
-  
   ngOnInit() {
     // this.sub
     //   .pipe(
@@ -138,20 +142,41 @@ creationDate: any;
     //   console.log(res);
 
     // })
+    this.nextRoute = "ETDT"
     const date = new Date();
-    this.formattedDate = this.datePipe.transform(date, 'MM/dd/yyyy HH:mm:ss')
-    if(this.reissueDate !== null && this.reissueDate !== undefined && this.reissueDate !=='null') {
-      this.reissueDate = this.datePipe.transform(this.reissueDate, 'MM/dd/yyyy')
-      }
+    this.formattedDate = this.datePipe.transform(date, 'MM/dd/yyyy HH:mm:ss');
+    if (
+      this.reissueDate !== null &&
+      this.reissueDate !== undefined &&
+      this.reissueDate !== 'null'
+    ) {
+      this.reissueDate = this.datePipe.transform(
+        this.reissueDate,
+        'MM/dd/yyyy'
+      );
+    }
 
-    this.auditableSubject.pipe(
-      switchMap(()=>{
-        return this.apiService.auditableService(this.typedAuditable)
-      })
-    ).subscribe((res)=>{
-     this.auditableResponse = res
-      
-    })
+    this.vendorSub
+      .pipe(
+        debounceTime(1000),
+        distinctUntilChanged(),
+        switchMap(() => {
+          return this.apiService.getAutoPopulateVendors(this.vendorName);
+        })
+      )
+      .subscribe((res: any) => {
+        this.vendorNamesList = res;
+      });
+
+    this.auditableSubject
+      .pipe(
+        switchMap(() => {
+          return this.apiService.auditableService(this.typedAuditable);
+        })
+      )
+      .subscribe((res) => {
+        this.auditableResponse = res;
+      });
 
     this.ecoNum
       .pipe(
@@ -175,7 +200,7 @@ creationDate: any;
       )
       .subscribe((res) => {
         console.log(res);
-        
+
         this.esoNumberRess = res;
       });
     this.apiService.eccnNumber().subscribe((data) => {
@@ -190,62 +215,81 @@ creationDate: any;
       this.audDocTypes = data;
     });
 
-    this.route.params.subscribe(params =>{
-      this.editDoc = params['editDoc']
-    })
+    this.route.params.subscribe((params) => {
+      this.editDoc = params['editDoc'];
+    });
 
-    if(this.editDoc){
-      if(this.reissueDate !== null && this.reissueDate !== undefined && this.reissueDate !=='null') {
-        this.reissueDate = this.datePipe.transform(this.reissueDate, 'MM/dd/yyyy HH:mm:ss')
-        }
-    this.apiService.viewDocuments().subscribe((data) => {   
-      this.documentsDetails = data;
-      this.vendorName = this.documentsDetails.document?.vendor.vendorNm;
-      this.vendorWebsite = this.documentsDetails.document?.vendor.vendorWebsite
-      this.vendorContactPerson = this.documentsDetails.document?.vendor.contactPerson
-      this.vendorContactNumber = this.documentsDetails.document?.vendor.contactPhone
-      this.vendorEmail = this.documentsDetails.document?.vendor.vendorEmailAddress
-      this.vendorRemark = this.documentsDetails.document?.vendor.remarks       
-      this.docSection = this.documentsDetails.document?.sections
-      this.vendorDocRef =  this.documentsDetails.document?.vendorDocRefNbr
-      this.docEffectivity =  this.documentsDetails.document?.effectivityIds
-      this.ata =  this.documentsDetails.document?.ata
-      this.documentSubject =  this.documentsDetails.document?.subject
-      this.reissueDate =  this.documentsDetails.document?.reissueDate
-      this.formattedDate =  this.documentsDetails.document?.creationDate
-      this.category =  this.documentsDetails.document?.documentCategory
-      this.remarksField =  this.documentsDetails.document?.remarks
-      this.nextRoute =  this.documentsDetails.document?.nextRouteType
-      this.eccnNumber =  this.documentsDetails.document?.eccnNumber
-      this.eccnLocation =  this.documentsDetails.document?.eccnLocation
-      this.addedValDoc =  this.documentsDetails.document?.auditableDocTypes
-      this.selectedEsoNumber =  this.documentsDetails.documentEsos.map((res:any) => res.eso)
-      this.allSelectedDocTypes = this.documentsDetails.document?.documentPartNumbers
-      this.formattedDate = this.datePipe.transform(this.formattedDate, 'MM/dd/yyyy HH:mm:ss')
-      this.reissueDate = this.reissueDate
-    })
-  }
-  }
-auditableDropDownSelect(doc:any){
-  // this.addedValDoc = doc;
-  this.typedAuditable = doc;
-  this.auditableResponse = []
-
-}
-
-onAddDoc(){
-    if(this.typedAuditable && !this.addedValDoc.includes(this.typedAuditable)){
-  this.addedValDoc.push(this.typedAuditable);
-  this.typedAuditable=''
+    if (this.editDoc) {
+      if (
+        this.reissueDate !== null &&
+        this.reissueDate !== undefined &&
+        this.reissueDate !== 'null'
+      ) {
+        this.reissueDate = this.datePipe.transform(
+          this.reissueDate,
+          'MM/dd/yyyy HH:mm:ss'
+        );
+      }
+      this.apiService.viewDocuments().subscribe((data) => {
+        this.documentsDetails = data;
+        this.vendorName = this.documentsDetails.document?.vendor.vendorNm;
+        this.vendorWebsite =
+          this.documentsDetails.document?.vendor.vendorWebsite;
+        this.vendorContactPerson =
+          this.documentsDetails.document?.vendor.contactPerson;
+        this.vendorContactNumber =
+          this.documentsDetails.document?.vendor.contactPhone;
+        this.vendorEmail =
+          this.documentsDetails.document?.vendor.vendorEmailAddress;
+        this.vendorRemark = this.documentsDetails.document?.vendor.remarks;
+        this.docSection = this.documentsDetails.document?.sections;
+        this.vendorDocRef = this.documentsDetails.document?.vendorDocRefNbr;
+        this.docEffectivity = this.documentsDetails.document?.effectivityIds;
+        this.ata = this.documentsDetails.document?.ata;
+        this.documentSubject = this.documentsDetails.document?.subject;
+        this.reissueDate = this.documentsDetails.document?.reissueDate;
+        this.formattedDate = this.documentsDetails.document?.creationDate;
+        this.category = this.documentsDetails.document?.documentCategory;
+        this.remarksField = this.documentsDetails.document?.remarks;
+        this.nextRoute = this.documentsDetails.document?.nextRouteType;
+        this.eccnNumber = this.documentsDetails.document?.eccnNumber;
+        this.eccnLocation = this.documentsDetails.document?.eccnLocation;
+        this.addedValDoc = this.documentsDetails.document?.auditableDocTypes;
+        this.selectedEsoNumber = this.documentsDetails.documentEsos.map(
+          (res: any) => res.eso
+        );
+        this.allSelectedDocTypes =
+          this.documentsDetails.document?.documentPartNumbers;
+        this.formattedDate = this.datePipe.transform(
+          this.formattedDate,
+          'MM/dd/yyyy HH:mm:ss'
+        );
+        this.reissueDate = this.reissueDate;
+      });
     }
-}
+  }
+  auditableDropDownSelect(doc: any) {
+    // this.addedValDoc = doc;
+    this.typedAuditable = doc;
+    this.auditableResponse = [];
+  }
 
-removeDoc(){
-  this.addedValDoc=[]
-}
+  onAddDoc() {
+    if (
+      this.typedAuditable &&
+      !this.addedValDoc.includes(this.typedAuditable)
+    ) {
+      this.addedValDoc.push(this.typedAuditable);
+      this.typedAuditable = '';
+    }
+  }
 
-  auditNext(){
-    this.auditableSubject.next(this.typedAuditable)
+  removeDoc() {
+    this.addedValDoc = [];
+  }
+
+  auditNext() {
+    this.auditableSubject.next(this.typedAuditable);
   }
   ecoNumb() {
     this.ecoNum.next(this.ecoNumber);
@@ -255,7 +299,6 @@ removeDoc(){
   }
 
   addDocumentSubmit() {
-   
     // const payload = {
     //   document: {
     //     vendor: {
@@ -269,43 +312,50 @@ removeDoc(){
     //     nextRouteType: this.nextRoute,
     //   },
     // };
-    if(this.reissueDate !== null && this.reissueDate !== undefined && this.reissueDate !=='null') {
-    this.reissueDate = this.datePipe.transform(this.reissueDate, 'MM/dd/yyyy HH:mm:ss')
+    if (
+      this.reissueDate !== null &&
+      this.reissueDate !== undefined &&
+      this.reissueDate !== 'null'
+    ) {
+      this.reissueDate = this.datePipe.transform(
+        this.reissueDate,
+        'MM/dd/yyyy HH:mm:ss'
+      );
     }
 
     const payload = {
-      "document": {
-        "vendor": {        
-         "vendorNm": this.vendorName,
-        "vendorWebsite":this.vendorWebsite,
-        "contactPerson":this.vendorContactPerson,
-        "contactPhone":this.vendorContactNumber,
-        "vendorEmailAddress":this.vendorEmail,
-        "remarks":this.vendorRemark        
+      document: {
+        vendor: {
+          vendorNm: this.vendorName,
+          vendorWebsite: this.vendorWebsite,
+          contactPerson: this.vendorContactPerson,
+          contactPhone: this.vendorContactNumber,
+          vendorEmailAddress: this.vendorEmail,
+          remarks: this.vendorRemark,
         },
-        "sections": this.docSection,
-        "vendorDocRefNbr":this.vendorDocRef,
-        "documentPartNumbers":this.allSelectedDocTypes,
-        "effectivityIds":this.docEffectivity,
-        "ata":this.ata,
-        "subject":this.documentSubject,
-        "reissueDate":this.reissueDate,
-        "creationDate": this.formattedDate,
-        "documentCategory": this.category,
-        "remarks": this.remarksField,
-        "nextRouteType": this.nextRoute,
-        "itar":"NO",
-        "eccnNumber":this.eccnNumber,
-        "eccnLocation":this.eccnLocation,
-        "auditableDocTypes":this.addedValDoc,
-        "esos":this.selectedEsoNumber,
-        "ecos":this.addedVal
+        sections: this.docSection,
+        vendorDocRefNbr: this.vendorDocRef,
+        documentPartNumbers: this.allSelectedDocTypes,
+        effectivityIds: this.docEffectivity,
+        ata: this.ata,
+        subject: this.documentSubject,
+        reissueDate: this.reissueDate,
+        creationDate: this.formattedDate,
+        documentCategory: this.category,
+        remarks: this.remarksField,
+        nextRouteType: this.nextRoute,
+        itar: 'NO',
+        eccnNumber: this.eccnNumber,
+        eccnLocation: this.eccnLocation,
+        auditableDocTypes: this.addedValDoc,
+        esos: this.selectedEsoNumber,
+        ecos: this.addedVal,
       },
-      "submitType": "ADD"
-    }
+      submitType: 'ADD',
+    };
     this.apiService.addDocument(payload).subscribe((res: any) => {
       this.apiService.viewDocId = res.returnObject.documentNbr;
-      this.router.navigate(["/viewStatus", {docAdded:true}])
+      this.router.navigate(['/viewStatus', { docAdded: true }]);
     });
   }
 
@@ -337,15 +387,11 @@ removeDoc(){
     }
   }
 
-
   selectDocType(doc: any) {
     this.selectedDocType = doc;
     this.typedDocType = doc;
     this.filteredDocTypes = [];
   }
-
-  
-
 
   selectLocation(location: string) {
     this.selectedLocation = location;
@@ -357,7 +403,7 @@ removeDoc(){
     this.typedNumber = number;
     this.filteredNumbers = [];
   }
-  
+
   selectesoNum(doc: any) {
     this.ecoNumber = doc;
     this.ecoRes = [];
@@ -368,9 +414,12 @@ removeDoc(){
   }
 
   addEsoNum() {
-    if(this.typedEsoNumber && !this.selectedEsoNumber.includes(this.typedEsoNumber)){
-    this.selectedEsoNumber.push(this.typedEsoNumber);
-    this.typedEsoNumber = '';
+    if (
+      this.typedEsoNumber &&
+      !this.selectedEsoNumber.includes(this.typedEsoNumber)
+    ) {
+      this.selectedEsoNumber.push(this.typedEsoNumber);
+      this.typedEsoNumber = '';
     }
   }
 
@@ -379,7 +428,10 @@ removeDoc(){
     this.typedEsoNumber = '';
   }
   addLocation() {
-    if (this.selectedLocation && !this.eccnLocation.includes(this.selectedLocation)) {
+    if (
+      this.selectedLocation &&
+      !this.eccnLocation.includes(this.selectedLocation)
+    ) {
       this.eccnLocation.push(this.selectedLocation);
       this.selectedLocation = '';
       this.typedLocation = '';
@@ -400,7 +452,7 @@ removeDoc(){
     }
   }
 
-  removeecoVal() { 
+  removeecoVal() {
     this.addedVal = [];
   }
 
@@ -421,22 +473,36 @@ removeDoc(){
     this.eccnNumber = [];
   }
   removeDocType() {
-    if(this.removedDoc !==undefined){
-    const index = Object.values(this.allSelectedDocTypes).indexOf(
-      this.removedDoc[0]
-    );
-    if (index !== -1) {
-      this.allSelectedDocTypes.splice(index, 1);
+    if (this.removedDoc !== undefined) {
+      const index = Object.values(this.allSelectedDocTypes).indexOf(
+        this.removedDoc[0]
+      );
+      if (index !== -1) {
+        this.allSelectedDocTypes.splice(index, 1);
+      }
     }
   }
-  }
 
-  onFocusOut(){
+  onFocusOut() {
     this.filteredLocations = [];
     this.filteredNumbers = [];
     this.filteredDocTypes = [];
-    this.esoNumberRess=[];
-    this.ecoRes=[];
-    this.auditableResponse=[];
+    this.esoNumberRess = [];
+    this.ecoRes = [];
+    this.auditableResponse = [];
+    this.vendorNamesList = [];
   }
+
+  vName(val: any) {
+    this.vendorSub.next(val.target.value);
+    if (val.target.value === '') {
+      this.vendorNamesList = [];
+    }
+  }
+
+  setVal(val:any){
+    this.vendorName = val;
+    this.vendorNamesList = [];
+   }
+
 }
