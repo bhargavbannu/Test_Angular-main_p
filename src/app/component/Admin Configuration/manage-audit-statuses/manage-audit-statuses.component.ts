@@ -12,7 +12,7 @@ export class ManageAuditStatusesComponent {
   clickFlag: boolean = false;
   saveNew: boolean = false;
   updateRecord: boolean = false;
-
+  dataFlag: boolean = false;
 
   constructor(private apiService: ApiService) {}
 
@@ -23,6 +23,7 @@ export class ManageAuditStatusesComponent {
   loadAuditStatuses() {
     this.apiService.getAuditStatuses().subscribe((data) => {
       this.auditStatuses = data;
+      this.dataFlag = true;
     });
   }
 

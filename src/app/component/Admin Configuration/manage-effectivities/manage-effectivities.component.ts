@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/api.service';
 export class ManageEffectivitiesComponent {
   Effectivities: any[]=[];
   btnIndex: any;
+  dataFlag: boolean = false;
   clickFlag: boolean = false
   constructor(private apiService: ApiService){}
 
@@ -22,6 +23,7 @@ export class ManageEffectivitiesComponent {
   loadEffectivities(){
     this.apiService.getEffectivites().subscribe(data =>{
       this.Effectivities = data;  
+      this.dataFlag = true;
     })
 
   }

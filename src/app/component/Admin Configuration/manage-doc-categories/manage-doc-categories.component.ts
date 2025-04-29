@@ -11,6 +11,7 @@ export class ManageDocCategoriesComponent {
   btnIndex: any;
   clickFlag: boolean = false;
   saveNewDoc:boolean=false;
+  dataFlag: boolean = false;
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class ManageDocCategoriesComponent {
   loadDocCategories() {
     this.apiService.getDocCategories().subscribe((data) => {
       this.DocCategories = data;
+      this.dataFlag = true;
     });
   }
 

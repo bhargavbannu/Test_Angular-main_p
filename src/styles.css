@@ -629,6 +629,11 @@ body {
     width: 100%;
     color: #000000;
   }
+
+  .dropdown {
+  position: unset !important;
+  }
+  
   
   .dropDown_highlight {
     background-color: #0000ff;

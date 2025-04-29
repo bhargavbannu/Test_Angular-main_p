@@ -12,6 +12,7 @@ export class ManageEccnLocationComponent {
   clickFlag: boolean = false;
   saveNew: boolean = false;
   updateNew: boolean = false;
+  dataFlag: boolean = false;
 
   constructor(private apiService: ApiService) {}
 
@@ -22,6 +23,7 @@ export class ManageEccnLocationComponent {
   loadEccnLocations() {
     this.apiService.getEccnLocations().subscribe((data) => {
       this.EccnLocations = data;
+      this.dataFlag = true;
     });
   }
 

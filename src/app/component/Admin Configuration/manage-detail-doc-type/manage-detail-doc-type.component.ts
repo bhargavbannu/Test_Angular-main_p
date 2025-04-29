@@ -11,6 +11,7 @@ export class ManageDetailDocTypeComponent {
   btnIndex: any;
   clickFlag: boolean = false;
   savenew:boolean=false;
+  dataFlag: boolean = false;
   updateRecord:boolean=false;
 
   constructor(private apiService: ApiService) {}
@@ -22,6 +23,7 @@ export class ManageDetailDocTypeComponent {
   docTypeDetails() {
     this.apiService.getDocTypes().subscribe((data) => {
       this.docTypes = data;
+      this.dataFlag = true;
     });
   }
 

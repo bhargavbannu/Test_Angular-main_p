@@ -12,6 +12,7 @@ export class ManageEccnNumberComponent {
   clickFlag: boolean = false;
   saveNew: boolean = false;
   updateRecord: boolean = false;
+  dataFlag: boolean = false;
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -21,6 +22,7 @@ export class ManageEccnNumberComponent {
   loadEccnNumbers() {
     this.apiService.getEccnNumbers().subscribe((data) => {
       this.EccnNumbers = data;
+      this.dataFlag = true;
     });
   }
 

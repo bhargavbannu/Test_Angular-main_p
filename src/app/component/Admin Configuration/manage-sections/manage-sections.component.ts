@@ -12,6 +12,7 @@ export class ManageSectionsComponent {
 edit() {
 throw new Error('Method not implemented.');
 }
+dataFlag: boolean = false;
   sections: any[]=[];
 clickFlag: boolean = false
 
@@ -27,6 +28,7 @@ clickFlag: boolean = false
   loadSections(){
     this.apiService.getSections().subscribe(data =>{
       this.sections = data;  
+      this.dataFlag = true;
     })
   }
   btnClick(index: any){
