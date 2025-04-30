@@ -274,7 +274,7 @@
 
             <!-- <div style="clear: both">	 -->
 
-            <table cellspacing="0" cellpadding="0" border="0">
+            <table cellspacing="0" cellpadding="0" border="0" style="margin-top: 15px;">
               <tbody>
                 <tr>
                   <td>
@@ -419,7 +419,7 @@
                               </tbody>
                             </table>
                           </td>
-                        </tr>
+                        </tr>                    
                         <tr>
                           <td class="eds-tabtoprightcorner"></td>
                         </tr>
@@ -433,13 +433,43 @@
                               class="eds-tabtitle"
                             >
                               <tbody>
-                                <tr>
-                                  <td>
-                                    <font color="#ffffff"
-                                      ><b>Nothing found to display</b></font
-                                    ><br /><br />
-                                  </td>
-                                </tr>
+                               
+                                    <tr>
+                                      <td>
+                                      <table class="inline-table" id="eso">
+                                      <thead *ngIf="docDetails?.esoDetails.length > 0">
+                                        <tr >
+                                          <th>ESO #</th>
+                                          <th>Assign Date</th>
+                                          <th>Subject</th>
+                                          <th>Action</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr *ngFor="
+                                        let status of docDetails?.esoDetails;
+                                        let i = index
+                                      "
+                                      [ngClass]="
+                                        i % 2 == 0
+                                          ? 'eds-pagerstyle'
+                                          : 'eds-pagerstyle-alt'
+                                      ">
+                                          <td>{{status?.esoForDisplay}}</td>
+                                          <td>{{status?.assigndate | date:"dd/MM/yyyy"}}</td>
+                                          <td>{{status?.subject}}</td>
+                                          <td>
+                                            <a routerLink="/view-eso"
+                                              (click)="viewEso(status?.eso)">View</a
+                                            >
+                                          </td>
+                                        </tr>
+    
+                                      </tbody>
+                                      </table>
+                                      </td>
+                                    </tr>
+                             
                               </tbody>
                             </table>
                           </td>
@@ -450,7 +480,7 @@
                 </tr>
                 <tr>
                   <td width="40%" valign="top">
-                    <table cellspacing="0" cellpadding="0" border="0">
+                    <table cellspacing="0" cellpadding="0" border="0" style="margin-top: 50px;">
                       <tbody>
                         <tr>
                           <td>

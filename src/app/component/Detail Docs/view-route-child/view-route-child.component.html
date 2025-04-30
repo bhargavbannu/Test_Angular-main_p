@@ -13,7 +13,7 @@
   <a *ngIf="searchType ==='route' " style="font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
   <br />
 
-  <a routerLink="/viewDetail">Back to Detail/POP</a>
+  <a routerLink="/viewDetail" (click)="btdetailpop()">Back to Detail/POP</a>
   <br /><br />
   <div style="float: left">
     <table cellspacing="0" cellpadding="0" border="0">
@@ -80,7 +80,7 @@
                             <td align="right">Detail #&nbsp; &nbsp;</td>
                             <td align="left">
                               <span class="viewFieldText">{{
-                                viewRoute?.route.detailId
+                                viewRoute?.route.detailRefNbr
                               }}</span>
                             </td>
                           </tr>
@@ -113,7 +113,7 @@
                             <td align="right">Route Date *&nbsp; &nbsp;</td>
                             <td align="left">
                               <span class="viewFieldText">{{
-                                viewRoute?.route.routeDate
+                                viewRoute?.route.routeDate | date: 'yyyy/MM/dd'
                               }}</span>
                             </td>
                           </tr>
@@ -131,7 +131,7 @@
                             <td align="right">Close Date&nbsp; &nbsp;</td>
                             <td align="left">
                               <span class="viewFieldText">{{
-                                viewRoute?.route.closedate
+                                viewRoute?.route.closedate | date: 'yyyy/MM/dd'
                               }}</span>
                             </td>
                           </tr>
@@ -213,15 +213,45 @@
                       border="0"
                       class="eds-tabtitle"
                     >
-                      <tbody>
-                        <tr>
-                          <td>
-                            <font color="#ffffff"
-                              ><b>Nothing found to display</b></font
-                            ><br /><br />
-                          </td>
-                        </tr>
-                      </tbody>
+                    <tbody>
+                               
+                      <tr>
+                        <td>
+                        <table class="inline-table" id="eso">
+                        <thead *ngIf="routeEsos && routeEsos.length > 0">
+                          <tr >
+                            <th>ESO #</th>
+                            <th>Assign Date</th>
+                            <th>Subject</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="
+                          let status of routeEsos;
+                          let i = index
+                        "
+                        [ngClass]="
+                          i % 2 == 0
+                            ? 'eds-pagerstyle'
+                            : 'eds-pagerstyle-alt'
+                        ">
+                            <td>{{status?.esoForDisplay}}</td>
+                            <td>{{status?.assigndate | date:"dd/MM/yyyy"}}</td>
+                            <td>{{status?.subject}}</td>
+                            <td>
+                              <a routerLink="/view-eso"
+                                (click)="viewEso(status?.eso)">View</a
+                              >
+                            </td>
+                          </tr>
+
+                        </tbody>
+                        </table>
+                        </td>
+                      </tr>
+               
+                </tbody>
                     </table>
                   </td>
                 </tr>
@@ -231,7 +261,7 @@
         </tr>
         <tr>
           <td width="40%" valign="top">
-            <table cellspacing="0" cellpadding="0" border="0">
+            <table cellspacing="0" cellpadding="0" border="0" style="margin-top: 50PX;">
               <tbody>
                 <tr>
                   <td>
@@ -288,7 +318,7 @@
 
 <div *ngIf="!edit || ClosedRoute">
   <td align="left">
-    <a routerLink="/viewDetail">Back to Detail/POP</a>
+    <a routerLink="/viewDetail" (click)="btdetailpop()">Back to Detail/POP</a>
     <br /><br />
     <div style="float: left">
       <table cellspacing="0" cellpadding="0" border="0">
@@ -356,10 +386,10 @@
                               <td align="left">
                                 <input
                                   type="text"
-                                  name="route.detailId"
+                                  name="route.detailRefNbr"
                                   class=""
                                   value=""
-                                  [(ngModel)]="viewRoute?.route.detailId"
+                                  [(ngModel)]="viewRoute?.route.detailRefNbr"
                                   readonly="readonly"
                                   size="45"
                                 />

@@ -3,10 +3,24 @@
 
   <div *ngIf="esoSaved" class="savedDoc">SUCCESS: ESO saved successfully.</div>
 
-  <a routerLink="/View-Edit-ESO">
+  <a *ngIf="!viewRoute && !viewStatus" routerLink="/View-Edit-ESO">
   Back to Enter/Select ESO
   </a
   >
+  <a *ngIf="viewRoute" routerLink="/viewRoute">
+    Back to View Route
+    </a
+    >
+
+    <a *ngIf="searchType ==='search' && viewStatus" style="font-size: larger;font-weight: bolder" routerLink="/search">Back To Search Results</a>
+    <a *ngIf="searchType ==='audit' && viewStatus" style="font-size: larger;font-weight: bolder" routerLink="/search-audits">Back To Search Results</a>
+    <a *ngIf="searchType ==='route' && viewStatus" style="font-size: larger;font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
+    <br />
+
+    <a *ngIf="viewStatus" routerLink="/viewStatus"
+      >Back to View Document</a
+    >
+
   <br /><br />
 
   <table cellspacing="0" cellpadding="0" border="0">

@@ -160,8 +160,19 @@ export class SearchComponent {
   ) {
   }
   // "28796727"
-  downloadExcel(): void {     
-    this.apiService.exportToExcel(this.apiData, 'my_records');
+  downloadExcel(): void {  
+    this.apiService.docDownload(this.downloadPayload,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
+      const contentDisposition = response.headers.get('Content-Disposition');
+      const filename = contentDisposition.split('filename=')[1].trim().replace(/"/g, '');
+      const blob = new Blob([response.body], { type: 'application/excel' });
+       const url = window.URL.createObjectURL(blob);
+       const a = document.createElement('a');
+       a.href = url;
+       a.download = filename;
+       a.click();
+       window.URL.revokeObjectURL(url);
+    });   
+    // this.apiService.exportToExcel(this.apiData, 'my_records');
   }
   ngOnInit() {
     this.advancedSearchValue = 'Advanced Search (Display)';

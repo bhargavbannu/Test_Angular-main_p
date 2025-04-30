@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./new-audit.component.css'],
   providers:[DatePipe]
 })
-export class NewAuditComponent {
+export class NewAuditComponent implements OnInit {
   docAuditCategory: any;
   auditStatus: any;
   auditDate: any;
@@ -26,6 +26,11 @@ export class NewAuditComponent {
   @ViewChild('calendar3') calendar3!: Calendar;
 
   constructor(private apiService: ApiService, private datePipe:DatePipe, private router:Router){}
+
+  ngOnInit(){
+    this.docAuditCategory = 'A';
+    this.followUpCompleteInd = 'Y';
+  }
 
   saveNewAudit(){
     this.auditDate = this.datePipe.transform(this.auditDate, 'MM/dd/yyyy HH:mm:ss')

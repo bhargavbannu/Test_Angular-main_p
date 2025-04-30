@@ -60,6 +60,7 @@ export class ViewSearchComponent {
 
   viewEso(eso:any){
     this.apiService.eso = eso;
+    this.router.navigate(['/view-eso', { fromViewStatus: true }]);
   }
 
   deleteFormerVendor(){

@@ -83,4 +83,8 @@ export class ViewDetailComponent implements OnInit {
 
   }
 
+  viewEso(eso:any){
+    this.apiService.eso = eso;
+  }
+
 }

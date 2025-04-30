@@ -103,10 +103,11 @@
                               name="audit.popno"
                               class=""
                               [(ngModel)]="auditData?.audit.popno"
+                              
                             >
-                              <option value="">&nbsp;</option>
+                              <option [value]="auditData?.audit.popno">{{auditData?.audit.popno}}</option>
 
-                              <option value="200804092 (CMM/IPL) - R4">
+                               <!--<option value="200804092 (CMM/IPL) - R4">
                                 200804092 (CMM/IPL) - R4
                               </option>
 
@@ -124,7 +125,7 @@
 
                               <option value="6015721 (CMM/IPL) - R1">
                                 6015721 (CMM/IPL) - R1
-                              </option>
+                              </option> -->
                             </select>
                           </td>
                         </tr>
@@ -206,8 +207,8 @@
                           </td>
                           <td align="left">
                             <select name="audit.followUpCompleteInd" class="" [(ngModel)]="followUpCompleteInd" >
-                              <option value="Y">Yes</option>
-                              <option value="N">No</option>
+                              <option value="Yes">Yes</option>
+                              <option value="NO">No</option>
                             </select>
                           </td>
                         </tr>           

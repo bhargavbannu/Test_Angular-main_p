@@ -27,4 +27,8 @@ export class ViewAuditComponent implements OnInit {
       this.auditDetails = data;
     });
   }
+
+  btdoc(){
+    this.apiService.viewDocId = this.auditDetails.audit.documentNbr;
+  }
 }

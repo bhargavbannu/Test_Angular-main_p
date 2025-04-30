@@ -31,6 +31,7 @@ export class ViewRouteChildComponent implements OnInit {
 
   @ViewChild('calendar1') calendar1!: Calendar;
   searchType!: string;
+  routeEsos: any;
 
   constructor(private apiService: ApiService,  private router: Router, private datePipe: DatePipe, private route:ActivatedRoute) {}
 
@@ -73,7 +74,7 @@ test(){
   .viewRouteDetailApi(this.apiService.detailRoute)
   .subscribe((data) => {
     this.viewRoute = data.routeForm;
-
+    this.routeEsos = data.routeEsos
   });
 }
   routee() {
@@ -170,6 +171,15 @@ test(){
   selectValue(val: any) {
     this.viewRoute.route.disposition = val;
     this.dispositionValues = [];
+  }
+
+  btdetailpop(){
+    this.apiService.popno = this.viewRoute.route.detailId;
+  }
+
+  viewEso(eso:any){
+    this.apiService.eso = eso;
+    this.router.navigate(['/view-eso', { fromViewRoute: true }]);
   }
 
 }

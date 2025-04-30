@@ -1661,10 +1661,10 @@
         <td>{{ row.vendorName }}</td>
         <td>{{ row.ata }}</td>
         <td>{{ row.detailDocType }}</td>
-        <td>{{ row.revisionNbr }}</td>
-        <td>{{ row.revisionDate }}</td>
+        <td>{{ row.aaRevision }}</td>
+        <td>{{ row.aaRevisionDt | date:'yyyy-MM-dd'}}</td>
         <td>{{ row.vendorRevision }}</td>
-        <td>{{ row.vendorRevisionDt }}</td>
+        <td>{{ row.vendorRevisionDt | date:'yyyy-MM-dd'}}</td>
         <td>{{ row.eso }}</td>
         <td *ngFor="let year of getYears(row); let colIndex=index"><a routerLink="/viewAudit" (click)="viewAudit(row, colIndex)">{{ year | date:'YYYY-MM-dd'}}</a> {{ year && row.dodAuditCatgory ? '('+row.dodAuditCatgory+')':''}}</td>
         <td>{{ row.vendorWebsite }}</td>

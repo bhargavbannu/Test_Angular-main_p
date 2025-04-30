@@ -10,13 +10,21 @@ import { ApiService } from 'src/app/api.service';
 export class ViewEsoComponent {
   esoData:any;
   esoSaved: any;
+  viewRoute: any;
+  searchType: any;
+  viewStatus: any;
+
   constructor(private apiService: ApiService, private route:ActivatedRoute){}
 
   ngOnInit() {
     this.loadEso();
     this.route.params.subscribe(params =>{
-      this.esoSaved = params['esoSaved']
+      this.esoSaved = params['esoSaved'];
+      this.viewRoute = params['fromViewRoute'];
+      this.viewStatus = params['fromViewStatus'];
     })
+    this.searchType = this.apiService.searchType;
+
   }
 
   loadEso() {
