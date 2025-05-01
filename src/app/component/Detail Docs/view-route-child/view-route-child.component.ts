@@ -175,6 +175,7 @@ test(){
 
   btdetailpop(){
     this.apiService.popno = this.viewRoute.route.detailId;
+    this.router.navigate(['/viewDetail', { fromViewRoute: true }]);
   }
 
   viewEso(eso:any){

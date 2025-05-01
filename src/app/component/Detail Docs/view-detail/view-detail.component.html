@@ -29,9 +29,9 @@
           <a *ngIf="searchType ==='route' " style="font-size: larger;font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
           <br />
 
-          <a routerLink="/viewStatus"
+          <a routerLink="/viewStatus" (click)="backToDoc()"
             >Back to Document</a
-          >
+        >
           <br /><br />
 
           <form

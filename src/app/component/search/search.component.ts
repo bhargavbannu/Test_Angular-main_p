@@ -164,7 +164,7 @@ export class SearchComponent {
     this.apiService.docDownload(this.downloadPayload,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
       const contentDisposition = response.headers.get('Content-Disposition');
       const filename = contentDisposition.split('filename=')[1].trim().replace(/"/g, '');
-      const blob = new Blob([response.body], { type: 'application/excel' });
+      const blob = new Blob([response.body], { type: 'application/vnd.ms-excel' });
        const url = window.URL.createObjectURL(blob);
        const a = document.createElement('a');
        a.href = url;
@@ -317,6 +317,7 @@ export class SearchComponent {
       { length: endPage - startPage + 1 },
       (_, i) => startPage + i
     );
+   
   }
 
   goToPage(page: any) {
@@ -370,5 +371,12 @@ export class SearchComponent {
   clear(form: NgForm){
     form.resetForm()
     this.searchPagination.clearFields()
+  }
+
+  getWords():any {
+    const words = ['','One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen'];
+    if (this.totalCount > 0 && this.totalCount < 16) {
+       return `${words[this.totalCount]} item${this.totalCount > 1 ? 's':''} found.`;
+    }
   }
 }

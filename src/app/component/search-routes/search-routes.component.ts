@@ -151,4 +151,11 @@ export class SearchRoutesComponent {
   downloadExcel(): void {
     this.service.exportToExcel(this.data, 'my_records');
   }
+
+  getWords():any {
+    const words = ['','One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen'];
+    if (this.totalCount > 0 && this.totalCount < 16) {
+       return `${words[this.totalCount]} item${this.totalCount > 1 ? 's':''} found.`;
+    }
+  }
 }

@@ -966,11 +966,12 @@
 </div>
 <td valign="top" align="left" *ngIf="data">
   <br />
-  <div class="pagination-container" *ngIf="data.length > 0">
+  <div class="pagination-container" *ngIf="data.length > 0 && totalCount > 15">
     <span class="pagebanner"
       >{{ totalCount }} items found, displaying {{ start + 1 }} to
       {{ start + recordsPerPage }}.</span
     >
+    <br>
     <a
       class="pagination-link"
       (click)="goToFirst()"
@@ -988,12 +989,12 @@
 
     <!-- Page Numbers -->
     <a
-      *ngFor="let page of getVisiblePages(); let i = index"
+      *ngFor="let page of getVisiblePages(); let i = index; let last=last"
       class="pagination-link"
       (click)="goToPage(page)"
       [class.active]="currentPage === page"
     >
-      {{ page }}
+      {{ page }}{{ last ? '' : ',' }}
     </a>
     /
 
@@ -1012,6 +1013,7 @@
       >Last]</a
     >
   </div>
+  <span *ngIf="data.length > 0 && totalCount < 16"> {{getWords()}} </span>
   <span *ngIf="data.length === 0">No routes for the specified criteria.</span>
   <table class="inline-table" id="result">
     <!-- <thead>

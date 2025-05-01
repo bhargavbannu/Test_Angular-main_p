@@ -16,6 +16,7 @@ export class ViewDetailComponent implements OnInit {
   routeAdded:any
   type: any;
   searchType: any;
+  backDoc: any;
   constructor(private apiService: ApiService, private route: ActivatedRoute, private http:HttpClient, private router:Router) {}
 
   ngOnInit() {
@@ -25,9 +26,11 @@ export class ViewDetailComponent implements OnInit {
       this.routeSaved = params['routeSaved'];
       this.routeAdded = params['routeAdded'];
       this.closedbtn = params['closedbtn'];
+      this.backDoc = params['fromViewRoute'];
     });
     this.type = this.apiService.type;
     this.searchType = this.apiService.searchType;
+    
   }
 
   viewRoute(arg0: any) {
@@ -85,6 +88,12 @@ export class ViewDetailComponent implements OnInit {
 
   viewEso(eso:any){
     this.apiService.eso = eso;
+  }
+
+  backToDoc(){
+    if(this.backDoc){
+    this.apiService.viewDocId = this.docDetails.document.documentNbr;
+    }
   }
 
 }
