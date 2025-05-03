@@ -65,11 +65,11 @@
                             : 'eds-pagerstyle-alt'
                         "
                       >
-                          <td>{{status.auditDate | date:"dd/MM/yyyy"}}</td>
+                          <td>{{status.auditDate | date:"MM/dd/yyyy"}}</td>
                           <td>{{status.dodAuditCategory}}</td>
                           <td>{{status.detailDocType}}</td>
                           <td>{{status.revisionNbr}}</td>
-                          <td>{{status.revisionDate | date:"dd/MM/yyyy"}}</td>
+                          <td>{{status.revisionDate | date:"MM/dd/yyyy"}}</td>
                           <td>
                             <a routerLink="/viewAudit" (click)="viewAudit(status.auditId)"
                               >View</a

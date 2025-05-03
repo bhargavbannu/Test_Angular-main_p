@@ -22,6 +22,9 @@ export class NewrouteComponent {
   disposition: any;
   remark: any;
   dispositionValues: any[] = [];
+  Sections: any[]=[];
+  showErr: boolean = false;
+  errDate: boolean = false;
 
   constructor(
     private apiService: ApiService,
@@ -53,7 +56,7 @@ export class NewrouteComponent {
         detailId: this.apiService.popno,
         detailRefNbr: this.DetailIdRefNmbr,
         routeType: this.routeType,
-        sections: this.Section,
+        sections: this.Sections,
         routeDate: this.routeDate,
         disposition: this.disposition,
         closedate: this.closeDate,
@@ -62,8 +65,20 @@ export class NewrouteComponent {
       submitType: 'add',
     };
     this.apiService.newRoute(payload).subscribe((res) => {
-      this.router.navigate(['/viewDetail', { routeAdded: true }]);
+      this.router.navigate(['/viewDetail', { routeAdded: true,closedbtn: true,routeSaved: true }]);
     });
+    if(this.Sections.length === 0 || this.Sections === undefined || this.Sections === null){
+      this.showErr = true;
+      this.errDate = false;
+    }
+    else if(this.Sections.length !== 0 && this.Sections !== undefined && this.Sections !== null && (this.routeDate === undefined || this.routeDate === null || this.routeDate === '')){
+      this.showErr = false;
+      this.errDate = true;
+    }
+    else {
+      this.showErr = false;
+      this.errDate = false;
+    }
   }
 
   onDispositionChange(disposition: any) {
@@ -82,10 +97,10 @@ export class NewrouteComponent {
   }
 
   backToDetail(){
-    if(this.routeType === undefined && this.routeDate === undefined && this.closeDate === undefined && this.remark === undefined && this.disposition === undefined){
-    this.router.navigate(['/viewDetail', { closedbtn: true }]);
-    } else {
-      this.router.navigate(['/viewDetail']);
-    }
+    // if(this.routeDate === undefined && this.closeDate === undefined && this.remark === undefined && this.disposition === undefined){
+    // this.router.navigate(['/viewDetail', { closedbtn: true }]);
+    // } else {
+    //   this.router.navigate(['/viewDetail']);
+    // }
   }
 }

@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 
@@ -15,12 +15,16 @@ export class EditEsoDocComponent {
   showIcon: boolean = false;
    @ViewChild('calendar1') calendar1!: Calendar;
    @ViewChild('calendar2') calendar2!: Calendar;
+  fromViewStatus: any;
  // @ViewChildren('calendar') calendars!: QueryList<Calendar>;
 
-    constructor(private apiService: ApiService, private router:Router,  private datePipe: DatePipe){}
+    constructor(private apiService: ApiService, private router:Router,  private datePipe: DatePipe, private route:ActivatedRoute){}
 
   ngOnInit() {
     this.loadEso();
+    this.route.params.subscribe(params => {
+      this.fromViewStatus = params['fromViewStatus'];
+    })
   }
 
 
@@ -67,6 +71,12 @@ export class EditEsoDocComponent {
     }
     this.apiService.deleteEso(payload).subscribe()
    
+  }
+
+  backToEso(){
+    if(this.fromViewStatus){
+      this.router.navigate(['/view-eso', { fromViewStatus: true }]);
+    }
   }
 
 

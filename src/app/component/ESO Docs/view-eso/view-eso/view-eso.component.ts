@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { from } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -13,8 +14,9 @@ export class ViewEsoComponent {
   viewRoute: any;
   searchType: any;
   viewStatus: any;
+viewDetail: any;
 
-  constructor(private apiService: ApiService, private route:ActivatedRoute){}
+  constructor(private apiService: ApiService, private route:ActivatedRoute, private router:Router){}
 
   ngOnInit() {
     this.loadEso();
@@ -22,6 +24,7 @@ export class ViewEsoComponent {
       this.esoSaved = params['esoSaved'];
       this.viewRoute = params['fromViewRoute'];
       this.viewStatus = params['fromViewStatus'];
+      this.viewDetail = params['fromViewDetail'];
     })
     this.searchType = this.apiService.searchType;
 
@@ -31,5 +34,11 @@ export class ViewEsoComponent {
     this.apiService.viewEso().subscribe((data) => {
       this.esoData = data;
     });
+  }
+
+  editEso(){
+    if(this.viewStatus){
+   this.router.navigate(['/edit-eso',{fromViewStatus:true}])
+    }
   }
 }

@@ -38,7 +38,7 @@ auditStatus: any;
   start: any;
   maxVisibleButtons: any = 8;
   loading: boolean = false;
-
+  @ViewChild('auditForm') auditForm!: NgForm;
   @ViewChild('calendar1') calendar1!: Calendar;
   @ViewChild('calendar2') calendar2!: Calendar;
   @ViewChild('calendar3') calendar3!: Calendar;
@@ -190,8 +190,8 @@ auditStatus: any;
     this.goToPage(this.totalPages);
   }
 
-  clear(form: NgForm){
-    form.resetForm()
+  clear(){
+    this.auditForm.resetForm()
   }
 
   downloadExcel(): void {

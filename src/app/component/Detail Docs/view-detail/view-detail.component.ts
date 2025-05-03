@@ -88,6 +88,7 @@ export class ViewDetailComponent implements OnInit {
 
   viewEso(eso:any){
     this.apiService.eso = eso;
+    this.router.navigate(['/view-eso', { fromViewDetail: true }]);
   }
 
   backToDoc(){

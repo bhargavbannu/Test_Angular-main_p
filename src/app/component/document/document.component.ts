@@ -99,6 +99,8 @@ export class DocumentComponent implements OnInit {
   creationDate: any;
   vendorSub = new Subject();
   vendorNamesList: any[] = [];
+  showVendorErr: boolean = false;
+  showSubErr: boolean = false;
 
   constructor(
     private apiService: ApiService,
@@ -166,6 +168,9 @@ export class DocumentComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.vendorNamesList = res;
+        if (this.vendorName === '') {
+          this.vendorNamesList = [];
+        }
       });
 
     this.auditableSubject
@@ -176,20 +181,28 @@ export class DocumentComponent implements OnInit {
       )
       .subscribe((res) => {
         this.auditableResponse = res;
+        if(this.typedAuditable === ''){
+          this.auditableResponse = [];
+        }
       });
-
+  
     this.ecoNum
       .pipe(
         debounceTime(1000),
         distinctUntilChanged(),
         switchMap(() => {
-          return this.apiService.ecoNumbers(this.ecoNumber);
+          if (this.ecoNumber !== '') {
+            return this.apiService.ecoNumbers(this.ecoNumber);
+          } else {
+            return this.ecoRes = [];
+           // Return an empty observable or a default value
+          }
         })
       )
       .subscribe((res) => {
-        console.log(res);
         this.ecoRes = res;
       });
+    
 
     this.esoNum
       .pipe(
@@ -199,9 +212,10 @@ export class DocumentComponent implements OnInit {
         })
       )
       .subscribe((res) => {
-        console.log(res);
-
         this.esoNumberRess = res;
+        if (this.typedEsoNumber === '') {
+          this.esoNumberRess = [];
+        }
       });
     this.apiService.eccnNumber().subscribe((data) => {
       this.eccnNumbers = data;
@@ -354,9 +368,22 @@ export class DocumentComponent implements OnInit {
       submitType: 'ADD',
     };
     this.apiService.addDocument(payload).subscribe((res: any) => {
+      if(res){
       this.apiService.viewDocId = res.returnObject.documentNbr;
       this.router.navigate(['/viewStatus', { docAdded: true }]);
+      }
     });
+    if(this.vendorName === null || this.vendorName === undefined || this.vendorName === ''){
+      this.showVendorErr = true;
+      this.showSubErr = false;
+    }
+    else if(this.vendorName !== null && this.vendorName !== undefined && this.vendorName !== '' && (this.docSection === null || this.docSection === undefined || this.docSection === '' || this.docSection.length === 0)){
+      this.showSubErr = true;
+      this.showVendorErr = false;
+    } else {
+      this.showSubErr = false;
+      this.showVendorErr = false;
+    }
   }
 
   filterLocations(value: string) {
@@ -503,6 +530,14 @@ export class DocumentComponent implements OnInit {
   setVal(val:any){
     this.vendorName = val;
     this.vendorNamesList = [];
+   }
+
+   deleteDocument(){
+    this.apiService.deleteDocument().subscribe((res)=>{
+       if(res){
+        this.router.navigate(['/search', { docDeleted: true }]);
+       }
+    })
    }
 
 }

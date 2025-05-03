@@ -117,7 +117,9 @@
                                   id="detail"
                                   [(ngModel)]="documentDetail"
                                 >
-                                  <option value="">&nbsp;</option>
+
+                                <option *ngFor="let doc of documentDetailsList" value={{doc?.value}}>{{doc?.label}}</option>
+                                  <!-- <option value="">&nbsp;</option>
 
                                   <option value="205473638">
                                     200804092 (CMM/IPL) - R4
@@ -137,7 +139,7 @@
 
                                   <option value="205473634">
                                     6015721 (CMM/IPL) - R1
-                                  </option>
+                                  </option> -->
                                 </select>
                               </td>
                             </tr>

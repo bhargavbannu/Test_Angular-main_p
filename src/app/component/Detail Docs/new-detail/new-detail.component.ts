@@ -33,9 +33,10 @@ export class NewDetailComponent {
   constructor(private apiService: ApiService, private http: HttpClient, private datePipe:DatePipe, private router:Router) {}
 
   ngOnInit(){
-    this.docNmbr = this.apiService.viewDocId
-    this.vendorName = this.apiService.vendorName
-    this.docSubject = this.apiService.subject 
+    this.docNmbr = this.apiService.viewDocId;
+    this.vendorName = this.apiService.vendorName;
+    this.docSubject = this.apiService.subject; 
+    this.caseClass = "REGULAR";
   }
 
   saveDetails() {

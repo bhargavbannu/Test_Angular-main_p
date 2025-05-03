@@ -25,12 +25,19 @@
                 <td id="emptyRow" style="display: none">&nbsp;</td>
               </tr>
             </div>
+            <div *ngIf="showErr" class="errMsg"> FAILED: ESO Number * is required.</div>
+          
             <div>
+              <a *ngIf="fromEditEso" routerLink="/View-Edit-ESO">
+                Back to Enter/Select ESO
+                </a
+                >
               <tr>
                 <td align="left">
                   <!-- CONTENT -->
                   <a href=""></a>
-                  <br /><br />
+                  <br />
+                 
 
                   <table cellspacing="0" cellpadding="0" border="0">
                     <tbody>

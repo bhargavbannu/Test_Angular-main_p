@@ -372,7 +372,7 @@
                                       <a *ngIf ="closedbtn && type ==='reIssue'"
                                       routerLink="/viewRoute"
                                       (click)="closed(status.routeId)"
-                                       >Closed</a
+                                       >Close</a
                                      >
                                       <!-- <a routerLink="/viewStatus">Back to Document</a> -->
                                     </td>
@@ -456,7 +456,7 @@
                                           : 'eds-pagerstyle-alt'
                                       ">
                                           <td>{{status?.esoForDisplay}}</td>
-                                          <td>{{status?.assigndate | date:"dd/MM/yyyy"}}</td>
+                                          <td>{{status?.assigndate | date:"MM/dd/yyyy"}}</td>
                                           <td>{{status?.subject}}</td>
                                           <td>
                                             <a routerLink="/view-eso"

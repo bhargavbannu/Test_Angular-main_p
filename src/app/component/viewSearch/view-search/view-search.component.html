@@ -100,7 +100,7 @@
                                             <span class="viewFieldText">{{
                                               documentsDetails.document
                                                 ?.creationDate
-                                                | date : "dd/MM/yyyy"
+                                                | date : 'MM/dd/yyyy'
                                             }}</span>
                                           </td>
                                         </tr>
@@ -489,22 +489,89 @@
                       <tr>
                         <td>
                           <table
-                            cellspacing="0"
-                            cellpadding="0"
-                            width="100%"
-                            border="0"
-                            class="eds-tabtitle"
-                          >
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <font color="#ffffff"
-                                    ><b>Nothing found to display</b></font
-                                  >
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                          cellspacing="0"
+                          cellpadding="0"
+                          width="100%"
+                          border="0"
+                          class="eds-tabtitle"
+                        >
+                          <tbody>
+                            <tr>
+                              <td>
+                                <form
+                                  id="createRouteForm"
+                                  action="CreateNewRoute.html"
+                                  method="post"
+                                >
+    
+                                  <table class="inline-table" id="route">
+                                    <thead>
+                                      <tr>
+                                        <th>Detail #</th>
+                                        <th>Section</th>
+                                        <th>Route Date</th>
+                                        <th>Routing</th>
+                                        <th>Disposition</th>
+                                        <th>Close Date</th>
+                                        <th>Remark</th>
+                                        <th>Action</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr *ngFor="
+                                            let status of documentsDetails?.mostRecentRouting;
+                                            let i = index
+                                          "
+                                          [ngClass]="
+                                            i % 2 == 0
+                                              ? 'eds-pagerstyle'
+                                              : 'eds-pagerstyle-alt'
+                                          ">
+                                        <td>{{status.pop}}</td>
+                                        <td>{{status.sectionId}}</td>
+                                        <td>{{status.routeDate | date:"dd/MM/yyyy"}}</td>
+                                        <td>{{status.routeType.routingTypeId}}</td>
+                                        <td>{{status.disposition}}</td>
+                                        <td>{{status.closedate | date:"dd/MM/yyyy"}}</td>
+                                        <td>{{status.remark}}</td>
+                                        <td>
+                                          <a routerLink="/viewRoute" (click)="viewRoute(status.routeId)"
+                                            
+                                            >View</a
+                                          >
+                                          &nbsp;
+    
+                                          <a
+                                          (click)="downloadRouteSlip(status.routeId)"
+                                          style="cursor: pointer;"
+                                          href="javascript:void(0);"
+                                          >Route Slip</a
+                                          >
+    
+                                          <br />
+    
+                                          <a
+                                           routerLink="/viewnewRoutw"
+                                           (click)="reIssue()"
+                                            >Re-Issue</a
+                                          >
+                                          &nbsp;
+                                          <a 
+                                          routerLink="/viewRoute"
+                                          (click)="closed(status.routeId)"
+                                           >Close</a
+                                         >
+                                          <!-- <a routerLink="/viewStatus">Back to Document</a> -->
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+    
+                                </form>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                         </td>
                       </tr>
                     </tbody>
@@ -589,7 +656,7 @@
                                           <td>{{status.doctype}}</td>
                                           <td>{{status.revisionNbr}}</td>
                                           <td>{{status.detailSubjectDesc}}</td>
-                                          <td>{{status.manualdate | date:"dd/MM/yyyy"}}</td>
+                                          <td>{{status.manualdate | date:"MM/dd/yyyy"}}</td>
                                           <td>{{status.bin}}</td>
                                           <td>{{status.remark}}</td>
                                           <td>
@@ -735,7 +802,7 @@
                                             {{
                                               documentsDetails
                                                 .documentLatestAudit[0]
-                                                .auditDate | date : "dd/MM/yyyy"
+                                                .auditDate | date : "MM/dd/yyyy"
                                             }}
                                           </td>
                                           <td>
@@ -764,7 +831,7 @@
                                               documentsDetails
                                                 .documentLatestAudit[0]
                                                 .revisionDate
-                                                | date : "dd/MM/yyyy"
+                                                | date : "MM/dd/yyyy"
                                             }}
                                           </td>
                                           <td>
@@ -893,7 +960,7 @@
                                                 : 'eds-pagerstyle-alt'
                                             ">
                                                 <td>{{status.esoForDisplay}}</td>
-                                                <td>{{status.assigndate | date:"dd/MM/yyyy"}}</td>
+                                                <td>{{status.assigndate | date:"MM/dd/yyyy"}}</td>
                                                 <td>{{status.subject}}</td>
                                                 <td>
                                                   <a routerLink="/view-eso"

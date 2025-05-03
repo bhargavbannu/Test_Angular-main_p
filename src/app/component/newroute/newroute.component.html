@@ -1,4 +1,7 @@
 <td align="left">
+  <div *ngIf="showErr" class="errMsg"> FAILED: Section * is required.</div>
+  <div *ngIf="errDate" class="errMsg"> FAILED: Route Date *  is required.</div>
+
   <a routerLink="/viewDetail" (click)="backToDetail()">Back to Detail/POP</a>
   <br /><br />
   <div style="float: left">
@@ -83,9 +86,9 @@
                                 name="route.sections"
                                 class=""
                                 multiple="multiple"
-                                [(ngModel)]="Section"
+                                [(ngModel)]="Sections"
                               >
-                              <option value={{Section}} selected>{{Section}}</option>
+                              <option>{{Section}}</option>
                               </select>
                             </td>
                           </tr>

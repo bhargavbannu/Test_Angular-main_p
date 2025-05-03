@@ -2,24 +2,27 @@
   <!-- CONTENT -->
 
   <div *ngIf="esoSaved" class="savedDoc">SUCCESS: ESO saved successfully.</div>
-
-  <a *ngIf="!viewRoute && !viewStatus" routerLink="/View-Edit-ESO">
-  Back to Enter/Select ESO
-  </a
-  >
-  <a *ngIf="viewRoute" routerLink="/viewRoute">
-    Back to View Route
-    </a
-    >
-
-    <a *ngIf="searchType ==='search' && viewStatus" style="font-size: larger;font-weight: bolder" routerLink="/search">Back To Search Results</a>
-    <a *ngIf="searchType ==='audit' && viewStatus" style="font-size: larger;font-weight: bolder" routerLink="/search-audits">Back To Search Results</a>
-    <a *ngIf="searchType ==='route' && viewStatus" style="font-size: larger;font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
+    <a *ngIf="searchType ==='search' && (viewStatus || viewRoute || viewDetail)" style="font-size: larger;font-weight: bolder" routerLink="/search">Back To Search Results</a>
+    <a *ngIf="searchType ==='audit' && (viewStatus || viewRoute || viewDetail)" style="font-size: larger;font-weight: bolder" routerLink="/search-audits">Back To Search Results</a>
+    <a *ngIf="searchType ==='route' && (viewStatus || viewRoute || viewDetail)" style="font-size: larger;font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
     <br />
+    <a *ngIf="viewRoute" routerLink="/viewRoute">
+      Back to View Route
+      </a
+      >
+
+      <a *ngIf="viewDetail" routerLink="/viewDetail">
+        Back to View Detail
+        </a
+        >
 
     <a *ngIf="viewStatus" routerLink="/viewStatus"
       >Back to View Document</a
     >
+    <a *ngIf="!viewRoute && !viewStatus && !viewDetail" routerLink="/View-Edit-ESO">
+      Back to Enter/Select ESO
+      </a
+      >
 
   <br /><br />
 
@@ -129,7 +132,7 @@
                         <tr class="eds-pagerstyle-alt blueColSpan">
                           <td colspan="2">
                             <span style="float: right">
-                              <input type="submit" routerLink="/edit-eso" value=" Edit " />
+                              <input type="submit" routerLink="/edit-eso" (click)="editEso()"  value=" Edit " />
                             </span>
                           </td>
                         </tr>

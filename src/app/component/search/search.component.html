@@ -1,4 +1,6 @@
 <div>
+  <div *ngIf="docDeleted" class="savedDoc">SUCCESS: Document deleted successfully.</div>
+
   <form
     #myForm="ngForm"
     (submit)="Search1()"
@@ -283,7 +285,7 @@
                         <input
                           type="button"
                           value="Clear"
-                          (click)="clear(myForm)"
+                          (click)="clear()"
                           tabindex="-1"
                         />
                       </span>
@@ -308,7 +310,7 @@
     <br />
     <div class="pagination-container" *ngIf="apiData.length > 0 && totalCount > 15">
       <span class="pagebanner"
-        >{{ totalCount }} items found, displaying {{ start + 1 }} to
+        >{{ totalCount | number }} items found, displaying {{ start + 1 }} to
         {{ start + recordsPerPage }}.</span
       >
       <a

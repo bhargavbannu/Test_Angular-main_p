@@ -188,7 +188,7 @@ body {
   .eds-tabheader {
     background-color: #8383b3;
     position: relative;
-    bottom: 7px;
+    bottom: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     width: 30%;
@@ -197,7 +197,7 @@ body {
   .eds-tabheader::after {
     height: 50%;
     width: 334%;
-    top: 17px;
+    top: 20px;
     bottom: 0;
     left: 0;
     background-color: #8383b3;
@@ -871,7 +871,7 @@ body {
   
   .pagination-link {
     /* Space inside each link for better click area */
-    text-decoration: none;
+    /* text-decoration: none; */
     color: #007bff;      /* Blue color for links */
     font-size: 14px;
     cursor: pointer;
@@ -884,18 +884,18 @@ body {
   
   .pagination-link.active {
     font-weight: bold;   /* Highlight the active page */
-    color: black;        /* Black color for active page */
+    color: black;  
+    text-decoration: none;      /* Black color for active page */
   }
   
   .pagination-link.disabled {
     color: gray;         /* Gray out disabled links (First/Prev/Next/Last) */
     pointer-events: none; /* Disable click events for disabled links */
     cursor: not-allowed;
+    text-decoration: none;
   }
   
-  .pagination-link.active:hover {
-    text-decoration: none; /* Prevent underline on the active page */
-  }
+
 
   .savedDoc {
     background: lightgray;
@@ -921,7 +921,7 @@ body {
 
 .errMsg::before {
  content: "\2022";
- color: red;
+ color: #8383b3;
  margin-right: 10px;
 }
 

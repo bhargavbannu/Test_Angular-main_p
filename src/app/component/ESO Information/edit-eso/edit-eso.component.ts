@@ -32,19 +32,30 @@ editESO(){
   this.router.navigate(["/edit-eso"])
   }
   else {
-    this.showError = true
+    this.router.navigate(["/Add-ESO", { fromEditEso: true }])
   }
+  // else {
+  //   this.showError = true
+  // }
 }
 
 onESOChange(esoId: any) {
   this.apiService.esoNumbersApiData(esoId).subscribe((res)=>{
     this.esoNumbers = res
     this.esoData = res
+    if(this.eso === '' || this.eso === null || this.eso === undefined){
+      this.esoNumbers = [];
+    }
   })
+
 }
 
 selectEso(esoId:any){
- this.eso = esoId
- this.esoNumbers=[]
+ this.eso = esoId;
+ this.esoNumbers=[];
+}
+
+onFocusOut(){
+  this.esoNumbers = [];
 }
 }

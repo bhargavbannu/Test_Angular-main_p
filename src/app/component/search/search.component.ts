@@ -2,7 +2,7 @@ import { sanitizeIdentifier } from '@angular/compiler';
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { setLines } from '@angular/material/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { SearchPaginationComponent } from '../search-pagination/search-pagination.component';
 
@@ -151,12 +151,15 @@ export class SearchComponent {
   ata: any;
   detailId: any;
   @ViewChild(SearchPaginationComponent) searchPagination!: SearchPaginationComponent;
+  @ViewChild('myForm') myForm!: NgForm;
   downloadPayload: any;
+docDeleted: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private apiService: ApiService,
-    private cdr : ChangeDetectorRef
+    private cdr : ChangeDetectorRef,
+    private route: ActivatedRoute
   ) {
   }
   // "28796727"
@@ -176,11 +179,14 @@ export class SearchComponent {
   }
   ngOnInit() {
     this.advancedSearchValue = 'Advanced Search (Display)';
+    this.route.params.subscribe(params =>{
+      this.docDeleted = params['docDeleted'];   
+    })
    // this.router.navigateByUrl('/search');
   }
   ngAfterViewInit() {
     const formData = this.apiService.getFormData();
-    if (formData) {
+    if (formData && !this.docDeleted) {
       this.vendorName = formData.vendorName;
       this.checkBoxValue = formData.checkBoxValue;
       this.detailDocType = formData.detailDocType, 
@@ -368,9 +374,9 @@ export class SearchComponent {
     this.apiService.subject = subject;
   }
 
-  clear(form: NgForm){
-    form.resetForm()
-    this.searchPagination.clearFields()
+  clear(){
+    this.myForm.resetForm()
+    this.searchPagination?.clearFields()
   }
 
   getWords():any {

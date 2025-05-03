@@ -20,7 +20,7 @@ export class NewAuditComponent implements OnInit {
   revDate: any;
   auditNotes: any;
   documentDetail: any;
-
+  documentDetailsList: any[] = [];
   @ViewChild('calendar1') calendar1!: Calendar;
   @ViewChild('calendar2') calendar2!: Calendar;
   @ViewChild('calendar3') calendar3!: Calendar;
@@ -30,10 +30,16 @@ export class NewAuditComponent implements OnInit {
   ngOnInit(){
     this.docAuditCategory = 'A';
     this.followUpCompleteInd = 'Y';
+    this.apiService.documentDetails().subscribe((res)=>{
+      this.documentDetailsList = res;
+    })
   }
 
   saveNewAudit(){
     this.auditDate = this.datePipe.transform(this.auditDate, 'MM/dd/yyyy HH:mm:ss')
+    this.followUpDate = this.datePipe.transform(this.followUpDate, 'MM/dd/yyyy HH:mm:ss')
+    this.revDate = this.datePipe.transform(this.revDate, 'MM/dd/yyyy HH:mm:ss')
+
     let payload ={
       "audit": {
         "documentNbr": this.apiService.viewDocId,

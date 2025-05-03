@@ -102,6 +102,7 @@
                                             autocomplete="off"
                                             [(ngModel)]="this.eso"
                                             (ngModelChange)="onESOChange(this.eso)"
+                                            (focusout)="onFocusOut()"
                                           />
                                           <div
                                           *ngIf="esoNumbers.length > 0"
@@ -115,7 +116,7 @@
                                             *ngFor="
                                               let eso of esoNumbers
                                             "
-                                            (click)="selectEso(eso)"
+                                            (mousedown)="selectEso(eso)"
                                           >
                                             <span style="cursor: pointer">{{
                                               eso

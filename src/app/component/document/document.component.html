@@ -21,6 +21,9 @@
         <tr>
           <td id="emptyRow" style="display: none">&nbsp;</td>
         </tr>
+        <div *ngIf="showVendorErr" class="errMsg"> FAILED: Vendor Name * is required.</div>
+        <div *ngIf="showSubErr" class="errMsg"> FAILED: You must select at least one Engineering Section.</div>
+
         <a *ngIf="editDoc" style="font-size: larger;font-weight: bolder" routerLink="/viewStatus">Back To Document</a>
         <tr>
           <td align="left">
@@ -163,7 +166,7 @@
                                               val
                                             }}</span>
                                           </div>
-                                        </div>
+                                          </div>
 
                                           <div
                                             id="vendorAutoComplete_choices"
@@ -987,6 +990,7 @@
                                         <td colspan="2">
                                           <button
                                           *ngIf="editDoc"
+                                          (click)="deleteDocument()"
                                          >
                                           Delete
                                         </button>

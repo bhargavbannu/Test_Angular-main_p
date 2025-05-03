@@ -103,7 +103,8 @@ export class ApiService {
   private dispositionApi = `${environment.apiBaseUrl}/routing/getDispositions`
   private routeSlipDownloadApi = `${environment.apiBaseUrl}/routing/downloadRoutingSlip`
   private docDownloadApi = `${environment.apiBaseUrl}/search/documentReport`
-
+  private deleteDocumentApi = `${environment.apiBaseUrl}/addDocument/deleteDocument`
+  private documentDetailsApi = `${environment.apiBaseUrl}/audit/getDocumentDetails`
 
 detailRoute:any
   viewDocId: any;
@@ -148,8 +149,6 @@ saveExistingRouteView(viewRoute:any, payload:any){
   }
 
   getAutoPopulateVendors(id: any): Observable<any> {
-    console.log('test');
-
     return this.http.get<any>(
       `${this.manageVendoeAutoPopulate}?sourceElement=${id}`
     );
@@ -323,6 +322,12 @@ esoNumbersApiData(val:any):Observable<any>{
   deleteDocumentCategory(documentCatgCd: any): Observable<any> {
     return this.http.delete<any>(
       `${this.deleteDocumentCategoryApi}/${documentCatgCd}`
+    );
+  }
+
+  deleteDocument(): Observable<any> {
+    return this.http.delete<any>(
+      `${this.deleteDocumentApi}?documentNbr=${this.viewDocId}`
     );
   }
 
@@ -510,6 +515,9 @@ esoNumbersApiData(val:any):Observable<any>{
 
   docDownload(payload:any, options:any){
     return this.http.post<any>(`${this.docDownloadApi}`,payload, options);
+  }
+  documentDetails(){
+    return this.http.get<any>(`${this.documentDetailsApi}?documentNbr=${this.viewDocId}`)
   }
 
   checkApiHealth(): Observable<any> {

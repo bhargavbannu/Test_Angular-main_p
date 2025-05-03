@@ -23,7 +23,7 @@
           </tr>
           <tr>
             <td align="left">
-              <form #myForm="ngForm"
+              <form #auditForm="ngForm"
                 name="AuditSearchForm"
                 id="searchFormId"
                 method="get"
@@ -1542,7 +1542,7 @@
                                           <input type="submit" value="Search" />
                                         </span>
                                         <span style="float: right">
-                                          <input type="button" value="Clear" (click)="clear(myForm)" />
+                                          <input type="button" value="Clear" (click)="clear()" />
                                         </span>
                                       </td>
                                     </tr>
@@ -1573,7 +1573,7 @@
   <br />
   <div class="pagination-container" *ngIf="data.length > 0 && totalCount > 15">
     <span class="pagebanner"
-      >{{ totalCount }} items found, displaying {{ start + 1 }} to
+      >{{ totalCount | number }} items found, displaying {{ start + 1 }} to
       {{ start + recordsPerPage }}.</span
     >
     <br>

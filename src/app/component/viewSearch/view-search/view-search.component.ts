@@ -67,4 +67,31 @@ export class ViewSearchComponent {
     this.apiService.deleteFormerVendor()
   }
 
+  viewRoute(arg0: any) {
+    this.apiService.detailRoute = arg0;
+  }
+
+  closed(routeId:any){
+    this.apiService.detailRoute = routeId;
+    this.router.navigate(['/viewRoute', { ClosedRoute: true }]);
+  }
+  reIssue(){
+    this.apiService.type ="reIssue"
+  }
+
+  downloadRouteSlip(id:any){
+    this.apiService.routeSlipDownload(id,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
+      const contentDisposition = response.headers.get('Content-Disposition');
+      const filename = contentDisposition.split('filename=')[1].trim().replace(/"/g, '');
+      const blob = new Blob([response.body], { type: 'application/msword' });
+       const url = window.URL.createObjectURL(blob);
+       const a = document.createElement('a');
+       a.href = url;
+       a.download = filename;
+       a.click();
+       window.URL.revokeObjectURL(url);
+    });
+
+  }
+
 }

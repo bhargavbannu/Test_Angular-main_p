@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 
@@ -21,12 +21,22 @@ export class EsoComponent {
   engineer: any;
   remarks: any;
   status: any;
+  showErr: boolean = false;
+  fromEditEso: any;
 
   constructor(
     private apiService: ApiService,
     private datePipe: DatePipe,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
+
+  ngOnInit(){
+    this.route.params.subscribe(params =>{
+      this.fromEditEso = params['fromEditEso'];
+    }
+  )
+  }
 
   submitESO() {
     this.assigndate = this.datePipe.transform(
@@ -56,6 +66,12 @@ export class EsoComponent {
       this.apiService.eso = this.esoNo;
       this.router.navigate(['/view-eso', { esoSaved: true }]);
     });
+    if(this.esoNo === "" || this.esoNo === undefined || this.esoNo === null) {
+      this.showErr = true;
+    }
+    else {
+      this.showErr = false;
+    }
   }
 
   getEsoNumber(id: any) {
