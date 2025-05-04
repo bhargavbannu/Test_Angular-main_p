@@ -16,6 +16,8 @@ export class EditEsoDocComponent {
    @ViewChild('calendar1') calendar1!: Calendar;
    @ViewChild('calendar2') calendar2!: Calendar;
   fromViewStatus: any;
+  viewRoute: any;
+  viewDetail: any;
  // @ViewChildren('calendar') calendars!: QueryList<Calendar>;
 
     constructor(private apiService: ApiService, private router:Router,  private datePipe: DatePipe, private route:ActivatedRoute){}
@@ -24,6 +26,8 @@ export class EditEsoDocComponent {
     this.loadEso();
     this.route.params.subscribe(params => {
       this.fromViewStatus = params['fromViewStatus'];
+      this.viewRoute = params['fromViewRoute'];
+      this.viewDetail = params['fromViewDetail'];
     })
   }
 
@@ -76,6 +80,15 @@ export class EditEsoDocComponent {
   backToEso(){
     if(this.fromViewStatus){
       this.router.navigate(['/view-eso', { fromViewStatus: true }]);
+    }
+    else if(this.viewDetail){
+      this.router.navigate(['/view-eso',{fromViewDetail:true}])
+    }
+    else if(this.viewRoute){
+      this.router.navigate(['/view-eso',{fromViewRoute:true}])
+    }
+    else{
+      this.router.navigate(['/view-eso'])
     }
   }
 

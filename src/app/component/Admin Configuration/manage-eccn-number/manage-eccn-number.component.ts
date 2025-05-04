@@ -13,6 +13,8 @@ export class ManageEccnNumberComponent {
   saveNew: boolean = false;
   updateRecord: boolean = false;
   dataFlag: boolean = false;
+  nmbrSaved: boolean = false;
+  nmbrDeleted: boolean= false;
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
@@ -31,21 +33,37 @@ export class ManageEccnNumberComponent {
     this.updateRecord = true;
     this.btnIndex = index;
     this.clickFlag = true;
+    this.nmbrSaved = false;
+    this.nmbrDeleted = false;
   }
   createRow() {
     this.saveNew = true;
     this.EccnNumbers.push({ eccnNumber: '', newRow:true });
+    this.nmbrSaved = false;
+    this.nmbrDeleted = false;
   }
 
   saveRow(eccnNumber: any) {
     if(this.saveNew){
-    this.apiService.saveEccnNumber(eccnNumber).subscribe(() => {
+    this.apiService.saveEccnNumber(eccnNumber).subscribe((res) => {
+      if(res){
+        this.nmbrSaved = true;
+      }
+      else {
+        this.nmbrSaved = false;
+      }
       this.loadEccnNumbers();
     });
     this.btnIndex = '';
   }
   else {
-    this.apiService.saveEccnNumber1(eccnNumber).subscribe(() => {
+    this.apiService.saveEccnNumber1(eccnNumber).subscribe((res) => {
+      if(res){
+        this.nmbrSaved = true;
+      }
+      else {
+        this.nmbrSaved = false;
+      }
       this.loadEccnNumbers();
     });
     this.btnIndex = '';
@@ -53,7 +71,13 @@ export class ManageEccnNumberComponent {
   }
 
   deleteRow(eccnNumber: any) {
-    this.apiService.deleteEccnNumber(eccnNumber).subscribe(() => {
+    this.apiService.deleteEccnNumber(eccnNumber).subscribe((res) => {
+      if(res){
+        this.nmbrDeleted = true;
+      }
+      else {
+        this.nmbrDeleted = false;
+      }
       this.loadEccnNumbers();
     });
     this.btnIndex = '';

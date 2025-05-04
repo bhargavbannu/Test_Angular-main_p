@@ -19,6 +19,9 @@
         <tr>
           <td id="emptyRow" style="display: none">&nbsp;</td>
         </tr>
+        <div *ngIf="auditSaved" class="savedDoc">SUCCESS: Audit saved Successfully.</div>
+        <div *ngIf="auditDeleted" class="savedDoc">SUCCESS: Audit deleted Successfully.</div>
+
         <tr>
           <td align="left">
             <!-- CONTENT -->

@@ -17,6 +17,9 @@
           </ul>
         </td>
       </tr>
+      <div *ngIf="savedSection" class="savedDoc">SUCCESS: Section was saved successfully.</div>
+      <div *ngIf="sectionDeleted" class="savedDoc">SUCCESS: Section was deleted successfully.</div>
+      
       <tr>
         <td id="emptyRow" style="display: none">&nbsp;</td>
       </tr>

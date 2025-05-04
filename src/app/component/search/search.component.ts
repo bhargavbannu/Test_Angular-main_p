@@ -196,43 +196,14 @@ docDeleted: any;
       this.detailId = formData.detailId,
       this.advancedSearchHidden = formData.advancedSearchHidden
       setTimeout(() => {
-        this.Search1();
+        this.Search();
       }, 0);
     }
     this.cdr.detectChanges();
 
   }
 
-  // Search() {
-  //   const formData = {
-  //     vendorName: this.vendorName,
-  //     checkBoxValue: this.checkBoxValue,
-  //   };
-  //   this.apiService.saveFormData(formData);
-  //   this.loading = true;
-
-  //   this.start = (this.currentPage - 1) * this.recordsPerPage;
-  //   this.size = this.recordsPerPage;
-
-  //   const payload = {
-  //     currentVendorOnly: this.checkBoxValue,
-  //     vendorName: this.vendorName,
-  //   };
-
-  //   this.apiService
-  //     .postData(payload, this.start / this.size + 1, this.size)
-  //     .subscribe((data) => {
-  //       this.apiData = [...data.results];
-  //       // this.totalCount = data.totalCount;
-  //       // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
-  //       this.totalCount = data.totalRevisions;
-  //       this.totalPages = data.totalPages;
-  //       this.loading = false;
-  //       this.tableHeaders = Object.keys(this.apiData[0]); // Extract headers from the first object
-  //     });
-  // }
-
-  Search1() {  
+  Search() {  
     this.apiService.searchType = "search";
     const formData = {
       vendorName: this.vendorName,
@@ -330,7 +301,7 @@ docDeleted: any;
     this.currentPage = page;
     console.log(this.currentPage);
 
-    this.Search1();
+    this.Search();
   }
 
   goToFirst() {
@@ -375,8 +346,13 @@ docDeleted: any;
   }
 
   clear(){
-    this.myForm.resetForm()
-    this.searchPagination?.clearFields()
+    this.myForm.resetForm();
+    this.searchPagination?.clearFields();
+    this.advancedSearchHidden = true;
+    this.advancedSearchValue = 'Advanced Search (Display)';
+    this.checkBoxValue = true; 
+    this.myForm.form.controls['currentVendorOnly'].setValue(true);
+    this.apiData = null;
   }
 
   getWords():any {

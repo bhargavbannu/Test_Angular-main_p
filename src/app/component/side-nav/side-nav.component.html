@@ -6,7 +6,7 @@
         <span class="span1"><a mat-list-item>- Document Information</a></span>
         <div class="subspan1">
           <mat-nav-list>
-            <a mat-list-item routerLink="/document">- Add Document</a>
+            <a mat-list-item (click)="default('/document')">- Add Document</a>
             <!-- <a mat-list-item>- Add Document</a> -->
           </mat-nav-list>
         </div>
@@ -16,8 +16,8 @@
         <div class="span2"><a mat-list-item>- ESO Information</a></div>
         <div class="span3">
           <mat-nav-list class="sublinks">
-            <div class="span4"><a mat-list-item routerLink="/Add-ESO">- Add ESO</a></div>
-            <div class="span5"><a mat-list-item  routerLink="/View-Edit-ESO" ESO>- View/Edit ESO</a></div>
+            <div class="span4"><a mat-list-item (click)="default('/Add-ESO')">- Add ESO</a></div>
+            <div class="span5"><a mat-list-item (click)="default('/View-Edit-ESO')">- View/Edit ESO</a></div>
           </mat-nav-list>
         </div>
       </div>
@@ -29,10 +29,10 @@
         <div class="span7">
           <mat-nav-list class="sublinks">
             <div class="span4">
-              <a mat-list-item routerLink="/search" (click)="resetFormData()">- Search Documents</a>
+              <a mat-list-item routerLink="/search" (click)="resetFormData();default('/search')">- Search Documents</a>
             </div>
-            <div class="span4"><a mat-list-item  routerLink="/search-audits" (click)="resetFormData()">- Search Audits</a></div>
-            <div class="span4"><a mat-list-item  routerLink="/search-routes" (click)="resetFormData()">- Search Routes</a></div>
+            <div class="span4"><a mat-list-item   (click)="resetFormData();default('/search-audits')">- Search Audits</a></div>
+            <div class="span4"><a mat-list-item   (click)="resetFormData();default('/search-routes')">- Search Routes</a></div>
           </mat-nav-list>
         </div>
       </div>
@@ -41,25 +41,25 @@
         <div class="span11"><a mat-list-item>- Admin Configuration</a></div>
         <div class="span12">
           <mat-nav-list class="sublinks">
-            <div class="span13"><a mat-list-item routerLink="/Manage-Sections">- Manage Sections</a></div>
+            <div class="span13"><a mat-list-item routerLink="/Manage-Sections" (click)="default('/Manage-Sections')">- Manage Sections</a></div>
             <div class="span14">
-              <a mat-list-item routerLink="/Manage-Effectivities">- Manage Effectivities</a>
+              <a mat-list-item (click)="default('/Manage-Effectivities')">- Manage Effectivities</a>
             </div>
-            <div class="span14"><a mat-list-item routerLink="/Manage-Vendors">- Manage Vendors</a></div>
+            <div class="span14"><a mat-list-item (click)="default('/Manage-Vendors')">- Manage Vendors</a></div>
             <div class="span14">
-              <a mat-list-item routerLink="/Manage-doc-categories">- Manage Doc Categories</a>
-            </div>
-            <div class="span14">
-              <a mat-list-item routerLink="/Manage-detail-doc-type">- Manage Detail Doc Type</a>
+              <a mat-list-item (click)="default('/Manage-doc-categories')">- Manage Doc Categories</a>
             </div>
             <div class="span14">
-              <a mat-list-item routerLink="/Manage-audit-statuses">- Manage Audit Statuses</a>
+              <a mat-list-item (click)="default('/Manage-detail-doc-type')">- Manage Detail Doc Type</a>
             </div>
             <div class="span14">
-              <a mat-list-item routerLink="/Manage-eccn-number">- Manage ECCN Number</a>
+              <a mat-list-item (click)="default('/Manage-audit-statuses')">- Manage Audit Statuses</a>
             </div>
             <div class="span14">
-              <a mat-list-item routerLink="/Manage-eccn-location">- Manage ECCN Location</a>
+              <a mat-list-item (click)="default('/Manage-eccn-number')">- Manage ECCN Number</a>
+            </div>
+            <div class="span14">
+              <a mat-list-item (click)="default('/Manage-eccn-location')">- Manage ECCN Location</a>
             </div>
           </mat-nav-list>
         </div>

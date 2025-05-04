@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
+import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
+
 
 @Component({
   selector: 'app-edit-manage-vendors',
@@ -14,7 +16,28 @@ export class EditManageVendorsComponent {
   contactPerson: any;
   contactPhone: any;
   email: any;
-  constructor(private apiService: ApiService, private router:Router) {}
+  dropdownValues:any[]=[]
+  subb = new Subject();
+  constructor(private apiService: ApiService, private router:Router, private appservice:ApiService, private route: ActivatedRoute) {}
+
+    ngOnInit() {
+      this.subb
+        .pipe(
+          debounceTime(1000),
+          distinctUntilChanged(),
+          switchMap(() => {          
+            return this.appservice.getAutoPopulateVendors(this.vendorName);          
+          })
+        )
+        .subscribe((res: any) => {
+          this.dropdownValues = res;
+        });
+        this.route.params.subscribe(params => {
+          this.vendorName = params['vendorVal'];
+        })
+  
+    }
+
   save() {
     const payload = {
       vendor: {
@@ -31,5 +54,21 @@ export class EditManageVendorsComponent {
         this.router.navigate(['/Manage-Vendors', {vendorSaved:true}])
       }
     });
+  }
+
+  tettt(val: any) {
+    this.subb.next(val.target.value);
+    if(val.target.value === ''){
+      this.dropdownValues = [];
+    }
+  }
+
+  setVal(val:any){
+    this.vendorName = val;
+    this.dropdownValues = [];
+   }
+
+   onFocusOut(){
+    this.dropdownValues = [];
   }
 }

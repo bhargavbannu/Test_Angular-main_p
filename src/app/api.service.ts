@@ -105,6 +105,8 @@ export class ApiService {
   private docDownloadApi = `${environment.apiBaseUrl}/search/documentReport`
   private deleteDocumentApi = `${environment.apiBaseUrl}/addDocument/deleteDocument`
   private documentDetailsApi = `${environment.apiBaseUrl}/audit/getDocumentDetails`
+  private deleteVendorApi = `${environment.apiBaseUrl}/adminConfiguration/deleteVendor`
+
 
 detailRoute:any
   viewDocId: any;
@@ -295,6 +297,10 @@ esoNumbersApiData(val:any):Observable<any>{
 
   deleteManageSections(section: any): Observable<any> {
     return this.http.delete<any>(`${this.deleteManageSectionsApi}/${section}`);
+  }
+
+  deleteVendor(id: any): Observable<any> {
+    return this.http.delete<any>(`${this.deleteManageSectionsApi}/${id}`);
   }
 
   saveDocumentCategory(

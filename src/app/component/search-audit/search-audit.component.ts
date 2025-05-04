@@ -191,7 +191,10 @@ auditStatus: any;
   }
 
   clear(){
-    this.auditForm.resetForm()
+    this.auditForm.resetForm();
+    this.selectedOption = 'B';    
+    this.auditForm.form.controls['searchType'].setValue('B');
+    this.data = null;
   }
 
   downloadExcel(): void {

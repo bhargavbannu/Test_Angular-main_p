@@ -9,6 +9,8 @@ import { ApiService } from 'src/app/api.service';
 export class ManageSectionsComponent {
   btnIndex: any;
   saveNew: boolean=false;
+  savedSection: boolean = false;
+  sectionDeleted: boolean = false;
 edit() {
 throw new Error('Method not implemented.');
 }
@@ -35,22 +37,38 @@ clickFlag: boolean = false
     this.saveNew = false;
     this.btnIndex = index
     this.clickFlag = true  
+    this.savedSection = false;
+    this.sectionDeleted = false;
   }
   createRow(){
     this.saveNew = true;
-    this.sections.push({section:"",description:"",inactiveInd:"",inactiveDate:"", newRow:true})
+    this.sections.push({section:"",description:"",inactiveInd:"",inactiveDate:"", newRow:true});
+    this.savedSection = false;
+    this.sectionDeleted = false;
   }
 
   saveRow(section:any, description:string,inactiveInd:any,inactiveDate:any){
   
     if(this.saveNew){
-    this.apiService.updateManageSections(section, description,inactiveInd,inactiveDate).subscribe(()=>{
+    this.apiService.updateManageSections(section, description,inactiveInd,inactiveDate).subscribe((res)=>{
+      if(res){
+        this.savedSection = true;
+      }
+      else {
+        this.savedSection = false;
+      }
       this.loadSections()
     })
     this.btnIndex =""
   }
   else {
-    this.apiService.updateManageSections1(section, description,inactiveInd).subscribe(()=>{
+    this.apiService.updateManageSections1(section, description,inactiveInd).subscribe((res)=>{
+      if(res){
+        this.savedSection = true;
+      }
+      else {
+        this.savedSection = false;
+      }
       this.loadSections()
     })
     this.btnIndex =""
@@ -59,7 +77,13 @@ clickFlag: boolean = false
 }
 
   deleteRow(section:any){
-    this.apiService.deleteManageSections(section).subscribe(()=>{
+    this.apiService.deleteManageSections(section).subscribe((res)=>{
+      if(res){
+        this.sectionDeleted = true;
+      }
+      else {
+        this.sectionDeleted = false;
+      }
       this.loadSections()
     })
     this.btnIndex =""

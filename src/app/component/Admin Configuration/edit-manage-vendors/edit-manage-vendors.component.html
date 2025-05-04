@@ -58,7 +58,26 @@
                               size="45"
                               maxlength="20"
                               [(ngModel)]="vendorName"
+                              (input)="tettt($event)"
+                              (focusout)="onFocusOut()"
                             />
+                            <div
+                                          *ngIf="dropdownValues.length > 0"
+                                          style="
+                                            min-width: 220px;
+                                            background: rgb(247, 242, 242);
+                                            position: absolute;
+                                          "
+                                        >
+                                          <div
+                                            *ngFor="let val of dropdownValues"
+                                            (mousedown)="setVal(val)"
+                                          >
+                                            <span style="cursor: pointer">{{
+                                              val
+                                            }}</span>
+                                          </div>
+                                        </div>
                           </td>
                         </tr>
 

@@ -14,7 +14,7 @@ export class ViewEsoComponent {
   viewRoute: any;
   searchType: any;
   viewStatus: any;
-viewDetail: any;
+  viewDetail: any;
 
   constructor(private apiService: ApiService, private route:ActivatedRoute, private router:Router){}
 
@@ -39,6 +39,15 @@ viewDetail: any;
   editEso(){
     if(this.viewStatus){
    this.router.navigate(['/edit-eso',{fromViewStatus:true}])
+    }
+    else if(this.viewDetail){
+      this.router.navigate(['/edit-eso',{fromViewDetail:true}])
+    }
+    else if(this.viewRoute){
+      this.router.navigate(['/edit-eso',{fromViewRoute:true}])
+    }
+    else{
+      this.router.navigate(['/edit-eso'])
     }
   }
 }

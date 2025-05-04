@@ -1,6 +1,6 @@
-<div *ngIf="error">
+<!-- <div *ngIf="error">
   <tr>
-    <td class="eds-messageframe" align="left">
+     <td class="eds-messageframe" align="left">
       <ul>
         <li>
           <span class="eds-message-failure"
@@ -18,9 +18,11 @@
           >
         </li>
       </ul>
-    </td>
+    </td> 
   </tr>
-</div>
+</div> -->
+<div *ngIf="vendError" class="errMsg">FAILED: Vendor Name * is required.</div>
+<!-- <div *ngIf="vendError" class="errMsg">FAILED: The specified vendor does not exist.</div> -->
 
 <div *ngIf="vendorSaved" class="savedDoc">SUCCESS: vendor saved successfully.</div>
 
@@ -151,7 +153,7 @@
                                             type="submit"
                                             value="Edit/Create"
                                             (click)="this.isEditVendor = true"
-                                            routerLink="/edit-manage-vendors"
+                                            [routerLink]="['/edit-manage-vendors',{vendorVal: vendorName}]"
                                           />
                                         </span>
                                         <span style="float: right">
@@ -208,15 +210,6 @@
           <td align="left">
             <!-- CONTENT -->
 
-            <script type="text/javascript">
-              <!--
-              function deleteVendor(){
-              $('VendorForm').action = 'DeleteVendor.html';
-              $('VendorForm').submit();
-              }
-
-              //-->
-            </script>
 
             <table cellspacing="0" cellpadding="0" border="0">
               <tbody>
@@ -378,7 +371,7 @@
                                         <input
                                           type="button"
                                           value="Delete"
-                                          onclick="deleteVendor();"
+                                          (click)="deleteVendor();"
                                         />
                                       </span>
                                     </td>

@@ -18,6 +18,8 @@
               </ul>
             </td>
           </tr>
+          <div *ngIf="effectivitySaved" class="savedDoc">SUCCESS: Effectivity successfully saved.</div>
+          <div *ngIf="effectivityDeleted" class="savedDoc">SUCCESS: Effectivity successfully deleted.</div> 
           <tr>
             <td id="emptyRow" style="display: none">&nbsp;</td>
           </tr>

@@ -17,7 +17,7 @@ export class ManageVendorsComponent implements OnInit {
 superced: boolean = false;
 isEditVendorTemp: boolean = false;
 newVendorName: any;
-  error: boolean = false;
+vendError: boolean = false;
   @ViewChild('calendar1') calendar1!: Calendar;
 supercedDate: any;
   vendorSaved: any;
@@ -51,17 +51,14 @@ dropdownValues:any[]=[]
   }
 
   supercedFun(){
-    console.log('superctc test');
-    console.log(this.vendorName);
-    
     if(this.vendorName.length>0){
     this.superced = true ;
      this.isEditVendor = true;
      this.isEditVendorTemp = false;
-     this.error = false
+     this.vendError = false
     }
     else {
-      this.error = true;
+      this.vendError = true;
     }
   }
   setVal(val:any){
@@ -76,5 +73,9 @@ dropdownValues:any[]=[]
 }
 onFocusOut(){
   this.dropdownValues = [];
+}
+
+deleteVendor(){
+  
 }
 }
