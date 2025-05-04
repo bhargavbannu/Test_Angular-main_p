@@ -147,7 +147,8 @@ export class DocumentComponent implements OnInit {
     //   console.log(res);
 
     // })
-    this.nextRoute = "ETDT"
+    this.nextRoute = "ETDT";
+    this.category = "--        ";
     const date = new Date();
     this.formattedDate = this.datePipe.transform(date, 'MM/dd/yyyy HH:mm:ss');
     if (
