@@ -57,9 +57,6 @@ export class ManageDetailDocTypeComponent {
       .subscribe((res) => {
         if(res){
           this.ddSaved = true;
-          setTimeout(() => {
-            this.ddSaved = false;
-          }, 2000);
         }
         else {
           this.ddSaved = false
@@ -74,9 +71,6 @@ export class ManageDetailDocTypeComponent {
       .subscribe((res) => {
         if(res){
           this.ddSaved = true;
-          setTimeout(() => {
-            this.ddSaved = false;
-          }, 2000);
         }
         else {
           this.ddSaved = false
@@ -91,9 +85,6 @@ export class ManageDetailDocTypeComponent {
     this.apiService.deleteDetailDocType(detailDocType).subscribe((res) => {
       if(res){
         this.ddDeleted = true;
-        setTimeout(() => {
-          this.ddDeleted = false;
-        }, 2000);
       }
       else {
         this.ddDeleted = false
