@@ -29,6 +29,7 @@ currentVendorRevision: any;
 auditCategory: any[]=[];
 auditStatus: any;
   auditYears: any[]=[];
+  downloadPayload: any;
   constructor(private service: ApiService, private cdr:ChangeDetectorRef) {}
 
   selectedOption: any;
@@ -65,7 +66,8 @@ auditStatus: any;
       this.currentVendorRevisionDateEnd = formData.currentVendorRevisionDateEnd,
       this.auditStatus = formData.auditStatus,
       this.auditCategory = formData.auditCategory,
-      this.effectivity = formData.effectivity
+      this.effectivity = formData.effectivity,
+      this.currentPage = formData.currentPage
       this.onSearch();
     }
     this.cdr.detectChanges();
@@ -88,7 +90,8 @@ auditStatus: any;
       currentVendorRevisionDateEnd:this.currentVendorRevisionDateEnd,
       auditStatus: this.auditStatus,
       auditCategory: this.auditCategory,
-      effectivity: this.effectivity
+      effectivity: this.effectivity,
+      currentPage: this.currentPage
     };
     this.service.saveFormData(formData);
     this.loading = true;
@@ -112,6 +115,7 @@ auditStatus: any;
       auditCategory: this.auditCategory,
       effectivity: this.effectivity
     };
+    this.downloadPayload = payload;
     this.service
       .auditsData(payload, this.start / this.size + 1, this.size)
       .subscribe((response) => {
@@ -197,8 +201,19 @@ auditStatus: any;
     this.data = null;
   }
 
-  downloadExcel(): void {
-    this.service.exportToExcel(this.data, 'my_records');
+  downloadExcel(): void {  
+    this.service.auditDownload(this.downloadPayload,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
+      const contentDisposition = response.headers.get('Content-Disposition');
+      const filename = contentDisposition.split('filename=')[1].trim().replace(/"/g, '');
+      const blob = new Blob([response.body], { type: 'application/vnd.ms-excel' });
+       const url = window.URL.createObjectURL(blob);
+       const a = document.createElement('a');
+       a.href = url;
+       a.download = filename;
+       a.click();
+       window.URL.revokeObjectURL(url);
+    });   
+    // this.apiService.exportToExcel(this.apiData, 'my_records');
   }
 
   getYears(row:any):any{

@@ -20,6 +20,7 @@ export class SearchRoutesComponent {
   effectivity: any[] = [];
   eso: any;
   ata: any;
+  downloadPayload: any;
   constructor(private service: ApiService, private cdr: ChangeDetectorRef) {}
 
   selectedOption: any;
@@ -45,6 +46,7 @@ export class SearchRoutesComponent {
       this.routeStartDate = formData.routeStartDate;
       this.routeEndDate = formData.routeEndDate;
       this.effectivity = formData.effectivity;
+      this.currentPage = formData.currentPage;
       this.onSearch();
     } else {
       this.routeType = '';
@@ -66,6 +68,7 @@ export class SearchRoutesComponent {
       eso: this.eso,
       ata: this.ata,
       effectivity: this.effectivity,
+      currentPage: this.currentPage
     };
     this.service.saveFormData(formData);
     this.loading = true;
@@ -82,6 +85,7 @@ export class SearchRoutesComponent {
       ata: this.ata,
       effectivity: this.effectivity,
     };
+    this.downloadPayload = payload;
     this.service
       .routesData(payload, this.start / this.size + 1, this.size)
       .subscribe((response) => {
@@ -148,8 +152,19 @@ export class SearchRoutesComponent {
     this.service.detailRoute = id;
   }
 
-  downloadExcel(): void {
-    this.service.exportToExcel(this.data, 'my_records');
+  downloadExcel(): void {  
+    this.service.routeDownload(this.downloadPayload,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
+      const contentDisposition = response.headers.get('Content-Disposition');
+      const filename = contentDisposition.split('filename=')[1].trim().replace(/"/g, '');
+      const blob = new Blob([response.body], { type: 'application/vnd.ms-excel' });
+       const url = window.URL.createObjectURL(blob);
+       const a = document.createElement('a');
+       a.href = url;
+       a.download = filename;
+       a.click();
+       window.URL.revokeObjectURL(url);
+    });   
+    // this.apiService.exportToExcel(this.apiData, 'my_records');
   }
 
   getWords():any {

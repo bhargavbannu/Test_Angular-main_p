@@ -103,6 +103,8 @@ export class ApiService {
   private dispositionApi = `${environment.apiBaseUrl}/routing/getDispositions`
   private routeSlipDownloadApi = `${environment.apiBaseUrl}/routing/downloadRoutingSlip`
   private docDownloadApi = `${environment.apiBaseUrl}/search/documentReport`
+  private auditDownloadApi = `${environment.apiBaseUrl}/search/exportAudit`
+  private routeDownloadApi = `${environment.apiBaseUrl}/search/openRouteReport`
   private deleteDocumentApi = `${environment.apiBaseUrl}/addDocument/deleteDocument`
   private documentDetailsApi = `${environment.apiBaseUrl}/audit/getDocumentDetails`
   private deleteVendorApi = `${environment.apiBaseUrl}/adminConfiguration/deleteVendor`
@@ -521,6 +523,12 @@ esoNumbersApiData(val:any):Observable<any>{
 
   docDownload(payload:any, options:any){
     return this.http.post<any>(`${this.docDownloadApi}`,payload, options);
+  }
+  auditDownload(payload:any, options:any){
+    return this.http.post<any>(`${this.auditDownloadApi}`,payload, options);
+  }
+  routeDownload(payload:any, options:any){
+    return this.http.post<any>(`${this.routeDownloadApi}`,payload, options);
   }
   documentDetails(){
     return this.http.get<any>(`${this.documentDetailsApi}?documentNbr=${this.viewDocId}`)

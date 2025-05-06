@@ -194,7 +194,8 @@ docDeleted: any;
       this.eco = formData.eco,
       this.ata = formData.ata,
       this.detailId = formData.detailId,
-      this.advancedSearchHidden = formData.advancedSearchHidden
+      this.advancedSearchHidden = formData.advancedSearchHidden,
+      this.currentPage = formData.currentPage;
       setTimeout(() => {
         this.Search();
       }, 0);
@@ -223,7 +224,8 @@ docDeleted: any;
       manualEndDate: this.searchPagination?.manualEndDate,
       reissueStartDate: this.searchPagination?.reissueStartDate,
       reissueEndDate: this.searchPagination?.reissueEndDate,
-      documentSubject: this.searchPagination?.documentSubject
+      documentSubject: this.searchPagination?.documentSubject,
+      currentPage: this.currentPage
     };
     this.apiService.saveFormData(formData);
     this.loading = true;

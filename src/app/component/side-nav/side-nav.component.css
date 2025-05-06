@@ -8,7 +8,7 @@
 .sidenav {
 width: 260px !important;
 height: fit-content;
-margin-top: 5px;
+margin-top: 3px;
 border: 1px solid;
 border-top-right-radius: 25px;
 border-top-left-radius: 25px;
@@ -63,7 +63,7 @@ background-color: #00007c;
 }
 
 .mat-drawer-content{
-margin-left: 265px !important;
+margin-left: 262px !important;
 overflow: visible;
 background-color: white !important;
 
