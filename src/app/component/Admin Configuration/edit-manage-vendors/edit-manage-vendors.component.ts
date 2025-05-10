@@ -71,4 +71,21 @@ export class EditManageVendorsComponent {
    onFocusOut(){
     this.dropdownValues = [];
   }
+
+  deleteVendor(){
+    console.log(this.vendorName);
+    
+    const payload = {
+      vendor: {
+        vendorNm: this.vendorName,
+      
+      },
+    };
+    this.apiService.deleteVendorEditApi(payload).subscribe((res:any)=>{
+      if(res){
+        this.router.navigate(['/Manage-Vendors', {vendorDeleted:true}])
+      }
+    });
+  }
+
 }

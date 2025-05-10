@@ -342,10 +342,10 @@
                                       ">
                                     <td>{{status.pop}}</td>
                                     <td>{{status.sectionId}}</td>
-                                    <td>{{status.routeDate | date:"dd/MM/yyyy"}}</td>
+                                    <td>{{status.routeDate | date:"MM/dd/yyyy"}}</td>
                                     <td>{{status.routeType}}</td>
                                     <td>{{status.disposition}}</td>
-                                    <td>{{status.closedate | date:"dd/MM/yyyy"}}</td>
+                                    <td>{{status.closedate | date:"MM/dd/yyyy"}}</td>
                                     <td>{{status.remark}}</td>
                                     <td>
                                       <a routerLink="/viewRoute" (click)="viewRoute(status.routeId)"

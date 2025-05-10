@@ -108,6 +108,8 @@ export class ApiService {
   private deleteDocumentApi = `${environment.apiBaseUrl}/addDocument/deleteDocument`
   private documentDetailsApi = `${environment.apiBaseUrl}/audit/getDocumentDetails`
   private deleteVendorApi = `${environment.apiBaseUrl}/adminConfiguration/deleteVendor`
+  // https://mevendtrk-svc-np.maverick.aa.com/vdt/adminConfiguration/getVendor?vendorNam
+  private deleteVendorEdit = `${environment.apiBaseUrl}/adminConfiguration/getVendor?vendorName`
 
 
 detailRoute:any
@@ -128,6 +130,10 @@ detailRoute:any
 
 saveExistingRouteView(viewRoute:any, payload:any){
   return this.http.post<any>(`${this.saveExistingRouteApi}?routeId=${viewRoute}`, payload)
+}
+
+deleteVendorEditApi(VenName:any){
+  return this.http.delete<any>(`${this.deleteVendorEdit}=${VenName}`)
 }
 
  viewRouteDetailApi(id:any){
