@@ -219,6 +219,7 @@ body {
     /* font-weight: bold; */
     color: #ffffff;
     font-family: Arial;
+
   }
   .eds-tabtopleftcorner {
     width: 7;
@@ -667,6 +668,10 @@ body {
     font-weight: normal;
     padding-left: 10px;
     padding-right: 10px;
+    
+    /* OR */
+    display: flex;
+    flex-direction: column;
   }
   
   .maintenanceDiv {
@@ -850,7 +855,7 @@ body {
   .loader {
     width: 40px;
     height: 40px;
-    border: 6px solid #0a0b0b; /* Thick black ring */
+    border: 6px solid #555d5d; /* Thick black ring */
     border-top: 6px solid #ccc; /* Gray segment on top */
     border-radius: 50%; /* Circular shape */
     /* Transparent center */
