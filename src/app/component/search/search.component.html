@@ -166,11 +166,11 @@
                                       name="detailDocType"
                                       class=""
                                       tabindex="-1"
-                                      [(ngModel)]="detailDocType"
+                                      [(ngModel)]="ITAR"
                                     >
-                                      <option >
+                                      <option  value="Yes">
                                        y
-                                      </option> <option >
+                                      </option > <option  value="NO" >
                                         n
                                        </option>
                                     </select>
@@ -187,10 +187,10 @@
                                       name="detailDocType"
                                       class=""
                                       tabindex="-1"
-                                      [(ngModel)]="detailDocType"
+                                      [(ngModel)]="eccnNum"
                                     >
-                                      <option *ngFor="let doc of documents">
-                                        {{ doc.label }}
+                                      <option *ngFor="let doc of EccnNumbers">
+                                        {{ doc.eccnNumber }}
                                       </option>
                                     </select>
                                   </td>
@@ -307,10 +307,10 @@
                                     name="detailDocType"
                                     class=""
                                     tabindex="-1"
-                                    [(ngModel)]="detailDocType"
+                                    [(ngModel)]="eccnLoc"
                                   >
-                                    <option *ngFor="let doc of documents">
-                                      {{ doc.label }}
+                                    <option *ngFor="let doc of EccnLocations">
+                                      {{ doc.eccnLocationCd }}
                                     </option>
                                   </select>
                                 </td>

@@ -1,4 +1,8 @@
-<tbody>
+<div class="loader-container" *ngIf="loading">
+  <div class="loader"></div>
+  <p>Loading data, please wait...</p>
+</div>
+<tbody *ngIf="!loading" >
   <div *ngIf="detailDeleted" class="savedDoc">SUCCESS: Successfully deleted Detail.</div>
   <div *ngIf="docAdded" class="savedDoc">SUCCESS: Document saved successfully.</div>
   <div *ngIf="docMoved" class="savedDoc">SUCCESS: Document moved successfully.</div>
@@ -418,10 +422,11 @@
                                           </td>
                                           <td>
                                             <div>
-                                              <span class="viewFieldText">{{
-                                                documentsDetails.document
-                                                  ?.documentPartNumbers
-                                              }}</span>
+                                              <span class="viewFieldText"
+                                              *ngFor="let partNumber of 
+                                              documentsDetails.document.
+                                              documentPartNumbers">
+                                                {{ partNumber }}</span>
                                             </div>
                                           </td>
                                         </tr>

@@ -15,10 +15,12 @@ export class ViewSearchComponent {
   detailDeleted: any;
   docMoved:any;
   searchType!: string;
+  loading: boolean = false;
 
   constructor(private apiService: ApiService, private route:ActivatedRoute, private router:Router, private datePipe:DatePipe) {}
 
   ngOnInit() {
+    this.loading = true;
     this.viewDocuments();
     this.route.params.subscribe(params =>{
       this.docAdded = params['docAdded']
@@ -31,6 +33,7 @@ export class ViewSearchComponent {
   viewDocuments() {
     this.apiService.viewDocuments().subscribe((data) => {
       console.log(data);     
+      this.loading = false;
       this.documentsDetails = data;
       this.documentsDetails.document.reissueDate 
       if(this.documentsDetails.document.reissueDate  !== null && this.documentsDetails.document.reissueDate  !== undefined && this.documentsDetails.document.reissueDate  !=='null') {

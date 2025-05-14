@@ -1,3 +1,10 @@
 /* ::ng-deep .openRoutes.eds-tabheader {
     width: 100% !important;
   } */
+
+  .eds-tabtitle {
+    font-size: 14px;
+    /* font-weight: bold; */
+    color: #ffffff;
+    font-family: Arial;
+  }

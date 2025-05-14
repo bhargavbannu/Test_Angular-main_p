@@ -147,13 +147,19 @@ export class SearchComponent {
   checkBoxValue: boolean = true;
   advancedSearchHidden: boolean = true;
   detailDocType: any;
+  ITAR:any
+  eccnNum:any
+  eccnLoc:any
   eco: any;
   ata: any;
   detailId: any;
+  EccnLocations: any[] = [];
+  EccnNumbers: any[] = [];
   @ViewChild(SearchPaginationComponent) searchPagination!: SearchPaginationComponent;
   @ViewChild('myForm') myForm!: NgForm;
   downloadPayload: any;
 docDeleted: any;
+  dataFlag: boolean = false;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -182,11 +188,22 @@ docDeleted: any;
     this.route.params.subscribe(params =>{
       this.docDeleted = params['docDeleted'];   
     })
+    this.apiService.getEccnLocations().subscribe((data) => {
+      this.EccnLocations = data;
+    });
+    this.apiService.getEccnNumbers().subscribe((data) => {
+      this.EccnNumbers = data;
+      console.log(this.EccnNumbers);
+      
+     
+    });
    // this.router.navigateByUrl('/search');
   }
   ngAfterViewInit() {
     const formData = this.apiService.getFormData();
     if (formData && !this.docDeleted) {
+      console.log(formData);
+      
       this.vendorName = formData.vendorName;
       this.checkBoxValue = formData.checkBoxValue;
       this.detailDocType = formData.detailDocType, 
@@ -251,9 +268,9 @@ docDeleted: any;
       reissueStartDate: this.searchPagination?.reissueStartDate,
       reissueEndDate: this.searchPagination?.reissueEndDate,
       documentSubject: this.searchPagination?.documentSubject,
-      //itar: 'NO',
-      // eccnNumber: '9E991',
-      // eccnLocation: 'CMM',
+      itar: this.ITAR,
+      eccnNumber: this.eccnNum,
+      eccnLocation: this.eccnLoc,
 
 
     };
@@ -261,6 +278,8 @@ docDeleted: any;
     this.apiService
       .postData(payload, this.start / this.size + 1, this.size)
       .subscribe((data) => {
+        console.log(payload);
+        
         this.apiData = [...data.results];
         // this.totalCount = data.totalCount;
         // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
