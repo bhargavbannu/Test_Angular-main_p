@@ -188,7 +188,9 @@
                                       class=""
                                       tabindex="-1"
                                       [(ngModel)]="eccnNum"
-                                    >
+                                    > <option >
+                                       
+                                      </option>
                                       <option *ngFor="let doc of EccnNumbers">
                                         {{ doc.eccnNumber }}
                                       </option>
@@ -308,7 +310,9 @@
                                     class=""
                                     tabindex="-1"
                                     [(ngModel)]="eccnLoc"
-                                  >
+                                  ><option >
+                                       
+                                      </option>
                                     <option *ngFor="let doc of EccnLocations">
                                       {{ doc.eccnLocationCd }}
                                     </option>
