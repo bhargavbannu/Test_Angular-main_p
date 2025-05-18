@@ -1,4 +1,9 @@
-<td valign="top" align="left">
+<div class="loader-container" *ngIf="loading">
+  <div class="loader"></div>
+  <p>Loading data, please wait...</p>
+</div>
+
+<td  *ngIf="!loading" valign="top" align="left">
   <table border="0" cellspacing="0" cellpadding="0" width="100%">
     <tbody>
       <tr>

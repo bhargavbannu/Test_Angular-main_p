@@ -104,6 +104,9 @@ export class DocumentComponent implements OnInit {
   vendorNamesList: any[] = [];
   showVendorErr: boolean = false;
   showSubErr: boolean = false;
+addedValDoc12: any;
+addedValEco: any;
+  selectedEsoNumberArr: any;
 
   constructor(
     private apiService: ApiService,
@@ -293,18 +296,19 @@ export class DocumentComponent implements OnInit {
   }
 
   onAddDoc() {
+    
+    
     if (
       this.typedAuditable &&
       !this.addedValDoc.includes(this.typedAuditable)
     ) {
       this.addedValDoc.push(this.typedAuditable);
       this.typedAuditable = '';
+      console.log(this.addedValDoc);
     }
   }
 
-  removeDoc() {
-    this.addedValDoc = [];
-  }
+
 
   auditNext() {
     this.auditableSubject.next(this.typedAuditable);
@@ -454,10 +458,7 @@ export class DocumentComponent implements OnInit {
     }
   }
 
-  removeEso() {
-    this.selectedEsoNumber = [];
-    this.typedEsoNumber = '';
-  }
+ 
   addLocation() {
     if (
       this.selectedLocation &&
@@ -483,18 +484,17 @@ export class DocumentComponent implements OnInit {
     }
   }
 
-  removeecoVal() {
-    this.addedVal = [];
-  }
 
   addDocType() {
     if (
-      this.selectedDocType &&
-      !this.allSelectedDocTypes.includes(this.selectedDocType)
+      this.typedDocType &&
+      !this.allSelectedDocTypes.includes(this.typedDocType)
     ) {
-      this.allSelectedDocTypes.push(this.selectedDocType);
+      this.allSelectedDocTypes.push(this.typedDocType);
       this.selectedDocType = '';
       this.typedDocType = '';
+      console.log(this.allSelectedDocTypes);
+      
     }
   }
   removeLocation() {
@@ -514,6 +514,40 @@ export class DocumentComponent implements OnInit {
     }
   }
 
+    removeecoVal() {
+if( this.addedVal !== undefined){
+  const index = Object.values(this.addedVal).indexOf(this.addedValEco[0]);
+      if (index !== -1) {  
+        this.addedVal.splice(index, 1); 
+
+      }}
+    // this.addedVal = [];
+  }
+
+   removeEso() {
+
+    if( this.selectedEsoNumber !== undefined){
+  const index = Object.values(this.selectedEsoNumber).indexOf(this.selectedEsoNumberArr[0]);
+      if (index !== -1) {  
+        this.selectedEsoNumber.splice(index, 1); 
+
+      }}
+  
+  
+    // this.selectedEsoNumber = [];
+    // this.typedEsoNumber = '';
+  }
+
+
+    removeDoc() {
+      if( this.addedValDoc12 !== undefined){
+        const index = Object.values(this.addedValDoc).indexOf(this.addedValDoc12[0]);
+        if (index !== -1) {
+        this.addedValDoc.splice(index, 1);
+      }
+      }
+    // this.addedValDoc = [];
+  }
   onFocusOut() {
     this.filteredLocations = [];
     this.filteredNumbers = [];

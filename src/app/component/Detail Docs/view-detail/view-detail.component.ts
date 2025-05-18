@@ -17,9 +17,11 @@ export class ViewDetailComponent implements OnInit {
   type: any;
   searchType: any;
   backDoc: any;
+  loading: boolean = false;
   constructor(private apiService: ApiService, private route: ActivatedRoute, private http:HttpClient, private router:Router) {}
 
   ngOnInit() {
+    this.loading = true
     this.loadDetails();
     this.route.params.subscribe((params) => {
       this.detailSaved = params['detailSaved'];
@@ -40,6 +42,7 @@ export class ViewDetailComponent implements OnInit {
   loadDetails() {
     this.apiService.viewDetail().subscribe((data) => {
       this.docDetails = data;
+      this.loading = false;
       this.apiService.section = data.document.sections
     });
   }

@@ -735,11 +735,6 @@
                                             name="documentPartNumbers"
                                             class=""
                                             [(ngModel)]="typedDocType"
-                                            (input)="
-                                              filterDocTypes(
-                                                $any($event.target).value
-                                              )
-                                            "
                                             style="width: 120px"
                                             maxlength="20"
                                             autocomplete="off"
@@ -788,9 +783,9 @@
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                            [(ngModel)]="addedValDoc[0]"
+                                            [(ngModel)]="addedValDoc12"
                                           >
-                                            <option>{{ addedValDoc[0] }}</option>
+                                            <option *ngFor=" let item of addedValDoc">{{ item }}</option>
                                           </select>
 
                                           <br />
@@ -857,9 +852,9 @@
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                            [(ngModel)]="addedVal[0]"
+                                            [(ngModel)]="addedValEco"
                                           >
-                                            <option>{{ addedVal[0] }}</option>
+                                            <option *ngFor="let item of addedVal">{{ item }}</option>
                                           </select>
 
                                           <br />
@@ -924,10 +919,10 @@
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                            [(ngModel)]="selectedEsoNumber[0]"
+                                            [(ngModel)]="selectedEsoNumberArr"
                                           >
-                                            <option>
-                                              {{ selectedEsoNumber[0] }}
+                                            <option *ngFor="let item of selectedEsoNumber">
+                                              {{ item }}
                                             </option>
                                           </select>
 

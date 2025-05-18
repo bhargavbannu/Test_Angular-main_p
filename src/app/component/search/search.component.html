@@ -521,6 +521,10 @@
       (click)="downloadExcel()"
       >Download XLS</a
     >
+    <div class="loader-container1" *ngIf="loadingDownload">
+  <div class="loader1"></div>
+  <p>Downloading data, please wait...</p>
+</div>
     <br /><span *ngIf="apiData.length > 0"
       >(Please note: Depending on the size, this operation might take several
       minutes)</span
@@ -528,4 +532,3 @@
   </td>
 </div>
 
-<!-- <button (click)="downloadExcel()">Download Excel</button> -->

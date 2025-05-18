@@ -160,6 +160,7 @@ export class SearchComponent {
   downloadPayload: any;
 docDeleted: any;
   dataFlag: boolean = false;
+loadingDownload: boolean = false;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -170,7 +171,9 @@ docDeleted: any;
   }
   // "28796727"
   downloadExcel(): void {  
+    this.loadingDownload = true;
     this.apiService.docDownload(this.downloadPayload,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
+      this.loadingDownload = false;
       const contentDisposition = response.headers.get('Content-Disposition');
       const filename = contentDisposition.split('filename=')[1].trim().replace(/"/g, '');
       const blob = new Blob([response.body], { type: 'application/vnd.ms-excel' });
