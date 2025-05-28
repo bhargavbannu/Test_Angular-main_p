@@ -804,9 +804,8 @@
                                                   size="10"
                                                   maxlength="10"
                                                   autocomplete="off"
-                                                  [ngModel]="
+                                                  [(ngModel)]="
                                                     this.routeEndDate
-                                                      | date : 'MM/dd/yyyy'
                                                   "
                                                 />
 
@@ -832,6 +831,7 @@
                                                   [showIcon]="false"
                                                   [showOnFocus]="false"
                                                   class="hidden-calendar"
+                                                  (onSelect)="formatDate($event)"
                                                 ></p-calendar>
                                               </td>
                                             </tr>

@@ -1,11 +1,14 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-search-routes',
   templateUrl: './search-routes.component.html',
   styleUrls: ['./search-routes.component.css'],
+   providers: [DatePipe]
 })
 export class SearchRoutesComponent {
   headers: any;
@@ -21,7 +24,7 @@ export class SearchRoutesComponent {
   eso: any;
   ata: any;
   downloadPayload: any;
-  constructor(private service: ApiService, private cdr: ChangeDetectorRef) {}
+  constructor(private service: ApiService, private cdr: ChangeDetectorRef, private datePipe:DatePipe) {}
 
   selectedOption: any;
   totalCount: any;
@@ -56,13 +59,18 @@ export class SearchRoutesComponent {
     }
     this.cdr.detectChanges();
   }
+
+formatDate(date:Date){
+  this.routeEndDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+}
   onSearch() {
+    let routeEndDate = this.datePipe.transform(this.routeEndDate, 'yyyy-MM-ddTHH:mm:ss');
     this.service.searchType = 'route';
     const formData = {
       routeType: this.routeType,
       section: this.section,
       routeStartDate: this.routeStartDate,
-      routeEndDate: this.routeEndDate,
+      routeEndDate: routeEndDate,
       routeStatusSearchType: this.selectedOption,
       detailDocType: this.detailDocType,
       eso: this.eso,
@@ -78,7 +86,7 @@ export class SearchRoutesComponent {
       routeType: this.routeType,
       section: this.section,
       routeStartDate: this.routeStartDate,
-      routeEndDate: this.routeEndDate,
+      routeEndDate: routeEndDate,
       routeStatusSearchType: this.selectedOption,
       detailDocType: this.detailDocType,
       eso: this.eso,

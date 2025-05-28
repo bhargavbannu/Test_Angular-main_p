@@ -107,6 +107,8 @@ export class DocumentComponent implements OnInit {
 addedValDoc12: any;
 addedValEco: any;
   selectedEsoNumberArr: any;
+selEccnNumber: any;
+selEccnLocation: any;
 
   constructor(
     private apiService: ApiService,
@@ -276,6 +278,7 @@ addedValEco: any;
         this.eccnNumber = this.documentsDetails.document?.eccnNumber;
         this.eccnLocation = this.documentsDetails.document?.eccnLocation;
         this.addedValDoc = this.documentsDetails.document?.auditableDocTypes;
+        this.addedVal = this.documentsDetails.documentEcos?.map((res: any) => res.eco);
         this.selectedEsoNumber = this.documentsDetails.documentEsos.map(
           (res: any) => res.eso
         );
@@ -461,17 +464,17 @@ addedValEco: any;
  
   addLocation() {
     if (
-      this.selectedLocation &&
-      !this.eccnLocation.includes(this.selectedLocation)
+      this.typedLocation &&
+      !this.eccnLocation.includes(this.typedLocation)
     ) {
-      this.eccnLocation.push(this.selectedLocation);
+      this.eccnLocation.push(this.typedLocation);
       this.selectedLocation = '';
       this.typedLocation = '';
     }
   }
   addNumber() {
-    if (this.selectedNumber && !this.eccnNumber.includes(this.selectedNumber)) {
-      this.eccnNumber.push(this.selectedNumber);
+    if (this.typedNumber && !this.eccnNumber.includes(this.typedNumber)) {
+       this.eccnNumber.push(this.typedNumber); 
       this.selectedNumber = '';
       this.typedNumber = '';
     }
@@ -498,42 +501,59 @@ addedValEco: any;
     }
   }
   removeLocation() {
-    this.eccnLocation = [];
+     if (this.selEccnLocation !== undefined) {
+      // const index = Object.values(this.eccnLocation).indexOf(
+      //   this.selEccnLocation[0]
+      // );
+      // if (index !== -1) {
+      //   this.eccnLocation.splice(index, 1);
+      // }
+      this.eccnLocation = this.eccnLocation.filter(val => !this.selEccnLocation.includes(val));
+
+    }
   }
   removeNumber() {
-    this.eccnNumber = [];
+     if (this.selEccnNumber !== undefined) {
+      this.eccnNumber = this.eccnNumber.filter(val => !this.selEccnNumber.includes(val));
+    }
   }
   removeDocType() {
     if (this.removedDoc !== undefined) {
-      const index = Object.values(this.allSelectedDocTypes).indexOf(
-        this.removedDoc[0]
-      );
-      if (index !== -1) {
-        this.allSelectedDocTypes.splice(index, 1);
-      }
+      // const index = Object.values(this.allSelectedDocTypes).indexOf(
+      //   this.removedDoc[0]
+      // );
+      // if (index !== -1) {
+      //   this.allSelectedDocTypes.splice(index, 1);
+      // }
+    this.allSelectedDocTypes = this.allSelectedDocTypes.filter(val => !this.removedDoc.includes(val));
+
     }
   }
 
     removeecoVal() {
-if( this.addedVal !== undefined){
-  const index = Object.values(this.addedVal).indexOf(this.addedValEco[0]);
-      if (index !== -1) {  
-        this.addedVal.splice(index, 1); 
+if( this.addedValEco !== undefined){
+  // const index = Object.values(this.addedVal).indexOf(this.addedValEco[0]);
+  //     if (index !== -1) {  
+  //       this.addedVal.splice(index, 1); 
 
-      }}
+  //     }}
     // this.addedVal = [];
+   this.addedVal = this.addedVal.filter(val => !this.addedValEco.includes(val));
+
+}
   }
 
    removeEso() {
 
-    if( this.selectedEsoNumber !== undefined){
-  const index = Object.values(this.selectedEsoNumber).indexOf(this.selectedEsoNumberArr[0]);
-      if (index !== -1) {  
-        this.selectedEsoNumber.splice(index, 1); 
+    if( this.selectedEsoNumberArr !== undefined){
+  // const index = Object.values(this.selectedEsoNumber).indexOf(this.selectedEsoNumberArr[0]);
+  //     if (index !== -1) {  
+  //       this.selectedEsoNumber.splice(index, 1); 
 
-      }}
-  
-  
+  //     }
+       this.selectedEsoNumber = this.selectedEsoNumber.filter(val => !this.selectedEsoNumberArr.includes(val));
+    
+    } 
     // this.selectedEsoNumber = [];
     // this.typedEsoNumber = '';
   }
@@ -541,10 +561,12 @@ if( this.addedVal !== undefined){
 
     removeDoc() {
       if( this.addedValDoc12 !== undefined){
-        const index = Object.values(this.addedValDoc).indexOf(this.addedValDoc12[0]);
-        if (index !== -1) {
-        this.addedValDoc.splice(index, 1);
-      }
+      //   const index = Object.values(this.addedValDoc).indexOf(this.addedValDoc12[0]);
+      //   if (index !== -1) {
+      //   this.addedValDoc.splice(index, 1);
+      // }
+      this.addedValDoc = this.addedValDoc.filter(val => !this.addedValDoc12.includes(val));
+
       }
     // this.addedValDoc = [];
   }

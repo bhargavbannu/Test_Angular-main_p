@@ -590,9 +590,9 @@
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                            [(ngModel)]="eccnNumber[0]"
+                                            [(ngModel)]="selEccnNumber"
                                           >
-                                            <option>{{ eccnNumber[0] }}</option>
+                                            <option *ngFor="let item of eccnNumber">{{ item }}</option>
                                           </select>
 
                                           <br />
@@ -654,9 +654,9 @@
                                             multiple="multiple"
                                             style="width: 120px"
                                             maxlength="20"
-                                            [(ngModel)]="eccnLocation[0]"
+                                            [(ngModel)]="selEccnLocation"
                                           >
-                                            <option>{{ eccnLocation[0] }}</option>
+                                            <option *ngFor="let item of eccnLocation">{{ item }}</option>
                                           </select>
                                           <br />
 

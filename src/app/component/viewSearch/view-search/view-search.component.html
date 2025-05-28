@@ -6,9 +6,9 @@
   <div *ngIf="detailDeleted" class="savedDoc">SUCCESS: Successfully deleted Detail.</div>
   <div *ngIf="docAdded" class="savedDoc">SUCCESS: Document saved successfully.</div>
   <div *ngIf="docMoved" class="savedDoc">SUCCESS: Document moved successfully.</div>
-  <a *ngIf="!docAdded && searchType ==='search'" style="font-weight: bolder" routerLink="/search">Back To Search Results</a>
-  <a *ngIf="!docAdded && searchType ==='audit'" style="font-weight: bolder" routerLink="/search-audits">Back To Search Results</a>
-  <a *ngIf="!docAdded && searchType ==='route' " style="font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
+  <a *ngIf="searchType ==='search'" style="font-weight: bolder" routerLink="/search">Back To Search Results</a>
+  <a *ngIf="searchType ==='audit'" style="font-weight: bolder" routerLink="/search-audits">Back To Search Results</a>
+  <a *ngIf="searchType ==='route' " style="font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
   <tr>
     <td valign="top" align="left">
       <table border="0" cellspacing="0" cellpadding="0" width="100%">

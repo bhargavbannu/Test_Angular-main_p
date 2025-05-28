@@ -50,13 +50,13 @@ export class NewrouteComponent {
         'MM/dd/yyyy HH:mm:ss'
       );
     }
-
+let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
     const payload = {
       route: {
         detailId: this.apiService.popno,
         detailRefNbr: this.DetailIdRefNmbr,
         routeType: this.routeType,
-        sections: this.Sections,
+        sections: newSection,
         routeDate: this.routeDate,
         disposition: this.disposition,
         closedate: this.closeDate,
