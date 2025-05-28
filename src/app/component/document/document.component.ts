@@ -276,14 +276,21 @@ selEccnLocation: any;
         this.remarksField = this.documentsDetails.document?.remarks;
         this.nextRoute = this.documentsDetails.document?.nextRouteType;
         this.eccnNumber = this.documentsDetails.document?.eccnNumber;
+        this.selEccnNumber = this.documentsDetails.document?.eccnNumber;
         this.eccnLocation = this.documentsDetails.document?.eccnLocation;
+        this.selEccnLocation = this.documentsDetails.document?.eccnLocation;
         this.addedValDoc = this.documentsDetails.document?.auditableDocTypes;
+        this.addedValDoc12 = this.documentsDetails.document?.auditableDocTypes;
         this.addedVal = this.documentsDetails.documentEcos?.map((res: any) => res.eco);
+        this.addedValEco = this.documentsDetails.documentEcos?.map((res: any) => res.eco);
         this.selectedEsoNumber = this.documentsDetails.documentEsos.map(
           (res: any) => res.eso
         );
+        this.selectedEsoNumberArr = this.documentsDetails.documentEsos.map(
+          (res: any) => res.eso);
         this.allSelectedDocTypes =
           this.documentsDetails.document?.documentPartNumbers;
+          this.removedDoc = this.documentsDetails.document?.documentPartNumbers;
         this.formattedDate = this.datePipe.transform(
           this.formattedDate,
           'MM/dd/yyyy HH:mm:ss'
@@ -348,6 +355,8 @@ selEccnLocation: any;
       );
     }
 
+    let newSection = this.docSection.map((sec:any) => sec.split(' - ')[0])
+
     const payload = {
       document: {
         vendor: {
@@ -358,7 +367,7 @@ selEccnLocation: any;
           vendorEmailAddress: this.vendorEmail,
           remarks: this.vendorRemark,
         },
-        sections: this.docSection,
+        sections: newSection,
         vendorDocRefNbr: this.vendorDocRef,
         documentPartNumbers: this.allSelectedDocTypes,
         effectivityIds: this.docEffectivity,
@@ -467,14 +476,14 @@ selEccnLocation: any;
       this.typedLocation &&
       !this.eccnLocation.includes(this.typedLocation)
     ) {
-      this.eccnLocation.push(this.typedLocation);
+      this.eccnLocation[0] = this.typedLocation;
       this.selectedLocation = '';
       this.typedLocation = '';
     }
   }
   addNumber() {
     if (this.typedNumber && !this.eccnNumber.includes(this.typedNumber)) {
-       this.eccnNumber.push(this.typedNumber); 
+       this.eccnNumber[0] = this.typedNumber; 
       this.selectedNumber = '';
       this.typedNumber = '';
     }
@@ -501,30 +510,14 @@ selEccnLocation: any;
     }
   }
   removeLocation() {
-     if (this.selEccnLocation !== undefined) {
-      // const index = Object.values(this.eccnLocation).indexOf(
-      //   this.selEccnLocation[0]
-      // );
-      // if (index !== -1) {
-      //   this.eccnLocation.splice(index, 1);
-      // }
-      this.eccnLocation = this.eccnLocation.filter(val => !this.selEccnLocation.includes(val));
-
-    }
+      this.eccnLocation = [];
   }
-  removeNumber() {
-     if (this.selEccnNumber !== undefined) {
-      this.eccnNumber = this.eccnNumber.filter(val => !this.selEccnNumber.includes(val));
-    }
+  removeNumber() { 
+      this.eccnNumber = [];
+
   }
   removeDocType() {
     if (this.removedDoc !== undefined) {
-      // const index = Object.values(this.allSelectedDocTypes).indexOf(
-      //   this.removedDoc[0]
-      // );
-      // if (index !== -1) {
-      //   this.allSelectedDocTypes.splice(index, 1);
-      // }
     this.allSelectedDocTypes = this.allSelectedDocTypes.filter(val => !this.removedDoc.includes(val));
 
     }
@@ -532,43 +525,24 @@ selEccnLocation: any;
 
     removeecoVal() {
 if( this.addedValEco !== undefined){
-  // const index = Object.values(this.addedVal).indexOf(this.addedValEco[0]);
-  //     if (index !== -1) {  
-  //       this.addedVal.splice(index, 1); 
-
-  //     }}
-    // this.addedVal = [];
    this.addedVal = this.addedVal.filter(val => !this.addedValEco.includes(val));
-
 }
   }
 
    removeEso() {
 
     if( this.selectedEsoNumberArr !== undefined){
-  // const index = Object.values(this.selectedEsoNumber).indexOf(this.selectedEsoNumberArr[0]);
-  //     if (index !== -1) {  
-  //       this.selectedEsoNumber.splice(index, 1); 
-
-  //     }
        this.selectedEsoNumber = this.selectedEsoNumber.filter(val => !this.selectedEsoNumberArr.includes(val));
     
     } 
-    // this.selectedEsoNumber = [];
-    // this.typedEsoNumber = '';
   }
 
 
     removeDoc() {
       if( this.addedValDoc12 !== undefined){
-      //   const index = Object.values(this.addedValDoc).indexOf(this.addedValDoc12[0]);
-      //   if (index !== -1) {
-      //   this.addedValDoc.splice(index, 1);
-      // }
       this.addedValDoc = this.addedValDoc.filter(val => !this.addedValDoc12.includes(val));
 
       }
-    // this.addedValDoc = [];
   }
   onFocusOut() {
     this.filteredLocations = [];
