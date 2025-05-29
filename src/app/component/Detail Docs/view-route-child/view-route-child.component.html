@@ -113,7 +113,7 @@
                             <td align="right">Route Date *&nbsp; &nbsp;</td>
                             <td align="left">
                               <span class="viewFieldText">{{
-                                viewRoute?.route.routeDate | date: 'yyyy/MM/dd'
+                                viewRoute?.route.routeDate | date: 'MM/dd/yyyy'
                               }}</span>
                             </td>
                           </tr>
@@ -131,7 +131,7 @@
                             <td align="right">Close Date&nbsp; &nbsp;</td>
                             <td align="left">
                               <span class="viewFieldText">{{
-                                viewRoute?.route.closedate | date: 'yyyy/MM/dd'
+                                viewRoute?.route.closedate | date: 'MM/dd/yyyy'
                               }}</span>
                             </td>
                           </tr>
@@ -436,7 +436,7 @@
                                   type="text"
                                   name="route.routeDate"
                                   class=""
-                                  [(ngModel)]="viewRoute?.route.routeDate"
+                                  [ngModel]="viewRoute?.route.routeDate | date: 'MM/dd/yyyy'"
                                   size="41"
                                   readonly="readonly"
                                 />
@@ -539,10 +539,12 @@
                                   multiple="multiple"
                                   style="width: 120px"
                                   maxlength="20"
-                                  [(ngModel)]="viewRoute?.route.ecos[0]"
+                                  [(ngModel)]="selectedEcoNumberArr"
                                 >
-                                <option>{{ viewRoute?.route.ecos[0] }}</option>
-                              </select>
+                                <option *ngFor="let item of selectedEcoNumber" [value]=item>
+                                              {{ item }}
+                                  </option>                              
+                                </select>
 
                                 <br />
 
@@ -604,11 +606,11 @@
                                   multiple="multiple"
                                   style="width: 120px"
                                   maxlength="20"
-                                  [(ngModel)]="viewRoute?.route.esos[0]"
+                                  [(ngModel)]="selectedEsoNumberArr"
                                 >
-                                <option>
-                                  {{ viewRoute?.route.esos[0] }}
-                                </option>
+                                 <option *ngFor="let item of selectedEsoNumber" [value]=item>
+                                              {{ item }}
+                                  </option>
                               </select>
 
                                 <br />

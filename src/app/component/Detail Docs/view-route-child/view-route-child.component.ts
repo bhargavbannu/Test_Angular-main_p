@@ -32,6 +32,12 @@ export class ViewRouteChildComponent implements OnInit {
   @ViewChild('calendar1') calendar1!: Calendar;
   searchType!: string;
   routeEsos: any;
+  esoValues: any;
+selEsoValue: any;
+selectedEsoNumberArr: any;
+selectedEsoNumber: any;
+selectedEcoNumberArr: any;
+selectedEcoNumber: any;
 
   constructor(private apiService: ApiService,  private router: Router, private datePipe: DatePipe, private route:ActivatedRoute) {}
 
@@ -75,6 +81,11 @@ test(){
   .subscribe((data) => {
     this.viewRoute = data.routeForm;
     this.routeEsos = data.routeEsos
+    this.selectedEsoNumber = this.viewRoute.route.esos;
+    this.selectedEsoNumberArr = this.viewRoute.route.esos;
+    this.selectedEcoNumber = this.viewRoute.route.ecos;
+    this.selectedEcoNumberArr = this.viewRoute.route.ecos;
+         
   });
 }
   routee() {
@@ -98,26 +109,47 @@ test(){
   }
 
   addEsoNum() {
-    if(this.typedEsoNumber && !this.viewRoute.route.esos.includes(this.typedEsoNumber)){
-    this.viewRoute.route.esos.push(this.typedEsoNumber);
-    this.typedEsoNumber = '';
+    // if(this.typedEsoNumber && !this.viewRoute.route.esos.includes(this.typedEsoNumber)){
+    // this.viewRoute.route.esos.push(this.typedEsoNumber);
+    // this.typedEsoNumber = '';
+    // }
+    if (
+      this.typedEsoNumber &&
+      !this.selectedEsoNumber.includes(this.typedEsoNumber)
+    ) {
+      this.selectedEsoNumber.push(this.typedEsoNumber);
+      this.typedEsoNumber = '';
     }
   }
 
   removeEso() {
-    this.viewRoute.route.esos = [];
-    this.typedEsoNumber = '';
+    // this.viewRoute.route.esos = [];
+    // this.typedEsoNumber = '';
+    if( this.selectedEsoNumberArr !== undefined){
+       this.selectedEsoNumber = this.selectedEsoNumber.filter((val:any) => !this.selectedEsoNumberArr.includes(val));
+    
+    } 
   }
 
   addecoVal() {
-    if (this.ecoNumber && !this.viewRoute.route.ecos.includes(this.ecoNumber)) {
-      this.viewRoute.route.ecos.push(this.ecoNumber);
+    // if (this.ecoNumber && !this.viewRoute.route.ecos.includes(this.ecoNumber)) {
+    //   this.viewRoute.route.ecos.push(this.ecoNumber);
+    //   this.ecoNumber = '';
+    // }
+    if (
+      this.ecoNumber &&
+      !this.selectedEcoNumber.includes(this.ecoNumber)
+    ) {
+      this.selectedEcoNumber.push(this.ecoNumber);
       this.ecoNumber = '';
     }
   }
 
   removeecoVal() { 
-    this.viewRoute.route.ecos = [];
+    // this.viewRoute.route.ecos = [];
+    if( this.selectedEcoNumberArr !== undefined){
+       this.selectedEcoNumber = this.selectedEcoNumber.filter((val:any) => !this.selectedEcoNumberArr.includes(val));  
+    } 
   }
 
   save() {

@@ -96,9 +96,31 @@
                                         <td width="250"></td>
                                       </tr>
 
+                                        <tr
+                                        class="eds-pagerstyle"
+                                         *ngIf="editDoc"
+                                      >
+                                        <td align="right">
+                                          VDT System ID No.&nbsp; &nbsp;
+                                        </td>
+                                        <td align="left">
+                                          <input
+                                            type="text"
+                                            name="document.docnmbr"
+                                            class=""
+                                            id="docnmbr"
+                                            size="45"
+                                            autocomplete="off"
+                                            [(ngModel)]="docId"
+                                            readonly
+                                          />
+
+                                        </td>
+                                      </tr>
+
                                       <tr
                                         class="eds-pagerstyle eds-field-required"
-                                        style="display: none"
+                                         *ngIf="editDoc"
                                       >
                                         <td align="right">
                                           Creation Date *&nbsp; &nbsp;
@@ -109,10 +131,9 @@
                                             name="document.creationDate"
                                             class=""
                                             id="creationDateId"
-                                            value="04/07/2024"
                                             size="41"
                                             autocomplete="off"
-                                            [ngModel]="this.creationDate | date:'MM/dd/yyyy'"
+                                            [(ngModel)]="creationDate"
                                           />
 
                                           <span
@@ -123,7 +144,7 @@
                                               src="assets/images/calendar.gif"
                                               (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
                                           /></span>
-                                          <p-calendar name="calendarDate" #calendar1 [(ngModel)]="this.creationDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                                          <p-calendar name="calendarDate" #calendar1 [(ngModel)]="creationDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
 
                                         </td>
                                       </tr>
@@ -343,75 +364,8 @@
                                             multiple="multiple"
                                             [(ngModel)]="docEffectivity"
                                           >
-                                            <option value="A319">A319</option>
+                                        <option *ngFor="let doc of searchEffetivity" [value]="doc"> {{ doc }} </option>                                  
 
-                                            <option value="A319XF">
-                                              A319XF
-                                            </option>
-
-                                            <option value="A320">A320</option>
-
-                                            <option value="A321">A321</option>
-
-                                            <option value="A321NX">
-                                              A321NX
-                                            </option>
-
-                                            <option value="A321XF">
-                                              A321XF
-                                            </option>
-
-                                            <option value="A321XLR">
-                                              A321XLR
-                                            </option>
-
-                                            <option value="A330">A330</option>
-
-                                            <option value="ALL">ALL</option>
-
-                                            <option value="B737-MAX8">
-                                              B737-MAX8
-                                            </option>
-
-                                            <option value="B737-NG">
-                                              B737-NG
-                                            </option>
-
-                                            <option value="B777">B777</option>
-
-                                            <option value="B787">B787</option>
-
-                                            <option value="CFM56-5B">
-                                              CFM56-5B
-                                            </option>
-
-                                            <option value="CFM56-7B">
-                                              CFM56-7B
-                                            </option>
-
-                                            <option value="GE90-100">
-                                              GE90-100
-                                            </option>
-
-                                            <option value="GENX-1B">
-                                              GENX-1B
-                                            </option>
-
-                                            <option value="LEAP-1A">
-                                              LEAP-1A
-                                            </option>
-
-                                            <option value="LEAP-1B">
-                                              LEAP-1B
-                                            </option>
-
-                                            <option value="TRENT 800">
-                                              TRENT 800
-                                            </option>
-
-                                            <option value="V2500 A1/A5">
-                                              V2500 A1/A5
-                                            </option>
                                           </select>
                                         </td>
                                       </tr>
@@ -427,55 +381,8 @@
                                             multiple="multiple"
                                             [(ngModel)]="docSection"
                                           >
-                                            <option value="0 - 0">0 - 0</option>
+                                            <option *ngFor="let section of documentSection" [value]="section"> {{ section}} </option>  
 
-                                            <option value="10 - 10">10 - 10</option>
-
-                                            <option value="12 - 12">12 - 12</option>
-
-                                            <option value="14 - 14">14 - 14</option>
-
-                                            <option value="17 - 17">17 - 17</option>
-
-                                            <option value="20 - 20">20 - 20</option>
-
-                                            <option value="21 - 21">21 - 21</option>
-
-                                            <option value="23 - 23">23 - 23</option>
-
-                                            <option value="30 - 30">30 - 30</option>
-
-                                            <option value="36 - 36">36 - 36</option>
-
-                                            <option value="38 - 38">38 - 38</option>
-
-                                            <option value="39 - 39">39 - 39</option>
-
-                                            <option value="40 - 40">40 - 40</option>
-
-                                            <option value="44 - 44">44 - 44</option>
-
-                                            <option value="47 - 47">47 - 47</option>
-
-                                            <option value="60 - 60">60 - 60</option>
-
-                                            <option value="61 - 61">61 - 61</option>
-
-                                            <option value="63 - 63">63 - 63</option>
-
-                                            <option value="71 - 71">71 - 71</option>
-
-                                            <option value="72 - 72">72 - 72</option>
-
-                                            <option value="73 - 73">73 - 73</option>
-
-                                            <option value="74 - 74-CHRISTOPHER REEVES">
-                                              74 - 74-CHRISTOPHER REEVES
-                                            </option>
-
-                                            <option value="75 - 75">75 - 75</option>
-
-                                            <option value="77 - 77">77 - 77</option>
                                           </select>
                                         </td>
                                       </tr>

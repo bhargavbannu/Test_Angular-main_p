@@ -69,7 +69,8 @@ export class DocumentComponent implements OnInit {
   selectedNumber: any;
   selectedDocType: any;
   selectedesoNum: any;
-
+  documentSection: any[] = [];
+  searchEffetivity: any;
   filteredLocations: string[] = [];
   filteredNumbers: any[] = [];
   filteredDocTypes: any[] = [];
@@ -109,6 +110,7 @@ addedValEco: any;
   selectedEsoNumberArr: any;
 selEccnNumber: any;
 selEccnLocation: any;
+docId: any;
 
   constructor(
     private apiService: ApiService,
@@ -238,6 +240,16 @@ selEccnLocation: any;
       this.audDocTypes = data;
     });
 
+    this.apiService.getDocumentSection().subscribe((data) => {
+    this.documentSection = data;
+      console.log(this.documentSection);
+    });
+
+    this.apiService.getSearchEffetivity().subscribe((data) => {
+    this.searchEffetivity = data;
+      console.log(this.searchEffetivity);
+    });
+
     this.route.params.subscribe((params) => {
       this.editDoc = params['editDoc'];
     });
@@ -255,6 +267,11 @@ selEccnLocation: any;
       }
       this.apiService.viewDocuments().subscribe((data) => {
         this.documentsDetails = data;
+        this.docId = this.documentsDetails.document?.documentNbr;
+        this.creationDate = this.datePipe.transform(
+          this.documentsDetails.document?.creationDate,
+          'MM/dd/yyyy'
+        ); 
         this.vendorName = this.documentsDetails.document?.vendor.vendorNm;
         this.vendorWebsite =
           this.documentsDetails.document?.vendor.vendorWebsite;
@@ -356,8 +373,9 @@ selEccnLocation: any;
     }
 
     let newSection = this.docSection.map((sec:any) => sec.split(' - ')[0])
-
-    const payload = {
+    let payload;
+  if(!this.editDoc){
+    payload = {
       document: {
         vendor: {
           vendorNm: this.vendorName,
@@ -387,6 +405,43 @@ selEccnLocation: any;
       },
       submitType: 'ADD',
     };
+  } else {
+     this.creationDate = this.datePipe.transform(
+        this.creationDate,
+        'MM/dd/yyyy HH:mm:ss'
+      );
+    payload = {
+      document: {
+        documentNbr: this.docId,
+        vendor: {
+          vendorNm: this.vendorName,
+          vendorWebsite: this.vendorWebsite,
+          contactPerson: this.vendorContactPerson,
+          contactPhone: this.vendorContactNumber,
+          vendorEmailAddress: this.vendorEmail,
+          remarks: this.vendorRemark,
+        },
+        sections: newSection,
+        vendorDocRefNbr: this.vendorDocRef,
+        documentPartNumbers: this.allSelectedDocTypes,
+        effectivityIds: this.docEffectivity,
+        ata: this.ata,
+        subject: this.documentSubject,
+        reissueDate: this.reissueDate,
+        creationDate: this.creationDate,
+        documentCategory: this.category,
+        remarks: this.remarksField,
+        nextRouteType: this.nextRoute,
+        itar: 'NO',
+        eccnNumber: this.eccnNumber,
+        eccnLocation: this.eccnLocation,
+        auditableDocTypes: this.addedValDoc,
+        esos: this.selectedEsoNumber,
+        ecos: this.addedVal,
+      },
+      submitType: 'ADD',
+    };
+  }
     this.apiService.addDocument(payload).subscribe((res: any) => {
       if(res){
       this.apiService.viewDocId = res.returnObject.documentNbr;

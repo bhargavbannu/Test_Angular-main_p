@@ -33,7 +33,9 @@ export class SearchRoutesComponent {
   start: any;
   maxVisibleButtons: any = 8;
   loading: boolean = false;
-
+  routeDetailDocType: any[] = [];
+  documentSection: any[] = [];
+  searchEffetivity: any[] = [];
   @ViewChild('calendar1') calendar1!: Calendar;
   @ViewChild('calendar2') calendar2!: Calendar;
 
@@ -58,6 +60,21 @@ export class SearchRoutesComponent {
       this.selectedOption = 'BOTH'
     }
     this.cdr.detectChanges();
+
+        this.service.getDetaildocType().subscribe((data) => {
+      this.routeDetailDocType = data;
+      console.log(this.routeDetailDocType);
+    });
+
+    this.service.getDocumentSection().subscribe((data) => {
+      this.documentSection = data;
+      console.log(this.documentSection);
+    });
+
+    this.service.getSearchEffetivity().subscribe((data) => {
+      this.searchEffetivity = data;
+      console.log(this.searchEffetivity);
+    });
   }
 
 formatDate(date:Date){
@@ -65,11 +82,13 @@ formatDate(date:Date){
 }
   onSearch() {
     let routeEndDate = this.datePipe.transform(this.routeEndDate, 'yyyy-MM-ddTHH:mm:ss');
+    let routeStartDate = this.datePipe.transform(this.routeStartDate, 'yyyy-MM-ddTHH:mm:ss');
+    
     this.service.searchType = 'route';
     const formData = {
       routeType: this.routeType,
       section: this.section,
-      routeStartDate: this.routeStartDate,
+      routeStartDate: routeStartDate,
       routeEndDate: routeEndDate,
       routeStatusSearchType: this.selectedOption,
       detailDocType: this.detailDocType,

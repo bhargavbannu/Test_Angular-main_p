@@ -149,8 +149,9 @@
                                         tabindex="-1"
                                         [(ngModel)]="detailDocType"
                                       >
-                                        <option *ngFor="let doc of documents">
-                                          {{ doc.label }}
+                                        <option>  </option>
+                                        <option *ngFor="let doc of searchDetailDocType">
+                                          {{ doc}}
                                         </option>
                                       </select>
                                     </td>

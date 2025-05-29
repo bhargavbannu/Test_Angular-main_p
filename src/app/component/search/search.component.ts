@@ -161,6 +161,9 @@ export class SearchComponent {
 docDeleted: any;
   dataFlag: boolean = false;
 loadingDownload: boolean = false;
+  searchDetailDocType: any[] = [];
+  searchEffetivity: any[] = [];
+  searchDocAllSections: any[] = [];
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -196,9 +199,15 @@ loadingDownload: boolean = false;
     });
     this.apiService.getEccnNumbers().subscribe((data) => {
       this.EccnNumbers = data;
-      console.log(this.EccnNumbers);
-      
-     
+      console.log(this.EccnNumbers);    
+    });
+        this.apiService.getDetaildocType().subscribe((data) => {
+      this.searchDetailDocType = data;
+      console.log(this.searchDetailDocType);
+    });
+    this.apiService.getSearchEffetivity().subscribe((data) => {
+      this.searchEffetivity = data;
+      console.log(this.searchEffetivity);
     });
    // this.router.navigateByUrl('/search');
   }

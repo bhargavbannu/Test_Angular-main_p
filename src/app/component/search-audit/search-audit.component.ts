@@ -39,6 +39,8 @@ auditStatus: any;
   start: any;
   maxVisibleButtons: any = 8;
   loading: boolean = false;
+  auditDetailDocType: any[] = [];
+  searchEffetivity: any[] = [];
   @ViewChild('auditForm') auditForm!: NgForm;
   @ViewChild('calendar1') calendar1!: Calendar;
   @ViewChild('calendar2') calendar2!: Calendar;
@@ -71,6 +73,15 @@ auditStatus: any;
       this.onSearch();
     }
     this.cdr.detectChanges();
+      this.service.getDetaildocType().subscribe((data) => {
+      this.auditDetailDocType = data;
+      console.log(this.auditDetailDocType);
+    });
+
+    this.service.getSearchEffetivity().subscribe((data) => {
+      this.searchEffetivity = data;
+      console.log(this.searchEffetivity);
+    });
   }
   onSearch() {
     this.service.searchType = "audit";

@@ -35,6 +35,7 @@ export class NewrouteComponent {
     this.DetailIdRefNmbr = this.apiService.popRefNbr;
     this.Section = this.apiService.section;
     this.routeType = "ETDT"
+    this.routeDate = new Date();
   }
 
   save() {

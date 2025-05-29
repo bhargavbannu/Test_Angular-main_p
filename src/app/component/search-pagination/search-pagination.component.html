@@ -39,10 +39,10 @@
                       [(ngModel)]=selectedEffectivity
                     >
                       <option
-                        *ngFor="let option of options"
-                        [value]="option.value"
+                        *ngFor="let option of searchEffetivity"
+                        [value]="option"
                       >
-                        {{ option.label }}
+                        {{ option }}
                       </option>
                     </select>
                   </td>
@@ -127,8 +127,8 @@
                               tabindex="-1"
                               [(ngModel)]=selectedSection
                             >
-                              <option *ngFor="let option of sectionsList"  [value]="option.value">
-                                {{ option.label }}
+                              <option *ngFor="let option of searchDocAllSections" [value]="option">
+                                {{ option }}
                               </option>
                             </select>
                           </td>

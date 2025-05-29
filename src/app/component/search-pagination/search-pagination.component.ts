@@ -213,6 +213,8 @@ bin: any;
 documentType: any;
 selectedSection: any[]=[];
 documentSubject: any;
+ searchDocAllSections: any;
+  searchEffetivity: any;
 @ViewChild('childForm') childForm!: NgForm
 
   constructor(private apiService:ApiService) {}
@@ -231,6 +233,16 @@ documentSubject: any;
       this.reissueEndDate = formData.reissueEndDate,
       this.documentSubject = formData.documentSubject
     }
+
+      this.apiService.getsearchDocAllSections().subscribe((data) => {
+      this.searchDocAllSections = data;
+      console.log(this.searchDocAllSections);
+    });
+
+    this.apiService.getSearchEffetivity().subscribe((data) => {
+      this.searchEffetivity = data;
+      console.log(this.searchEffetivity);
+    });
   }
 
   ngAfterViewInit() {

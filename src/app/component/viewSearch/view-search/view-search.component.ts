@@ -16,6 +16,7 @@ export class ViewSearchComponent {
   docMoved:any;
   searchType!: string;
   loading: boolean = false;
+  searchEffetivity: any[] = [];
 
   constructor(private apiService: ApiService, private route:ActivatedRoute, private router:Router, private datePipe:DatePipe) {}
 
@@ -28,6 +29,10 @@ export class ViewSearchComponent {
       this.docMoved = params['docMoved']
     })
     this.searchType = this.apiService.searchType;
+       this.apiService.getSearchEffetivity().subscribe((data) => {
+      this.searchEffetivity = data;
+      console.log(this.searchEffetivity);
+    });
   }
 
   viewDocuments() {

@@ -9,7 +9,8 @@ import * as FileSaver from 'file-saver';
   providedIn: 'root',
 })
 export class ApiService {
-
+  role: any;
+  
   exportToExcel(data: any[], fileName: string): void {
     // Create worksheet from data
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
@@ -108,14 +109,16 @@ export class ApiService {
   private deleteDocumentApi = `${environment.apiBaseUrl}/addDocument/deleteDocument`
   private documentDetailsApi = `${environment.apiBaseUrl}/audit/getDocumentDetails`
   private deleteVendorApi = `${environment.apiBaseUrl}/adminConfiguration/deleteVendor`
-  // https://mevendtrk-svc-np.maverick.aa.com/vdt/adminConfiguration/getVendor?vendorNam
   private deleteVendorEdit = `${environment.apiBaseUrl}/adminConfiguration/getVendor?vendorName`
-
+  private searchDetailDocTypeApi = `${environment.apiBaseUrl}/adminConfiguration/allDetailDocTypes`;
+  private documentSectionApi = `${environment.apiBaseUrl}/adminConfiguration/addDocumentGetSections`;
+  private searchEffectivityApi = `${environment.apiBaseUrl}/adminConfiguration/activeEffectivities`;
+  private searchDocAllSectionsApi = `${environment.apiBaseUrl}/adminConfiguration/allSections`;
 
 detailRoute:any
   viewDocId: any;
   viewAuditId: any;
-role:any;
+
   formData: any;
   popno: any;
   vendorName: any;
@@ -127,6 +130,22 @@ role:any;
   searchType!: string;
 
   constructor(private http: HttpClient) {}
+
+  getDetaildocType(): Observable<any> {
+    return this.http.get<any>(this.searchDetailDocTypeApi);
+  }
+
+  getDocumentSection(): Observable<any> {
+    return this.http.get<any>(this.documentSectionApi);
+  }
+
+  getSearchEffetivity(): Observable<any> {
+    return this.http.get<any>(this.searchEffectivityApi);
+  }
+
+  getsearchDocAllSections(): Observable<any> {
+    return this.http.get<any>(this.searchDocAllSectionsApi);
+  }
 
 saveExistingRouteView(viewRoute:any, payload:any){
   return this.http.post<any>(`${this.saveExistingRouteApi}?routeId=${viewRoute}`, payload)
@@ -157,8 +176,10 @@ deleteVendorEditApi(VenName:any){
   savevendor(val: any): Observable<any> {
     return this.http.post<any>(this.saveVendors, val)
   }
-
+  
   getAutoPopulateVendors(id: any): Observable<any> {
+    console.log('test');
+
     return this.http.get<any>(
       `${this.manageVendoeAutoPopulate}?sourceElement=${id}`
     );
@@ -530,12 +551,15 @@ esoNumbersApiData(val:any):Observable<any>{
   docDownload(payload:any, options:any){
     return this.http.post<any>(`${this.docDownloadApi}`,payload, options);
   }
+
   auditDownload(payload:any, options:any){
     return this.http.post<any>(`${this.auditDownloadApi}`,payload, options);
   }
+
   routeDownload(payload:any, options:any){
     return this.http.post<any>(`${this.routeDownloadApi}`,payload, options);
   }
+
   documentDetails(){
     return this.http.get<any>(`${this.documentDetailsApi}?documentNbr=${this.viewDocId}`)
   }
