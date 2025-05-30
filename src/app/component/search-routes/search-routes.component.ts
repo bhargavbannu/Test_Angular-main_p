@@ -80,6 +80,11 @@ export class SearchRoutesComponent {
 formatDate(date:Date){
   this.routeEndDate = this.datePipe.transform(date, 'MM/dd/yyyy');
 }
+
+formatRouteStartDate(date:Date){
+  this.routeStartDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+}
+
   onSearch() {
     let routeEndDate = this.datePipe.transform(this.routeEndDate, 'yyyy-MM-ddTHH:mm:ss');
     let routeStartDate = this.datePipe.transform(this.routeStartDate, 'yyyy-MM-ddTHH:mm:ss');
@@ -104,7 +109,7 @@ formatDate(date:Date){
     const payload = {
       routeType: this.routeType,
       section: this.section,
-      routeStartDate: this.routeStartDate,
+      routeStartDate: routeStartDate,
       routeEndDate: routeEndDate,
       routeStatusSearchType: this.selectedOption,
       detailDocType: this.detailDocType,

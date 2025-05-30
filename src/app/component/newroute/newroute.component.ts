@@ -34,7 +34,7 @@ export class NewrouteComponent {
   ngOnInit() {
     this.DetailIdRefNmbr = this.apiService.popRefNbr;
     this.Section = this.apiService.section;
-    this.routeType = "ETDT"
+    this.routeType = this.apiService.nextRouteType;
     this.routeDate = new Date();
   }
 

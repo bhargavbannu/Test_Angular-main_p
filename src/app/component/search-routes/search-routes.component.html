@@ -225,8 +225,8 @@
                                                   maxlength="10"
                                                   autocomplete="off"
                                                   [(ngModel)]="
-                                                    this.routeStartDate"
-                                                      |                                             />
+                                                    routeStartDate"
+                                                />
 
                                                 <span
                                                   ><img
@@ -245,11 +245,13 @@
                                                   name="calendarDate"
                                                   #calendar1
                                                   [(ngModel)]="
-                                                    this.routeStartDate
+                                                    routeStartDate
                                                   "
                                                   [showIcon]="false"
                                                   [showOnFocus]="false"
                                                   class="hidden-calendar"
+                                                  (onSelect)="formatRouteStartDate($event)"
+
                                                 ></p-calendar>
 
                                                 -
@@ -263,7 +265,7 @@
                                                   maxlength="10"
                                                   autocomplete="off"
                                                   [(ngModel)]="
-                                                    this.routeEndDate
+                                                    routeEndDate
                                                   "
                                                 />
 
@@ -284,7 +286,7 @@
                                                   name="calendarDate"
                                                   #calendar2
                                                   [(ngModel)]="
-                                                    this.routeEndDate
+                                                    routeEndDate
                                                   "
                                                   [showIcon]="false"
                                                   [showOnFocus]="false"

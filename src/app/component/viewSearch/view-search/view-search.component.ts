@@ -44,6 +44,9 @@ export class ViewSearchComponent {
       if(this.documentsDetails.document.reissueDate  !== null && this.documentsDetails.document.reissueDate  !== undefined && this.documentsDetails.document.reissueDate  !=='null') {
         this.documentsDetails.document.reissueDate = this.datePipe.transform(this.documentsDetails.document.reissueDate, 'MM/dd/yyyy')
         }
+        else {
+          this.documentsDetails.document.reissueDate = "";
+        }
       console.log(data);      
     })
   }

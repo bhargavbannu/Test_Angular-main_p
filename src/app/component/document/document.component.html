@@ -1,6 +1,5 @@
 <!-- <p-button label="Check" /> -->
 <div>
-  
   <td valign="top" align="left">
     <table border="0" cellspacing="0" cellpadding="0" width="100%">
       <tbody>
@@ -21,16 +20,24 @@
         <tr>
           <td id="emptyRow" style="display: none">&nbsp;</td>
         </tr>
-        <div *ngIf="showVendorErr" class="errMsg"> FAILED: Vendor Name * is required.</div>
-        <div *ngIf="showSubErr" class="errMsg"> FAILED: You must select at least one Engineering Section.</div>
+        <div *ngIf="showVendorErr" class="errMsg">
+          FAILED: Vendor Name * is required.
+        </div>
+        <div *ngIf="showSubErr" class="errMsg">
+          FAILED: You must select at least one Engineering Section.
+        </div>
 
-        <a *ngIf="editDoc" style="font-size: larger;font-weight: bolder" routerLink="/viewStatus">Back To Document</a>
+        <a
+          *ngIf="editDoc"
+          style="font-size: larger; font-weight: bolder"
+          routerLink="/viewStatus"
+          >Back To Document</a
+        >
         <tr>
           <td align="left">
             <!-- CONTENT -->
 
             <br />
-
 
             <div class="documentContainer">
               <div style="float: left">
@@ -48,8 +55,12 @@
                             <tr>
                               <td class="eds-tabtopleftcorner"></td>
                               <td class="eds-tabtopmiddle" align="center">
-                                <div *ngIf="!editDoc" class="eds-tabtitle">Add New Document</div>
-                                <div *ngIf="editDoc" class="eds-tabtitle">Edit Document</div>
+                                <div *ngIf="!editDoc" class="eds-tabtitle">
+                                  Add New Document
+                                </div>
+                                <div *ngIf="editDoc" class="eds-tabtitle">
+                                  Edit Document
+                                </div>
                               </td>
 
                               <td class="eds-tabtoprightcorner"></td>
@@ -96,9 +107,9 @@
                                         <td width="250"></td>
                                       </tr>
 
-                                        <tr
+                                      <tr
                                         class="eds-pagerstyle"
-                                         *ngIf="editDoc"
+                                        *ngIf="editDoc"
                                       >
                                         <td align="right">
                                           VDT System ID No.&nbsp; &nbsp;
@@ -114,13 +125,12 @@
                                             [(ngModel)]="docId"
                                             readonly
                                           />
-
                                         </td>
                                       </tr>
 
                                       <tr
                                         class="eds-pagerstyle eds-field-required"
-                                         *ngIf="editDoc"
+                                        *ngIf="editDoc"
                                       >
                                         <td align="right">
                                           Creation Date *&nbsp; &nbsp;
@@ -142,10 +152,21 @@
                                               id="creationDateId_date"
                                               align="ABSMIDDLE"
                                               src="assets/images/calendar.gif"
-                                              (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
+                                              (click)="
+                                                calendar1.overlayVisible =
+                                                  !calendar1.overlayVisible;
+                                                calendar1.inputfieldViewChild?.nativeElement.click()
+                                              "
                                           /></span>
-                                          <p-calendar name="calendarDate" #calendar1 [(ngModel)]="creationDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                                          <p-calendar
+                                            name="calendarDate"
+                                            #calendar1
+                                            [(ngModel)]="creationDate"
+                                            [showIcon]="false"
+                                            [showOnFocus]="false"
+                                            class="hidden-calendar"
+                                            (onSelect)="formatDate($event)"
+                                          ></p-calendar>
                                         </td>
                                       </tr>
 
@@ -169,24 +190,24 @@
                                             (focusout)="onFocusOut()"
                                           />
 
-                                          
-
                                           <div
-                                          *ngIf="vendorNamesList.length > 0"
-                                          style="
-                                            min-width: 220px;
-                                            background: rgb(247, 242, 242);
-                                            position: absolute;
-                                          "
-                                        >
-                                          <div
-                                            *ngFor="let val of vendorNamesList"
-                                            (mousedown)="setVal(val)"
+                                            *ngIf="vendorNamesList.length > 0"
+                                            style="
+                                              min-width: 220px;
+                                              background: rgb(247, 242, 242);
+                                              position: absolute;
+                                            "
                                           >
-                                            <span style="cursor: pointer">{{
-                                              val
-                                            }}</span>
-                                          </div>
+                                            <div
+                                              *ngFor="
+                                                let val of vendorNamesList
+                                              "
+                                              (mousedown)="setVal(val)"
+                                            >
+                                              <span style="cursor: pointer">{{
+                                                val
+                                              }}</span>
+                                            </div>
                                           </div>
 
                                           <div
@@ -237,7 +258,9 @@
                                                     value=""
                                                     size="45"
                                                     maxlength="100"
-                                                    [(ngModel)]="vendorContactPerson"
+                                                    [(ngModel)]="
+                                                      vendorContactPerson
+                                                    "
                                                   />
                                                 </td>
                                               </tr>
@@ -255,7 +278,9 @@
                                                     value=""
                                                     size="45"
                                                     maxlength="25"
-                                                    [(ngModel)]="vendorContactNumber"
+                                                    [(ngModel)]="
+                                                      vendorContactNumber
+                                                    "
                                                   />
                                                 </td>
                                               </tr>
@@ -316,7 +341,7 @@
                                         </td>
                                       </tr>
 
-                                      <tr class="eds-pagerstyle-alt dropdown" >
+                                      <tr class="eds-pagerstyle-alt dropdown">
                                         <td align="right">
                                           Category&nbsp; &nbsp;
                                         </td>
@@ -364,8 +389,14 @@
                                             multiple="multiple"
                                             [(ngModel)]="docEffectivity"
                                           >
-                                        <option *ngFor="let doc of searchEffetivity" [value]="doc"> {{ doc }} </option>                                  
-
+                                            <option
+                                              *ngFor="
+                                                let doc of searchEffetivity
+                                              "
+                                              [value]="doc"
+                                            >
+                                              {{ doc }}
+                                            </option>
                                           </select>
                                         </td>
                                       </tr>
@@ -381,8 +412,14 @@
                                             multiple="multiple"
                                             [(ngModel)]="docSection"
                                           >
-                                            <option *ngFor="let section of documentSection" [value]="section"> {{ section}} </option>  
-
+                                            <option
+                                              *ngFor="
+                                                let section of documentSection
+                                              "
+                                              [value]="section"
+                                            >
+                                              {{ section }}
+                                            </option>
                                           </select>
                                         </td>
                                       </tr>
@@ -453,9 +490,10 @@
                                             value=""
                                             size="41"
                                             maxlength="10"
-                                            autocomplete="off"                  
-                                            [ngModel]="this.reissueDate !=='null' && this.reissueDate !==undefined && this.reissueDate !==null ? (this.reissueDate | date:'MM/dd/yyyy') : ''"
-                                           
+                                            autocomplete="off"
+                                            [(ngModel)]="
+                                              reissueDate
+                                            "
                                           />
 
                                           <span
@@ -464,10 +502,21 @@
                                               id="reissueDateId_date"
                                               align="ABSMIDDLE"
                                               src="assets/images/calendar.gif"
-                                              (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild?.nativeElement.click()"
+                                              (click)="
+                                                calendar2.overlayVisible =
+                                                  !calendar2.overlayVisible;
+                                                calendar2.inputfieldViewChild?.nativeElement.click()
+                                              "
                                           /></span>
-                                          <p-calendar name="calendarDate" #calendar2 [(ngModel)]="this.reissueDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                                          <p-calendar
+                                            name="calendarDate"
+                                            #calendar2
+                                            [(ngModel)]="reissueDate"
+                                            [showIcon]="false"
+                                            [showOnFocus]="false"
+                                            class="hidden-calendar"
+                                            (onSelect)="formatDate1($event)"
+                                          ></p-calendar>
                                         </td>
                                       </tr>
 
@@ -499,7 +548,12 @@
                                             maxlength="20"
                                             [(ngModel)]="selEccnNumber"
                                           >
-                                            <option *ngFor="let item of eccnNumber" [value]=item>{{ item }}</option>
+                                            <option
+                                              *ngFor="let item of eccnNumber"
+                                              [value]="item"
+                                            >
+                                              {{ item }}
+                                            </option>
                                           </select>
 
                                           <br />
@@ -517,7 +571,6 @@
                                             maxlength="20"
                                             autocomplete="off"
                                             (focusout)="onFocusOut()"
-
                                           />
                                           <input
                                             type="button"
@@ -563,7 +616,12 @@
                                             maxlength="20"
                                             [(ngModel)]="selEccnLocation"
                                           >
-                                            <option *ngFor="let item of eccnLocation" [value]=item>{{ item }}</option>
+                                            <option
+                                              *ngFor="let item of eccnLocation"
+                                              [value]="item"
+                                            >
+                                              {{ item }}
+                                            </option>
                                           </select>
                                           <br />
 
@@ -603,7 +661,9 @@
                                               *ngFor="
                                                 let location of filteredLocations
                                               "
-                                              (mousedown)="selectLocation(location)"
+                                              (mousedown)="
+                                                selectLocation(location)
+                                              "
                                             >
                                               <span style="cursor: pointer">{{
                                                 location
@@ -612,7 +672,6 @@
                                           </div>
                                         </td>
                                       </tr>
-                                     
 
                                       <tr class="eds-pagerstyle">
                                         <td style="text-align: right">
@@ -631,7 +690,7 @@
                                               *ngFor="
                                                 let doc of allSelectedDocTypes
                                               "
-                                              [value]=doc
+                                              [value]="doc"
                                             >
                                               {{ doc }}
                                             </option>
@@ -693,7 +752,12 @@
                                             maxlength="20"
                                             [(ngModel)]="addedValDoc12"
                                           >
-                                            <option *ngFor=" let item of addedValDoc" [value]=item>{{ item }}</option>
+                                            <option
+                                              *ngFor="let item of addedValDoc"
+                                              [value]="item"
+                                            >
+                                              {{ item }}
+                                            </option>
                                           </select>
 
                                           <br />
@@ -708,7 +772,9 @@
                                             maxlength="20"
                                             (input)="auditNext()"
                                             [(ngModel)]="typedAuditable"
-                                            [ngModelOptions]="{standalone: true}"
+                                            [ngModelOptions]="{
+                                              standalone: true
+                                            }"
                                             (focusout)="onFocusOut()"
                                           />
 
@@ -736,8 +802,12 @@
                                             "
                                           >
                                             <div
-                                              *ngFor="let doc of auditableResponse"
-                                              (mousedown)="auditableDropDownSelect(doc)"
+                                              *ngFor="
+                                                let doc of auditableResponse
+                                              "
+                                              (mousedown)="
+                                                auditableDropDownSelect(doc)
+                                              "
                                             >
                                               <span style="cursor: pointer">{{
                                                 doc
@@ -746,7 +816,6 @@
                                           </div>
                                         </td>
                                       </tr>
-
 
                                       <tr class="eds-pagerstyle-alt">
                                         <td style="text-align: right">
@@ -762,7 +831,12 @@
                                             maxlength="20"
                                             [(ngModel)]="addedValEco"
                                           >
-                                            <option *ngFor="let item of addedVal" [value]=item>{{ item }}</option>
+                                            <option
+                                              *ngFor="let item of addedVal"
+                                              [value]="item"
+                                            >
+                                              {{ item }}
+                                            </option>
                                           </select>
 
                                           <br />
@@ -829,7 +903,12 @@
                                             maxlength="20"
                                             [(ngModel)]="selectedEsoNumberArr"
                                           >
-                                            <option *ngFor="let item of selectedEsoNumber" [value]=item>
+                                            <option
+                                              *ngFor="
+                                                let item of selectedEsoNumber
+                                              "
+                                              [value]="item"
+                                            >
                                               {{ item }}
                                             </option>
                                           </select>
@@ -892,11 +971,11 @@
                                       >
                                         <td colspan="2">
                                           <button
-                                          *ngIf="editDoc"
-                                          (click)="deleteDocument()"
-                                         >
-                                          Delete
-                                        </button>
+                                            *ngIf="editDoc"
+                                            (click)="deleteDocument()"
+                                          >
+                                            Delete
+                                          </button>
                                           <span style="float: right">
                                             <button
                                               (click)="addDocumentSubmit()"

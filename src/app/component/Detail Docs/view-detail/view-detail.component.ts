@@ -72,6 +72,12 @@ export class ViewDetailComponent implements OnInit {
   }
   newRoute(){
     this.apiService.type ="new"
+    if(this.docDetails.document.nextRouteType){
+      this.apiService.nextRouteType = this.docDetails.document.nextRouteType;
+    }
+    else {
+      this.apiService.nextRouteType = "ETDT";
+    }
   }
 
   downloadRouteSlip(id:any){
