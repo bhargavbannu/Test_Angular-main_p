@@ -179,6 +179,34 @@ export class DocumentComponent implements OnInit {
         if (this.vendorName === '') {
           this.vendorNamesList = [];
         }
+        if (
+          this.vendorNamesList.length > 0 &&
+          this.vendorNamesList.some(
+            (item) =>
+              item.trim().toLowerCase() === this.vendorName.trim().toLowerCase()
+          )
+        ) {
+          const payload = {
+            vendor: {
+              vendorNm: this.vendorName,
+            },
+          };
+          this.apiService.addDocvendorDetails(payload).subscribe((res: any) => {
+            if (res) {
+              this.vendorEmail = res.vendorEmailAddress;
+              this.vendorContactPerson = res.contactPerson;
+              this.vendorContactNumber = res.contactPhone;
+              this.vendorWebsite = res.vendorWebsite;
+              this.vendorRemark = res.remarks;
+            }
+          });
+        } else {
+          this.vendorEmail = '';
+          this.vendorContactPerson = '';
+          this.vendorContactNumber = '';
+          this.vendorWebsite = '';
+          this.vendorRemark = '';
+        }
       });
 
     this.auditableSubject
@@ -238,12 +266,10 @@ export class DocumentComponent implements OnInit {
 
     this.apiService.getDocumentSection().subscribe((data) => {
       this.documentSection = data;
-      console.log(this.documentSection);
     });
 
     this.apiService.getSearchEffetivity().subscribe((data) => {
       this.searchEffetivity = data;
-      console.log(this.searchEffetivity);
     });
 
     this.route.params.subscribe((params) => {
@@ -251,7 +277,6 @@ export class DocumentComponent implements OnInit {
     });
 
     if (this.editDoc) {
-
       this.apiService.viewDocuments().subscribe((data) => {
         this.documentsDetails = data;
         this.docId = this.documentsDetails.document?.documentNbr;
@@ -305,15 +330,15 @@ export class DocumentComponent implements OnInit {
           'MM/dd/yyyy HH:mm:ss'
         );
         if (
-        this.reissueDate !== null &&
-        this.reissueDate !== undefined &&
-        this.reissueDate !== 'null'
-      ) {
-        this.reissueDate = this.datePipe.transform(
-          this.reissueDate,
-          'MM/dd/yyyy'
-        );
-      }
+          this.reissueDate !== null &&
+          this.reissueDate !== undefined &&
+          this.reissueDate !== 'null'
+        ) {
+          this.reissueDate = this.datePipe.transform(
+            this.reissueDate,
+            'MM/dd/yyyy'
+          );
+        }
       });
     }
   }
@@ -615,6 +640,7 @@ export class DocumentComponent implements OnInit {
 
   vName(val: any) {
     this.vendorSub.next(val.target.value);
+
     if (val.target.value === '') {
       this.vendorNamesList = [];
     }
@@ -622,6 +648,22 @@ export class DocumentComponent implements OnInit {
 
   setVal(val: any) {
     this.vendorName = val;
+
+      const payload = {
+        vendor: {
+          vendorNm: this.vendorName,
+        },
+      };
+      this.apiService.addDocvendorDetails(payload).subscribe((res: any) => {
+        if (res) {
+          this.vendorEmail = res.vendorEmailAddress;
+          this.vendorContactPerson = res.contactPerson;
+          this.vendorContactNumber = res.contactPhone;
+          this.vendorWebsite = res.vendorWebsite;
+          this.vendorRemark = res.remarks;
+        }
+      });
+    
     this.vendorNamesList = [];
   }
 

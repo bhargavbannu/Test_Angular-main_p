@@ -40,12 +40,7 @@ export class NewDetailComponent {
   }
 
   saveDetails() {
-    if(this.formattedDate!==null && this.formattedDate!==undefined){
-    this.formattedDate = this.datePipe.transform(this.revDate, 'MM/dd/yyyy HH:mm:ss')
-    }
-    else{
-      this.formattedDate =''
-    }
+    let formattedDate = this.datePipe.transform(this.revDate, 'MM/dd/yyyy HH:mm:ss')
     const payload = {
       documentNbr: this.docNmbr,
       vendor: this.vendorName,
@@ -53,7 +48,7 @@ export class NewDetailComponent {
       detail: {
         doctype: this.docType,
         bin: this.bin,
-        manualdate: this.formattedDate ?? '',
+        manualdate: formattedDate ?? '',
         remark: this.remark,
         detailSubjectDesc: this.subDesc,
         popClass: this.caseClass,
@@ -67,5 +62,9 @@ export class NewDetailComponent {
       this.apiService.popno = res.detailResponse.detail.popno
       this.router.navigate(["/viewDetail", {detailSaved:true}])
     });
+  }
+
+    formatDate1(date: Date) {
+    this.revDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 }

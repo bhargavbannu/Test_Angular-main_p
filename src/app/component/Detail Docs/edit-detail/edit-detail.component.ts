@@ -36,6 +36,7 @@ export class EditDetailComponent {
   loadDetails() {
     this.apiService.viewDetail().subscribe((data) => {
       this.docDetails = data;
+      this.docDetails.detail.manualdate = this.datePipe.transform(this.docDetails?.detail.manualdate, 'MM/dd/yyyy');
     });
   }
   saveEditDetail() {
@@ -76,5 +77,9 @@ export class EditDetailComponent {
     this.apiService.deleteDetail().subscribe(() => {
       this.router.navigate(['/viewStatus', { detailDeleted: true }]);
     });
+  }
+
+    formatDate1(date: Date) {
+    this.docDetails.detail.manualdate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 }

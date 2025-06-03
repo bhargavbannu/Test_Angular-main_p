@@ -4,11 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Calendar } from 'primeng/calendar';
 import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-manage-vendors',
   templateUrl: './manage-vendors.component.html',
   styleUrls: ['./manage-vendors.component.css'],
+  providers: [DatePipe]
 })
 export class ManageVendorsComponent implements OnInit {
 
@@ -21,7 +23,8 @@ vendError: boolean = false;
   @ViewChild('calendar1') calendar1!: Calendar;
 supercedDate: any;
   vendorSaved: any;
-  constructor(private http: HttpClient, private appservice: ApiService, private route: ActivatedRoute) {}
+vendorDeleted: any;
+  constructor(private http: HttpClient, private appservice: ApiService, private route: ActivatedRoute,private datePipe: DatePipe) {}
 dropdownValues:any[]=[]
   subb = new Subject();
 
@@ -39,7 +42,11 @@ dropdownValues:any[]=[]
       });
 
       this.route.params.subscribe(params =>{
-        this.vendorSaved = params['vendorSaved']
+        this.vendorSaved = params['vendorSaved'];
+      })
+
+       this.route.params.subscribe(params =>{
+        this.vendorDeleted = params['vendorDeleted'];
       })
   }
 
@@ -75,7 +82,10 @@ onFocusOut(){
   this.dropdownValues = [];
 }
 
+  formatDate1(date: Date) {
+    this.supercedDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
 deleteVendor(){
-  
 }
 }

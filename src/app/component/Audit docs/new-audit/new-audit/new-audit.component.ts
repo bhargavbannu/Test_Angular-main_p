@@ -36,9 +36,9 @@ export class NewAuditComponent implements OnInit {
   }
 
   saveNewAudit(){
-    this.auditDate = this.datePipe.transform(this.auditDate, 'MM/dd/yyyy HH:mm:ss')
-    this.followUpDate = this.datePipe.transform(this.followUpDate, 'MM/dd/yyyy HH:mm:ss')
-    this.revDate = this.datePipe.transform(this.revDate, 'MM/dd/yyyy HH:mm:ss')
+    let auditDate = this.datePipe.transform(this.auditDate, 'MM/dd/yyyy HH:mm:ss')
+    let followUpDate = this.datePipe.transform(this.followUpDate, 'MM/dd/yyyy HH:mm:ss')
+    let revDate = this.datePipe.transform(this.revDate, 'MM/dd/yyyy HH:mm:ss')
 
     let payload ={
       "audit": {
@@ -46,11 +46,11 @@ export class NewAuditComponent implements OnInit {
         "popno": this.documentDetail,
         "dodAuditCategory": this.docAuditCategory,
         "auditStatus": this.auditStatus,
-        "auditDate": this.auditDate,
+        "auditDate": auditDate,
         "followUpCompleteInd": this.followUpCompleteInd,
-        "followUpDate": this.followUpDate,
+        "followUpDate": followUpDate,
         "revisionNbr": this.revNmbr,
-        "revisionDate": this.revDate,
+        "revisionDate": revDate,
         "auditNotes": this.auditNotes       
       }
     }
@@ -58,5 +58,17 @@ export class NewAuditComponent implements OnInit {
     this.apiService.viewAuditId = res.successResult.data.auditData.auditId
     this.router.navigate(["/viewAudit", {auditSaved:true}])
   })
+  }
+
+      formatDate1(date: Date) {
+    this.auditDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
+    formatDate2(date: Date) {
+    this.revDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
+    formatDate3(date: Date) {
+    this.followUpDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 }

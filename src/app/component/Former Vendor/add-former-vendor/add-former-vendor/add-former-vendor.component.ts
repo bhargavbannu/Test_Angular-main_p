@@ -37,15 +37,14 @@ export class AddFormerVendorComponent {
   }
 
   saveFormerVendor() {
-    if (this.supercedeDate !== null || this.supercedeDate !== undefined)
-      this.supercedeDate = this.datePipe.transform(
+      let supercedeDate = this.datePipe.transform(
         this.supercedeDate,
         'MM/dd/yyyy HH:mm:ss'
-      );
+      )
     let payload = {
       documentNbr: this.apiService.viewDocId,
       supercededByVendorName: this.vendorName,
-      supercedeDate: this.supercedeDate,
+      supercedeDate: supercedeDate,
     };
     this.apiService.saveFormerVendor(payload).subscribe();
   }
@@ -64,5 +63,9 @@ export class AddFormerVendorComponent {
 
   onFocusOut() {
     this.vendorNamesList = [];
+  }
+
+    formatDate1(date: Date) {
+    this.supercedeDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 }

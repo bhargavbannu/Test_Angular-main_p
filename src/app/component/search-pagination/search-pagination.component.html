@@ -1,276 +1,328 @@
 <div>
-  <form #childForm="ngForm" >
-  <table>
-    <div>
-      <tbody>
-        <tr>
-          <td>
-            <table>
-              <tbody>
-                <tr class="eds-pagerstyle-alt inline-table_dark_grey">
-                  <td align="right">VDT System ID No.&nbsp; &nbsp;</td>
-                  <td align="left">
-                    <input
-                      type="text"
-                      name="docName"
-                      class=""
-                      id="docName"
-                      value=""
-                      size="20"
-                      maxlength="40"
-                      tabindex="-1"
-                      [(ngModel)]="vdtId"
-                    />
-                  </td>
-                </tr>
+  <form #childForm="ngForm">
+    <table>
+      <div>
+        <tbody>
+          <tr>
+            <td>
+              <table>
+                <tbody>
+                  <tr class="eds-pagerstyle-alt inline-table_dark_grey">
+                    <td align="right">VDT System ID No.&nbsp; &nbsp;</td>
+                    <td align="left">
+                      <input
+                        type="text"
+                        name="docName"
+                        class=""
+                        id="docName"
+                        value=""
+                        size="20"
+                        maxlength="40"
+                        tabindex="-1"
+                        [(ngModel)]="vdtId"
+                      />
+                    </td>
+                  </tr>
 
-                <tr
-                  class="eds-pagerstyle search-style dropdown inline-table_dark_grey"
-                >
-                  <td align="right">Effectivity&nbsp; &nbsp;</td>
-                  <td align="left">
-                    <select
-                      name="effectivity"
-                      class=""
-                      id="effectivities"
-                      multiple="multiple"
-                      style="font-family: Arial; font-size: 12px"
-                      tabindex="-1"
-                      [(ngModel)]=selectedEffectivity
-                    >
-                      <option
-                        *ngFor="let option of searchEffetivity"
-                        [value]="option"
+                  <tr
+                    class="eds-pagerstyle search-style dropdown inline-table_dark_grey"
+                  >
+                    <td align="right">Effectivity&nbsp; &nbsp;</td>
+                    <td align="left">
+                      <select
+                        name="effectivity"
+                        class=""
+                        id="effectivities"
+                        multiple="multiple"
+                        style="font-family: Arial; font-size: 12px"
+                        tabindex="-1"
+                        [(ngModel)]="selectedEffectivity"
                       >
-                        {{ option }}
-                      </option>
-                    </select>
-                  </td>
-                </tr>
-
-                <tr class="eds-pagerstyle-alt inline-table_dark_grey">
-                  <td align="right">Detail Subject Desc&nbsp; &nbsp;</td>
-                  <td align="left">
-                    <input
-                      type="text"
-                      name="subject"
-                      class=""
-                      id="subject"
-                      value=""
-                      size="20"
-                      maxlength="40"
-                      tabindex="-1"
-                      [(ngModel)]="subject"
-                    />
-                  </td>
-                </tr>
-
-                <tr class="eds-pagerstyle inline-table_dark_grey" style="">
-                  <td align="right">Bin&nbsp; &nbsp;</td>
-                  <td align="left">
-                    <input
-                      type="text"
-                      name="bin"
-                      class=""
-                      value=""
-                      size="20"
-                      maxlength="40"
-                      tabindex="-1"
-                      [(ngModel)]="bin"
-                    />
-                  </td>
-                </tr>
-
-                <tr class="eds-pagerstyle-alt inline-table_dark_grey" style="">
-                  <td align="right">Document Type&nbsp; &nbsp;</td>
-                  <td align="left">
-                    <input
-                      type="text"
-                      name="documentType"
-                      class=""
-                      value=""
-                      size="20"
-                      maxlength="42"
-                      tabindex="-1"
-                      [(ngModel)]="documentType"
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-          <td>
-            <table>
-              <tbody>
-                <tr align="right" valign="top">
-                  <td align="right" valign="top">
-                    <table>
-                      <tbody>
-                        <tr align="right">
-                          <td align="right"></td>
-                        </tr>
-                        <tr
-                          class="eds-pagerstyle search-style dropdown inline-table_dark_grey"
+                        <option
+                          *ngFor="let option of searchEffetivity"
+                          [value]="option"
                         >
-                          <td align="right">Section&nbsp; &nbsp;</td>
-                          <td align="left">
-                            <select
-                              name="section"
-                              class=""
-                              id="sections"
-                              multiple="multiple"
-                              style="
-                                width: 192px;
-                                font-family: Arial;
-                                font-size: 12px;
-                              "
-                              tabindex="-1"
-                              [(ngModel)]=selectedSection
-                            >
-                              <option *ngFor="let option of searchDocAllSections" [value]="option">
-                                {{ option }}
-                              </option>
-                            </select>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-                <tr align="right" valign="top">
-                  <td align="right" valign="top"></td>
-                </tr>
-                <tr class="eds-pagerstyle-alt inline-table_dark_grey">
-                  <td colspan="2">
-                    &nbsp; Manual Date Range
+                          {{ option }}
+                        </option>
+                      </select>
+                    </td>
+                  </tr>
 
-                    <input
-                      type="text"
-                      name="manualStartDate"
-                      class=""
-                      id="manualStartDateId"
-                      value=""
-                      size="10"
-                      autocomplete="off"
-                      [ngModel]="this.manualStartDate | date: 'MM/dd/yyyy'" 
-                    />
+                  <tr class="eds-pagerstyle-alt inline-table_dark_grey">
+                    <td align="right">Detail Subject Desc&nbsp; &nbsp;</td>
+                    <td align="left">
+                      <input
+                        type="text"
+                        name="subject"
+                        class=""
+                        id="subject"
+                        value=""
+                        size="20"
+                        maxlength="40"
+                        tabindex="-1"
+                        [(ngModel)]="subject"
+                      />
+                    </td>
+                  </tr>
 
-                    <span
-                      ><img
-                        onmouseover="this.style.cursor='hand'"
-                        id="manualStartDateId_date"
-                        align="ABSMIDDLE"
-                        src="assets/images/calendar.gif"
-                        (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
-                    /></span>
-                    <p-calendar name="calendarDate" #calendar1  [(ngModel)]="this.manualStartDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                  <tr class="eds-pagerstyle inline-table_dark_grey" style="">
+                    <td align="right">Bin&nbsp; &nbsp;</td>
+                    <td align="left">
+                      <input
+                        type="text"
+                        name="bin"
+                        class=""
+                        value=""
+                        size="20"
+                        maxlength="40"
+                        tabindex="-1"
+                        [(ngModel)]="bin"
+                      />
+                    </td>
+                  </tr>
 
-                    -
-                    <input
-                      type="text"
-                      name="manualEndDate"
-                      class=""
-                      id="manualEndDateId"
-                      value=""
-                      size="10"
-                      tabindex="-1"
-                      autocomplete="off"
-                      [ngModel]="this.manualEndDate | date: 'MM/dd/yyyy'" 
-                    />
+                  <tr
+                    class="eds-pagerstyle-alt inline-table_dark_grey"
+                    style=""
+                  >
+                    <td align="right">Document Type&nbsp; &nbsp;</td>
+                    <td align="left">
+                      <input
+                        type="text"
+                        name="documentType"
+                        class=""
+                        value=""
+                        size="20"
+                        maxlength="42"
+                        tabindex="-1"
+                        [(ngModel)]="documentType"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+            <td>
+              <table>
+                <tbody>
+                  <tr align="right" valign="top">
+                    <td align="right" valign="top">
+                      <table>
+                        <tbody>
+                          <tr align="right">
+                            <td align="right"></td>
+                          </tr>
+                          <tr
+                            class="eds-pagerstyle search-style dropdown inline-table_dark_grey"
+                          >
+                            <td align="right">Section&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <select
+                                name="section"
+                                class=""
+                                id="sections"
+                                multiple="multiple"
+                                style="
+                                  width: 192px;
+                                  font-family: Arial;
+                                  font-size: 12px;
+                                "
+                                tabindex="-1"
+                                [(ngModel)]="selectedSection"
+                              >
+                                <option
+                                  *ngFor="let option of searchDocAllSections"
+                                  [value]="option"
+                                >
+                                  {{ option }}
+                                </option>
+                              </select>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr align="right" valign="top">
+                    <td align="right" valign="top"></td>
+                  </tr>
+                  <tr class="eds-pagerstyle-alt inline-table_dark_grey">
+                    <td colspan="2">
+                      &nbsp; Manual Date Range
 
-                    <span
-                      ><img
-                        onmouseover="this.style.cursor='hand'"
-                        id="manualEndDateId_date"
-                        align="ABSMIDDLE"
-                        src="assets/images/calendar.gif"
-                        (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild?.nativeElement.click()"
-                    /></span>
-                    <p-calendar name="calendarDate" #calendar2 [(ngModel)]="this.manualEndDate"  [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                      <input
+                        type="text"
+                        name="manualStartDate"
+                        class=""
+                        id="manualStartDateId"
+                        value=""
+                        size="10"
+                        autocomplete="off"
+                        [(ngModel)]="manualStartDate"
+                      />
 
-                  </td>
-                </tr>
+                      <span
+                        ><img
+                          onmouseover="this.style.cursor='hand'"
+                          id="manualStartDateId_date"
+                          align="ABSMIDDLE"
+                          src="assets/images/calendar.gif"
+                          (click)="
+                            calendar1.overlayVisible =
+                              !calendar1.overlayVisible;
+                            calendar1.inputfieldViewChild?.nativeElement.click()
+                          "
+                      /></span>
+                      <p-calendar
+                        name="calendarDate"
+                        #calendar1
+                        [(ngModel)]="manualStartDate"
+                        [showIcon]="false"
+                        [showOnFocus]="false"
+                        class="hidden-calendar"
+                         (onSelect)="formatDate1($event)"
+                      ></p-calendar>
 
-                <tr align="right" valign="top">
-                  <td align="right" valign="top"></td>
-                </tr>
-                <tr class="eds-pagerstyle inline-table_dark_grey">
-                  <td colspan="2">
-                    Reissue Date Range
+                      -
+                      <input
+                        type="text"
+                        name="manualEndDate"
+                        class=""
+                        id="manualEndDateId"
+                        value=""
+                        size="10"
+                        tabindex="-1"
+                        autocomplete="off"
+                        [(ngModel)]="manualEndDate"
+                      />
 
-                    <input
-                      type="text"
-                      name="reissueStartDate"
-                      class=""
-                      id="reissueStartDateId"
-                      value=""
-                      size="10"
-                      tabindex="-1"
-                      autocomplete="off"
-                      [ngModel]="this.reissueStartDate | date: 'MM/dd/yyyy'"
-                    />
+                      <span
+                        ><img
+                          onmouseover="this.style.cursor='hand'"
+                          id="manualEndDateId_date"
+                          align="ABSMIDDLE"
+                          src="assets/images/calendar.gif"
+                          (click)="
+                            calendar2.overlayVisible =
+                              !calendar2.overlayVisible;
+                            calendar2.inputfieldViewChild?.nativeElement.click()
+                          "
+                      /></span>
+                      <p-calendar
+                        name="calendarDate"
+                        #calendar2
+                        [(ngModel)]="manualEndDate"
+                        [showIcon]="false"
+                        [showOnFocus]="false"
+                        class="hidden-calendar"
+                         (onSelect)="formatDate2($event)"
+                      ></p-calendar>
+                    </td>
+                  </tr>
 
-                    <span
-                      ><img
-                        onmouseover="this.style.cursor='hand'"
-                        id="reissueStartDateId_date"
-                        align="ABSMIDDLE"
-                        src="assets/images/calendar.gif"
-                        (click)="calendar3.overlayVisible = !calendar3.overlayVisible; calendar3.inputfieldViewChild?.nativeElement.click()"
-                    /></span>
-                    <p-calendar name="calendarDate" #calendar3 [(ngModel)]="this.reissueStartDate"  [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                  <tr align="right" valign="top">
+                    <td align="right" valign="top"></td>
+                  </tr>
+                  <tr class="eds-pagerstyle inline-table_dark_grey">
+                    <td colspan="2">
+                      Reissue Date Range
 
-                    -
-                    <input
-                      type="text"
-                      name="reissueEndDate"
-                      class=""
-                      id="reissueEndDateId"
-                      value=""
-                      size="10"
-                      tabindex="-1"
-                      autocomplete="off"
-                      [ngModel]="this.reissueEndDate | date: 'MM/dd/yyyy'"
-                    />
+                      <input
+                        type="text"
+                        name="reissueStartDate"
+                        class=""
+                        id="reissueStartDateId"
+                        value=""
+                        size="10"
+                        tabindex="-1"
+                        autocomplete="off"
+                        [(ngModel)]="reissueStartDate"
+                      />
 
-                    <span
-                      ><img
-                        onmouseover="this.style.cursor='hand'"
-                        id="reissueEndDateId_date"
-                        align="ABSMIDDLE"
-                        src="assets/images/calendar.gif"
-                        (click)="calendar4.overlayVisible = !calendar4.overlayVisible; calendar4.inputfieldViewChild?.nativeElement.click()"
-                    /></span>
-                    <p-calendar name="calendarDate" #calendar4 [(ngModel)]="this.reissueEndDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                      <span
+                        ><img
+                          onmouseover="this.style.cursor='hand'"
+                          id="reissueStartDateId_date"
+                          align="ABSMIDDLE"
+                          src="assets/images/calendar.gif"
+                          (click)="
+                            calendar3.overlayVisible =
+                              !calendar3.overlayVisible;
+                            calendar3.inputfieldViewChild?.nativeElement.click()
+                          "
+                      /></span>
+                      <p-calendar
+                        name="calendarDate"
+                        #calendar3
+                        [(ngModel)]="reissueStartDate"
+                        [showIcon]="false"
+                        [showOnFocus]="false"
+                        class="hidden-calendar"
+                         (onSelect)="formatDate3($event)"
+                      ></p-calendar>
 
-                  </td>
-                </tr>
+                      -
+                      <input
+                        type="text"
+                        name="reissueEndDate"
+                        class=""
+                        id="reissueEndDateId"
+                        value=""
+                        size="10"
+                        tabindex="-1"
+                        autocomplete="off"
+                        [(ngModel)]="reissueEndDate"
+                      />
 
-                <tr align="right" valign="top">
-                  <td align="right" valign="top" style="color: black">
-                    Document Subject
+                      <span
+                        ><img
+                          onmouseover="this.style.cursor='hand'"
+                          id="reissueEndDateId_date"
+                          align="ABSMIDDLE"
+                          src="assets/images/calendar.gif"
+                          (click)="
+                            calendar4.overlayVisible =
+                              !calendar4.overlayVisible;
+                            calendar4.inputfieldViewChild?.nativeElement.click()
+                          "
+                      /></span>
+                      <p-calendar
+                        name="calendarDate"
+                        #calendar4
+                        [(ngModel)]="reissueEndDate"
+                        [showIcon]="false"
+                        [showOnFocus]="false"
+                        class="hidden-calendar"
+                         (onSelect)="formatDate4($event)"
+                      ></p-calendar>
+                    </td>
+                  </tr>
 
-                    <input
-                      type="text"
-                      name="documentSubject"
-                      class=""
-                      id="documentSubject"
-                      value=""
-                      size="34"
-                      maxlength="40"
-                      tabindex="-1"
-                      [(ngModel)]="documentSubject"
-                    />
+                  <tr align="right" valign="top">
+                    <td align="right" valign="top" style="color: black">
+                      Document Subject
 
-                    &nbsp;
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </div>
-  </table>
+                      <input
+                        type="text"
+                        name="documentSubject"
+                        class=""
+                        id="documentSubject"
+                        value=""
+                        size="34"
+                        maxlength="40"
+                        tabindex="-1"
+                        [(ngModel)]="documentSubject"
+                      />
+
+                      &nbsp;
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </div>
+    </table>
   </form>
 </div>

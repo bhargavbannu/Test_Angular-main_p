@@ -1,125 +1,140 @@
 <tbody>
-    <td align="left">
-      <!-- CONTENT -->
-      <a routerLink="/viewStatus">Back to Document</a>
-      
-      <br /><br />
+  <td align="left">
+    <!-- CONTENT -->
+    <a routerLink="/viewStatus">Back to Document</a>
 
-      <table cellspacing="0" cellpadding="0" border="0">
-        <tbody>
-          <tr>
-            <td>
-              <table
-                class="eds-tabheader"
-                cellspacing="0"
-                cellpadding="0"
-                border="0"
-              >
-                <tbody>
-                  <tr>
-                    <td class="eds-tabtopleftcorner"></td>
-                    <td class="eds-tabtopmiddle" align="center">
-                      <div class="eds-tabtitle">Add New Audit</div>
-                    </td>
-                    <td class="eds-tabtoprightcorner"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td class="eds-tabtoprightcorner"></td>
-          </tr>
-          <tr>
-            <td>
-              <table
-                cellspacing="0"
-                cellpadding="0"
-                width="100%"
-                border="0"
-                class="eds-tabtitle"
-              >
-                <tbody>
-                  <tr>
-                    <td>
-                      <form
-                        name="AuditForm"
-                        id="auditFormId"
-                        method="post"
-                        action="/vdt/SaveAudit.html"
-                      >
-                        <input
-                          type="hidden"
-                          name="audit.documentNbr"
-                          value="28806251"
-                        />
-                        <input type="hidden" name="audit.auditId" value="" />
-                        <table width="100%">
-                          <tbody>
-                            <tr style="height: 1px">
-                              <td width="200"></td>
-                              <td width="250"></td>
-                            </tr>
+    <br /><br />
 
-                            <tr class="eds-pagerstyle dropdown">
-                              <td align="right">Audit Category&nbsp; &nbsp;</td>
-                              <td align="left">
-                                <select name="audit.dodAuditCategory" class="" [(ngModel)]="docAuditCategory">
-                                  <option value="A">A</option>
+    <table cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+        <tr>
+          <td>
+            <table
+              class="eds-tabheader"
+              cellspacing="0"
+              cellpadding="0"
+              border="0"
+            >
+              <tbody>
+                <tr>
+                  <td class="eds-tabtopleftcorner"></td>
+                  <td class="eds-tabtopmiddle" align="center">
+                    <div class="eds-tabtitle">Add New Audit</div>
+                  </td>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="eds-tabtoprightcorner"></td>
+        </tr>
+        <tr>
+          <td>
+            <table
+              cellspacing="0"
+              cellpadding="0"
+              width="100%"
+              border="0"
+              class="eds-tabtitle"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <form
+                      name="AuditForm"
+                      id="auditFormId"
+                      method="post"
+                      action="/vdt/SaveAudit.html"
+                    >
+                      <input
+                        type="hidden"
+                        name="audit.documentNbr"
+                        value="28806251"
+                      />
+                      <input type="hidden" name="audit.auditId" value="" />
+                      <table width="100%">
+                        <tbody>
+                          <tr style="height: 1px">
+                            <td width="200"></td>
+                            <td width="250"></td>
+                          </tr>
 
-                                  <option value="B">B</option>
+                          <tr class="eds-pagerstyle dropdown">
+                            <td align="right">Audit Category&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <select
+                                name="audit.dodAuditCategory"
+                                class=""
+                                [(ngModel)]="docAuditCategory"
+                              >
+                                <option value="A">A</option>
 
-                                  <option value="C">C</option>
+                                <option value="B">B</option>
 
-                                  <option value="X">X</option>
-                                </select>
-                              </td>
-                            </tr>
+                                <option value="C">C</option>
 
-                            <tr
-                              class="eds-pagerstyle-alt eds-field-required"
-                            >
-                              <td align="right">Audit Date *&nbsp; &nbsp;</td>
-                              <td align="left">
-                                <input
-                                  type="text"
-                                  name="audit.auditDate"
-                                  class=""
-                                  id="auditDateId"
-                                  value=""
-                                  size="41"
-                                  maxlength="10"
-                                  autocomplete="off"
-                                  [ngModel]="auditDate | date: 'MM/dd/yyyy'"
-                                />
+                                <option value="X">X</option>
+                              </select>
+                            </td>
+                          </tr>
 
-                                <span
-                                  ><img
-                                    onmouseover="this.style.cursor='hand'"
-                                    id="auditDateId_date"
-                                    align="ABSMIDDLE"
-                                    src="assets/images/calendar.gif"
-                                    (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
-                                /></span>
-                                <p-calendar name="calendarDate" #calendar1 [(ngModel)]="auditDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                          <tr class="eds-pagerstyle-alt eds-field-required">
+                            <td align="right">Audit Date *&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <input
+                                type="text"
+                                name="audit.auditDate"
+                                class=""
+                                id="auditDateId"
+                                value=""
+                                size="41"
+                                maxlength="10"
+                                autocomplete="off"
+                                [(ngModel)]="auditDate"
+                              />
 
-                              </td>
-                            </tr>
+                              <span
+                                ><img
+                                  onmouseover="this.style.cursor='hand'"
+                                  id="auditDateId_date"
+                                  align="ABSMIDDLE"
+                                  src="assets/images/calendar.gif"
+                                  (click)="
+                                    calendar1.overlayVisible =
+                                      !calendar1.overlayVisible;
+                                    calendar1.inputfieldViewChild?.nativeElement.click()
+                                  "
+                              /></span>
+                              <p-calendar
+                                name="calendarDate"
+                                #calendar1
+                                [(ngModel)]="auditDate"
+                                [showIcon]="false"
+                                [showOnFocus]="false"
+                                class="hidden-calendar"
+                                (onSelect)="formatDate1($event)"
+                              ></p-calendar>
+                            </td>
+                          </tr>
 
-                            <tr class="eds-pagerstyle dropdown" >
-                              <td align="right">
-                                Document Detail&nbsp; &nbsp;
-                              </td>
-                              <td align="left">
-                                <select
-                                  name="audit.popno"
-                                  class=""
-                                  id="detail"
-                                  [(ngModel)]="documentDetail"
+                          <tr class="eds-pagerstyle dropdown">
+                            <td align="right">Document Detail&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <select
+                                name="audit.popno"
+                                class=""
+                                id="detail"
+                                [(ngModel)]="documentDetail"
+                              >
+                                <option
+                                  *ngFor="let doc of documentDetailsList"
+                                  value="{{ doc?.value }}"
                                 >
-
-                                <option *ngFor="let doc of documentDetailsList" value={{doc?.value}}>{{doc?.label}}</option>
-                                  <!-- <option value="">&nbsp;</option>
+                                  {{ doc?.label }}
+                                </option>
+                                <!-- <option value="">&nbsp;</option>
 
                                   <option value="205473638">
                                     200804092 (CMM/IPL) - R4
@@ -140,154 +155,184 @@
                                   <option value="205473634">
                                     6015721 (CMM/IPL) - R1
                                   </option> -->
-                                </select>
-                              </td>
-                            </tr>
+                              </select>
+                            </td>
+                          </tr>
 
-                            <tr class="eds-pagerstyle-alt">
-                              <td align="right">
-                                Vendor Revision Nbr&nbsp; &nbsp;
-                              </td>
-                              <td align="left">
+                          <tr class="eds-pagerstyle-alt">
+                            <td align="right">
+                              Vendor Revision Nbr&nbsp; &nbsp;
+                            </td>
+                            <td align="left">
+                              <input
+                                type="text"
+                                name="audit.revisionNbr"
+                                class=""
+                                value=""
+                                size="45"
+                                maxlength="10"
+                                [(ngModel)]="revNmbr"
+                              />
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle">
+                            <td align="right">Vndr Rev Dt&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <input
+                                type="text"
+                                name="audit.revisionDate"
+                                class=""
+                                id="revisionDateId"
+                                value=""
+                                size="41"
+                                maxlength="10"
+                                autocomplete="off"
+                                [(ngModel)]="revDate"
+                              />
+
+                              <span
+                                ><img
+                                  onmouseover="this.style.cursor='hand'"
+                                  id="revisionDateId_date"
+                                  align="ABSMIDDLE"
+                                  src="assets/images/calendar.gif"
+                                  (click)="
+                                    calendar2.overlayVisible =
+                                      !calendar2.overlayVisible;
+                                    calendar2.inputfieldViewChild?.nativeElement.click()
+                                  "
+                              /></span>
+                              <p-calendar
+                                name="calendarDate"
+                                #calendar2
+                                [(ngModel)]="revDate"
+                                [showIcon]="false"
+                                [showOnFocus]="false"
+                                class="hidden-calendar"
+                                (onSelect)="formatDate2($event)"
+                              ></p-calendar>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle-alt">
+                            <td align="right">Follow Up Date&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <input
+                                type="text"
+                                name="audit.followUpDate"
+                                class=""
+                                id="followUpDateId"
+                                value=""
+                                size="41"
+                                maxlength="10"
+                                autocomplete="off"
+                                [(ngModel)]="followUpDate"
+                              />
+
+                              <span
+                                ><img
+                                  onmouseover="this.style.cursor='hand'"
+                                  id="followUpDateId_date"
+                                  align="ABSMIDDLE"
+                                  src="assets/images/calendar.gif"
+                                  (click)="
+                                    calendar3.overlayVisible =
+                                      !calendar3.overlayVisible;
+                                    calendar3.inputfieldViewChild?.nativeElement.click()
+                                  "
+                              /></span>
+                              <p-calendar
+                                name="calendarDate"
+                                #calendar3
+                                [(ngModel)]="followUpDate"
+                                [showIcon]="false"
+                                [showOnFocus]="false"
+                                class="hidden-calendar"
+                                (onSelect)="formatDate3($event)"
+                              ></p-calendar>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle dropdown">
+                            <td align="right">
+                              Follow Up Required?&nbsp; &nbsp;
+                            </td>
+                            <td align="left">
+                              <select
+                                name="audit.followUpCompleteInd"
+                                class=""
+                                [(ngModel)]="followUpCompleteInd"
+                              >
+                                <option value="Y">Yes</option>
+
+                                <option value="N">No</option>
+                              </select>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle-alt">
+                            <td align="right">Audit Notes&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <input
+                                type="text"
+                                name="audit.auditNotes"
+                                class=""
+                                value=""
+                                size="45"
+                                maxlength="200"
+                                [(ngModel)]="auditNotes"
+                              />
+                            </td>
+                          </tr>
+
+                          <tr
+                            class="eds-pagerstyle dropdown inline-table_dark_grey"
+                          >
+                            <td align="right">Audit Status&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <select
+                                name="audit.auditStatus"
+                                class=""
+                                [(ngModel)]="auditStatus"
+                              >
+                                <option value=""></option>
+
+                                <option value="NO AUDIT">NO AUDIT</option>
+
+                                <option value="OK">OK</option>
+
+                                <option value="PENDING">PENDING</option>
+                              </select>
+                            </td>
+                          </tr>
+
+                          <tr class="eds-pagerstyle-alt">
+                            <td colspan="2">
+                              <input
+                                type="hidden"
+                                name="submitType"
+                                value="add"
+                              />
+                              <span style="float: right">
                                 <input
-                                  type="text"
-                                  name="audit.revisionNbr"
-                                  class=""
-                                  value=""
-                                  size="45"
-                                  maxlength="10"
-                                  [(ngModel)]="revNmbr"
+                                  type="submit"
+                                  value="Save"
+                                  (click)="saveNewAudit()"
                                 />
-                              </td>
-                            </tr>
-
-                            <tr class="eds-pagerstyle">
-                              <td align="right">Vndr Rev Dt&nbsp; &nbsp;</td>
-                              <td align="left">
-                                <input
-                                  type="text"
-                                  name="audit.revisionDate"
-                                  class=""
-                                  id="revisionDateId"
-                                  value=""
-                                  size="41"
-                                  maxlength="10"
-                                  autocomplete="off"
-                                  [ngModel]="revDate | date: 'MM/dd/yyyy'"
-                                />
-
-                                <span
-                                  ><img
-                                    onmouseover="this.style.cursor='hand'"
-                                    id="revisionDateId_date"
-                                    align="ABSMIDDLE"
-                                    src="assets/images/calendar.gif"
-                                    (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild?.nativeElement.click()"
-                                /></span>
-                                <p-calendar name="calendarDate" #calendar2 [(ngModel)]="revDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
-                              </td>
-                            </tr>
-
-                            <tr class="eds-pagerstyle-alt">
-                              <td align="right">Follow Up Date&nbsp; &nbsp;</td>
-                              <td align="left">
-                                <input
-                                  type="text"
-                                  name="audit.followUpDate"
-                                  class=""
-                                  id="followUpDateId"
-                                  value=""
-                                  size="41"
-                                  maxlength="10"
-                                  autocomplete="off"
-                                  [ngModel]="followUpDate | date: 'MM/dd/yyyy'"
-                                />
-
-                                <span
-                                  ><img
-                                    onmouseover="this.style.cursor='hand'"
-                                    id="followUpDateId_date"
-                                    align="ABSMIDDLE"
-                                    src="assets/images/calendar.gif"
-                                    (click)="calendar3.overlayVisible = !calendar3.overlayVisible; calendar3.inputfieldViewChild?.nativeElement.click()"
-                                /></span>
-                                <p-calendar name="calendarDate" #calendar3 [(ngModel)]="followUpDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
-                              </td>
-                            </tr>
-
-                            <tr class="eds-pagerstyle dropdown">
-                              <td align="right">
-                                Follow Up Required?&nbsp; &nbsp;
-                              </td>
-                              <td align="left">
-                                <select
-                                  name="audit.followUpCompleteInd"
-                                  class=""
-                                  [(ngModel)]="followUpCompleteInd"
-                                >
-                                  <option value="Y">Yes</option>
-
-                                  <option value="N">No</option>
-                                </select>
-                              </td>
-                            </tr>
-
-                            <tr class="eds-pagerstyle-alt">
-                              <td align="right">Audit Notes&nbsp; &nbsp;</td>
-                              <td align="left">
-                                <input
-                                  type="text"
-                                  name="audit.auditNotes"
-                                  class=""
-                                  value=""
-                                  size="45"
-                                  maxlength="200"
-                                  [(ngModel)]="auditNotes"
-                                />
-                              </td>
-                            </tr>
-
-                            <tr
-                              class="eds-pagerstyle dropdown inline-table_dark_grey"                           
-                            >
-                              <td align="right">Audit Status&nbsp; &nbsp;</td>
-                              <td align="left">
-                                <select name="audit.auditStatus" class=""  [(ngModel)]="auditStatus">
-                                  <option value=""></option>
-
-                                  <option value="NO AUDIT">NO AUDIT</option>
-
-                                  <option value="OK">OK</option>
-
-                                  <option value="PENDING">PENDING</option>
-                                </select>
-                              </td>
-                            </tr>
-
-                            <tr class="eds-pagerstyle-alt">
-                              <td colspan="2">
-                                <input
-                                  type="hidden"
-                                  name="submitType"
-                                  value="add"
-                                />
-                                <span style="float: right">
-                                  <input type="submit" value="Save" (click)="saveNewAudit()" />
-                                </span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </form>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </td>
+                              </span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </form>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
 </tbody>

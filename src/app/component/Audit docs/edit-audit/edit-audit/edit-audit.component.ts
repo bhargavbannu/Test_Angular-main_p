@@ -21,14 +21,15 @@ export class EditAuditComponent {
   constructor(private apiService: ApiService, private router:Router, private datePipe:DatePipe){}
 
   ngOnInit() {
-    this.loadAuditData();    
+    this.loadAuditData();
   }
 
   loadAuditData() {
     this.apiService.viewAudit().subscribe((data) => {
       this.auditData = data;
-      console.log(this.auditData?.audit.followUpCompleteInd);
-      console.log(this.auditData?.audit.dodAuditCategory);
+      this.auditData.audit.auditDate = this.datePipe.transform(this.auditData.audit.auditDate, 'MM/dd/yyyy');    
+      this.auditData.audit.revisionDate = this.datePipe.transform(this.auditData.audit.revisionDate, 'MM/dd/yyyy');
+      this.auditData.audit.followUpDate = this.datePipe.transform(this.auditData.audit.followUpDate, 'MM/dd/yyyy');
       this.followUpCompleteInd = this.auditData?.audit.followUpCompleteInd
       if(this.followUpCompleteInd === 'Yes'){
         this.followUpCompleteInd = "Y"
@@ -40,9 +41,9 @@ export class EditAuditComponent {
   }
 
   saveAudit(){
-    this.auditData.audit.followUpDate = this.datePipe.transform(this.auditData?.audit?.followUpDate, 'MM/dd/yyyy HH:mm:ss');
-    this.auditData.audit.auditDate = this.datePipe.transform(this.auditData?.audit?.auditDate, 'MM/dd/yyyy HH:mm:ss');
-    this.auditData.audit.revisionDate = this.datePipe.transform(this.auditData?.audit?.revisionDate, 'MM/dd/yyyy HH:mm:ss');
+    let followUpDate = this.datePipe.transform(this.auditData?.audit?.followUpDate, 'MM/dd/yyyy HH:mm:ss');
+    let auditDate = this.datePipe.transform(this.auditData?.audit?.auditDate, 'MM/dd/yyyy HH:mm:ss');
+    let revisionDate = this.datePipe.transform(this.auditData?.audit?.revisionDate, 'MM/dd/yyyy HH:mm:ss');
     if(this.followUpCompleteInd === 'Yes'){
       this.followUpCompleteInd = 'Y'
     }
@@ -56,16 +57,28 @@ export class EditAuditComponent {
         "auditStatus": this.auditData.audit.auditStatus,
         "auditId":this.auditData.audit.auditId,
         "popno":this.auditData.audit.popno,
-        "auditDate": this.auditData.audit.auditDate,
+        "auditDate": auditDate,
         "followUpCompleteInd": this.followUpCompleteInd,
-        "followUpDate": this.auditData.audit.followUpDate,
+        "followUpDate": followUpDate,
         "revisionNbr": this.auditData.audit.revisionNbr,
-        "revisionDate": this.auditData.audit.revisionDate,
+        "revisionDate": revisionDate,
         "auditNotes": this.auditData.audit.auditNotes     
       }
     }
     this.apiService.saveExistingAudit(payload).subscribe((res)=>{
       this.router.navigate(["/viewAudit", {auditSaved:true}])
     })
+  }
+
+    formatDate1(date: Date) {
+    this.auditData.audit.auditDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
+    formatDate2(date: Date) {
+    this.auditData.audit.revisionDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
+    formatDate3(date: Date) {
+    this.auditData.audit.followUpDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 }

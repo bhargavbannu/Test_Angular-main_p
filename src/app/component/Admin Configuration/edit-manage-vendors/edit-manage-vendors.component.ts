@@ -18,6 +18,7 @@ export class EditManageVendorsComponent {
   email: any;
   dropdownValues:any[]=[]
   subb = new Subject();
+  vendorid: any;
   constructor(private apiService: ApiService, private router:Router, private appservice:ApiService, private route: ActivatedRoute) {}
 
     ngOnInit() {
@@ -31,16 +32,24 @@ export class EditManageVendorsComponent {
         )
         .subscribe((res: any) => {
           this.dropdownValues = res;
+          this.apiService.getVendorId(this.vendorName).subscribe((result:any)=>{
+      if(result){
+        this.vendorid = result.vendor.vendorid;
+      }});
         });
         this.route.params.subscribe(params => {
           this.vendorName = params['vendorVal'];
         })
-  
+      this.apiService.getVendorId(this.vendorName).subscribe((res:any)=>{
+      if(res){
+        this.vendorid = res.vendor.vendorid;
+      }});
     }
 
   save() {
-    const payload = {
+      const payload = {
       vendor: {
+        vendorId: this.vendorid,
         vendorNm: this.vendorName,
         vendorWebsite: this.vendorWebsite,
         remarks: this.remarks,
@@ -54,6 +63,15 @@ export class EditManageVendorsComponent {
         this.router.navigate(['/Manage-Vendors', {vendorSaved:true}])
       }
     });
+
+    this.apiService.savevendor(payload).subscribe((res:any)=>{
+      if(res){
+        this.router.navigate(['/Manage-Vendors', {vendorSaved:true}])
+      }
+    });
+    
+  
+
   }
 
   tettt(val: any) {
@@ -73,17 +91,19 @@ export class EditManageVendorsComponent {
   }
 
   deleteVendor(){
-    console.log(this.vendorName);
+    // console.log(this.vendorName);
     
-    const payload = {
-      vendor: {
-        vendorNm: this.vendorName,
-      
-      },
-    };
-    this.apiService.deleteVendorEditApi(payload).subscribe((res:any)=>{
+    // const payload = {
+    //   vendor: {
+//         vendorNm: this.vendorName,
+// /      
+//       },
+//     };
+    this.apiService.getVendorId(this.vendorName).subscribe((res:any)=>{
       if(res){
+        this.apiService.deleteVendor(res.vendor.vendorid).subscribe((res:any)=>{
         this.router.navigate(['/Manage-Vendors', {vendorDeleted:true}])
+        });
       }
     });
   }

@@ -1,5 +1,4 @@
 <td align="left">
- 
   <a routerLink="/viewStatus">Back to Document</a>
   <br /><br />
 
@@ -81,7 +80,9 @@
                                 value=""
                                 readonly="readonly"
                                 size="45"
-                                [(ngModel)]="docDetails?.document.vendor.vendorNm"
+                                [(ngModel)]="
+                                  docDetails?.document.vendor.vendorNm
+                                "
                               />
                             </td>
                           </tr>
@@ -120,16 +121,18 @@
                               Detail Document Type&nbsp; &nbsp;
                             </td>
                             <td align="left">
-                              <select name="detail.detailDocType" class="" [(ngModel)]="docDetails?.detail.detailDocType">
+                              <select
+                                name="detail.detailDocType"
+                                class=""
+                                [(ngModel)]="docDetails?.detail.detailDocType"
+                              >
                                 <option value=""></option>
 
                                 <option value="AA SB">AA SB</option>
 
                                 <option value="ACMM">ACMM</option>
 
-                                <option value="ACMM/IPL">
-                                  ACMM/IPL
-                                </option>
+                                <option value="ACMM/IPL">ACMM/IPL</option>
 
                                 <option value="AIPC">AIPC</option>
 
@@ -384,7 +387,9 @@
                                 value=""
                                 size="45"
                                 maxlength="25"
-                                [(ngModel)]="docDetails?.detail.detailSubjectDesc"
+                                [(ngModel)]="
+                                  docDetails?.detail.detailSubjectDesc
+                                "
                               />
                             </td>
                           </tr>
@@ -400,7 +405,9 @@
                                 value=""
                                 size="41"
                                 autocomplete="off"
-                                [ngModel]="docDetails?.detail.manualdate | date: 'MM/dd/yyyy'"
+                                [(ngModel)]="
+                                  docDetails?.detail.manualdate
+                                "
                               />
 
                               <span
@@ -409,20 +416,33 @@
                                   id="manualDate_date"
                                   align="ABSMIDDLE"
                                   src="assets/images/calendar.gif"
-                                  (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
+                                  (click)="
+                                    calendar1.overlayVisible =
+                                      !calendar1.overlayVisible;
+                                    calendar1.inputfieldViewChild?.nativeElement.click()
+                                  "
                               /></span>
-                              <p-calendar name="calendarDate" #calendar1  [(ngModel)]="docDetails?.detail.manualdate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                              <p-calendar
+                                name="calendarDate"
+                                #calendar1
+                                [(ngModel)]="docDetails?.detail.manualdate"
+                                [showIcon]="false"
+                                [showOnFocus]="false"
+                                class="hidden-calendar"
+                                 (onSelect)="formatDate1($event)"
+                              ></p-calendar>
                             </td>
                           </tr>
 
                           <tr class="eds-pagerstyle dropdown">
                             <td align="right">Case Class&nbsp; &nbsp;</td>
                             <td align="left">
-                              <select name="detail.popClass" class="" [(ngModel)]="docDetails?.detail.popClass">
-                                <option value="REGULAR">
-                                  REGULAR
-                                </option>
+                              <select
+                                name="detail.popClass"
+                                class=""
+                                [(ngModel)]="docDetails?.detail.popClass"
+                              >
+                                <option value="REGULAR">REGULAR</option>
 
                                 <option value="ALERT">ALERT</option>
 
@@ -446,9 +466,7 @@
                               >
                                 <option value="PAPER">PAPER</option>
 
-                                <option value="ONLINE">
-                                  ONLINE
-                                </option>
+                                <option value="ONLINE">ONLINE</option>
 
                                 <option value="EMAIL">EMAIL</option>
 
@@ -493,7 +511,7 @@
                                 <input
                                   type="button"
                                   value="Delete"
-                                  (click)="deleteDetail();"
+                                  (click)="deleteDetail()"
                                 />
                               </span>
                               <span style="float: right">

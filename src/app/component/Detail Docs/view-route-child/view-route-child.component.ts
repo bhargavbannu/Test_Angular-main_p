@@ -85,7 +85,8 @@ test(){
     this.selectedEsoNumberArr = this.viewRoute.route.esos;
     this.selectedEcoNumber = this.viewRoute.route.ecos;
     this.selectedEcoNumberArr = this.viewRoute.route.ecos;
-         
+    this.viewRoute.route.closedate = this.datePipe.transform(this.viewRoute?.route?.closedate, 'MM/dd/yyyy');
+
   });
 }
   routee() {
@@ -154,12 +155,10 @@ test(){
 
   save() {
 
-    if(this.viewRoute.route.closedate !== null && this.viewRoute.route.closedate !== undefined) {
-      this.viewRoute.route.closedate= this.datePipe.transform(
-        this.viewRoute.route.closedate,
+      let closedate= this.datePipe.transform(
+        this.viewRoute?.route?.closedate,
         'MM/dd/yyyy HH:mm:ss'
-      );
-    }
+       );
 
     this.edit = true;
    
@@ -174,7 +173,7 @@ test(){
         "section": this.viewRoute.route.section,
         "routeDate": this.viewRoute.route.routeDate,
         "disposition": this.viewRoute.route.disposition,
-        "closedate": this.viewRoute.route.closedate,
+        "closedate": closedate,
         "remark": this.viewRoute.route.remark,
         "esos": this.viewRoute.route.esos,
         "ecos":this.viewRoute.route.ecos,
@@ -213,6 +212,14 @@ test(){
   viewEso(eso:any){
     this.apiService.eso = eso;
     this.router.navigate(['/view-eso', { fromViewRoute: true }]);
+  }
+
+  deleteRoute(){
+    
+  }
+
+    formatDate1(date: Date) {
+    this.viewRoute.route.closedate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 
 }

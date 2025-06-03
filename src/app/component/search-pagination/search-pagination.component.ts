@@ -4,6 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
+import { DatePipe } from '@angular/common';
+
 
 export interface PeriodicElement {
   id_no: string;
@@ -48,6 +50,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   selector: 'app-search-pagination',
   templateUrl: './search-pagination.component.html',
   styleUrls: ['./search-pagination.component.css'],
+  providers: [DatePipe],
+
 })
 export class SearchPaginationComponent {
 
@@ -217,31 +221,45 @@ documentSubject: any;
   searchEffetivity: any;
 @ViewChild('childForm') childForm!: NgForm
 
-  constructor(private apiService:ApiService) {}
+  constructor(private apiService:ApiService, private datePipe: DatePipe) {}
 
   ngOnInit(){
     const formData = this.apiService.getFormData();
     if (formData) {
-      this.vdtId = formData.vdtId,
-      this.selectedEffectivity = formData.selectedEffectivity,
-      this.subject = formData.subject,
-      this.bin = formData.bin,
-      this.selectedSection = formData.selectedSection,
-      this.manualStartDate = formData.manualStartDate,
-      this.manualEndDate = formData.manualEndDate,
-      this.reissueStartDate = formData.reissueStartDate,
-      this.reissueEndDate = formData.reissueEndDate,
-      this.documentSubject = formData.documentSubject
+      this.vdtId = formData.vdtId;
+      this.selectedEffectivity = formData.selectedEffectivity;
+      this.subject = formData.subject;
+      this.bin = formData.bin;
+      this.selectedSection = formData.selectedSection;
+      this.manualStartDate = formData.manualStartDate;
+      this.manualEndDate = formData.manualEndDate;
+      this.reissueStartDate = formData.reissueStartDate;
+      this.reissueEndDate = formData.reissueEndDate;
+      this.documentSubject = formData.documentSubject;
+      this.manualStartDate = this.datePipe.transform(
+        this.manualStartDate,
+        'MM/dd/yyyy'
+      );
+      this.manualEndDate = this.datePipe.transform(
+        this.manualEndDate,
+        'MM/dd/yyyy'
+      );
+      this.reissueStartDate = this.datePipe.transform(
+        this.reissueStartDate,
+        'MM/dd/yyyy'
+      );
+      this.reissueEndDate = this.datePipe.transform(
+        this.reissueEndDate,
+        'MM/dd/yyyy'
+      );
     }
 
       this.apiService.getsearchDocAllSections().subscribe((data) => {
       this.searchDocAllSections = data;
-      console.log(this.searchDocAllSections);
     });
 
     this.apiService.getSearchEffetivity().subscribe((data) => {
       this.searchEffetivity = data;
-      console.log(this.searchEffetivity);
     });
   }
 
@@ -252,4 +270,20 @@ documentSubject: any;
   clearFields(){
     this.childForm.resetForm();
   }
+
+  formatDate1(date: Date) {
+    this.manualStartDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
+  formatDate2(date: Date) {
+    this.manualEndDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
+  formatDate3(date: Date) {
+    this.reissueStartDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
+  formatDate4(date: Date) {
+    this.reissueEndDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }  
 }

@@ -24,4 +24,7 @@ export class ViewAllAuditsComponent {
   viewAudit(id: any) {
     this.apiService.viewAuditId = id;
   }
+  editAudit(id:any){
+   this.apiService.viewAuditId = id;
+  }
 }

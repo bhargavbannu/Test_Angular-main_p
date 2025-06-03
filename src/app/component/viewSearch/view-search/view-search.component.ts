@@ -31,13 +31,11 @@ export class ViewSearchComponent {
     this.searchType = this.apiService.searchType;
        this.apiService.getSearchEffetivity().subscribe((data) => {
       this.searchEffetivity = data;
-      console.log(this.searchEffetivity);
     });
   }
 
   viewDocuments() {
     this.apiService.viewDocuments().subscribe((data) => {
-      console.log(data);     
       this.loading = false;
       this.documentsDetails = data;
       this.documentsDetails.document.reissueDate 
@@ -47,7 +45,6 @@ export class ViewSearchComponent {
         else {
           this.documentsDetails.document.reissueDate = "";
         }
-      console.log(data);      
     })
   }
 
@@ -75,7 +72,7 @@ export class ViewSearchComponent {
   }
 
   deleteFormerVendor(){
-    this.apiService.deleteFormerVendor()
+    this.apiService.deleteFormerVendor().subscribe();
   }
 
   viewRoute(arg0: any) {

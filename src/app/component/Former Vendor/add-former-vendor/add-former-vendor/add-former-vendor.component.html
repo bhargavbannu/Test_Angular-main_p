@@ -98,7 +98,7 @@
                               size="10"
                               maxlength="10"
                               autocomplete="off"
-                              [ngModel]="supercedeDate | date : 'MM/dd/yyyy'"
+                              [(ngModel)]="supercedeDate"
                             />
 
                             <span
@@ -120,6 +120,7 @@
                               [showIcon]="false"
                               [showOnFocus]="false"
                               class="hidden-calendar"
+                              (onSelect)="formatDate1($event)"
                             ></p-calendar>
                           </td>
                         </tr>

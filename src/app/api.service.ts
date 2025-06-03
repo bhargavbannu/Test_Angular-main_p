@@ -91,7 +91,7 @@ export class ApiService {
   private saveEditDetailApi = `${environment.apiBaseUrl}/detail/saveDetail`
   private deleteDetailApi = `${environment.apiBaseUrl}/detail/deleteDetail`
   private saveFormerVendorApi =`${environment.apiBaseUrl}/formerVendor/createSupercededVendorDetails`
-  private deleteFormerVendorApi =`${environment.apiBaseUrl}/formerVendor/deleteFormerVendorDetails`
+  private deleteFormerVendorApi =`${environment.apiBaseUrl}/formerVendor/deleteFormerVendor`
   private saveNewAuditApi =`${environment.apiBaseUrl}/audit/saveNewAudit`
   private saveExistingAuditApi =`${environment.apiBaseUrl}/audit/saveExistingAudit`
   private viewEsoApi =`${environment.apiBaseUrl}/eso/viewESO`
@@ -110,13 +110,15 @@ export class ApiService {
   private deleteDocumentApi = `${environment.apiBaseUrl}/addDocument/deleteDocument`
   private documentDetailsApi = `${environment.apiBaseUrl}/audit/getDocumentDetails`
   private deleteVendorApi = `${environment.apiBaseUrl}/adminConfiguration/deleteVendor`
-  private deleteVendorEdit = `${environment.apiBaseUrl}/adminConfiguration/getVendor?vendorName`
+  private getVendorIdApi = `${environment.apiBaseUrl}/adminConfiguration/getVendor?vendorName`
   private searchDetailDocTypeApi = `${environment.apiBaseUrl}/adminConfiguration/allDetailDocTypes`;
   private documentSectionApi = `${environment.apiBaseUrl}/adminConfiguration/addDocumentGetSections`;
   private searchEffectivityApi = `${environment.apiBaseUrl}/adminConfiguration/activeEffectivities`;
   private searchDocAllSectionsApi = `${environment.apiBaseUrl}/adminConfiguration/allSections`;
+  private addDocvendorDetailsApi = `${environment.apiBaseUrl}/adminConfiguration/selectVendor`;
 
-detailRoute:any
+
+  detailRoute:any
   viewDocId: any;
   viewAuditId: any;
 
@@ -152,8 +154,8 @@ saveExistingRouteView(viewRoute:any, payload:any){
   return this.http.post<any>(`${this.saveExistingRouteApi}?routeId=${viewRoute}`, payload)
 }
 
-deleteVendorEditApi(VenName:any){
-  return this.http.delete<any>(`${this.deleteVendorEdit}=${VenName}`)
+getVendorId(VenName:any){
+  return this.http.get<any>(`${this.getVendorIdApi}=${VenName}`);
 }
 
  viewRouteDetailApi(id:any){
@@ -179,8 +181,6 @@ deleteVendorEditApi(VenName:any){
   }
   
   getAutoPopulateVendors(id: any): Observable<any> {
-    console.log('test');
-
     return this.http.get<any>(
       `${this.manageVendoeAutoPopulate}?sourceElement=${id}`
     );
@@ -225,6 +225,10 @@ esoNumbersApiData(val:any):Observable<any>{
 
   addDocument(payload: any): Observable<any> {
     return this.http.post<any>(this.addDocumentApi, payload);
+  }
+
+  addDocvendorDetails(payload: any): Observable<any> {
+    return this.http.post<any>(this.addDocvendorDetailsApi, payload);
   }
 
   getAuditStatuses(): Observable<any> {
@@ -330,7 +334,7 @@ esoNumbersApiData(val:any):Observable<any>{
   }
 
   deleteVendor(id: any): Observable<any> {
-    return this.http.delete<any>(`${this.deleteManageSectionsApi}/${id}`);
+    return this.http.delete<any>(`${this.deleteVendorApi}/${id}`);
   }
 
   saveDocumentCategory(
@@ -425,12 +429,12 @@ esoNumbersApiData(val:any):Observable<any>{
     esoMinSeqNbr: string,
     esoMaxSeqNbr: string,
     esoCurrSeqNbr: any,
-
     inactiveInd: any
   ): Observable<any> {
+    let effectivityDto = null;
     return this.http.post<any>(this.saveEffectivityApi, {
       effectivityId,
-      effectivityFleet: { esoMinSeqNbr, esoMaxSeqNbr, esoCurrSeqNbr },
+      effectivityFleet: { effectivityId, effectivityDto, esoMinSeqNbr, esoMaxSeqNbr, esoCurrSeqNbr },
       inactiveInd,
     });
   }
@@ -501,8 +505,8 @@ esoNumbersApiData(val:any):Observable<any>{
     return this.http.post<any>(this.saveFormerVendorApi,payload)
   }
 
-  deleteFormerVendor(): Observable<any> {
-    return this.http.delete<any>(this.deleteFormerVendorApi);
+  deleteFormerVendor() {
+    return this.http.delete<any>(this.deleteFormerVendorApi);    
   }
 
   saveNewAudit(payload:any){

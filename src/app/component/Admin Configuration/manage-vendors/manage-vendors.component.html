@@ -24,8 +24,13 @@
 <div *ngIf="vendError" class="errMsg">FAILED: Vendor Name * is required.</div>
 <!-- <div *ngIf="vendError" class="errMsg">FAILED: The specified vendor does not exist.</div> -->
 
-<div *ngIf="vendorSaved" class="savedDoc">SUCCESS: vendor saved successfully.</div>
+<div *ngIf="vendorSaved" class="savedDoc">
+  SUCCESS: vendor saved successfully.
+</div>
 
+<div *ngIf="vendorDeleted" class="savedDoc">
+  SUCCESS: vendor deleted successfully.
+</div>
 
 <div *ngIf="!isEditVendor">
   <td valign="top" align="left">
@@ -153,7 +158,10 @@
                                             type="submit"
                                             value="Edit/Create"
                                             (click)="this.isEditVendor = true"
-                                            [routerLink]="['/edit-manage-vendors',{vendorVal: vendorName}]"
+                                            [routerLink]="[
+                                              '/edit-manage-vendors',
+                                              { vendorVal: vendorName }
+                                            ]"
                                           />
                                         </span>
                                         <span style="float: right">
@@ -209,7 +217,6 @@
         <tr>
           <td align="left">
             <!-- CONTENT -->
-
 
             <table cellspacing="0" cellpadding="0" border="0">
               <tbody>
@@ -371,7 +378,7 @@
                                         <input
                                           type="button"
                                           value="Delete"
-                                          (click)="deleteVendor();"
+                                          (click)="deleteVendor()"
                                         />
                                       </span>
                                     </td>
@@ -393,7 +400,7 @@
     </table>
   </td>
 </div>
-<div *ngIf="superced" style="margin-top: 15px;">
+<div *ngIf="superced" style="margin-top: 15px">
   <td valign="top" align="left">
     <table border="0" cellspacing="0" cellpadding="0" width="100%">
       <!-- ERRORS -->
@@ -530,7 +537,7 @@
                                         size="10"
                                         maxlength="10"
                                         autocomplete="off"
-                                        [ngModel]="this.supercedDate | date: 'MM/dd/yyyy'"
+                                        [(ngModel)]="supercedDate"
                                       />
 
                                       <span
@@ -539,12 +546,21 @@
                                           id="supercededdt_date"
                                           align="ABSMIDDLE"
                                           src="assets/images/calendar.gif"
-                                          (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
+                                          (click)="
+                                            calendar1.overlayVisible =
+                                              !calendar1.overlayVisible;
+                                            calendar1.inputfieldViewChild?.nativeElement.click()
+                                          "
                                       /></span>
-                                      <p-calendar name="calendarDate" #calendar1 [(ngModel)]="this.supercedDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-                                      <script>
-                                        setupCal("supercededdt");
-                                      </script>
+                                      <p-calendar
+                                        name="calendarDate"
+                                        #calendar1
+                                        [(ngModel)]="supercedDate"
+                                        [showIcon]="false"
+                                        [showOnFocus]="false"
+                                        class="hidden-calendar"
+                                        (onSelect)="formatDate1($event)"
+                                      ></p-calendar>
                                     </td>
                                   </tr>
 

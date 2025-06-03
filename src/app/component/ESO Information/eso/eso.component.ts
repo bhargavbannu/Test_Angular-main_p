@@ -39,12 +39,12 @@ export class EsoComponent {
   }
 
   submitESO() {
-    this.assigndate = this.datePipe.transform(
+    let assigndate = this.datePipe.transform(
       this.assigndate,
       'MM/dd/yyyy HH:mm:ss'
     );
 
-    this.cancelDate = this.datePipe.transform(
+    let cancelDate = this.datePipe.transform(
       this.cancelDate,
       'MM/dd/yyyy HH:mm:ss'
     );
@@ -54,11 +54,11 @@ export class EsoComponent {
       eso: {
         effectivityId: this.effectivityId,
         eso: this.esoNo,
-        assigndate: this.assigndate,
+        assigndate: assigndate,
         subject: this.subject,
         engineer: this.engineer,
         remark: this.remarks,
-        cancelDate: this.cancelDate,
+        cancelDate: cancelDate,
         status: this.status,
       },
     };
@@ -83,5 +83,13 @@ export class EsoComponent {
     else {
       this.esoNo = ""
     }
+  }
+
+    formatDate1(date: Date) {
+    this.assigndate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
+    formatDate2(date: Date) {
+    this.cancelDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 }

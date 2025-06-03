@@ -5,11 +5,15 @@ import { setLines } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { SearchPaginationComponent } from '../search-pagination/search-pagination.component';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
+  providers: [DatePipe],
+
 })
 export class SearchComponent {
 
@@ -169,7 +173,8 @@ loadingDownload: boolean = false;
     private router: Router,
     private apiService: ApiService,
     private cdr : ChangeDetectorRef,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private datePipe: DatePipe
   ) {
   }
   // "28796727"
@@ -199,23 +204,18 @@ loadingDownload: boolean = false;
     });
     this.apiService.getEccnNumbers().subscribe((data) => {
       this.EccnNumbers = data;
-      console.log(this.EccnNumbers);    
     });
         this.apiService.getDetaildocType().subscribe((data) => {
       this.searchDetailDocType = data;
-      console.log(this.searchDetailDocType);
     });
     this.apiService.getSearchEffetivity().subscribe((data) => {
       this.searchEffetivity = data;
-      console.log(this.searchEffetivity);
     });
    // this.router.navigateByUrl('/search');
   }
   ngAfterViewInit() {
     const formData = this.apiService.getFormData();
-    if (formData && !this.docDeleted) {
-      console.log(formData);
-      
+    if (formData && !this.docDeleted) {      
       this.vendorName = formData.vendorName;
       this.checkBoxValue = formData.checkBoxValue;
       this.detailDocType = formData.detailDocType, 
@@ -260,6 +260,22 @@ loadingDownload: boolean = false;
     this.loading = true;
     this.start = (this.currentPage - 1) * this.recordsPerPage;
     this.size = this.recordsPerPage;
+     let manualStartDate = this.datePipe.transform(
+      this.searchPagination?.manualStartDate,
+      'yyyy-MM-ddTHH:mm:ss'
+    );
+    let manualEndDate = this.datePipe.transform(
+      this.searchPagination?.manualEndDate,
+      'yyyy-MM-ddTHH:mm:ss'
+    );
+    let reissueStartDate = this.datePipe.transform(
+      this.searchPagination?.reissueStartDate,
+      'yyyy-MM-ddTHH:mm:ss'
+    );
+    let reissueEndDate = this.datePipe.transform(
+      this.searchPagination?.reissueEndDate,
+      'yyyy-MM-ddTHH:mm:ss'
+    );
     const payload = {
       vendorName: this.vendorName,
       currentVendorOnly: this.checkBoxValue,
@@ -275,10 +291,10 @@ loadingDownload: boolean = false;
       subject: this.searchPagination?.subject,
       bin: this.searchPagination?.bin,
       section:this.searchPagination?.selectedSection,
-      manualStartDate: this.searchPagination?.manualStartDate,
-      manualEndDate: this.searchPagination?.manualEndDate,
-      reissueStartDate: this.searchPagination?.reissueStartDate,
-      reissueEndDate: this.searchPagination?.reissueEndDate,
+      manualStartDate: manualStartDate,
+      manualEndDate: manualEndDate,
+      reissueStartDate: reissueStartDate,
+      reissueEndDate: reissueEndDate,
       documentSubject: this.searchPagination?.documentSubject,
       itar: this.ITAR,
       eccnNumber: this.eccnNum,
@@ -289,9 +305,7 @@ loadingDownload: boolean = false;
     this.downloadPayload = payload;
     this.apiService
       .postData(payload, this.start / this.size + 1, this.size)
-      .subscribe((data) => {
-        console.log(payload);
-        
+      .subscribe((data) => {        
         this.apiData = [...data.results];
         // this.totalCount = data.totalCount;
         // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
@@ -332,8 +346,6 @@ loadingDownload: boolean = false;
 
   goToPage(page: any) {
     this.currentPage = page;
-    console.log(this.currentPage);
-
     this.Search();
   }
 

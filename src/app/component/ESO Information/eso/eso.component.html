@@ -25,19 +25,19 @@
                 <td id="emptyRow" style="display: none">&nbsp;</td>
               </tr>
             </div>
-            <div *ngIf="showErr" class="errMsg"> FAILED: ESO Number * is required.</div>
-          
+            <div *ngIf="showErr" class="errMsg">
+              FAILED: ESO Number * is required.
+            </div>
+
             <div>
               <a *ngIf="fromEditEso" routerLink="/View-Edit-ESO">
                 Back to Enter/Select ESO
-                </a
-                >
+              </a>
               <tr>
                 <td align="left">
                   <!-- CONTENT -->
                   <a href=""></a>
                   <br />
-                 
 
                   <table cellspacing="0" cellpadding="0" border="0">
                     <tbody>
@@ -107,7 +107,9 @@
                                               class=""
                                               id="effectivityStyleId"
                                               [(ngModel)]="this.effectivityId"
-                                              (ngModelChange)="getEsoNumber(this.effectivityId)"
+                                              (ngModelChange)="
+                                                getEsoNumber(this.effectivityId)
+                                              "
                                             >
                                               <option value="new">
                                                 Enter Custom ESO Number
@@ -173,7 +175,9 @@
                                               size="41"
                                               maxlength="10"
                                               autocomplete="off"
-                                              [ngModel]="this.assigndate | date: 'MM/dd/yyyy'"
+                                              [(ngModel)]="
+                                                assigndate
+                                              "
                                             />
 
                                             <span
@@ -182,10 +186,21 @@
                                                 id="assignDateId_date"
                                                 align="ABSMIDDLE"
                                                 src="assets/images/calendar.gif"
-                                                (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
+                                                (click)="
+                                                  calendar1.overlayVisible =
+                                                    !calendar1.overlayVisible;
+                                                  calendar1.inputfieldViewChild?.nativeElement.click()
+                                                "
                                             /></span>
-                                            <p-calendar name="calendarDate" #calendar1  [(ngModel)]="this.assigndate"  [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                                            <p-calendar
+                                              name="calendarDate"
+                                              #calendar1
+                                              [(ngModel)]="assigndate"
+                                              [showIcon]="false"
+                                              [showOnFocus]="false"
+                                              class="hidden-calendar"
+                                               (onSelect)="formatDate1($event)"
+                                            ></p-calendar>
                                           </td>
                                         </tr>
 
@@ -254,7 +269,9 @@
                                               size="41"
                                               maxlength="10"
                                               autocomplete="off"
-                                              [ngModel]="this.cancelDate | date: 'MM/dd/yyyy'"
+                                              [(ngModel)]="
+                                                cancelDate
+                                              "
                                             />
 
                                             <span
@@ -263,10 +280,21 @@
                                                 id="cancelDateId_date"
                                                 align="ABSMIDDLE"
                                                 src="assets/images/calendar.gif"
-                                                (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild?.nativeElement.click()"
+                                                (click)="
+                                                  calendar2.overlayVisible =
+                                                    !calendar2.overlayVisible;
+                                                  calendar2.inputfieldViewChild?.nativeElement.click()
+                                                "
                                             /></span>
-                                            <p-calendar name="calendarDate" #calendar2  [(ngModel)]="this.cancelDate"  [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                                            <p-calendar
+                                              name="calendarDate"
+                                              #calendar2
+                                              [(ngModel)]="cancelDate"
+                                              [showIcon]="false"
+                                              [showOnFocus]="false"
+                                              class="hidden-calendar"
+                                              (onSelect)="formatDate2($event)"
+                                            ></p-calendar>
                                           </td>
                                         </tr>
                                         <tr class="eds-pagerstyle dropdown">
@@ -274,7 +302,11 @@
                                             Status&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
-                                            <select name="eso.status" [(ngModel)]="this.status" class="">
+                                            <select
+                                              name="eso.status"
+                                              [(ngModel)]="this.status"
+                                              class=""
+                                            >
                                               <option value="A">Active</option>
                                               <option value="C">
                                                 Inactive

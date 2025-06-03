@@ -1,7 +1,6 @@
 <td align="left">
   <!-- CONTENT -->
 
-
   <a routerLink="/viewStatus">Back to Document</a>
   <br /><br />
 
@@ -42,10 +41,7 @@
             <tbody>
               <tr>
                 <td>
-                  <form
-                    name="AuditForm"
-                    id="auditFormId"
-                  >
+                  <form name="AuditForm" id="auditFormId">
                     <table width="100%">
                       <tbody>
                         <tr style="height: 1px">
@@ -53,10 +49,14 @@
                           <td width="250"></td>
                         </tr>
 
-                        <tr class="eds-pagerstyle dropdown" >
+                        <tr class="eds-pagerstyle dropdown">
                           <td align="right">Audit Category&nbsp; &nbsp;</td>
                           <td align="left">
-                            <select name="audit.dodAuditCategory" class="" [(ngModel)]="auditData?.audit.dodAuditCategory">
+                            <select
+                              name="audit.dodAuditCategory"
+                              class=""
+                              [(ngModel)]="auditData?.audit.dodAuditCategory"
+                            >
                               <option value="A">A</option>
 
                               <option value="B">B</option>
@@ -68,9 +68,7 @@
                           </td>
                         </tr>
 
-                        <tr
-                          class="eds-pagerstyle-alt eds-field-required"
-                        >
+                        <tr class="eds-pagerstyle-alt eds-field-required">
                           <td align="right">Audit Date *&nbsp; &nbsp;</td>
                           <td align="left">
                             <input
@@ -80,7 +78,7 @@
                               value=""
                               size="41"
                               autocomplete="off"
-                              [ngModel]="auditData?.audit.auditDate | date:'MM/dd/yyyy'"
+                              [(ngModel)]="auditData?.audit.auditDate"
                             />
 
                             <span
@@ -89,25 +87,37 @@
                                 id="auditDateId_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
-                                (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
+                                (click)="
+                                  calendar1.overlayVisible =
+                                    !calendar1.overlayVisible;
+                                  calendar1.inputfieldViewChild?.nativeElement.click()
+                                "
                             /></span>
-                            <p-calendar name="calendarDate" #calendar1 [showIcon]="false" [(ngModel)]="auditData?.audit.auditDate"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                            <p-calendar
+                              name="calendarDate"
+                              #calendar1
+                              [showIcon]="false"
+                              [(ngModel)]="auditData?.audit.auditDate"
+                              [showOnFocus]="false"
+                              class="hidden-calendar"
+                              (onSelect)="formatDate1($event)"
+                            ></p-calendar>
                           </td>
                         </tr>
 
-                        <tr class="eds-pagerstyle dropdown" >
+                        <tr class="eds-pagerstyle dropdown">
                           <td align="right">Document Detail&nbsp; &nbsp;</td>
                           <td align="left">
                             <select
                               name="audit.popno"
                               class=""
                               [(ngModel)]="auditData?.audit.popno"
-                              
                             >
-                              <option [value]="auditData?.audit.popno">{{auditData?.audit.popno}}</option>
+                              <option [value]="auditData?.audit.popno">
+                                {{ auditData?.audit.popno }}
+                              </option>
 
-                               <!--<option value="200804092 (CMM/IPL) - R4">
+                              <!--<option value="200804092 (CMM/IPL) - R4">
                                 200804092 (CMM/IPL) - R4
                               </option>
 
@@ -130,7 +140,7 @@
                           </td>
                         </tr>
 
-                        <tr class="eds-pagerstyle-alt" >
+                        <tr class="eds-pagerstyle-alt">
                           <td align="right">
                             Vendor Revision Nbr&nbsp; &nbsp;
                           </td>
@@ -147,7 +157,7 @@
                           </td>
                         </tr>
 
-                        <tr class="eds-pagerstyle" >
+                        <tr class="eds-pagerstyle">
                           <td align="right">Vndr Rev Dt&nbsp; &nbsp;</td>
                           <td align="left">
                             <input
@@ -158,7 +168,8 @@
                               size="41"
                               maxlength="10"
                               autocomplete="off"
-                              [ngModel]="auditData?.audit.revisionDate | date:'MM/dd/yyyy'"
+                              [(ngModel)]="
+                                auditData?.audit.revisionDate"
                             />
 
                             <span
@@ -167,14 +178,25 @@
                                 id="revisionDateId_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
-                                (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild?.nativeElement.click()"
+                                (click)="
+                                  calendar2.overlayVisible =
+                                    !calendar2.overlayVisible;
+                                  calendar2.inputfieldViewChild?.nativeElement.click()
+                                "
                             /></span>
-                            <p-calendar name="calendarDate" #calendar2 [showIcon]="false" [(ngModel)]="auditData?.audit.revisionDate"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                            <p-calendar
+                              name="calendarDate"
+                              #calendar2
+                              [showIcon]="false"
+                              [(ngModel)]="auditData?.audit.revisionDate"
+                              [showOnFocus]="false"
+                              class="hidden-calendar"
+                              (onSelect)="formatDate2($event)"
+                            ></p-calendar>
                           </td>
                         </tr>
 
-                        <tr class="eds-pagerstyle-alt" >
+                        <tr class="eds-pagerstyle-alt">
                           <td align="right">Follow Up Date&nbsp; &nbsp;</td>
                           <td align="left">
                             <input
@@ -185,7 +207,9 @@
                               size="41"
                               maxlength="10"
                               autocomplete="off"
-                              [ngModel]="auditData?.audit.followUpDate | date:'MM/dd/yyyy'"
+                              [(ngModel)]="
+                                auditData?.audit.followUpDate
+                              "
                             />
 
                             <span
@@ -194,26 +218,41 @@
                                 id="followUpDateId_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
-                                (click)="calendar3.overlayVisible = !calendar3.overlayVisible; calendar3.inputfieldViewChild?.nativeElement.click()"
+                                (click)="
+                                  calendar3.overlayVisible =
+                                    !calendar3.overlayVisible;
+                                  calendar3.inputfieldViewChild?.nativeElement.click()
+                                "
                             /></span>
-                            <p-calendar name="calendarDate" #calendar3 [showIcon]="false" [(ngModel)]="auditData?.audit.followUpDate"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                            <p-calendar
+                              name="calendarDate"
+                              #calendar3
+                              [showIcon]="false"
+                              [(ngModel)]="auditData?.audit.followUpDate"
+                              [showOnFocus]="false"
+                              class="hidden-calendar"
+                              (onSelect)="formatDate3($event)"
+                            ></p-calendar>
                           </td>
                         </tr>
 
-                        <tr class="eds-pagerstyle dropdown" >
+                        <tr class="eds-pagerstyle dropdown">
                           <td align="right">
                             Follow Up Required?&nbsp; &nbsp;
                           </td>
                           <td align="left">
-                            <select name="audit.followUpCompleteInd" class="" [(ngModel)]="followUpCompleteInd" >
+                            <select
+                              name="audit.followUpCompleteInd"
+                              class=""
+                              [(ngModel)]="followUpCompleteInd"
+                            >
                               <option value="Yes">Yes</option>
                               <option value="NO">No</option>
                             </select>
                           </td>
-                        </tr>           
+                        </tr>
 
-                        <tr class="eds-pagerstyle-alt" >
+                        <tr class="eds-pagerstyle-alt">
                           <td align="right">Audit Notes&nbsp; &nbsp;</td>
                           <td align="left">
                             <input
@@ -233,12 +272,14 @@
                         >
                           <td align="right">Audit Status&nbsp; &nbsp;</td>
                           <td align="left">
-                            <select name="audit.auditStatus" class="" [(ngModel)]="auditData?.audit.auditStatus">
+                            <select
+                              name="audit.auditStatus"
+                              class=""
+                              [(ngModel)]="auditData?.audit.auditStatus"
+                            >
                               <option value=""></option>
 
-                              <option value="NO AUDIT">
-                                NO AUDIT
-                              </option>
+                              <option value="NO AUDIT">NO AUDIT</option>
 
                               <option value="OK">OK</option>
 
@@ -250,10 +291,7 @@
                         <tr class="eds-pagerstyle-alt">
                           <td colspan="2">
                             <span style="float: left">
-                              <input
-                                type="button"
-                                value="Delete"
-                              />
+                              <input type="button" value="Delete" />
                             </span>
 
                             <input
@@ -262,7 +300,11 @@
                               value="edit"
                             />
                             <span style="float: right">
-                              <input type="submit" value="Save" (click)="saveAudit()" />
+                              <input
+                                type="submit"
+                                value="Save"
+                                (click)="saveAudit()"
+                              />
                             </span>
                           </td>
                         </tr>

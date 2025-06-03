@@ -7,10 +7,25 @@
     value="/vdt/Search.html?advancedSearchHidden=true&amp;currentVendorOnly=true&amp;vendorName=&amp;currentVendorOnly=on&amp;vendorPartRefNbr=&amp;detailDocType=&amp;itar=&amp;eccnNumber=&amp;eso=&amp;eco=&amp;ata=&amp;detailId=&amp;eccnLocation=&amp;docName=&amp;subject=&amp;bin=&amp;documentType=&amp;manualStartDate=&amp;manualEndDate=&amp;reissueStartDate=&amp;reissueEndDate=&amp;documentSubject="
     id="previousUrl"
   />
-  
-  <a *ngIf="searchType ==='search'" style="font-weight: bolder" routerLink="/search">Back To Search Results</a>
-  <a *ngIf="searchType ==='audit'" style="font-weight: bolder" routerLink="/search-audits">Back To Search Results</a>
-  <a *ngIf="searchType ==='route' " style="font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
+
+  <a
+    *ngIf="searchType === 'search'"
+    style="font-weight: bolder"
+    routerLink="/search"
+    >Back To Search Results</a
+  >
+  <a
+    *ngIf="searchType === 'audit'"
+    style="font-weight: bolder"
+    routerLink="/search-audits"
+    >Back To Search Results</a
+  >
+  <a
+    *ngIf="searchType === 'route'"
+    style="font-weight: bolder"
+    routerLink="/search-routes"
+    >Back To Search Results</a
+  >
   <br />
 
   <a routerLink="/viewDetail" (click)="btdetailpop()">Back to Detail/POP</a>
@@ -113,7 +128,7 @@
                             <td align="right">Route Date *&nbsp; &nbsp;</td>
                             <td align="left">
                               <span class="viewFieldText">{{
-                                viewRoute?.route.routeDate | date: 'MM/dd/yyyy'
+                                viewRoute?.route.routeDate | date : "MM/dd/yyyy"
                               }}</span>
                             </td>
                           </tr>
@@ -131,7 +146,7 @@
                             <td align="right">Close Date&nbsp; &nbsp;</td>
                             <td align="left">
                               <span class="viewFieldText">{{
-                                viewRoute?.route.closedate | date: 'MM/dd/yyyy'
+                                viewRoute?.route.closedate | date : "MM/dd/yyyy"
                               }}</span>
                             </td>
                           </tr>
@@ -213,45 +228,50 @@
                       border="0"
                       class="eds-tabtitle"
                     >
-                    <tbody>
-                               
-                      <tr>
-                        <td>
-                        <table class="inline-table" id="eso">
-                        <thead *ngIf="routeEsos && routeEsos.length > 0">
-                          <tr >
-                            <th>ESO #</th>
-                            <th>Assign Date</th>
-                            <th>Subject</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="
-                          let status of routeEsos;
-                          let i = index
-                        "
-                        [ngClass]="
-                          i % 2 == 0
-                            ? 'eds-pagerstyle'
-                            : 'eds-pagerstyle-alt'
-                        ">
-                            <td>{{status?.esoForDisplay}}</td>
-                            <td>{{status?.assigndate | date:"MM/dd/yyyy"}}</td>
-                            <td>{{status?.subject}}</td>
-                            <td>
-                              <a routerLink="/view-eso"
-                                (click)="viewEso(status?.eso)">View</a
-                              >
-                            </td>
-                          </tr>
-
-                        </tbody>
-                        </table>
-                        </td>
-                      </tr>
-               
-                </tbody>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <table class="inline-table" id="eso">
+                              <thead *ngIf="routeEsos && routeEsos.length > 0">
+                                <tr>
+                                  <th>ESO #</th>
+                                  <th>Assign Date</th>
+                                  <th>Subject</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr
+                                  *ngFor="
+                                    let status of routeEsos;
+                                    let i = index
+                                  "
+                                  [ngClass]="
+                                    i % 2 == 0
+                                      ? 'eds-pagerstyle'
+                                      : 'eds-pagerstyle-alt'
+                                  "
+                                >
+                                  <td>{{ status?.esoForDisplay }}</td>
+                                  <td>
+                                    {{
+                                      status?.assigndate | date : "MM/dd/yyyy"
+                                    }}
+                                  </td>
+                                  <td>{{ status?.subject }}</td>
+                                  <td>
+                                    <a
+                                      routerLink="/view-eso"
+                                      (click)="viewEso(status?.eso)"
+                                      >View</a
+                                    >
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
                   </td>
                 </tr>
@@ -261,7 +281,12 @@
         </tr>
         <tr>
           <td width="40%" valign="top">
-            <table cellspacing="0" cellpadding="0" border="0" style="margin-top: 50PX;">
+            <table
+              cellspacing="0"
+              cellpadding="0"
+              border="0"
+              style="margin-top: 50px"
+            >
               <tbody>
                 <tr>
                   <td>
@@ -408,7 +433,9 @@
                                   type="text"
                                   name="route.section"
                                   class=""
-                                  [(ngModel)]="viewRoute?.route.sectionForDisplay"
+                                  [(ngModel)]="
+                                    viewRoute?.route.sectionForDisplay
+                                  "
                                   size="45"
                                   readonly="readonly"
                                 />
@@ -422,7 +449,7 @@
                                   type="text"
                                   name="route.routeType"
                                   class=""
-                                 [(ngModel)]="viewRoute?.route.routeType"
+                                  [(ngModel)]="viewRoute?.route.routeType"
                                   size="45"
                                   readonly="readonly"
                                 />
@@ -436,7 +463,10 @@
                                   type="text"
                                   name="route.routeDate"
                                   class=""
-                                  [ngModel]="viewRoute?.route.routeDate | date: 'MM/dd/yyyy'"
+                                  [ngModel]="
+                                    viewRoute?.route.routeDate
+                                      | date : 'MM/dd/yyyy'
+                                  "
                                   size="41"
                                   readonly="readonly"
                                 />
@@ -451,31 +481,33 @@
                                   name="route.disposition"
                                   class=""
                                   id="dispositionId"
-                                 [(ngModel)]="viewRoute?.route.disposition"
+                                  [(ngModel)]="viewRoute?.route.disposition"
                                   size="45"
                                   maxlength="20"
                                   autocomplete="off"
-                                  (ngModelChange)="onDispositionChange(viewRoute?.route.disposition)"
+                                  (ngModelChange)="
+                                    onDispositionChange(
+                                      viewRoute?.route.disposition
+                                    )
+                                  "
                                 />
                                 <div
-                                *ngIf="dispositionValues.length > 0"
-                                style="
-                                  min-width: 256px;
-                                  background: lightgray;
-                                  position: absolute;
-                                "
-                              >
-                                <div
-                                  *ngFor="
-                                    let val of dispositionValues
+                                  *ngIf="dispositionValues.length > 0"
+                                  style="
+                                    min-width: 256px;
+                                    background: lightgray;
+                                    position: absolute;
                                   "
-                                  (click)="selectValue(val)"
                                 >
-                                  <span style="cursor: pointer">{{
-                                    val
-                                  }}</span>
+                                  <div
+                                    *ngFor="let val of dispositionValues"
+                                    (click)="selectValue(val)"
+                                  >
+                                    <span style="cursor: pointer">{{
+                                      val
+                                    }}</span>
+                                  </div>
                                 </div>
-                              </div>
 
                                 <div
                                   id="dispositionId_choices"
@@ -493,7 +525,9 @@
                                   name="route.closedate"
                                   class=""
                                   id="closeDateId"
-                                  [ngModel]="viewRoute?.route.closedate | date: 'MM/dd/yyyy'"
+                                  [(ngModel)]="
+                                    viewRoute?.route.closedate
+                                  "
                                   size="41"
                                   autocomplete="off"
                                 />
@@ -504,9 +538,21 @@
                                     id="closeDateId_date"
                                     align="ABSMIDDLE"
                                     src="assets/images/calendar.gif"
-                                    (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
+                                    (click)="
+                                      calendar1.overlayVisible =
+                                        !calendar1.overlayVisible;
+                                      calendar1.inputfieldViewChild?.nativeElement.click()
+                                    "
                                 /></span>
-                                <p-calendar name="calendarDate" #calendar1 [(ngModel)]="viewRoute?.route.closedate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                                <p-calendar
+                                  name="calendarDate"
+                                  #calendar1
+                                  [(ngModel)]="viewRoute?.route.closedate"
+                                  [showIcon]="false"
+                                  [showOnFocus]="false"
+                                  class="hidden-calendar"
+                                  (onSelect)="formatDate1($event)"
+                                ></p-calendar>
 
                                 <script>
                                   setupCal("closeDateId");
@@ -541,9 +587,12 @@
                                   maxlength="20"
                                   [(ngModel)]="selectedEcoNumberArr"
                                 >
-                                <option *ngFor="let item of selectedEcoNumber" [value]=item>
-                                              {{ item }}
-                                  </option>                              
+                                  <option
+                                    *ngFor="let item of selectedEcoNumber"
+                                    [value]="item"
+                                  >
+                                    {{ item }}
+                                  </option>
                                 </select>
 
                                 <br />
@@ -570,27 +619,29 @@
                                 <input
                                   type="button"
                                   value="Add"
-                                  (click)="addecoVal()"                                />
+                                  (click)="addecoVal()"
+                                />
                                 <input
                                   type="button"
                                   value="Remove"
-                                  (click)="removeecoVal()" />
+                                  (click)="removeecoVal()"
+                                />
+                                <div
+                                  style="
+                                    min-width: 120px;
+                                    background: lightgray;
+                                    position: absolute;
+                                  "
+                                >
                                   <div
-                                            style="
-                                              min-width: 120px;
-                                              background: lightgray;
-                                              position: absolute;
-                                            "
-                                          >
-                                            <div
-                                              *ngFor="let doc of ecoRes"
-                                              (click)="selectesoNum(doc)"
-                                            >
-                                              <span style="cursor: pointer">{{
-                                                doc
-                                              }}</span>
-                                            </div>
-                                          </div>
+                                    *ngFor="let doc of ecoRes"
+                                    (click)="selectesoNum(doc)"
+                                  >
+                                    <span style="cursor: pointer">{{
+                                      doc
+                                    }}</span>
+                                  </div>
+                                </div>
                               </td>
                             </tr>
 
@@ -608,10 +659,13 @@
                                   maxlength="20"
                                   [(ngModel)]="selectedEsoNumberArr"
                                 >
-                                 <option *ngFor="let item of selectedEsoNumber" [value]=item>
-                                              {{ item }}
+                                  <option
+                                    *ngFor="let item of selectedEsoNumber"
+                                    [value]="item"
+                                  >
+                                    {{ item }}
                                   </option>
-                              </select>
+                                </select>
 
                                 <br />
 
@@ -637,13 +691,14 @@
                                 <input
                                   type="button"
                                   value="Add"
-                                  (click)="addEsoNum()"                                />
+                                  (click)="addEsoNum()"
+                                />
                                 <input
                                   type="button"
                                   value="Remove"
                                   (click)="removeEso()"
-                                  />
-                                  <div
+                                />
+                                <div
                                   style="
                                     min-width: 120px;
                                     background: lightgray;
@@ -668,7 +723,7 @@
                                   <input
                                     type="button"
                                     value="Delete"
-                                    onclick="deleteRoute();"
+                                    (click)="deleteRoute()"
                                   />
                                 </span>
 
@@ -678,8 +733,11 @@
                                   value="edit"
                                 />
                                 <span style="float: right">
-                                  <input type="submit" value="Save"  (click)="save()" />
-                                  
+                                  <input
+                                    type="submit"
+                                    value="Save"
+                                    (click)="save()"
+                                  />
                                 </span>
                               </td>
                             </tr>

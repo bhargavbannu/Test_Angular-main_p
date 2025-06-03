@@ -399,10 +399,8 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
-                                                      [ngModel]="
-                                                        this.auditDateStart
-                                                          | date : 'MM/dd/yyyy'
-                                                      "
+                                                      [(ngModel)]="
+                                                        auditDateStart"
                                                     />
 
                                                     <span
@@ -421,11 +419,12 @@
                                                       name="calendarDate"
                                                       #calendar1
                                                       [(ngModel)]="
-                                                        this.auditDateStart
+                                                        auditDateStart
                                                       "
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
+                                                       (onSelect)="formatDate1($event)"
                                                     ></p-calendar>
 
                                                     -
@@ -438,10 +437,8 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
-                                                      [ngModel]="
-                                                        this.auditDateEnd
-                                                          | date : 'MM/dd/yyyy'
-                                                      "
+                                                      [(ngModel)]="
+                                                        auditDateEnd"
                                                     />
 
                                                     <span
@@ -460,11 +457,12 @@
                                                       name="calendarDate"
                                                       #calendar2
                                                       [(ngModel)]="
-                                                        this.auditDateEnd
+                                                        auditDateEnd
                                                       "
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
+                                                       (onSelect)="formatDate2($event)"
                                                     ></p-calendar>
                                                   </td>
                                                 </tr>
@@ -514,9 +512,8 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
-                                                      [ngModel]="
-                                                        this.unauditedDateStart
-                                                          | date : 'MM/dd/yyyy'
+                                                      [(ngModel)]="
+                                                        unauditedDateStart
                                                       "
                                                     />
 
@@ -536,11 +533,12 @@
                                                       name="calendarDate"
                                                       #calendar3
                                                       [(ngModel)]="
-                                                        this.unauditedDateStart
+                                                        unauditedDateStart
                                                       "
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
+                                                       (onSelect)="formatDate3($event)"
                                                     ></p-calendar>
 
                                                     -
@@ -554,9 +552,8 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
-                                                      [ngModel]="
-                                                        this.unauditedDateEnd
-                                                          | date : 'MM/dd/yyyy'
+                                                      [(ngModel)]="
+                                                        unauditedDateEnd
                                                       "
                                                     />
 
@@ -576,11 +573,12 @@
                                                       name="calendarDate"
                                                       #calendar4
                                                       [(ngModel)]="
-                                                        this.unauditedDateEnd
+                                                        unauditedDateEnd
                                                       "
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
+                                                       (onSelect)="formatDate4($event)"
                                                     ></p-calendar>
                                                   </td>
                                                 </tr>
@@ -653,10 +651,8 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
-                                                      [ngModel]="
-                                                        this
-                                                          .currentVendorRevisionDateStart
-                                                          | date : 'MM/dd/yyyy'
+                                                      [(ngModel)]="
+                                                          currentVendorRevisionDateStart
                                                       "
                                                     />
 
@@ -676,12 +672,12 @@
                                                       name="calendarDate"
                                                       #calendar5
                                                       [(ngModel)]="
-                                                        this
-                                                          .currentVendorRevisionDateStart
+                                                       currentVendorRevisionDateStart
                                                       "
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
+                                                       (onSelect)="formatDate5($event)"
                                                     ></p-calendar>
 
                                                     -
@@ -694,10 +690,8 @@
                                                       size="10"
                                                       maxlength="10"
                                                       autocomplete="off"
-                                                      [ngModel]="
-                                                        this
-                                                          .currentVendorRevisionDateEnd
-                                                          | date : 'MM/dd/yyyy'
+                                                      [(ngModel)]="
+                                                          currentVendorRevisionDateEnd
                                                       "
                                                     />
 
@@ -717,12 +711,12 @@
                                                       name="calendarDate"
                                                       #calendar6
                                                       [(ngModel)]="
-                                                        this
-                                                          .currentVendorRevisionDateEnd
+                                                          currentVendorRevisionDateEnd
                                                       "
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
+                                                       (onSelect)="formatDate6($event)"
                                                     ></p-calendar>
                                                   </td>
                                                 </tr>

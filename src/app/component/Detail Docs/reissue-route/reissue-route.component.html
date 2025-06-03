@@ -126,7 +126,7 @@
                                 value="02/23/2025"
                                 size="41"
                                 autocomplete="off"
-                                [ngModel]="this.routeDate | date: 'MM/dd/yyyy'"
+                                [(ngModel)]="routeDate"
                               />
 
                               <span
@@ -135,9 +135,20 @@
                                   id="routeDateId_date"
                                   align="ABSMIDDLE"
                                   src="assets/images/calendar.gif"
-                                  (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
+                                  (click)="
+                                    calendar1.overlayVisible =
+                                      !calendar1.overlayVisible;
+                                    calendar1.inputfieldViewChild?.nativeElement.click()
+                                  "
                               /></span>
-                              <p-calendar name="calendarDate" #calendar1  [(ngModel)]="this.routeDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                              <p-calendar
+                                name="calendarDate"
+                                #calendar1
+                                [(ngModel)]="routeDate"
+                                [showIcon]="false"
+                                [showOnFocus]="false"
+                                class="hidden-calendar"
+                              ></p-calendar>
 
                               <script>
                                 setupCal("routeDateId");
@@ -178,7 +189,7 @@
                                 value=""
                                 size="41"
                                 autocomplete="off"
-                                [ngModel]="this.closeDate | date: 'MM/dd/yyyy'"
+                                [(ngModel)]="closeDate"
                               />
 
                               <span
@@ -187,10 +198,20 @@
                                   id="closeDateId_date"
                                   align="ABSMIDDLE"
                                   src="assets/images/calendar.gif"
-                                  (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild?.nativeElement.click()"
+                                  (click)="
+                                    calendar2.overlayVisible =
+                                      !calendar2.overlayVisible;
+                                    calendar2.inputfieldViewChild?.nativeElement.click()
+                                  "
                               /></span>
-                              <p-calendar name="calendarDate" #calendar2  [(ngModel)]="this.closeDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                              <p-calendar
+                                name="calendarDate"
+                                #calendar2
+                                [(ngModel)]="closeDate"
+                                [showIcon]="false"
+                                [showOnFocus]="false"
+                                class="hidden-calendar"
+                              ></p-calendar>
                             </td>
                           </tr>
 
@@ -214,7 +235,7 @@
                                 value="add"
                               />
                               <span style="float: right">
-                                <input type="submit" value="Save"  />
+                                <input type="submit" value="Save" />
                               </span>
                             </td>
                           </tr>

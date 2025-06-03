@@ -41,10 +41,7 @@
             <tbody>
               <tr>
                 <td>
-                  <form
-                    name="ESOForm"
-                    id="esoFormId"
-                  >
+                  <form name="ESOForm" id="esoFormId">
                     <input type="hidden" name="submitType" value="edit" />
                     <table width="100%">
                       <tbody>
@@ -53,7 +50,7 @@
                           <td width="250"></td>
                         </tr>
 
-                        <tr class="eds-pagerstyle eds-field-required" >
+                        <tr class="eds-pagerstyle eds-field-required">
                           <td align="right">ESO Number *&nbsp; &nbsp;</td>
                           <td align="left">
                             <input
@@ -77,11 +74,12 @@
                               name="assigndate"
                               class=""
                               id="assigndate"
-                              [ngModel]="esoDetails?.esoData.assigndate | date: 'MM/dd/yyyy'"
+                              [(ngModel)]="
+                                esoDetails?.esoData.assigndate
+                              "
                               size="41"
                               maxlength="10"
                               autocomplete="off"
-                             
                             />
 
                             <span
@@ -89,9 +87,21 @@
                                 id="assignDateId_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
-                                (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
+                                (click)="
+                                  calendar1.overlayVisible =
+                                    !calendar1.overlayVisible;
+                                  calendar1.inputfieldViewChild?.nativeElement.click()
+                                "
                             /></span>
-                            <p-calendar name="calendarDate" #calendar1 [(ngModel)]="esoDetails?.esoData.assigndate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                            <p-calendar
+                              name="calendarDate"
+                              #calendar1
+                              [(ngModel)]="esoDetails?.esoData.assigndate"
+                              [showIcon]="false"
+                              [showOnFocus]="false"
+                              class="hidden-calendar"
+                              (onSelect)="formatDate1($event)"
+                            ></p-calendar>
                           </td>
                         </tr>
 
@@ -152,8 +162,9 @@
                               size="41"
                               maxlength="10"
                               autocomplete="off"
-                              [ngModel]="esoDetails?.esoData.canceldate | date: 'MM/dd/yyyy'"
-
+                              [(ngModel)]="
+                                esoDetails?.esoData.canceldate
+                              "
                             />
 
                             <span
@@ -162,19 +173,33 @@
                                 id="cancelDateId_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
-                                (click)="calendar2.overlayVisible = !calendar2.overlayVisible; calendar2.inputfieldViewChild?.nativeElement.click()"
+                                (click)="
+                                  calendar2.overlayVisible =
+                                    !calendar2.overlayVisible;
+                                  calendar2.inputfieldViewChild?.nativeElement.click()
+                                "
                             /></span>
-                            <p-calendar name="calendarDate2" #calendar2 [(ngModel)]="esoDetails?.esoData.canceldate" [showIcon]="false" [showOnFocus]="false" class="hidden-calendar"></p-calendar>
+                            <p-calendar
+                              name="calendarDate2"
+                              #calendar2
+                              [(ngModel)]="esoDetails?.esoData.canceldate"
+                              [showIcon]="false"
+                              [showOnFocus]="false"
+                              class="hidden-calendar"
+                              (onSelect)="formatDate2($event)"
+                            ></p-calendar>
                           </td>
                         </tr>
 
-                        <tr class="eds-pagerstyle dropdown" >
+                        <tr class="eds-pagerstyle dropdown">
                           <td align="right">Status&nbsp; &nbsp;</td>
                           <td align="left">
-                            <select name="eso.status" class="" [(ngModel)]="esoDetails?.esoData.status">
-                              <option value="A">
-                                Active
-                              </option>
+                            <select
+                              name="eso.status"
+                              class=""
+                              [(ngModel)]="esoDetails?.esoData.status"
+                            >
+                              <option value="A">Active</option>
 
                               <option value="C">Inactive</option>
                             </select>
@@ -186,14 +211,19 @@
                         <tr class="eds-pagerstyle-alt blueColSpan">
                           <td colspan="2">
                             <span style="float: right">
-                              <input type="submit" value="Submit" (click)="saveEso()"/>
+                              <input
+                                type="submit"
+                                value="Submit"
+                                (click)="saveEso()"
+                              />
                             </span>
 
                             <span style="float: left">
                               <input
                                 type="button"
-                                value="Delete" 
-                                (click)="deleteEso()"                             />
+                                value="Delete"
+                                (click)="deleteEso()"
+                              />
                             </span>
                           </td>
                         </tr>

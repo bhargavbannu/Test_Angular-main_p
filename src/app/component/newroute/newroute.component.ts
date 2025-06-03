@@ -36,21 +36,19 @@ export class NewrouteComponent {
     this.Section = this.apiService.section;
     this.routeType = this.apiService.nextRouteType;
     this.routeDate = new Date();
+    this.routeDate = this.datePipe.transform(this.routeDate, 'MM/dd/yyyy');
+
   }
 
   save() {
-    if (this.routeDate !== null && this.routeDate !== undefined) {
-      this.routeDate = this.datePipe.transform(
+      let routeDate = this.datePipe.transform(
         this.routeDate,
         'MM/dd/yyyy HH:mm:ss'
       );
-    }
-    if (this.closeDate !== null && this.closeDate !== undefined) {
-      this.closeDate = this.datePipe.transform(
+      let closeDate = this.datePipe.transform(
         this.closeDate,
         'MM/dd/yyyy HH:mm:ss'
       );
-    }
 let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
     const payload = {
       route: {
@@ -58,9 +56,9 @@ let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
         detailRefNbr: this.DetailIdRefNmbr,
         routeType: this.routeType,
         sections: newSection,
-        routeDate: this.routeDate,
+        routeDate: routeDate,
         disposition: this.disposition,
-        closedate: this.closeDate,
+        closedate: closeDate,
         remark: this.remark,
       },
       submitType: 'add',
@@ -103,5 +101,13 @@ let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
     // } else {
     //   this.router.navigate(['/viewDetail']);
     // }
+  }
+
+  formatDate1(date: Date) {
+    this.routeDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
+  formatDate2(date: Date) {
+    this.closeDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 }

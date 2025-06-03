@@ -1,5 +1,4 @@
-<a routerLink="/viewStatus">Back to Document</a>
-<br /><br />
+<a routerLink="/viewStatus">Back to Document</a> <br /><br />
 
 <div class="whiteSpace-noWrap" style="float: left">
   <table cellspacing="0" cellpadding="0" border="0">
@@ -87,7 +86,11 @@
                             Detail Document Type&nbsp; &nbsp;
                           </td>
                           <td align="left">
-                            <select name="detail.detailDocType" class=""   [(ngModel)]="detailDocType">
+                            <select
+                              name="detail.detailDocType"
+                              class=""
+                              [(ngModel)]="detailDocType"
+                            >
                               <option value=""></option>
 
                               <option value="AA SB">AA SB</option>
@@ -366,7 +369,7 @@
                               size="41"
                               maxlength="10"
                               autocomplete="off"
-                              [ngModel]="revDate | date: 'MM/dd/yyyy'"
+                              [(ngModel)]="revDate"
                             />
 
                             <span
@@ -375,17 +378,32 @@
                                 id="manualDate_date"
                                 align="ABSMIDDLE"
                                 src="assets/images/calendar.gif"
-                                (click)="calendar1.overlayVisible = !calendar1.overlayVisible; calendar1.inputfieldViewChild?.nativeElement.click()"
+                                (click)="
+                                  calendar1.overlayVisible =
+                                    !calendar1.overlayVisible;
+                                  calendar1.inputfieldViewChild?.nativeElement.click()
+                                "
                             /></span>
-                            <p-calendar name="calendarDate" #calendar1 [(ngModel)]="revDate" [showIcon]="false"  [showOnFocus]="false" class="hidden-calendar"></p-calendar>
-
+                            <p-calendar
+                              name="calendarDate"
+                              #calendar1
+                              [(ngModel)]="revDate"
+                              [showIcon]="false"
+                              [showOnFocus]="false"
+                              class="hidden-calendar"
+                              (onSelect)="formatDate1($event)"
+                            ></p-calendar>
                           </td>
                         </tr>
 
                         <tr class="eds-pagerstyle-alt dropdown">
                           <td align="right">Case Class&nbsp; &nbsp;</td>
                           <td align="left">
-                            <select name="detail.popClass" class=""   [(ngModel)]="caseClass">
+                            <select
+                              name="detail.popClass"
+                              class=""
+                              [(ngModel)]="caseClass"
+                            >
                               <option value="REGULAR">REGULAR</option>
 
                               <option value="ALERT">ALERT</option>
