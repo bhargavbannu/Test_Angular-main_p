@@ -81,4 +81,18 @@ export class EditAuditComponent {
     formatDate3(date: Date) {
     this.auditData.audit.followUpDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
+
+  deleteAud(){
+    const payload = {
+      "audit": {
+    "auditId": this.auditData.audit.auditId,
+    "documentNbr":this.auditData.audit.documentNbr
+  }
+    }
+    this.apiService.deleteAudit(payload).subscribe((res:any)=>{
+      if(res){
+      this.router.navigate(['/viewStatus', { auditDeleted: true }]);
+      }
+    })
+  }
 }

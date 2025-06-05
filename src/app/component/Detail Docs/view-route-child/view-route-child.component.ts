@@ -5,7 +5,6 @@ import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
 
-
 @Component({
   selector: 'app-view-route-child',
   templateUrl: './view-route-child.component.html',
@@ -16,7 +15,7 @@ export class ViewRouteChildComponent implements OnInit {
   viewRoute: any;
   routeData: any;
   edit: boolean = true;
-  ClosedRoute:any;
+  ClosedRoute: any;
 
   private ecoNum = new Subject<any>();
   private esoNum = new Subject<any>();
@@ -28,67 +27,73 @@ export class ViewRouteChildComponent implements OnInit {
   disposition: any;
   dispositionValues: any[] = [];
 
-
   @ViewChild('calendar1') calendar1!: Calendar;
   searchType!: string;
   routeEsos: any;
   esoValues: any;
-selEsoValue: any;
-selectedEsoNumberArr: any;
-selectedEsoNumber: any;
-selectedEcoNumberArr: any;
-selectedEcoNumber: any;
+  selEsoValue: any;
+  selectedEsoNumberArr: any;
+  selectedEsoNumber: any;
+  selectedEcoNumberArr: any;
+  selectedEcoNumber: any;
 
-  constructor(private apiService: ApiService,  private router: Router, private datePipe: DatePipe, private route:ActivatedRoute) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private datePipe: DatePipe,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.searchType = this.apiService.searchType;
     this.test();
-      this.ecoNum
-          .pipe(
-            debounceTime(1000),
-            distinctUntilChanged(),
-            switchMap(() => {
-              return this.apiService.ecoNumbers(this.ecoNumber);
-            })
-          )
-          .subscribe((res) => {
-            console.log(res);
-            this.ecoRes = res;
-          });
-    
-        this.esoNum
-          .pipe(
-            switchMap(() => {
-              debounceTime(1000), distinctUntilChanged();
-              return this.apiService.esoNumbersApiData(this.typedEsoNumber);
-            })
-          )
-          .subscribe((res) => {
-            console.log(res);
-            
-            this.esoNumberRess = res;
-          });
+    this.ecoNum
+      .pipe(
+        debounceTime(1000),
+        distinctUntilChanged(),
+        switchMap(() => {
+          return this.apiService.ecoNumbers(this.ecoNumber);
+        })
+      )
+      .subscribe((res) => {
+        console.log(res);
+        this.ecoRes = res;
+      });
 
-          this.route.params.subscribe((params) => {
-            this.ClosedRoute = params['ClosedRoute'];          
-          });
+    this.esoNum
+      .pipe(
+        switchMap(() => {
+          debounceTime(1000), distinctUntilChanged();
+          return this.apiService.esoNumbersApiData(this.typedEsoNumber);
+        })
+      )
+      .subscribe((res) => {
+        console.log(res);
+
+        this.esoNumberRess = res;
+      });
+
+    this.route.params.subscribe((params) => {
+      this.ClosedRoute = params['ClosedRoute'];
+    });
   }
 
-test(){
-  this.apiService
-  .viewRouteDetailApi(this.apiService.detailRoute)
-  .subscribe((data) => {
-    this.viewRoute = data.routeForm;
-    this.routeEsos = data.routeEsos
-    this.selectedEsoNumber = this.viewRoute.route.esos;
-    this.selectedEsoNumberArr = this.viewRoute.route.esos;
-    this.selectedEcoNumber = this.viewRoute.route.ecos;
-    this.selectedEcoNumberArr = this.viewRoute.route.ecos;
-    this.viewRoute.route.closedate = this.datePipe.transform(this.viewRoute?.route?.closedate, 'MM/dd/yyyy');
-
-  });
-}
+  test() {
+    this.apiService
+      .viewRouteDetailApi(this.apiService.detailRoute)
+      .subscribe((data) => {
+        this.viewRoute = data.routeForm;
+        this.routeEsos = data.routeEsos;
+        this.selectedEsoNumber = this.viewRoute.route.esos;
+        this.selectedEsoNumberArr = this.viewRoute.route.esos;
+        this.selectedEcoNumber = this.viewRoute.route.ecos;
+        this.selectedEcoNumberArr = this.viewRoute.route.ecos;
+        this.viewRoute.route.closedate = this.datePipe.transform(
+          this.viewRoute?.route?.closedate,
+          'MM/dd/yyyy'
+        );
+      });
+  }
   routee() {
     this.edit = false;
   }
@@ -126,10 +131,11 @@ test(){
   removeEso() {
     // this.viewRoute.route.esos = [];
     // this.typedEsoNumber = '';
-    if( this.selectedEsoNumberArr !== undefined){
-       this.selectedEsoNumber = this.selectedEsoNumber.filter((val:any) => !this.selectedEsoNumberArr.includes(val));
-    
-    } 
+    if (this.selectedEsoNumberArr !== undefined) {
+      this.selectedEsoNumber = this.selectedEsoNumber.filter(
+        (val: any) => !this.selectedEsoNumberArr.includes(val)
+      );
+    }
   }
 
   addecoVal() {
@@ -137,59 +143,55 @@ test(){
     //   this.viewRoute.route.ecos.push(this.ecoNumber);
     //   this.ecoNumber = '';
     // }
-    if (
-      this.ecoNumber &&
-      !this.selectedEcoNumber.includes(this.ecoNumber)
-    ) {
+    if (this.ecoNumber && !this.selectedEcoNumber.includes(this.ecoNumber)) {
       this.selectedEcoNumber.push(this.ecoNumber);
       this.ecoNumber = '';
     }
   }
 
-  removeecoVal() { 
+  removeecoVal() {
     // this.viewRoute.route.ecos = [];
-    if( this.selectedEcoNumberArr !== undefined){
-       this.selectedEcoNumber = this.selectedEcoNumber.filter((val:any) => !this.selectedEcoNumberArr.includes(val));  
-    } 
+    if (this.selectedEcoNumberArr !== undefined) {
+      this.selectedEcoNumber = this.selectedEcoNumber.filter(
+        (val: any) => !this.selectedEcoNumberArr.includes(val)
+      );
+    }
   }
 
   save() {
-
-      let closedate= this.datePipe.transform(
-        this.viewRoute?.route?.closedate,
-        'MM/dd/yyyy HH:mm:ss'
-       );
+    let closedate = this.datePipe.transform(
+      this.viewRoute?.route?.closedate,
+      'MM/dd/yyyy HH:mm:ss'
+    );
 
     this.edit = true;
-   
 
-    const pay1 = 
-    {
-      "route": {
-        "routeId": this.viewRoute.route.routeId,
-        "detailId": this.viewRoute.route.detailId,
-        "detailRefNbr":  this.viewRoute.route.detailRefNbr,
-        "routeType":  this.viewRoute.route.routeType,
-        "section": this.viewRoute.route.section,
-        "routeDate": this.viewRoute.route.routeDate,
-        "disposition": this.viewRoute.route.disposition,
-        "closedate": closedate,
-        "remark": this.viewRoute.route.remark,
-        "esos": this.viewRoute.route.esos,
-        "ecos":this.viewRoute.route.ecos,
+    const pay1 = {
+      route: {
+        routeId: this.viewRoute.route.routeId,
+        detailId: this.viewRoute.route.detailId,
+        detailRefNbr: this.viewRoute.route.detailRefNbr,
+        routeType: this.viewRoute.route.routeType,
+        section: this.viewRoute.route.section,
+        routeDate: this.viewRoute.route.routeDate,
+        disposition: this.viewRoute.route.disposition,
+        closedate: closedate,
+        remark: this.viewRoute.route.remark,
+        esos: this.viewRoute.route.esos,
+        ecos: this.viewRoute.route.ecos,
       },
-      "submitType": "edit"
-    }
-    
-    
-    this.apiService.saveExistingRouteView( this.viewRoute.route.routeId,pay1).subscribe((res)=>{
-  
-      this.router.navigate(['/viewDetail', { routeSaved: true }]);
-    })
-    // this.test();
-   }
+      submitType: 'edit',
+    };
 
-   onDispositionChange(disposition: any) {
+    this.apiService
+      .saveExistingRouteView(this.viewRoute.route.routeId, pay1)
+      .subscribe((res) => {
+        this.router.navigate(['/viewDetail', { routeSaved: true }]);
+      });
+    // this.test();
+  }
+
+  onDispositionChange(disposition: any) {
     if (disposition.trim() !== '') {
       this.apiService.disposition(disposition).subscribe((res) => {
         this.dispositionValues = res;
@@ -204,22 +206,36 @@ test(){
     this.dispositionValues = [];
   }
 
-  btdetailpop(){
+  btdetailpop() {
     this.apiService.popno = this.viewRoute.route.detailId;
     this.router.navigate(['/viewDetail', { fromViewRoute: true }]);
   }
 
-  viewEso(eso:any){
+  viewEso(eso: any) {
     this.apiService.eso = eso;
     this.router.navigate(['/view-eso', { fromViewRoute: true }]);
   }
 
-  deleteRoute(){
-    
+  deleteRoute() {
+    const payload = {
+      route: {
+        routeId: this.viewRoute.route.routeId,
+        detailId: this.viewRoute.route.detailId,
+        detailRefNbr: this.viewRoute.route.detailRefNbr
+      },
+      submitType: 'edit'
+    };
+    this.apiService.deleteRoute(payload).subscribe((res: any) => {
+      if (res) {
+        this.router.navigate(['/viewDetail', { routeDeleted: true }]);
+      }
+    });
   }
 
-    formatDate1(date: Date) {
-    this.viewRoute.route.closedate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  formatDate1(date: Date) {
+    this.viewRoute.route.closedate = this.datePipe.transform(
+      date,
+      'MM/dd/yyyy'
+    );
   }
-
 }

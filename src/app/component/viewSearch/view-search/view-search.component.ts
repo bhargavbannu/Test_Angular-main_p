@@ -17,6 +17,9 @@ export class ViewSearchComponent {
   searchType!: string;
   loading: boolean = false;
   searchEffetivity: any[] = [];
+  formVendorDeleted: any;
+  formerVendorSaved: any;
+  auditDeleted: any;
 
   constructor(private apiService: ApiService, private route:ActivatedRoute, private router:Router, private datePipe:DatePipe) {}
 
@@ -27,6 +30,9 @@ export class ViewSearchComponent {
       this.docAdded = params['docAdded']
       this.detailDeleted = params['detailDeleted']
       this.docMoved = params['docMoved']
+      this.formerVendorSaved = params['formerVendorSaved']
+      this.auditDeleted = params['auditDeleted']
+
     })
     this.searchType = this.apiService.searchType;
        this.apiService.getSearchEffetivity().subscribe((data) => {
@@ -71,8 +77,20 @@ export class ViewSearchComponent {
     this.router.navigate(['/view-eso', { fromViewStatus: true }]);
   }
 
-  deleteFormerVendor(){
-    this.apiService.deleteFormerVendor().subscribe();
+  deleteFormerVendor(vendorName:any, supercedeDate:any){
+    supercedeDate = this.datePipe.transform(supercedeDate, 'yyyy-MM-dd');
+    const payload = {
+	"documentNbr":this.documentsDetails.document.documentNbr,
+	"vendorName": vendorName,
+	"supercedeDate": supercedeDate
+	}
+    this.apiService.deleteFormerVendor(payload).subscribe((res:any)=>{
+      if(res){
+        this.viewDocuments()
+        this.formVendorDeleted = true;
+        this.formerVendorSaved = false;
+      }
+    });
   }
 
   viewRoute(arg0: any) {

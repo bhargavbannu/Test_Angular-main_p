@@ -4,6 +4,9 @@
 </div>
 <tbody *ngIf="!loading" >
   <div *ngIf="detailDeleted" class="savedDoc">SUCCESS: Successfully deleted Detail.</div>
+  <div *ngIf="formVendorDeleted" class="savedDoc">SUCCESS: Successfully deleted Former Vendor.</div>
+  <div *ngIf="auditDeleted" class="savedDoc">SUCCESS: Successfully deleted Audit.</div>
+  <div *ngIf="formerVendorSaved" class="savedDoc">SUCCESS: Former Vendor saved successfully.</div>
   <div *ngIf="docAdded" class="savedDoc">SUCCESS: Document saved successfully.</div>
   <div *ngIf="docMoved" class="savedDoc">SUCCESS: Document moved successfully.</div>
   <a *ngIf="searchType ==='search'" style="font-weight: bolder" routerLink="/search">Back To Search Results</a>
@@ -1123,7 +1126,7 @@
                                                   <td>{{status.id.vendor.vendorNm}}</td>
                                                   <td>{{status.id.supercededDt | date:"MM/dd/yyyy"}}</td>
                                                   <td>
-                                                    <a href="javascript:void(0)" (click)="deleteFormerVendor()">Delete</a
+                                                    <a href="javascript:void(0)" (click)="deleteFormerVendor(status.id.vendor.vendorNm,status.id.supercededDt)">Delete</a
                                                     >
                                                   </td>
                                                 </tr>

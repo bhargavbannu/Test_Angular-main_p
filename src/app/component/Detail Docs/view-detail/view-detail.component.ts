@@ -18,6 +18,7 @@ export class ViewDetailComponent implements OnInit {
   searchType: any;
   backDoc: any;
   loading: boolean = false;
+  routeDeleted: any;
   constructor(private apiService: ApiService, private route: ActivatedRoute, private http:HttpClient, private router:Router) {}
 
   ngOnInit() {
@@ -29,6 +30,7 @@ export class ViewDetailComponent implements OnInit {
       this.routeAdded = params['routeAdded'];
       this.closedbtn = params['closedbtn'];
       this.backDoc = params['fromViewRoute'];
+      this.routeDeleted = params['routeDeleted'];
     });
     this.type = this.apiService.type;
     this.searchType = this.apiService.searchType;

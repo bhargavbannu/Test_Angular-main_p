@@ -76,7 +76,11 @@ export class EditEsoDocComponent {
         "eso": this.esoDetails?.esoData.eso
       }
     }
-    this.apiService.deleteEso(payload).subscribe()
+    this.apiService.deleteEso(payload).subscribe((res:any)=>{
+      if(res){
+        this.router.navigate(['/View-Edit-ESO', { esoDeleted: true }]);
+      }
+    })
    
   }
 

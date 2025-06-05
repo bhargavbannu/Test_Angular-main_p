@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-former-vendor',
@@ -17,7 +18,7 @@ export class AddFormerVendorComponent {
   vendorNamesList: any[] = [];
   @ViewChild('calendar1') calendar1!: Calendar;
 
-  constructor(private apiService: ApiService, private datePipe: DatePipe) {}
+  constructor(private apiService: ApiService, private datePipe: DatePipe, private router:Router) {}
 
   ngOnInit() {
     this.vendorSub
@@ -46,7 +47,11 @@ export class AddFormerVendorComponent {
       supercededByVendorName: this.vendorName,
       supercedeDate: supercedeDate,
     };
-    this.apiService.saveFormerVendor(payload).subscribe();
+    this.apiService.saveFormerVendor(payload).subscribe((res: any) => {
+      if(res){
+        this.router.navigate(['/viewStatus', { formerVendorSaved: true }]);
+      }
+    });
   }
 
   vName(val: any) {

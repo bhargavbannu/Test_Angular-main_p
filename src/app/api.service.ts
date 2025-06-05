@@ -80,6 +80,7 @@ export class ApiService {
   private deleteEccnLocationApi = `${environment.apiBaseUrl}/adminConfiguration/deleteEccnLocation`;
   private viewSearchApi = `${environment.apiBaseUrl}/addDocument/viewDocument`;
   private viewAuditApi = `${environment.apiBaseUrl}/audit/viewAudit`;
+  private deleteAuditApi = `${environment.apiBaseUrl}/audit/deleteAudit`;
   private viewAllAuditsApi = `${environment.apiBaseUrl}/audit/viewAllAudits`;
   private eccNumberApi = `${environment.apiBaseUrl}/adminConfiguration/getEccnNumbers`;
   private eccLocation = `${environment.apiBaseUrl}/adminConfiguration/getEccnLocations`;
@@ -98,6 +99,7 @@ export class ApiService {
   private saveEsoApi =`${environment.apiBaseUrl}/eso/saveESO`
   private deleteEsoApi =`${environment.apiBaseUrl}/eso/deleteESO`
   private saveExistingRouteApi =`${environment.apiBaseUrl}/routing/saveRoute`
+  private deleteRouteApi =`${environment.apiBaseUrl}/routing/deleteRoute`
   private addNewEsoApi=`${environment.apiBaseUrl}/eso/addNewEso`
   private moveDetailApi = `${environment.apiBaseUrl}/detail/moveDetail`
   private newRouteApi = `${environment.apiBaseUrl}/routing/newRouteSave`
@@ -505,8 +507,16 @@ esoNumbersApiData(val:any):Observable<any>{
     return this.http.post<any>(this.saveFormerVendorApi,payload)
   }
 
-  deleteFormerVendor() {
-    return this.http.delete<any>(this.deleteFormerVendorApi);    
+  deleteFormerVendor(payload:any) {
+    return this.http.post<any>(this.deleteFormerVendorApi,payload);    
+  }
+
+   deleteAudit(payload:any) {
+    return this.http.post<any>(this.deleteAuditApi,payload);    
+  }
+
+   deleteRoute(payload:any) {
+    return this.http.post<any>(this.deleteRouteApi,payload);    
   }
 
   saveNewAudit(payload:any){
@@ -526,7 +536,7 @@ esoNumbersApiData(val:any):Observable<any>{
   }
 
   deleteEso(payload:any): Observable<any> {
-    return this.http.delete<any>(this.deleteEsoApi, payload);
+    return this.http.post<any>(this.deleteEsoApi, payload);
   }
 
   addNewEso(payload:any): Observable<any> {
