@@ -30,12 +30,14 @@ export class ViewRouteChildComponent implements OnInit {
   @ViewChild('calendar1') calendar1!: Calendar;
   searchType!: string;
   routeEsos: any;
+  routeEcos:any;
   esoValues: any;
   selEsoValue: any;
   selectedEsoNumberArr: any;
   selectedEsoNumber: any;
   selectedEcoNumberArr: any;
   selectedEcoNumber: any;
+  existRouteSaved: any;
 
   constructor(
     private apiService: ApiService,
@@ -75,6 +77,7 @@ export class ViewRouteChildComponent implements OnInit {
 
     this.route.params.subscribe((params) => {
       this.ClosedRoute = params['ClosedRoute'];
+      this.existRouteSaved = params['existRouteSaved'];
     });
   }
 
@@ -84,6 +87,7 @@ export class ViewRouteChildComponent implements OnInit {
       .subscribe((data) => {
         this.viewRoute = data.routeForm;
         this.routeEsos = data.routeEsos;
+        this.routeEcos = data.routeEcos;
         this.selectedEsoNumber = this.viewRoute.route.esos;
         this.selectedEsoNumberArr = this.viewRoute.route.esos;
         this.selectedEcoNumber = this.viewRoute.route.ecos;
@@ -186,7 +190,7 @@ export class ViewRouteChildComponent implements OnInit {
     this.apiService
       .saveExistingRouteView(this.viewRoute.route.routeId, pay1)
       .subscribe((res) => {
-        this.router.navigate(['/viewDetail', { routeSaved: true }]);
+        this.router.navigate(['/viewRoute', { existRouteSaved: true }]);
       });
     // this.test();
   }
@@ -237,5 +241,10 @@ export class ViewRouteChildComponent implements OnInit {
       date,
       'MM/dd/yyyy'
     );
+  }
+
+  onFocusOut() {
+    this.esoNumberRess = [];
+    this.ecoRes = [];
   }
 }

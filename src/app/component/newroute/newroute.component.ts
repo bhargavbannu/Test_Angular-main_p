@@ -110,4 +110,8 @@ let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
   formatDate2(date: Date) {
     this.closeDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
+
+  onRouteTypeChange() {
+    this.disposition = "Closed";
+  }
 }

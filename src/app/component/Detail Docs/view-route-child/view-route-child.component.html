@@ -8,6 +8,8 @@
     id="previousUrl"
   />
 
+   <div *ngIf="existRouteSaved" class="savedDoc">SUCCESS: Successfully saved Route.</div>
+
   <a
     *ngIf="searchType === 'search'"
     style="font-weight: bolder"
@@ -286,6 +288,7 @@
               cellpadding="0"
               border="0"
               style="margin-top: 50px"
+              width="100%"
             >
               <tbody>
                 <tr>
@@ -295,6 +298,7 @@
                       cellspacing="0"
                       cellpadding="0"
                       border="0"
+                      width="100%"
                     >
                       <tbody>
                         <tr>
@@ -323,9 +327,28 @@
                       <tbody>
                         <tr>
                           <td>
-                            <font color="#ffffff"
-                              ><b>Nothing found to display</b></font
-                            ><br /><br />
+                            <table class="inline-table" id="eso" width="100%">
+                              <thead *ngIf="routeEcos && routeEcos.length > 0">
+                                <tr>
+                                  <th>ECO #</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr
+                                  *ngFor="
+                                    let status of routeEcos;
+                                    let i = index
+                                  "
+                                  [ngClass]="
+                                    i % 2 == 0
+                                      ? 'eds-pagerstyle'
+                                      : 'eds-pagerstyle-alt'
+                                  "
+                                >
+                                  <td>{{ status?.eco }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
                           </td>
                         </tr>
                       </tbody>
@@ -608,6 +631,7 @@
                                   autocomplete="off"
                                   (input)="ecoNumb()"
                                   [(ngModel)]="ecoNumber"
+                                  (focusout)="onFocusOut()"
                                 />
 
                                 <div
@@ -635,7 +659,7 @@
                                 >
                                   <div
                                     *ngFor="let doc of ecoRes"
-                                    (click)="selectesoNum(doc)"
+                                    (mousedown)="selectesoNum(doc)"
                                   >
                                     <span style="cursor: pointer">{{
                                       doc
@@ -680,6 +704,7 @@
                                   autocomplete="off"
                                   [(ngModel)]="typedEsoNumber"
                                   (input)="esoNumb()"
+                                  (focusout)="onFocusOut()"
                                 />
 
                                 <div
@@ -707,7 +732,7 @@
                                 >
                                   <div
                                     *ngFor="let doc of esoNumberRess"
-                                    (click)="selectesoNum1(doc)"
+                                    (mousedown)="selectesoNum1(doc)"
                                   >
                                     <span style="cursor: pointer">{{
                                       doc
