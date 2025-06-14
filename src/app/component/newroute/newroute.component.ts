@@ -113,5 +113,7 @@ let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
 
   onRouteTypeChange() {
     this.disposition = "Closed";
+    this.closeDate = new Date();
+    this.closeDate = this.datePipe.transform(this.closeDate, 'MM/dd/yyyy');
   }
 }
