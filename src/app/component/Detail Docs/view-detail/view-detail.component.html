@@ -486,48 +486,70 @@
                   </td>
                 </tr>
                 <tr>
-                  <td width="40%" valign="top">
-                    <table cellspacing="0" cellpadding="0" border="0" style="margin-top: 50px;">
+          <td width="40%" valign="top">
+            <table
+              cellspacing="0"
+              cellpadding="0"
+              border="0"
+              style="margin-top: 50px"
+              width="100%"
+            >
+              <tbody>
+                <tr>
+                  <td>
+                    <table
+                      class="eds-tabheader"
+                      cellspacing="0"
+                      cellpadding="0"
+                      border="0"
+                      width="100%"
+                    >
+                      <tbody>
+                        <tr>
+                          <td class="eds-tabtopleftcorner"></td>
+                          <td class="eds-tabtopmiddle" align="center">
+                            <div class="eds-tabtitle">ECO</div>
+                          </td>
+                          <td class="eds-tabtoprightcorner"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="eds-tabtoprightcorner"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <table
+                      cellspacing="0"
+                      cellpadding="0"
+                      width="100%"
+                      border="0"
+                      class="eds-tabtitle"
+                    >
                       <tbody>
                         <tr>
                           <td>
-                            <table
-                              class="eds-tabheader"
-                              cellspacing="0"
-                              cellpadding="0"
-                              border="0"
-                            >
-                              <tbody>
+                            <table class="inline-table" id="eso" width="100%">
+                              <thead *ngIf="docDetails?.ecoDetails.length > 0">
                                 <tr>
-                                  <td class="eds-tabtopleftcorner"></td>
-                                  <td class="eds-tabtopmiddle" align="center">
-                                    <div class="eds-tabtitle">ECO</div>
-                                  </td>
-                                  <td class="eds-tabtoprightcorner"></td>
+                                  <th>ECO #</th>
                                 </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="eds-tabtoprightcorner"></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <table
-                              cellspacing="0"
-                              cellpadding="0"
-                              width="100%"
-                              border="0"
-                              class="eds-tabtitle"
-                            >
+                              </thead>
                               <tbody>
-                                <tr>
-                                  <td>
-                                    <font color="#ffffff"
-                                      ><b>Nothing found to display</b></font
-                                    ><br /><br />
-                                  </td>
+                                <tr
+                                  *ngFor="
+                                    let status of docDetails?.ecoDetails;
+                                    let i = index
+                                  "
+                                  [ngClass]="
+                                    i % 2 == 0
+                                      ? 'eds-pagerstyle'
+                                      : 'eds-pagerstyle-alt'
+                                  "
+                                >
+                                  <td>{{ status?.eco }}</td>
                                 </tr>
                               </tbody>
                             </table>
@@ -537,6 +559,10 @@
                     </table>
                   </td>
                 </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
               </tbody>
             </table>
           </div>

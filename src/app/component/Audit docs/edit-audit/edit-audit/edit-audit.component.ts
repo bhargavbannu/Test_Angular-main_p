@@ -31,10 +31,10 @@ export class EditAuditComponent {
       this.auditData.audit.revisionDate = this.datePipe.transform(this.auditData.audit.revisionDate, 'MM/dd/yyyy');
       this.auditData.audit.followUpDate = this.datePipe.transform(this.auditData.audit.followUpDate, 'MM/dd/yyyy');
       this.followUpCompleteInd = this.auditData?.audit.followUpCompleteInd
-      if(this.followUpCompleteInd === 'Yes'){
+      if(this.followUpCompleteInd === 'YES'){
         this.followUpCompleteInd = "Y"
       }
-      else if(this.followUpCompleteInd === 'No'){
+      else if(this.followUpCompleteInd === 'NO'){
         this.followUpCompleteInd = "N"
       }
     });
