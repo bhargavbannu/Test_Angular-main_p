@@ -38,6 +38,12 @@ export class NewrouteComponent {
     this.routeDate = new Date();
     this.routeDate = this.datePipe.transform(this.routeDate, 'MM/dd/yyyy');
 
+    if(this.routeType == 'RR'){
+       this.disposition = "Closed";
+    this.closeDate = new Date();
+    this.closeDate = this.datePipe.transform(this.closeDate, 'MM/dd/yyyy');
+    }
+
   }
 
   save() {
