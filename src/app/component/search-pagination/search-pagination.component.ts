@@ -221,11 +221,12 @@ documentSubject: any;
   searchEffetivity: any;
 @ViewChild('childForm') childForm!: NgForm
 
+
   constructor(private apiService:ApiService, private datePipe: DatePipe) {}
 
   ngOnInit(){
     const formData = this.apiService.getFormData();
-    if (formData) {
+    if (formData && this.apiService.clearFields === false) {
       this.vdtId = formData.vdtId;
       this.selectedEffectivity = formData.selectedEffectivity;
       this.subject = formData.subject;
@@ -269,6 +270,7 @@ documentSubject: any;
 
   clearFields(){
     this.childForm.resetForm();
+    this.apiService.clearFields = true;
   }
 
   formatDate1(date: Date) {

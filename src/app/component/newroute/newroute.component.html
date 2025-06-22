@@ -88,7 +88,7 @@
                                 multiple="multiple"
                                 [(ngModel)]="Sections"
                               >
-                                <option>{{ Section }}</option>
+                                <option *ngFor="let data of Section">{{ data }}</option>
                               </select>
                             </td>
                           </tr>

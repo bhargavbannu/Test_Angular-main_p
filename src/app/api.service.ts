@@ -11,6 +11,7 @@ import * as FileSaver from 'file-saver';
 export class ApiService {
   role: any;
   nextRouteType: any;
+  clearFields!: boolean;
   
   exportToExcel(data: any[], fileName: string): void {
     // Create worksheet from data

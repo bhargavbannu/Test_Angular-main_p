@@ -226,7 +226,9 @@ loadingDownload: boolean = false;
       this.advancedSearchHidden = formData.advancedSearchHidden,
       this.currentPage = formData.currentPage;
       setTimeout(() => {
+        if(this.detailId === undefined || this.detailId === null){ 
         this.Search();
+        }
       }, 0);
     }
     this.cdr.detectChanges();
@@ -235,6 +237,7 @@ loadingDownload: boolean = false;
 
   Search() {  
     this.apiService.searchType = "search";
+    this.apiService.clearFields = false;
     const formData = {
       vendorName: this.vendorName,
       checkBoxValue: this.checkBoxValue,
@@ -276,6 +279,7 @@ loadingDownload: boolean = false;
       this.searchPagination?.reissueEndDate,
       'yyyy-MM-ddTHH:mm:ss'
     );
+    if(this.detailId === ''){this.detailId= undefined;}
     const payload = {
       vendorName: this.vendorName,
       currentVendorOnly: this.checkBoxValue,
@@ -305,19 +309,19 @@ loadingDownload: boolean = false;
     this.downloadPayload = payload;
     this.apiService
       .postData(payload, this.start / this.size + 1, this.size)
-      .subscribe((data) => {        
+      .subscribe((data) => {
+        if(data.results) {       
         this.apiData = [...data.results];
-        // this.totalCount = data.totalCount;
-        // this.totalPages = Math.ceil(this.totalCount / this.recordsPerPage);
         this.totalCount = data.totalRevisions;
         this.totalPages = data.totalPages;
         this.loading = false;
-      //  if(this.apiData.length > 0){
-      //  this.tableHeaders = Object.keys(this.apiData[0]); 
-      //  }// Extract headers from the first object
-      //  else {
-      //    this.tableHeaders = [];
-       // }
+        }
+       if(this.detailId !== undefined && this.detailId !== null){       
+        this.apiService.viewDocId = data.viewDocumentResponse.document.documentNbr;
+        this.apiService.vendorName = data.viewDocumentResponse.vendor.vendorNm;
+        this.apiService.subject = data.viewDocumentResponse.document.subject;
+        this.router.navigate(['/viewStatus']);
+       }
       });
   }
 

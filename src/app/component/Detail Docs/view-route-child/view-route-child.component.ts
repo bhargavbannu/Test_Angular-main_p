@@ -181,8 +181,8 @@ export class ViewRouteChildComponent implements OnInit {
         disposition: this.viewRoute.route.disposition,
         closedate: closedate,
         remark: this.viewRoute.route.remark,
-        esos: this.viewRoute.route.esos,
-        ecos: this.viewRoute.route.ecos,
+        esos: this.selectedEsoNumber,
+        ecos: this.selectedEcoNumber,
       },
       submitType: 'edit',
     };

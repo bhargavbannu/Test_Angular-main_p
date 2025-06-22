@@ -2,16 +2,43 @@
   <div class="loader"></div>
   <p>Loading data, please wait...</p>
 </div>
-<tbody *ngIf="!loading" >
-  <div *ngIf="detailDeleted" class="savedDoc">SUCCESS: Successfully deleted Detail.</div>
-  <div *ngIf="formVendorDeleted" class="savedDoc">SUCCESS: Successfully deleted Former Vendor.</div>
-  <div *ngIf="auditDeleted" class="savedDoc">SUCCESS: Successfully deleted Audit.</div>
-  <div *ngIf="formerVendorSaved" class="savedDoc">SUCCESS: Former Vendor saved successfully.</div>
-  <div *ngIf="docAdded" class="savedDoc">SUCCESS: Document saved successfully.</div>
-  <div *ngIf="docMoved" class="savedDoc">SUCCESS: Document moved successfully.</div>
-  <a *ngIf="searchType ==='search'" style="font-weight: bolder" routerLink="/search">Back To Search Results</a>
-  <a *ngIf="searchType ==='audit'" style="font-weight: bolder" routerLink="/search-audits">Back To Search Results</a>
-  <a *ngIf="searchType ==='route' " style="font-weight: bolder" routerLink="/search-routes">Back To Search Results</a>
+<tbody *ngIf="!loading">
+  <div *ngIf="detailDeleted" class="savedDoc">
+    SUCCESS: Successfully deleted Detail.
+  </div>
+  <div *ngIf="formVendorDeleted" class="savedDoc">
+    SUCCESS: Successfully deleted Former Vendor.
+  </div>
+  <div *ngIf="auditDeleted" class="savedDoc">
+    SUCCESS: Successfully deleted Audit.
+  </div>
+  <div *ngIf="formerVendorSaved" class="savedDoc">
+    SUCCESS: Former Vendor saved successfully.
+  </div>
+  <div *ngIf="docAdded" class="savedDoc">
+    SUCCESS: Document saved successfully.
+  </div>
+  <div *ngIf="docMoved" class="savedDoc">
+    SUCCESS: Document moved successfully.
+  </div>
+  <a
+    *ngIf="searchType === 'search'"
+    style="font-weight: bolder"
+    routerLink="/search"
+    >Back To Search Results</a
+  >
+  <a
+    *ngIf="searchType === 'audit'"
+    style="font-weight: bolder"
+    routerLink="/search-audits"
+    >Back To Search Results</a
+  >
+  <a
+    *ngIf="searchType === 'route'"
+    style="font-weight: bolder"
+    routerLink="/search-routes"
+    >Back To Search Results</a
+  >
   <tr>
     <td valign="top" align="left">
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -92,7 +119,8 @@
                                           </td>
                                           <td align="left">
                                             <span class="viewFieldText">{{
-                                              documentsDetails.document?.documentNbr
+                                              documentsDetails.document
+                                                ?.documentNbr
                                             }}</span>
                                           </td>
                                         </tr>
@@ -107,7 +135,7 @@
                                             <span class="viewFieldText">{{
                                               documentsDetails.document
                                                 ?.creationDate
-                                                | date : 'MM/dd/yyyy'
+                                                | date : "MM/dd/yyyy"
                                             }}</span>
                                           </td>
                                         </tr>
@@ -121,8 +149,8 @@
                                           <td align="left">
                                             <span class="viewFieldText"
                                               >{{
-                                                documentsDetails.document?.vendor
-                                                  .vendorNm
+                                                documentsDetails.document
+                                                  ?.vendor.vendorNm
                                               }}
                                             </span>
                                           </td>
@@ -135,98 +163,73 @@
                                           >
                                             <table width="100%">
                                               <tbody> -->
-                                                <!-- <tr style="height: 1px">
+                                        <!-- <tr style="height: 1px">
                                                   <td width="200"></td>
                                                   <td width="250"></td>
                                                 </tr> -->
 
-                                                <tr class="eds-pagerstyle-alt">
-                                                  <td align="right">
-                                                    Vendor Website&nbsp; &nbsp;
-                                                  </td>
-                                                  <td align="left">
-                                                    <span class="viewFieldText"
-                                                      >{{
-                                                        documentsDetails
-                                                          .document?.vendor
-                                                          .vendorWebsite
-                                                      }}
-                                                    </span>
-                                                  </td>
-                                                </tr>
+                                        <tr class="eds-pagerstyle-alt">
+                                          <td align="right">
+                                            Vendor Website&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <span class="viewFieldText"
+                                              >{{
+                                                documentsDetails.document
+                                                  ?.vendor.vendorWebsite
+                                              }}
+                                            </span>
+                                          </td>
+                                        </tr>
 
-                                                <tr
-                                                  class="eds-pagerstyle"
-                                                >
-                                                  <td align="right">
-                                                    Vendor Contact Person&nbsp;
-                                                    &nbsp;
-                                                  </td>
-                                                  <td align="left">
-                                                    <span
-                                                      class="viewFieldText"
-                                                      >{{
-                                                        documentsDetails
-                                                          .document?.vendor
-                                                          .contactPerson
-                                                      }}</span
-                                                    >
-                                                  </td>
-                                                </tr>
+                                        <tr class="eds-pagerstyle">
+                                          <td align="right">
+                                            Vendor Contact Person&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document?.vendor
+                                                .contactPerson
+                                            }}</span>
+                                          </td>
+                                        </tr>
 
-                                                <tr class="eds-pagerstyle-alt">
-                                                  <td align="right">
-                                                    Vendor Contact Phone&nbsp;
-                                                    &nbsp;
-                                                  </td>
-                                                  <td align="left">
-                                                    <span
-                                                      class="viewFieldText"
-                                                      >{{
-                                                        documentsDetails
-                                                          .document?.vendor
-                                                          .contactPhone
-                                                      }}</span
-                                                    >
-                                                  </td>
-                                                </tr>
+                                        <tr class="eds-pagerstyle-alt">
+                                          <td align="right">
+                                            Vendor Contact Phone&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document?.vendor
+                                                .contactPhone
+                                            }}</span>
+                                          </td>
+                                        </tr>
 
-                                                <tr
-                                                  class="eds-pagerstyle"
-                                                >
-                                                  <td align="right">
-                                                    Vendor Email&nbsp; &nbsp;
-                                                  </td>
-                                                  <td align="left">
-                                                    <span
-                                                      class="viewFieldText"
-                                                      >{{
-                                                        documentsDetails
-                                                          .document?.vendor
-                                                          .vendorEmailAddress
-                                                      }}</span
-                                                    >
-                                                  </td>
-                                                </tr>
+                                        <tr class="eds-pagerstyle">
+                                          <td align="right">
+                                            Vendor Email&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document?.vendor
+                                                .vendorEmailAddress
+                                            }}</span>
+                                          </td>
+                                        </tr>
 
-                                                <tr
-                                                  class="eds-pagerstyle-alt"
-                                                >
-                                                  <td align="right">
-                                                    Vendor Remarks&nbsp; &nbsp;
-                                                  </td>
-                                                  <td align="left">
-                                                    <span
-                                                      class="viewFieldText"
-                                                      >{{
-                                                        documentsDetails
-                                                          .document?.vendor
-                                                          .remarks
-                                                      }}</span
-                                                    >
-                                                  </td>
-                                                </tr>
-                                              <!-- </tbody>
+                                        <tr class="eds-pagerstyle-alt">
+                                          <td align="right">
+                                            Vendor Remarks&nbsp; &nbsp;
+                                          </td>
+                                          <td align="left">
+                                            <span class="viewFieldText">{{
+                                              documentsDetails.document?.vendor
+                                                .remarks
+                                            }}</span>
+                                          </td>
+                                        </tr>
+                                        <!-- </tbody>
                                             </table>
                                           </td>
                                         </tr> -->
@@ -244,9 +247,7 @@
                                           </td>
                                         </tr>
 
-                                        <tr
-                                          class="eds-pagerstyle-alt dropdown"
-                                        >
+                                        <tr class="eds-pagerstyle-alt dropdown">
                                           <td align="right">
                                             Category&nbsp; &nbsp;
                                           </td>
@@ -260,33 +261,29 @@
                                           </td>
                                         </tr>
 
-                                        <tr
-                                          class="eds-pagerstyle dropdown"
-                                        >
+                                        <tr class="eds-pagerstyle dropdown">
                                           <td align="right">
                                             Effectivity&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
                                             <div>
-                                              <span class="viewFieldText">{{
-                                                documentsDetails.document
-                                                  ?.effectivityIds
+                                              <span *ngFor="let item of documentsDetails.document
+                                                  ?.effectivityIds" class="viewFieldText">{{
+                                               item
                                               }}</span>
                                             </div>
                                           </td>
                                         </tr>
 
-                                        <tr
-                                          class="eds-pagerstyle-alt dropdown"
-                                        >
+                                        <tr class="eds-pagerstyle-alt dropdown">
                                           <td align="right">
                                             Section *&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
                                             <div>
-                                              <span class="viewFieldText">{{
-                                                documentsDetails.document
-                                                  ?.sections
+                                              <span *ngFor="let item of documentsDetails.document
+                                                  ?.sections" class="viewFieldText">{{
+                                                item
                                               }}</span>
                                             </div>
                                           </td>
@@ -317,9 +314,7 @@
                                           </td>
                                         </tr>
 
-                                        <tr
-                                          class="eds-pagerstyle dropdown"
-                                        >
+                                        <tr class="eds-pagerstyle dropdown">
                                           <td align="right">
                                             Next Route&nbsp; &nbsp;
                                           </td>
@@ -356,15 +351,14 @@
 
                                         <!-- ITAR START-->
 
-                                        <tr
-                                          class="eds-pagerstyle-alt dropdown"
-                                        >
+                                        <tr class="eds-pagerstyle-alt dropdown">
                                           <td align="right">
                                             ITAR&nbsp; &nbsp;
                                           </td>
                                           <td align="left">
                                             <span class="viewFieldText">{{
-                                              documentsDetails.document?.displayItar
+                                              documentsDetails.document
+                                                ?.displayItar
                                             }}</span>
                                           </td>
                                         </tr>
@@ -425,11 +419,16 @@
                                           </td>
                                           <td>
                                             <div>
-                                              <span class="viewFieldText"
-                                              *ngFor="let partNumber of 
-                                              documentsDetails.document.
-                                              documentPartNumbers">
-                                                {{ partNumber }}</span>
+                                              <span
+                                                class="viewFieldText"
+                                                *ngFor="
+                                                  let partNumber of documentsDetails
+                                                    .document
+                                                    .documentPartNumbers
+                                                "
+                                              >
+                                                {{ partNumber }}</span
+                                              >
                                             </div>
                                           </td>
                                         </tr>
@@ -497,36 +496,36 @@
                       <tr>
                         <td>
                           <table
-                          cellspacing="0"
-                          cellpadding="0"
-                          width="100%"
-                          border="0"
-                          class="eds-tabtitle"
-                        >
-                          <tbody>
-                            <tr>
-                              <td>
-                                <form
-                                  id="createRouteForm"
-                                  action="CreateNewRoute.html"
-                                  method="post"
-                                >
-    
-                                  <table class="inline-table" id="route">
-                                    <thead>
-                                      <tr>
-                                        <th>Detail #</th>
-                                        <th>Section</th>
-                                        <th>Route Date</th>
-                                        <th>Routing</th>
-                                        <th>Disposition</th>
-                                        <th>Close Date</th>
-                                        <th>Remark</th>
-                                        <th>Action</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr *ngFor="
+                            cellspacing="0"
+                            cellpadding="0"
+                            width="100%"
+                            border="0"
+                            class="eds-tabtitle"
+                          >
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <form
+                                    id="createRouteForm"
+                                    action="CreateNewRoute.html"
+                                    method="post"
+                                  >
+                                    <table class="inline-table" id="route">
+                                      <thead>
+                                        <tr>
+                                          <th>Detail #</th>
+                                          <th>Section</th>
+                                          <th>Route Date</th>
+                                          <th>Routing</th>
+                                          <th>Disposition</th>
+                                          <th>Close Date</th>
+                                          <th>Remark</th>
+                                          <th>Action</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr
+                                          *ngFor="
                                             let status of documentsDetails?.mostRecentRouting;
                                             let i = index
                                           "
@@ -534,52 +533,71 @@
                                             i % 2 == 0
                                               ? 'eds-pagerstyle'
                                               : 'eds-pagerstyle-alt'
-                                          ">
-                                        <td>{{status.pop}}</td>
-                                        <td>{{status.sectionId}}</td>
-                                        <td>{{status.routeDate | date:"MM/dd/yyyy"}}</td>
-                                        <td>{{status.routeType.routingTypeId}}</td>
-                                        <td>{{status.disposition}}</td>
-                                        <td>{{status.closedate | date:"MM/dd/yyyy"}}</td>
-                                        <td>{{status.remark}}</td>
-                                        <td>
-                                          <a routerLink="/viewRoute" (click)="viewRoute(status.routeId)"
-                                            
-                                            >View</a
-                                          >
-                                          &nbsp;
-    
-                                          <a
-                                          (click)="downloadRouteSlip(status.routeId)"
-                                          style="cursor: pointer;"
-                                          href="javascript:void(0);"
-                                          >Route Slip</a
-                                          >
-    
-                                          <br />
-    
-                                          <a
-                                           routerLink="/viewnewRoutw"
-                                           (click)="reIssue()"
-                                            >Re-Issue</a
-                                          >
-                                          &nbsp;
-                                          <a 
-                                          routerLink="/viewRoute"
-                                          (click)="closed(status.routeId)"
-                                           >Close</a
-                                         >
-                                          <!-- <a routerLink="/viewStatus">Back to Document</a> -->
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-    
-                                </form>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                          "
+                                        >
+                                          <td>{{ status.pop }}</td>
+                                          <td>{{ status.sectionId }}</td>
+                                          <td>
+                                            {{
+                                              status.routeDate
+                                                | date : "MM/dd/yyyy"
+                                            }}
+                                          </td>
+                                          <td>
+                                            {{ status.routeType.routingTypeId }}
+                                          </td>
+                                          <td>{{ status.disposition }}</td>
+                                          <td>
+                                            {{
+                                              status.closedate
+                                                | date : "MM/dd/yyyy"
+                                            }}
+                                          </td>
+                                          <td>{{ status.remark }}</td>
+                                          <td>
+                                            <a
+                                              routerLink="/viewRoute"
+                                              (click)="
+                                                viewRoute(status.routeId)
+                                              "
+                                              >View</a
+                                            >
+                                            &nbsp;
+
+                                            <a
+                                              (click)="
+                                                downloadRouteSlip(
+                                                  status.routeId
+                                                )
+                                              "
+                                              style="cursor: pointer"
+                                              href="javascript:void(0);"
+                                              >Route Slip</a
+                                            >
+
+                                            <br />
+
+                                            <a
+                                              routerLink="/viewnewRoutw"
+                                              (click)="reIssue()"
+                                              >Re-Issue</a
+                                            >
+                                            &nbsp;
+                                            <a
+                                              routerLink="/viewRoute"
+                                              (click)="closed(status.routeId)"
+                                              >Close</a
+                                            >
+                                            <!-- <a routerLink="/viewStatus">Back to Document</a> -->
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </form>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </td>
                       </tr>
                     </tbody>
@@ -650,25 +668,42 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr *ngFor="
-                                        let status of documentsDetails?.detail?.simpleDetailPop?.pops;
-                                        let i = index
-                                      "
-                                      [ngClass]="
-                                        i % 2 == 0
-                                          ? 'eds-pagerstyle'
-                                          : 'eds-pagerstyle-alt'
-                                      ">
-                                          <td>{{status.popRefNbr}}</td>
-                                          <td>{{status.detailDocType}}</td>
-                                          <td>{{status.doctype}}</td>
-                                          <td>{{status.revisionNbr}}</td>
-                                          <td>{{status.detailSubjectDesc}}</td>
-                                          <td>{{status.manualdate | date:"MM/dd/yyyy"}}</td>
-                                          <td>{{status.bin}}</td>
-                                          <td>{{status.remark}}</td>
+                                        <tr
+                                          *ngFor="
+                                            let status of documentsDetails
+                                              ?.detail?.simpleDetailPop?.pops;
+                                            let i = index
+                                          "
+                                          [ngClass]="
+                                            i % 2 == 0
+                                              ? 'eds-pagerstyle'
+                                              : 'eds-pagerstyle-alt'
+                                          "
+                                        >
+                                          <td>{{ status.popRefNbr }}</td>
+                                          <td>{{ status.detailDocType }}</td>
+                                          <td>{{ status.doctype }}</td>
+                                          <td>{{ status.revisionNbr }}</td>
                                           <td>
-                                            <a routerLink="/viewDetail" (click)="viewDetail(status.popno, status.popRefNbr)"
+                                            {{ status.detailSubjectDesc }}
+                                          </td>
+                                          <td>
+                                            {{
+                                              status.manualdate
+                                                | date : "MM/dd/yyyy"
+                                            }}
+                                          </td>
+                                          <td>{{ status.bin }}</td>
+                                          <td>{{ status.remark }}</td>
+                                          <td>
+                                            <a
+                                              routerLink="/viewDetail"
+                                              (click)="
+                                                viewDetail(
+                                                  status.popno,
+                                                  status.popRefNbr
+                                                )
+                                              "
                                               >View</a
                                             >
                                           </td>
@@ -737,7 +772,11 @@
                                     </table>
 
                                     <span style="float: right">
-                                      <input type="submit" routerLink="/newDetail" value="New Detail" />
+                                      <input
+                                        type="submit"
+                                        routerLink="/newDetail"
+                                        value="New Detail"
+                                      />
                                     </span>
                                   </form>
                                 </td>
@@ -780,7 +819,7 @@
                       </tr>
                       <tr>
                         <td>
-                          <table                         
+                          <table
                             cellspacing="0"
                             cellpadding="0"
                             width="100%"
@@ -790,9 +829,15 @@
                             <tbody>
                               <tr>
                                 <td>
-                                  <div style="width: 400">
-                                    <table class="inline-table" id="audit"                                   >
-                                      <thead *ngIf="documentsDetails.length !==0 && documentsDetails.documentLatestAudit.length !== 0">
+                                  <div style="width: 400px">
+                                    <table class="inline-table" id="audit">
+                                      <thead
+                                        *ngIf="
+                                          documentsDetails.length !== 0 &&
+                                          documentsDetails.documentLatestAudit
+                                            .length !== 0
+                                        "
+                                      >
                                         <tr>
                                           <th class="sorted order1">
                                             Audit Date
@@ -805,7 +850,14 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                        <tr class="odd" *ngIf="documentsDetails.length !==0 && documentsDetails.documentLatestAudit.length !== 0">
+                                        <tr
+                                          class="odd"
+                                          *ngIf="
+                                            documentsDetails.length !== 0 &&
+                                            documentsDetails.documentLatestAudit
+                                              .length !== 0
+                                          "
+                                        >
                                           <td>
                                             {{
                                               documentsDetails
@@ -856,14 +908,15 @@
                                             >
 
                                             &nbsp;
-                                            <a routerLink="/editAudit"
-                                            (click)="
-                                              editAudit(
-                                                documentsDetails
-                                                  .documentLatestAudit[0]
-                                                  .auditId
-                                              )
-                                            "
+                                            <a
+                                              routerLink="/editAudit"
+                                              (click)="
+                                                editAudit(
+                                                  documentsDetails
+                                                    .documentLatestAudit[0]
+                                                    .auditId
+                                                )
+                                              "
                                               >Edit</a
                                             >
                                           </td>
@@ -871,13 +924,20 @@
                                       </tbody>
                                     </table>
 
-                                    <a routerLink="/viewAllAudits"
+                                    <a
+                                      *ngIf="
+                                        documentsDetails.length !== 0 &&
+                                        documentsDetails.documentLatestAudit
+                                          .length !== 0
+                                      "
+                                      routerLink="/viewAllAudits"
                                       >View All Audits</a
                                     >
-
-                                    <form
-                                      id="createAuditForm"
-                                    >
+                                   <b style="color: black;" *ngIf="
+                                          documentsDetails.documentLatestAudit
+                                            .length === 0
+                                        ">This document has not been audited</b>
+                                    <form id="createAuditForm">
                                       <input
                                         type="hidden"
                                         value="28889752"
@@ -949,8 +1009,13 @@
                                       <tr>
                                         <td>
                                           <table class="inline-table" id="eso">
-                                            <thead *ngIf="documentsDetails">
-                                              <tr >
+                                            <thead
+                                              *ngIf="
+                                                documentsDetails.documentEsos
+                                                  .length > 0
+                                              "
+                                            >
+                                              <tr>
                                                 <th>ESO #</th>
                                                 <th>Assign Date</th>
                                                 <th>Subject</th>
@@ -958,25 +1023,37 @@
                                               </tr>
                                             </thead>
                                             <tbody>
-                                              <tr *ngFor="
-                                              let status of documentsDetails.documentEsos;
-                                              let i = index
-                                            "
-                                            [ngClass]="
-                                              i % 2 == 0
-                                                ? 'eds-pagerstyle'
-                                                : 'eds-pagerstyle-alt'
-                                            ">
-                                                <td>{{status.esoForDisplay}}</td>
-                                                <td>{{status.assigndate | date:"MM/dd/yyyy"}}</td>
-                                                <td>{{status.subject}}</td>
+                                              <tr
+                                                *ngFor="
+                                                  let status of documentsDetails.documentEsos;
+                                                  let i = index
+                                                "
+                                                [ngClass]="
+                                                  i % 2 == 0
+                                                    ? 'eds-pagerstyle'
+                                                    : 'eds-pagerstyle-alt'
+                                                "
+                                              >
                                                 <td>
-                                                  <a routerLink="/view-eso"
-                                                    (click)="viewEso(status.eso)">View</a
+                                                  {{ status.esoForDisplay }}
+                                                </td>
+                                                <td>
+                                                  {{
+                                                    status.assigndate
+                                                      | date : "MM/dd/yyyy"
+                                                  }}
+                                                </td>
+                                                <td>{{ status.subject }}</td>
+                                                <td>
+                                                  <a
+                                                    routerLink="/view-eso"
+                                                    (click)="
+                                                      viewEso(status.eso)
+                                                    "
+                                                    >View</a
                                                   >
                                                 </td>
                                               </tr>
-
                                             </tbody>
                                           </table>
                                           <br /><br />
@@ -990,9 +1067,15 @@
                           </table>
                         </td>
                       </tr>
-                      <tr>
+                      <tr style="position: relative; top: -50px">
                         <td width="40%" valign="top">
-                          <table cellspacing="0" cellpadding="0" border="0">
+                          <table
+                            cellspacing="0"
+                            cellpadding="0"
+                            border="0"
+                            style="margin-top: 50px"
+                            width="100%"
+                          >
                             <tbody>
                               <tr>
                                 <td>
@@ -1001,6 +1084,7 @@
                                     cellspacing="0"
                                     cellpadding="0"
                                     border="0"
+                                    width="100%"
                                   >
                                     <tbody>
                                       <tr>
@@ -1032,11 +1116,37 @@
                                     <tbody>
                                       <tr>
                                         <td>
-                                          <font color="#ffffff"
-                                            ><b
-                                              >Nothing found to display</b
-                                            ></font
-                                          ><br /><br />
+                                          <table
+                                            class="inline-table"
+                                            id="eso"
+                                            width="100%"
+                                          >
+                                            <thead
+                                              *ngIf="
+                                                documentsDetails.documentEcos
+                                                  .length > 0
+                                              "
+                                            >
+                                              <tr>
+                                                <th>ECO #</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr
+                                                *ngFor="
+                                                  let status of documentsDetails.documentEcos;
+                                                  let i = index
+                                                "
+                                                [ngClass]="
+                                                  i % 2 == 0
+                                                    ? 'eds-pagerstyle'
+                                                    : 'eds-pagerstyle-alt'
+                                                "
+                                              >
+                                                <td>{{ status?.eco }}</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
                                         </td>
                                       </tr>
                                     </tbody>
@@ -1114,19 +1224,39 @@
                                                 </tr>
                                               </thead>
                                               <tbody>
-                                                <tr *ngFor="
-                                                let status of documentsDetails.formerVendors;
-                                                let i = index
-                                              "
-                                              [ngClass]="
-                                                i % 2 == 0
-                                                  ? 'eds-pagerstyle'
-                                                  : 'eds-pagerstyle-alt'
-                                              ">
-                                                  <td>{{status.id.vendor.vendorNm}}</td>
-                                                  <td>{{status.id.supercededDt | date:"MM/dd/yyyy"}}</td>
+                                                <tr
+                                                  *ngFor="
+                                                    let status of documentsDetails.formerVendors;
+                                                    let i = index
+                                                  "
+                                                  [ngClass]="
+                                                    i % 2 == 0
+                                                      ? 'eds-pagerstyle'
+                                                      : 'eds-pagerstyle-alt'
+                                                  "
+                                                >
                                                   <td>
-                                                    <a href="javascript:void(0)" (click)="deleteFormerVendor(status.id.vendor.vendorNm,status.id.supercededDt)">Delete</a
+                                                    {{
+                                                      status.id.vendor.vendorNm
+                                                    }}
+                                                  </td>
+                                                  <td>
+                                                    {{
+                                                      status.id.supercededDt
+                                                        | date : "MM/dd/yyyy"
+                                                    }}
+                                                  </td>
+                                                  <td>
+                                                    <a
+                                                      href="javascript:void(0)"
+                                                      (click)="
+                                                        deleteFormerVendor(
+                                                          status.id.vendor
+                                                            .vendorNm,
+                                                          status.id.supercededDt
+                                                        )
+                                                      "
+                                                      >Delete</a
                                                     >
                                                   </td>
                                                 </tr>
