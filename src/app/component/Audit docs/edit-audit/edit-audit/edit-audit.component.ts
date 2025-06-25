@@ -54,13 +54,14 @@ documentDetailsList: any[] = [];
     else if(this.followUpCompleteInd === 'No' || this.followUpCompleteInd === 'NO'){
       this.followUpCompleteInd = 'N'
     }
+    const trrim = this.auditData.audit.popno.split(' ')[0];
     let payload ={
       "audit": {
         "documentNbr": this.auditData.audit.documentNbr,
         "dodAuditCategory": this.auditData.audit.dodAuditCategory,
         "auditStatus": this.auditData.audit.auditStatus,
         "auditId":this.auditData.audit.auditId,
-        "popno":this.auditData.audit.popno,
+        "popno":trrim,
         "auditDate": auditDate,
         "followUpCompleteInd": this.followUpCompleteInd,
         "followUpDate": followUpDate,

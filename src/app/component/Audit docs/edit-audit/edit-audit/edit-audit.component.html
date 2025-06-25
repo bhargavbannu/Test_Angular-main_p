@@ -113,7 +113,8 @@
                               class=""
                               [(ngModel)]="auditData?.audit.popno"
                             >
-                              <option *ngFor="let doc of documentDetailsList"  value="{{ doc?.value }}">
+                              <option *ngFor="let doc of documentDetailsList"  
+                              value="{{ doc?.label}}">
                                {{ doc?.label }}
                               </option>
 
