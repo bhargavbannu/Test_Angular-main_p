@@ -17,11 +17,15 @@ export class EditAuditComponent {
 @ViewChild('calendar1') calendar1!: Calendar;
 @ViewChild('calendar2') calendar2!: Calendar;
 @ViewChild('calendar3') calendar3!: Calendar;
+documentDetailsList: any[] = [];
 
   constructor(private apiService: ApiService, private router:Router, private datePipe:DatePipe){}
 
   ngOnInit() {
     this.loadAuditData();
+    this.apiService.documentDetails().subscribe((res)=>{
+      this.documentDetailsList = res;
+    })
   }
 
   loadAuditData() {

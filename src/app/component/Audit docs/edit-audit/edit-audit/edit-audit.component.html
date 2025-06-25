@@ -113,8 +113,8 @@
                               class=""
                               [(ngModel)]="auditData?.audit.popno"
                             >
-                              <option [value]="auditData?.audit.popno">
-                                {{ auditData?.audit.popno }}
+                              <option *ngFor="let doc of documentDetailsList"  value="{{ doc?.value }}">
+                               {{ doc?.label }}
                               </option>
 
                               <!--<option value="200804092 (CMM/IPL) - R4">
