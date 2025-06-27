@@ -18,6 +18,7 @@ export class EditAuditComponent {
 @ViewChild('calendar2') calendar2!: Calendar;
 @ViewChild('calendar3') calendar3!: Calendar;
 documentDetailsList: any[] = [];
+  trrim: any;
 
   constructor(private apiService: ApiService, private router:Router, private datePipe:DatePipe){}
 
@@ -26,11 +27,13 @@ documentDetailsList: any[] = [];
     this.apiService.documentDetails().subscribe((res)=>{
       this.documentDetailsList = res;
     })
+
   }
 
   loadAuditData() {
     this.apiService.viewAudit().subscribe((data) => {
       this.auditData = data;
+      console.log(this.auditData);
       this.auditData.audit.auditDate = this.datePipe.transform(this.auditData.audit.auditDate, 'MM/dd/yyyy');    
       this.auditData.audit.revisionDate = this.datePipe.transform(this.auditData.audit.revisionDate, 'MM/dd/yyyy');
       this.auditData.audit.followUpDate = this.datePipe.transform(this.auditData.audit.followUpDate, 'MM/dd/yyyy');
@@ -54,14 +57,14 @@ documentDetailsList: any[] = [];
     else if(this.followUpCompleteInd === 'No' || this.followUpCompleteInd === 'NO'){
       this.followUpCompleteInd = 'N'
     }
-    const trrim = this.auditData.audit.popno.split(' ')[0];
+
     let payload ={
       "audit": {
         "documentNbr": this.auditData.audit.documentNbr,
         "dodAuditCategory": this.auditData.audit.dodAuditCategory,
         "auditStatus": this.auditData.audit.auditStatus,
         "auditId":this.auditData.audit.auditId,
-        "popno":trrim,
+        "popno":"205553542",
         "auditDate": auditDate,
         "followUpCompleteInd": this.followUpCompleteInd,
         "followUpDate": followUpDate,

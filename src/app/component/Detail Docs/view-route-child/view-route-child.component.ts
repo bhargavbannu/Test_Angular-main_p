@@ -118,19 +118,27 @@ export class ViewRouteChildComponent implements OnInit {
     this.esoNumberRess = [];
   }
 
-  addEsoNum() {
-    // if(this.typedEsoNumber && !this.viewRoute.route.esos.includes(this.typedEsoNumber)){
-    // this.viewRoute.route.esos.push(this.typedEsoNumber);
-    // this.typedEsoNumber = '';
-    // }
-    if (
-      this.typedEsoNumber &&
-      !this.selectedEsoNumber.includes(this.typedEsoNumber)
-    ) {
+ addEsoNum() {
+  if (
+    this.typedEsoNumber &&
+    !this.selectedEsoNumber.includes(this.typedEsoNumber)
+  ) {
+    // Check if the typed value exists in the dropdown list
+    const existsInDropdown = this.esoNumberRess.includes(this.typedEsoNumber);
+
+    if (existsInDropdown) {
       this.selectedEsoNumber.push(this.typedEsoNumber);
       this.typedEsoNumber = '';
+    } else {
+      // Show confirmation alert if not in dropdown
+      if (window.confirm('The value you entered is not in the list. Do you want to add it?')) {
+        this.selectedEsoNumber.push(this.typedEsoNumber);
+        this.typedEsoNumber = '';
+      }
+      // else do nothing
     }
   }
+}
 
   removeEso() {
     // this.viewRoute.route.esos = [];

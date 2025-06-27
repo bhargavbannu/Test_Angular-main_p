@@ -12,6 +12,7 @@ export class ApiService {
   role: any;
   nextRouteType: any;
   clearFields!: boolean;
+  detailID: any;
   
   exportToExcel(data: any[], fileName: string): void {
     // Create worksheet from data
@@ -119,6 +120,7 @@ export class ApiService {
   private searchEffectivityApi = `${environment.apiBaseUrl}/adminConfiguration/activeEffectivities`;
   private searchDocAllSectionsApi = `${environment.apiBaseUrl}/adminConfiguration/allSections`;
   private addDocvendorDetailsApi = `${environment.apiBaseUrl}/adminConfiguration/selectVendor`;
+  private activeEsoCheck = `${environment.apiBaseUrl}eso/checkActiveESO?eso`;
 
 
   detailRoute:any
@@ -137,6 +139,11 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+
+
+  esoActiveCheck(){
+    return this.http.get<any>(`${this.activeEsoCheck}=${this.eso}`);
+  }
   getDetaildocType(): Observable<any> {
     return this.http.get<any>(this.searchDetailDocTypeApi);
   }
@@ -494,6 +501,10 @@ esoNumbersApiData(val:any):Observable<any>{
 
   viewDetail(): Observable<any> {
     return this.http.get<any>(`${this.viewDetailApi}?popNo=${this.popno}`);
+  }
+
+   viewDetail1(popNO:any): Observable<any> {
+    return this.http.get<any>(`${this.viewDetailApi}?popNo=${popNO}`);
   }
 
   saveEditDetail(payload: any): Observable<any> {

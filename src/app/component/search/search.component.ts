@@ -245,7 +245,7 @@ loadingDownload: boolean = false;
       eso: this.eso,
       eco: this.eco,
       ata: this.ata,
-      detailId: this.detailId,
+      detailId: this.apiService.detailID,
       advancedSearchHidden: this.advancedSearchHidden, 
       vdtId: this.searchPagination?.vdtId,
       selectedEffectivity: this.searchPagination?.selectedEffectivity,
