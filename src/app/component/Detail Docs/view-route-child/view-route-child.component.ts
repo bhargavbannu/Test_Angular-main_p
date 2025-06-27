@@ -38,6 +38,7 @@ export class ViewRouteChildComponent implements OnInit {
   selectedEcoNumberArr: any;
   selectedEcoNumber: any;
   existRouteSaved: any;
+  dropDownValues: any;
 
   constructor(
     private apiService: ApiService,
@@ -70,9 +71,11 @@ export class ViewRouteChildComponent implements OnInit {
         })
       )
       .subscribe((res) => {
-        console.log(res);
+      
 
         this.esoNumberRess = res;
+        this.dropDownValues = res;
+          console.log( this.esoNumberRess,res);
       });
 
     this.route.params.subscribe((params) => {
@@ -118,19 +121,25 @@ export class ViewRouteChildComponent implements OnInit {
     this.esoNumberRess = [];
   }
 
- addEsoNum() {
+addEsoNum() {
   if (
     this.typedEsoNumber &&
     !this.selectedEsoNumber.includes(this.typedEsoNumber)
   ) {
-    // Check if the typed value exists in the dropdown list
-    const existsInDropdown = this.esoNumberRess.includes(this.typedEsoNumber);
+    // Only show alert if the value is NOT in the current dropdown
+    const existsInDropdown = this.dropDownValues.includes(this.typedEsoNumber);
+//     const existsInDropdown = this.esoNumberRess.some(
+//   (item: any) => item === this.typedEsoNumber || item.name === this.typedEsoNumber
+// );
+console.log(existsInDropdown, this.esoNumberRess, this.typedEsoNumber);
+
 
     if (existsInDropdown) {
+      // Value is from dropdown, add directly with NO alert
       this.selectedEsoNumber.push(this.typedEsoNumber);
       this.typedEsoNumber = '';
     } else {
-      // Show confirmation alert if not in dropdown
+      // Value is NOT from dropdown, show alert
       if (window.confirm('The value you entered is not in the list. Do you want to add it?')) {
         this.selectedEsoNumber.push(this.typedEsoNumber);
         this.typedEsoNumber = '';
@@ -139,7 +148,6 @@ export class ViewRouteChildComponent implements OnInit {
     }
   }
 }
-
   removeEso() {
     // this.viewRoute.route.esos = [];
     // this.typedEsoNumber = '';
