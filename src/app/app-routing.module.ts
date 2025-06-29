@@ -31,9 +31,13 @@ import { ViewRouteChildComponent } from './component/Detail Docs/view-route-chil
 import { ReissueRouteComponent } from './component/Detail Docs/reissue-route/reissue-route.component';
 import { NewrouteComponent } from './component/newroute/newroute.component';
 import { EditManageVendorsComponent } from './component/Admin Configuration/edit-manage-vendors/edit-manage-vendors.component';
+import { LandingPageComponent } from './component/landing-page/landing-page.component';
 
 const routes: Routes = [
-  {
+  {path:'',
+    component: LandingPageComponent,
+    children:[
+ {
     path: '',
     component: SearchComponent,
     children: [ 
@@ -153,6 +157,12 @@ const routes: Routes = [
    { path: 'edit-manage-vendors', 
     component: EditManageVendorsComponent
    }
+ ]
+  },
+  {
+    path: 'Add-ESO-popup',
+    component: EsoComponent,
+  }
   
 ];
 

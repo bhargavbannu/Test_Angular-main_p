@@ -20,11 +20,14 @@ export class ViewSearchComponent {
   formVendorDeleted: any;
   formerVendorSaved: any;
   auditDeleted: any;
+  fromdetailSearch: any;
 
   constructor(private apiService: ApiService, private route:ActivatedRoute, private router:Router, private datePipe:DatePipe) {}
 
   ngOnInit() {
     this.loading = true;
+ 
+    
     this.viewDocuments();
     this.route.params.subscribe(params =>{
       this.docAdded = params['docAdded']
@@ -32,7 +35,7 @@ export class ViewSearchComponent {
       this.docMoved = params['docMoved']
       this.formerVendorSaved = params['formerVendorSaved']
       this.auditDeleted = params['auditDeleted']
-
+      this.fromdetailSearch = params['fromdetailSearch']
     })
     this.searchType = this.apiService.searchType;
        this.apiService.getSearchEffetivity().subscribe((data) => {
@@ -44,6 +47,8 @@ export class ViewSearchComponent {
     this.apiService.viewDocuments().subscribe((data) => {
       this.loading = false;
       this.documentsDetails = data;
+      console.log(this.documentsDetails.detail?.simpleDetailPop?.pops );
+      
       this.documentsDetails.document.reissueDate 
       if(this.documentsDetails.document.reissueDate  !== null && this.documentsDetails.document.reissueDate  !== undefined && this.documentsDetails.document.reissueDate  !=='null') {
         this.documentsDetails.document.reissueDate = this.datePipe.transform(this.documentsDetails.document.reissueDate, 'MM/dd/yyyy')

@@ -23,6 +23,8 @@ export class EsoComponent {
   status: any;
   showErr: boolean = false;
   fromEditEso: any;
+  esoFromDoc:any;
+  esoSaved: boolean = false;
 
   constructor(
     private apiService: ApiService,
@@ -31,11 +33,19 @@ export class EsoComponent {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(){
-    this.route.params.subscribe(params =>{
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
       this.fromEditEso = params['fromEditEso'];
-    }
-  )
+    });
+
+    this.route.queryParams.subscribe((params) => {
+      if (params['eso'] !== undefined) {
+        this.esoFromDoc = params['eso'];
+        this.esoNo = params['eso'];
+        this.effectivityId = 'new';
+        this.status = 'A';
+      }
+    });
   }
 
   submitESO() {
@@ -62,14 +72,36 @@ export class EsoComponent {
         status: this.status,
       },
     };
-    this.apiService.addNewEso(payload).subscribe((response: any) => {
-      this.apiService.eso = this.esoNo;
-      this.router.navigate(['/view-eso', { esoSaved: true }]);
-    });
-    if(this.esoNo === "" || this.esoNo === undefined || this.esoNo === null) {
-      this.showErr = true;
+    if (this.esoFromDoc) {
+      this.apiService.addNewEso(payload).subscribe((response: any) => {
+        this.apiService.eso = this.esoNo;
+        this.esoSaved = true;
+         let seconds = 4;
+         const intervalId = setInterval(() => {
+           seconds--;
+           if (seconds > 0) {
+             document.getElementById('message')!.innerHTML = `Window will close in ${seconds} seconds. <a href="#" onClick="closeNow()">Close Now</a>`; 
+           } else {
+            clearInterval(intervalId);
+            (window.opener as any).setEsoNmbr(this.esoNo);
+            window.close();
+           }
+      },1000);
+      (window as any).closeNow = () => {
+        clearInterval(intervalId);
+        (window.opener as any).setEsoNmbr(this.esoNo);
+        window.close();
+      };
+    })
+  } else {
+      this.apiService.addNewEso(payload).subscribe((response: any) => {
+        this.apiService.eso = this.esoNo;
+        this.router.navigate(['/view-eso', { esoSaved: true }]);
+      });
     }
-    else {
+    if (this.esoNo === '' || this.esoNo === undefined || this.esoNo === null) {
+      this.showErr = true;
+    } else {
       this.showErr = false;
     }
   }
@@ -79,17 +111,16 @@ export class EsoComponent {
       this.apiService.esoByEffectivity(id).subscribe((response: any) => {
         this.esoNo = response;
       });
-    }
-    else {
-      this.esoNo = ""
+    } else {
+      this.esoNo = '';
     }
   }
 
-    formatDate1(date: Date) {
+  formatDate1(date: Date) {
     this.assigndate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 
-    formatDate2(date: Date) {
+  formatDate2(date: Date) {
     this.cancelDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 }

@@ -18,7 +18,6 @@ export class EditAuditComponent {
 @ViewChild('calendar2') calendar2!: Calendar;
 @ViewChild('calendar3') calendar3!: Calendar;
 documentDetailsList: any[] = [];
-  trrim: any;
 
   constructor(private apiService: ApiService, private router:Router, private datePipe:DatePipe){}
 
@@ -64,7 +63,7 @@ documentDetailsList: any[] = [];
         "dodAuditCategory": this.auditData.audit.dodAuditCategory,
         "auditStatus": this.auditData.audit.auditStatus,
         "auditId":this.auditData.audit.auditId,
-        "popno":"205553542",
+        "popno": this.auditData.audit.documentDetail.split(" ")[0],
         "auditDate": auditDate,
         "followUpCompleteInd": this.followUpCompleteInd,
         "followUpDate": followUpDate,

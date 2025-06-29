@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!esoSaved">
   <td valign="top" align="left">
     <div>
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -350,3 +350,5 @@
     </div>
   </td>
 </div>
+<div *ngIf="esoSaved" class="savedDoc">SUCCESS: ESO saved successfully.</div>
+<div *ngIf="esoSaved" id="message" style="text-align: center; margin-top: 15px;"></div>

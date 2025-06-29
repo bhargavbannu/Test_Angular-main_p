@@ -679,6 +679,7 @@
                                               ? 'eds-pagerstyle'
                                               : 'eds-pagerstyle-alt'
                                           "
+                                          [ngStyle]="{ 'background': fromdetailSearch === status.popRefNbr.toString() ? '#ffffa0' : '' }"
                                         >
                                           <td>{{ status.popRefNbr }}</td>
                                           <td>{{ status.detailDocType }}</td>

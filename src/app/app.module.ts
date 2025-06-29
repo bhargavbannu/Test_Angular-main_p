@@ -48,7 +48,7 @@ import {CalendarModule } from 'primeng/calendar';
 import { ViewRouteChildComponent } from './component/Detail Docs/view-route-child/view-route-child.component';
 import { ReissueRouteComponent } from './component/Detail Docs/reissue-route/reissue-route.component';
 import { NewrouteComponent } from './component/newroute/newroute.component';
-import { EditManageVendorsComponent } from './component/Admin Configuration/edit-manage-vendors/edit-manage-vendors.component'
+import { EditManageVendorsComponent } from './component/Admin Configuration/edit-manage-vendors/edit-manage-vendors.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +84,7 @@ import { EditManageVendorsComponent } from './component/Admin Configuration/edit
     ViewRouteChildComponent,
     ReissueRouteComponent,
     NewrouteComponent,
-    EditManageVendorsComponent
+    EditManageVendorsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Injectable, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Subject, switchMap } from 'rxjs';
 // import {
 //   debounce,
@@ -77,6 +77,7 @@ export class DocumentComponent implements OnInit {
   addedVal: any[] = [];
   typedEsoNumber: any;
   esoNumberRess: any[] = [];
+  esoNumArray: any[] = [];
   selectedEsoNumber: any[] = [];
   auditableResponse: any[] = [];
   dropDownAuditbale: any;
@@ -114,7 +115,8 @@ export class DocumentComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private datePipe: DatePipe,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -248,6 +250,7 @@ export class DocumentComponent implements OnInit {
       )
       .subscribe((res) => {
         this.esoNumberRess = res;
+        this.esoNumArray = res;
         if (this.typedEsoNumber === '') {
           this.esoNumberRess = [];
         }
@@ -549,6 +552,7 @@ export class DocumentComponent implements OnInit {
   }
 
   addEsoNum() {
+     if(this.esoNumArray.includes(this.typedEsoNumber)){
     if (
       this.typedEsoNumber &&
       !this.selectedEsoNumber.includes(this.typedEsoNumber)
@@ -556,7 +560,20 @@ export class DocumentComponent implements OnInit {
       this.selectedEsoNumber.push(this.typedEsoNumber);
       this.typedEsoNumber = '';
     }
+  } else {
+    let confirm = window.confirm("The specified ESO doesn't exist. Would you like to create it?");
+    if(confirm){ 
+      window.open('/Add-ESO-popup?eso='+this.typedEsoNumber, '_blank', 'width=600,height=400,left=200,top=100');
+      }
+
+       (window as any).setEsoNmbr = (esoNum:any)=>{
+            this.selectedEsoNumber.push(esoNum);
+            this.typedEsoNumber = ''
+            this.cdr.detectChanges();
+           }
+    }
   }
+
 
   addLocation() {
     if (this.typedLocation && !this.eccnLocation.includes(this.typedLocation)) {

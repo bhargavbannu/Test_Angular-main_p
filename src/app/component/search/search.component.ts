@@ -320,7 +320,7 @@ loadingDownload: boolean = false;
         this.apiService.viewDocId = data.viewDocumentResponse.document.documentNbr;
         this.apiService.vendorName = data.viewDocumentResponse.vendor.vendorNm;
         this.apiService.subject = data.viewDocumentResponse.document.subject;
-        this.router.navigate(['/viewStatus']);
+        this.router.navigate(['/viewStatus', {fromdetailSearch:this.detailId}]);
        }
       });
   }
