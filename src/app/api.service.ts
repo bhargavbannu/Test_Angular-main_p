@@ -141,8 +141,8 @@ export class ApiService {
 
 
 
-  esoActiveCheck(){
-    return this.http.get<any>(`${this.activeEsoCheck}=${this.eso}`);
+  esoActiveCheck(nmbr:any){
+    return this.http.get<any>(`${this.activeEsoCheck}=${nmbr}`, {responseType: 'text' as 'json'});
   }
   getDetaildocType(): Observable<any> {
     return this.http.get<any>(this.searchDetailDocTypeApi);

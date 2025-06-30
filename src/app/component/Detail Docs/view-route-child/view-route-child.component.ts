@@ -139,18 +139,20 @@ export class ViewRouteChildComponent implements OnInit {
   }
 
 addEsoNum() {
- 
-      if (this.esoNumArray.includes(this.typedEsoNumber)) {
-        if (
+  this.apiService.esoActiveCheck(this.typedEsoNumber).subscribe((res)=>{
+    if(res === "Not an active ESO"){
+     alert('Not an active ESO.');
+    }else {
+       if (
           this.typedEsoNumber &&
           !this.selectedEsoNumber.includes(this.typedEsoNumber)
         ) {
           this.selectedEsoNumber.push(this.typedEsoNumber);
           this.typedEsoNumber = '';
         }
-      } else {
-        alert('Not an active ESO.');
-      }
+    }
+   })
+ 
  
 }
   removeEso() {
