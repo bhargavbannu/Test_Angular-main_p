@@ -24,6 +24,7 @@ export class ViewRouteChildComponent implements OnInit {
   ecoRes: any[] = [];
   typedEsoNumber: any;
   esoNumberRess: any[] = [];
+  esoNumArray: any[] = [];
   disposition: any;
   dispositionValues: any[] = [];
 
@@ -33,10 +34,10 @@ export class ViewRouteChildComponent implements OnInit {
   routeEcos:any;
   esoValues: any;
   selEsoValue: any;
-  selectedEsoNumberArr: any;
-  selectedEsoNumber: any;
-  selectedEcoNumberArr: any;
-  selectedEcoNumber: any;
+  selectedEsoNumberArr: any[]=[];
+  selectedEsoNumber: any[]=[];
+  selectedEcoNumberArr: any[]=[];
+  selectedEcoNumber: any[]=[];
   existRouteSaved: any;
   dropDownValues: any;
 
@@ -74,8 +75,8 @@ export class ViewRouteChildComponent implements OnInit {
       
 
         this.esoNumberRess = res;
+        this.esoNumArray = res;
         this.dropDownValues = res;
-          console.log( this.esoNumberRess,res);
       });
 
     this.route.params.subscribe((params) => {
@@ -91,10 +92,26 @@ export class ViewRouteChildComponent implements OnInit {
         this.viewRoute = data.routeForm;
         this.routeEsos = data.routeEsos;
         this.routeEcos = data.routeEcos;
-        this.selectedEsoNumber = this.viewRoute.route.esos;
-        this.selectedEsoNumberArr = this.viewRoute.route.esos;
-        this.selectedEcoNumber = this.viewRoute.route.ecos;
-        this.selectedEcoNumberArr = this.viewRoute.route.ecos;
+        // this.selectedEsoNumber = this.viewRoute.route.esos;
+        // this.selectedEsoNumberArr = this.viewRoute.route.esos;
+        //this.selectedEcoNumber = this.viewRoute.route.ecos;
+        //   this.selectedEcoNumberArr = this.viewRoute.route.ecos;
+        if(this.viewRoute.route.esos !== null && this.viewRoute.route.esos !== undefined){
+          this.selectedEsoNumber =  this.viewRoute.route.esos?.map(
+          (res: any) => res
+        );
+          this.selectedEsoNumberArr =  this.viewRoute.route.esos?.map(
+          (res: any) => res
+        );
+      }
+      if(this.viewRoute.route.ecos !== null && this.viewRoute.route.ecos !== undefined){
+        this.selectedEcoNumber =  this.viewRoute.route.ecos?.map(
+          (res: any) => res
+        );
+         this.selectedEcoNumberArr =  this.viewRoute.route.ecos?.map(
+          (res: any) => res
+        );
+      }
         this.viewRoute.route.closedate = this.datePipe.transform(
           this.viewRoute?.route?.closedate,
           'MM/dd/yyyy'
@@ -122,31 +139,19 @@ export class ViewRouteChildComponent implements OnInit {
   }
 
 addEsoNum() {
-  if (
-    this.typedEsoNumber &&
-    !this.selectedEsoNumber.includes(this.typedEsoNumber)
-  ) {
-    // Only show alert if the value is NOT in the current dropdown
-    const existsInDropdown = this.dropDownValues.includes(this.typedEsoNumber);
-//     const existsInDropdown = this.esoNumberRess.some(
-//   (item: any) => item === this.typedEsoNumber || item.name === this.typedEsoNumber
-// );
-console.log(existsInDropdown, this.esoNumberRess, this.typedEsoNumber);
-
-
-    if (existsInDropdown) {
-      // Value is from dropdown, add directly with NO alert
-      this.selectedEsoNumber.push(this.typedEsoNumber);
-      this.typedEsoNumber = '';
-    } else {
-      // Value is NOT from dropdown, show alert
-      if (window.confirm('The value you entered is not in the list. Do you want to add it?')) {
-        this.selectedEsoNumber.push(this.typedEsoNumber);
-        this.typedEsoNumber = '';
+ 
+      if (this.esoNumArray.includes(this.typedEsoNumber)) {
+        if (
+          this.typedEsoNumber &&
+          !this.selectedEsoNumber.includes(this.typedEsoNumber)
+        ) {
+          this.selectedEsoNumber.push(this.typedEsoNumber);
+          this.typedEsoNumber = '';
+        }
+      } else {
+        alert('Not an active ESO.');
       }
-      // else do nothing
-    }
-  }
+ 
 }
   removeEso() {
     // this.viewRoute.route.esos = [];
