@@ -168,6 +168,8 @@ loadingDownload: boolean = false;
   searchDetailDocType: any[] = [];
   searchEffetivity: any[] = [];
   searchDocAllSections: any[] = [];
+  formdetailId: any;
+  apidocData: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -223,12 +225,13 @@ loadingDownload: boolean = false;
       this.eco = formData.eco,
       this.ata = formData.ata,
       this.detailId = formData.detailId,
+      this.formdetailId = formData.detailId,
       this.advancedSearchHidden = formData.advancedSearchHidden,
       this.currentPage = formData.currentPage;
       setTimeout(() => {
-        if(this.detailId === undefined || this.detailId === null){ 
+     //   if(this.detailId === undefined || this.detailId === null){ 
         this.Search();
-        }
+      //  }
       }, 0);
     }
     this.cdr.detectChanges();
@@ -245,7 +248,8 @@ loadingDownload: boolean = false;
       eso: this.eso,
       eco: this.eco,
       ata: this.ata,
-      detailId: this.apiService.detailID,
+      // detailId: this.apiService.detailID,
+      detailId: this.detailId,
       advancedSearchHidden: this.advancedSearchHidden, 
       vdtId: this.searchPagination?.vdtId,
       selectedEffectivity: this.searchPagination?.selectedEffectivity,
@@ -316,7 +320,13 @@ loadingDownload: boolean = false;
         this.totalPages = data.totalPages;
         this.loading = false;
         }
-       if(this.detailId !== undefined && this.detailId !== null){       
+        if(data.viewDocumentResponse  && this.formdetailId !== undefined){
+          this.apidocData = data.viewDocumentResponse.document;
+          this.totalCount = 1;
+          this.totalPages = 1;
+          this.loading = false;
+        }
+       if(this.detailId !== undefined && this.detailId !== null && this.formdetailId === undefined){       
         this.apiService.viewDocId = data.viewDocumentResponse.document.documentNbr;
         this.apiService.vendorName = data.viewDocumentResponse.vendor.vendorNm;
         this.apiService.subject = data.viewDocumentResponse.document.subject;

@@ -81,7 +81,6 @@ export class ViewRouteChildComponent implements OnInit {
 
     this.route.params.subscribe((params) => {
       this.ClosedRoute = params['ClosedRoute'];
-      this.existRouteSaved = params['existRouteSaved'];
     });
   }
 
@@ -120,6 +119,7 @@ export class ViewRouteChildComponent implements OnInit {
   }
   routee() {
     this.edit = false;
+    this.existRouteSaved = false;
   }
 
   ecoNumb() {
@@ -213,7 +213,8 @@ addEsoNum() {
     this.apiService
       .saveExistingRouteView(this.viewRoute.route.routeId, pay1)
       .subscribe((res) => {
-        this.router.navigate(['/viewRoute', { existRouteSaved: true }]);
+         this.test();
+        this.existRouteSaved = true;  
       });
     // this.test();
   }
