@@ -74,9 +74,12 @@ export class EditDetailComponent {
   }
 
   deleteDetail() {
+   let confirm = window.confirm('Are you sure you want to delete this Detail and all associated records');
+     if(confirm){
     this.apiService.deleteDetail().subscribe(() => {
       this.router.navigate(['/viewStatus', { detailDeleted: true }]);
     });
+  }
   }
 
     formatDate1(date: Date) {

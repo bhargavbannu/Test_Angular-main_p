@@ -63,7 +63,7 @@ documentDetailsList: any[] = [];
         "dodAuditCategory": this.auditData.audit.dodAuditCategory,
         "auditStatus": this.auditData.audit.auditStatus,
         "auditId":this.auditData.audit.auditId,
-        "popno": this.auditData.audit.documentDetail.split(" ")[0],
+        "popno": this.auditData.audit.documentDetail?.split(" ")[0],
         "auditDate": auditDate,
         "followUpCompleteInd": this.followUpCompleteInd,
         "followUpDate": followUpDate,

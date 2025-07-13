@@ -43,7 +43,7 @@ export class NewAuditComponent implements OnInit {
     let payload ={
       "audit": {
         "documentNbr": this.apiService.viewDocId,
-        "popno": this.documentDetail,
+        "popno": this.documentDetail?.split(" ")[0],
         "dodAuditCategory": this.docAuditCategory,
         "auditStatus": this.auditStatus,
         "auditDate": auditDate,

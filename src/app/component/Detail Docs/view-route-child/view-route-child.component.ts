@@ -245,6 +245,8 @@ addEsoNum() {
   }
 
   deleteRoute() {
+   let confirm = window.confirm('Are you sure you want to delete this route');
+   if(confirm){
     const payload = {
       route: {
         routeId: this.viewRoute.route.routeId,
@@ -258,6 +260,7 @@ addEsoNum() {
         this.router.navigate(['/viewDetail', { routeDeleted: true }]);
       }
     });
+  }
   }
 
   formatDate1(date: Date) {

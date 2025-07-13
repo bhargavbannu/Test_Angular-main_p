@@ -320,11 +320,14 @@ loadingDownload: boolean = false;
         this.totalPages = data.totalPages;
         this.loading = false;
         }
-        if(data.viewDocumentResponse  && this.formdetailId !== undefined){
+        else if(data.viewDocumentResponse){
           this.apidocData = data.viewDocumentResponse.document;
           this.totalCount = 1;
           this.totalPages = 1;
           this.loading = false;
+        } else {
+          this.loading = false;
+          this.apiData =[];
         }
        if(this.detailId !== undefined && this.detailId !== null && this.formdetailId === undefined){       
         this.apiService.viewDocId = data.viewDocumentResponse.document.documentNbr;
@@ -332,7 +335,18 @@ loadingDownload: boolean = false;
         this.apiService.subject = data.viewDocumentResponse.document.subject;
         this.router.navigate(['/viewStatus', {fromdetailSearch:this.detailId}]);
        }
-      });
+       this.formdetailId = undefined;
+      },
+      (error)=>{
+        this.loading = false;
+        console.error('Error fetching data:', error);
+        this.apiData = [];
+        this.apidocData = undefined;
+        this.totalCount = 0;
+        this.totalPages = 0;
+      }
+    
+    );
   }
 
   getVisiblePages(): number[] {
@@ -412,6 +426,7 @@ loadingDownload: boolean = false;
     this.checkBoxValue = true; 
     this.myForm.form.controls['currentVendorOnly'].setValue(true);
     this.apiData = null;
+    this.apidocData = undefined;
   }
 
   getWords():any {
