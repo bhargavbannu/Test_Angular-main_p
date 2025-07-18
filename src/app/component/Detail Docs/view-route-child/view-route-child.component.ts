@@ -40,6 +40,7 @@ export class ViewRouteChildComponent implements OnInit {
   selectedEcoNumber: any[]=[];
   existRouteSaved: any;
   dropDownValues: any;
+  routeSaved: any;
 
   constructor(
     private apiService: ApiService,
@@ -81,6 +82,7 @@ export class ViewRouteChildComponent implements OnInit {
 
     this.route.params.subscribe((params) => {
       this.ClosedRoute = params['ClosedRoute'];
+      this.routeSaved = params['routeSaved'];
     });
   }
 

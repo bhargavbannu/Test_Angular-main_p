@@ -404,9 +404,8 @@
                                           </td>
                                           <td>
                                             <div>
-                                              <span class="viewFieldText">{{
-                                                documentsDetails.document
-                                                  ?.auditableDocTypes
+                                              <span class="viewFieldText" *ngFor="let val of documentsDetails.document?.auditableDocTypes">{{
+                                                val
                                               }}</span>
                                             </div>
                                           </td>

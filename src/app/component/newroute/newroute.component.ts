@@ -25,6 +25,7 @@ export class NewrouteComponent {
   Sections: any[]=[];
   showErr: boolean = false;
   errDate: boolean = false;
+  closed: boolean = false;
 
   constructor(
     private apiService: ApiService,
@@ -56,6 +57,11 @@ export class NewrouteComponent {
         'MM/dd/yyyy HH:mm:ss'
       );
 let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
+  if(this.apiService.type === 'reIssue'){
+     this.closed = true;
+  } else {
+    this.closed = false;
+  }
     const payload = {
       route: {
         detailId: this.apiService.popno,
@@ -66,11 +72,15 @@ let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
         disposition: this.disposition,
         closedate: closeDate,
         remark: this.remark,
+        closed : this.closed
       },
       submitType: 'add',
     };
     this.apiService.newRoute(payload).subscribe((res) => {
-      this.router.navigate(['/viewDetail', { routeAdded: true,closedbtn: true,routeSaved: true }]);
+     // this.router.navigate(['/viewDetail', { routeAdded: true,closedbtn: true,routeSaved: true }]);
+           this.apiService.detailRoute = res.data.routeDetails.route.routeId;
+           this.router.navigate(['/viewRoute', { routeSaved: true }]);
+
     });
     if(this.Sections.length === 0 || this.Sections === undefined || this.Sections === null){
       this.showErr = true;

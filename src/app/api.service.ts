@@ -120,8 +120,8 @@ export class ApiService {
   private searchEffectivityApi = `${environment.apiBaseUrl}/adminConfiguration/activeEffectivities`;
   private searchDocAllSectionsApi = `${environment.apiBaseUrl}/adminConfiguration/allSections`;
   private addDocvendorDetailsApi = `${environment.apiBaseUrl}/adminConfiguration/selectVendor`;
-  private activeEsoCheck = `${environment.apiBaseUrl}eso/checkActiveESO?eso`;
-
+  private activeEsoCheck = `${environment.apiBaseUrl}/eso/checkActiveESO?eso`;
+  private getAuditableDocTypesApi =`${environment.apiBaseUrl}/audit/getAuditableDocTypes?documentNbr`;
 
   detailRoute:any
   viewDocId: any;
@@ -143,6 +143,9 @@ export class ApiService {
 
   esoActiveCheck(nmbr:any){
     return this.http.get<any>(`${this.activeEsoCheck}=${nmbr}`, {responseType: 'text' as 'json'});
+  }
+   getAuditableDocTypes(){
+    return this.http.get<any>(`${this.getAuditableDocTypesApi}=${this.viewDocId}`);
   }
   getDetaildocType(): Observable<any> {
     return this.http.get<any>(this.searchDetailDocTypeApi);

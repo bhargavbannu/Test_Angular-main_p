@@ -24,6 +24,8 @@ export class NewAuditComponent implements OnInit {
   @ViewChild('calendar1') calendar1!: Calendar;
   @ViewChild('calendar2') calendar2!: Calendar;
   @ViewChild('calendar3') calendar3!: Calendar;
+  auditableDocTypes: any[]=[];
+detailDocType: any;
 
   constructor(private apiService: ApiService, private datePipe:DatePipe, private router:Router){}
 
@@ -33,17 +35,24 @@ export class NewAuditComponent implements OnInit {
     this.apiService.documentDetails().subscribe((res)=>{
       this.documentDetailsList = res;
     })
+    this.apiService.getAuditableDocTypes().subscribe((res)=>{
+      if(res[0] !== "ENTIRE DOCUMENT"){
+         this.auditableDocTypes = res;
+      }       
+    })
   }
 
   saveNewAudit(){
     let auditDate = this.datePipe.transform(this.auditDate, 'MM/dd/yyyy HH:mm:ss')
     let followUpDate = this.datePipe.transform(this.followUpDate, 'MM/dd/yyyy HH:mm:ss')
     let revDate = this.datePipe.transform(this.revDate, 'MM/dd/yyyy HH:mm:ss')
+    let popnoValue = this.documentDetail && this.documentDetail.trim() !== "" ? this.documentDetail.split(" ")[0] : null; 
 
     let payload ={
       "audit": {
         "documentNbr": this.apiService.viewDocId,
-        "popno": this.documentDetail?.split(" ")[0],
+        "popno": popnoValue,
+        "detailDocType": this.detailDocType || null,
         "dodAuditCategory": this.docAuditCategory,
         "auditStatus": this.auditStatus,
         "auditDate": auditDate,
@@ -70,5 +79,10 @@ export class NewAuditComponent implements OnInit {
 
     formatDate3(date: Date) {
     this.followUpDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+  }
+
+  docDetailChange(documentDetail:any){
+    let val = documentDetail.match(/\((.*?)\)/)[1];
+    this.detailDocType = val;
   }
 }

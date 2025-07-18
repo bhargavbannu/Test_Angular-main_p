@@ -8,7 +8,7 @@
     id="previousUrl"
   />
 
-   <div *ngIf="existRouteSaved" class="savedDoc">SUCCESS: Successfully saved Route.</div>
+   <div *ngIf="existRouteSaved || routeSaved" class="savedDoc">SUCCESS: Successfully saved Route.</div>
 
   <a
     *ngIf="searchType === 'search'"

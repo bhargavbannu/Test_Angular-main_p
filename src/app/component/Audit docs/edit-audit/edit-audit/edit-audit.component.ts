@@ -18,6 +18,8 @@ export class EditAuditComponent {
 @ViewChild('calendar2') calendar2!: Calendar;
 @ViewChild('calendar3') calendar3!: Calendar;
 documentDetailsList: any[] = [];
+  auditableDocTypes: any[]=[];
+  detailDocType: any;
 
   constructor(private apiService: ApiService, private router:Router, private datePipe:DatePipe){}
 
@@ -25,6 +27,12 @@ documentDetailsList: any[] = [];
     this.loadAuditData();
     this.apiService.documentDetails().subscribe((res)=>{
       this.documentDetailsList = res;
+    })
+
+      this.apiService.getAuditableDocTypes().subscribe((res)=>{
+      if(res[0] !== "ENTIRE DOCUMENT"){
+         this.auditableDocTypes = res;
+      }       
     })
 
   }
@@ -37,6 +45,7 @@ documentDetailsList: any[] = [];
       this.auditData.audit.revisionDate = this.datePipe.transform(this.auditData.audit.revisionDate, 'MM/dd/yyyy');
       this.auditData.audit.followUpDate = this.datePipe.transform(this.auditData.audit.followUpDate, 'MM/dd/yyyy');
       this.followUpCompleteInd = this.auditData?.audit.followUpCompleteInd
+      this.detailDocType = this.auditData?.audit.detailDocType
       if(this.followUpCompleteInd === 'YES'){
         this.followUpCompleteInd = "Y"
       }
@@ -63,7 +72,8 @@ documentDetailsList: any[] = [];
         "dodAuditCategory": this.auditData.audit.dodAuditCategory,
         "auditStatus": this.auditData.audit.auditStatus,
         "auditId":this.auditData.audit.auditId,
-        "popno": this.auditData.audit.documentDetail?.split(" ")[0],
+        "popno": this.auditData.audit.documentDetail?.split(" ")[0] || null,
+        "detailDocType":  this.detailDocType || null,
         "auditDate": auditDate,
         "followUpCompleteInd": this.followUpCompleteInd,
         "followUpDate": followUpDate,
@@ -90,6 +100,8 @@ documentDetailsList: any[] = [];
   }
 
   deleteAud(){
+     let confirm = window.confirm('Are you sure you want to delete this Audit');
+   if(confirm){
     const payload = {
       "audit": {
     "auditId": this.auditData.audit.auditId,
@@ -102,4 +114,11 @@ documentDetailsList: any[] = [];
       }
     })
   }
+  }
+
+   docDetailChange(documentDetail:any){
+    let val = documentDetail.match(/\((.*?)\)/)[1];
+    this.detailDocType = val;
+  }
+
 }

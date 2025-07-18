@@ -88,6 +88,15 @@
                           </td>
                         </tr>
 
+                         <tr *ngIf="(detailDocType !=='' && detailDocType !== undefined && detailDocType !== null)" class="eds-pagerstyle dropdown">
+                          <td align="right">Detail Doc Type *&nbsp; &nbsp;</td>
+                          <td align="left">
+                            <span class="viewFieldText"
+                              >{{detailDocType}}</span
+                            >
+                          </td>
+                        </tr>
+
                         <tr class="eds-pagerstyle-alt">
                           <td align="right">
                             Vendor Revision Nbr&nbsp; &nbsp;

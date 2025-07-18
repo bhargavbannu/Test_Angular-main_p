@@ -11,6 +11,7 @@ export class ViewAuditComponent implements OnInit {
   auditDetails: any = [];
   auditSaved: any;
   searchType: any;
+  detailDocType: any;
 
   constructor(private apiService: ApiService, private route:ActivatedRoute) {}
 
@@ -25,6 +26,7 @@ export class ViewAuditComponent implements OnInit {
   viewAudit() {
     this.apiService.viewAudit().subscribe((data) => {
       this.auditDetails = data;
+      this.detailDocType = this.auditDetails?.audit.detailDocType
     });
   }
 

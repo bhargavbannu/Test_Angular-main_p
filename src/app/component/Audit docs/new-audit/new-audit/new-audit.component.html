@@ -127,6 +127,7 @@
                                 class=""
                                 id="detail"
                                 [(ngModel)]="documentDetail"
+                                (ngModelChange)="docDetailChange(documentDetail)"
                               >
                               <option value=""></option>
                                 <option
@@ -135,27 +136,28 @@
                                 >
                                   {{ doc?.label }}
                                 </option>
-                                <!-- <option value="">&nbsp;</option>
+                            
+                              </select>
+                            </td>
+                          </tr>
 
-                                  <option value="205473638">
-                                    200804092 (CMM/IPL) - R4
-                                  </option>
-
-                                  <option value="205473637">
-                                    200103326 (CMM/IPL) - R3
-                                  </option>
-
-                                  <option value="205473636">
-                                    9700271 (CMM/IPL) - R2
-                                  </option>
-
-                                  <option value="205473635">
-                                    8703079 (CMM/IPL)
-                                  </option>
-
-                                  <option value="205473634">
-                                    6015721 (CMM/IPL) - R1
-                                  </option> -->
+                          <tr *ngIf="auditableDocTypes.length > 0" class="eds-pagerstyle dropdown">
+                            <td align="right">Detail Doc Type *&nbsp; &nbsp;</td>
+                            <td align="left">
+                              <select
+                                name="audit.docType"
+                                class=""
+                                id="detailDocType"
+                                [(ngModel)]="detailDocType"
+                              >
+                              <option value=""></option>
+                                <option
+                                  *ngFor="let doc of auditableDocTypes"
+                                  [value]="doc"
+                                >
+                                  {{ doc }}
+                                </option>
+                                
                               </select>
                             </td>
                           </tr>
