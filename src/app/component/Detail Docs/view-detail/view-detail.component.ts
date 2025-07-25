@@ -64,8 +64,8 @@ detaislID:any;
     const documentNumber = window.prompt('Please enter the document number to which you want to move the detail:','New Document Number'); 
     if(documentNumber !== null && documentNumber.trim()!=='' ){
       const payload ={
-        // "popno":this.apiService.popno,
-        "popno":205553541,
+        "popno":this.apiService.popno,
+        // "popno":205553541,
         "oldDocumentNbr":this.apiService.viewDocId,
         "newDocumentNbr":documentNumber
       }
