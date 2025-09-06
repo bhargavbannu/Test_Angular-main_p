@@ -31,7 +31,6 @@ export class ManageAuditStatusesComponent {
 
   btnClick(index: any) {
     this.saveNew = false;
-    this.updateRecord
     this.btnIndex = index;
     this.clickFlag = true;
     this.auditSaved = false;
@@ -40,7 +39,7 @@ export class ManageAuditStatusesComponent {
 
   createRow() {
     this.saveNew = true;
-    this.auditStatuses.map((item)=>{
+    this.auditStatuses.forEach((item)=>{
       delete item.newRow
     })
     this.auditStatuses.push({ auditStatusCd: '', auditStatusDesc: '', newRow:true });

@@ -1,26 +1,10 @@
-<div style="margin-top: 15px">
+<div style="margin-top: 15px">  
   <tr>
     <td valign="top" align="left">
+      <div *ngIf="auditDownloadError" class="errMsg">{{auditDownloadError}}. Please contact system administrator </div>      
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
         <tbody>
-          <tr>
-            <td
-              id="errorMsg"
-              class="eds-messageframe"
-              style="display: none"
-              align="left"
-            >
-              <ul>
-                <li>
-                  <span class="eds-message-warning" id="errorMsgContents">
-                  </span>
-                </li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td id="emptyRow" style="display: none">&nbsp;</td>
-          </tr>
+          <th></th>          
           <tr>
             <td align="left">
               <form #auditForm="ngForm"
@@ -37,6 +21,7 @@
                   style="width: 105%"
                 >
                   <tbody>
+                    <th></th>
                     <tr>
                       <td>
                         <table
@@ -46,6 +31,7 @@
                           border="0"
                         >
                           <tbody>
+                            <th></th>
                             <tr>
                               <td class="eds-tabtopleftcorner"></td>
                               <td class="eds-tabtopmiddle" align="center">
@@ -70,6 +56,7 @@
                           class="eds-tabtitle"
                         >
                           <tbody>
+                            <th></th>
                             <tr>
                               <td>
                                 <fieldset class="inline-table_dark_grey">
@@ -78,6 +65,7 @@
                                   </legend>
                                   <table class="inline-table_dark_grey">
                                     <tbody>
+                                      <th></th>
                                       <tr>
                                         <td
                                           align="left"
@@ -89,6 +77,7 @@
                                         >
                                           <table>
                                             <tbody>
+                                              <th></th>
                                               <tr
                                                 class="eds-pagerstyle inline-table_dark_grey"
                                               >
@@ -139,6 +128,7 @@
                                         >
                                           <table>
                                             <tbody>
+                                              <th></th>
                                               <tr
                                                 class="eds-pagerstyle inline-table_dark_grey"
                                               >
@@ -174,16 +164,16 @@
                                                     [(ngModel)]="detailDocType"
                                                   >
                                                     <option value=""></option>
-
                                                     <option
                                                       value="ALL AUDITABLE DOC TYPES"
                                                     >
                                                       ALL AUDITABLE DOC TYPES
                                                     </option>
-                                                     <option *ngFor="let doc of auditDetailDocType" [value]="doc">
+                                                   <option *ngFor="let doc of auditDetailDocType" [value]="doc">
                                                        {{doc}}
                                                    </option>
-
+                                                    
+                                                 
                                                   </select>
                                                 </td>
                                               </tr>
@@ -199,6 +189,7 @@
                                     style="width: 100%"
                                   >
                                     <tbody>
+                                      <th></th>
                                       <tr>
                                         <td
                                           align="right"
@@ -210,6 +201,7 @@
                                         >
                                           <table style="width: 100%">
                                             <tbody>
+                                              <th></th>
                                               <tr
                                                 class="eds-pagerstyle inline-table_dark_grey"
                                               >
@@ -223,7 +215,7 @@
                                                     id="effectivities"
                                                     multiple="multiple"
                                                     style="
-                                                      font-family: Arial;
+                                                      font-family: 'Arial',sans-serif !important;
                                                       font-size: 12px;
                                                     "
                                                     [(ngModel)]="effectivity"
@@ -231,7 +223,6 @@
                                                     <option *ngFor="let doc of searchEffetivity" [value]="doc">
                                                       {{ doc }}
                                                     </option>
-                                              
                                                   </select>
                                                 </td>
                                               </tr>
@@ -252,6 +243,7 @@
                                             "
                                           >
                                             <tbody>
+                                              <th></th>
                                               <tr class="eds-pagerstyle-alt">
                                                 <td
                                                   style="width: 43%"
@@ -302,6 +294,7 @@
                                     "
                                   >
                                     <tbody>
+                                      <th></th>
                                       <tr style="color: black">
                                         <td
                                           align="left"
@@ -369,6 +362,7 @@
                                       style="width: 100%"
                                     >
                                       <tbody>
+                                        <th></th>
                                         <tr>
                                           <td
                                             align="left"
@@ -379,6 +373,7 @@
                                           >
                                             <table style="width: 100%">
                                               <tbody>
+                                                <th></th>
                                                 <tr class="eds-pagerstyle">
                                                   <td
                                                     class="inline-table_dark_grey"
@@ -414,6 +409,9 @@
                                                             !calendar1.overlayVisible;
                                                           calendar1.inputfieldViewChild?.nativeElement.click()
                                                         "
+                                                        alt=""
+                                                        onkeydown=""
+                                                        onfocus=""
                                                     /></span>
                                                     <p-calendar
                                                       name="calendarDate"
@@ -424,7 +422,7 @@
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
-                                                       (onSelect)="formatDate1($event)"
+                                                      (onSelect)="formatDate1($event)"
                                                     ></p-calendar>
 
                                                     -
@@ -452,6 +450,9 @@
                                                             !calendar2.overlayVisible;
                                                           calendar2.inputfieldViewChild?.nativeElement.click()
                                                         "
+                                                        alt=""
+                                                        onkeydown=""
+                                                        onfocus=""
                                                     /></span>
                                                     <p-calendar
                                                       name="calendarDate"
@@ -462,7 +463,7 @@
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
-                                                       (onSelect)="formatDate2($event)"
+                                                      (onSelect)="formatDate2($event)"
                                                     ></p-calendar>
                                                   </td>
                                                 </tr>
@@ -482,6 +483,7 @@
                                       style="width: 100%"
                                     >
                                       <tbody>
+                                        <th></th>
                                         <tr>
                                           <td
                                             align="left"
@@ -492,6 +494,7 @@
                                           >
                                             <table style="width: 100%">
                                               <tbody>
+                                                <th></th>
                                                 <tr class="eds-pagerstyle-alt">
                                                   <td
                                                     class="inline-table_dark_grey"
@@ -528,6 +531,9 @@
                                                             !calendar3.overlayVisible;
                                                           calendar3.inputfieldViewChild?.nativeElement.click()
                                                         "
+                                                        alt=""
+                                                        onkeydown=""
+                                                        onfocus=""
                                                     /></span>
                                                     <p-calendar
                                                       name="calendarDate"
@@ -538,7 +544,7 @@
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
-                                                       (onSelect)="formatDate3($event)"
+                                                      (onSelect)="formatDate3($event)"
                                                     ></p-calendar>
 
                                                     -
@@ -568,6 +574,9 @@
                                                             !calendar4.overlayVisible;
                                                           calendar4.inputfieldViewChild?.nativeElement.click()
                                                         "
+                                                        alt=""
+                                                        onkeydown=""
+                                                        onfocus=""
                                                     /></span>
                                                     <p-calendar
                                                       name="calendarDate"
@@ -578,7 +587,7 @@
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
-                                                       (onSelect)="formatDate4($event)"
+                                                      (onSelect)="formatDate4($event)"
                                                     ></p-calendar>
                                                   </td>
                                                 </tr>
@@ -598,6 +607,7 @@
                                       style="width: 100%"
                                     >
                                       <tbody>
+                                        <th></th>
                                         <tr>
                                           <td
                                             align="right"
@@ -608,6 +618,7 @@
                                           >
                                             <table style="width: 100%">
                                               <tbody>
+                                                <th></th>
                                                 <tr class="eds-pagerstyle">
                                                   <td
                                                     style="width: 35%"
@@ -667,17 +678,20 @@
                                                             !calendar5.overlayVisible;
                                                           calendar5.inputfieldViewChild?.nativeElement.click()
                                                         "
+                                                        alt=""
+                                                        onkeydown=""
+                                                        onfocus=""
                                                     /></span>
                                                     <p-calendar
                                                       name="calendarDate"
                                                       #calendar5
                                                       [(ngModel)]="
-                                                       currentVendorRevisionDateStart
+                                                        currentVendorRevisionDateStart
                                                       "
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
-                                                       (onSelect)="formatDate5($event)"
+                                                      (onSelect)="formatDate5($event)"
                                                     ></p-calendar>
 
                                                     -
@@ -706,6 +720,9 @@
                                                             !calendar6.overlayVisible;
                                                           calendar6.inputfieldViewChild?.nativeElement.click()
                                                         "
+                                                        alt=""
+                                                        onkeydown=""
+                                                        onfocus=""
                                                     /></span>
                                                     <p-calendar
                                                       name="calendarDate"
@@ -716,7 +733,7 @@
                                                       [showIcon]="false"
                                                       [showOnFocus]="false"
                                                       class="hidden-calendar"
-                                                       (onSelect)="formatDate6($event)"
+                                                      (onSelect)="formatDate6($event)"
                                                     ></p-calendar>
                                                   </td>
                                                 </tr>
@@ -732,6 +749,7 @@
                                       style="width: 100%"
                                     >
                                       <tbody>
+                                        <th></th>
                                         <tr>
                                           <td
                                             style="
@@ -741,6 +759,7 @@
                                           >
                                             <table style="width: 100%">
                                               <tbody>
+                                                <th></th>
                                                 <tr
                                                   class="eds-pagerstyle inline-table_dark_grey"
                                                 >
@@ -785,6 +804,7 @@
                                           >
                                             <table style="width: 100%">
                                               <tbody>
+                                                <th></th>
                                                 <tr>
                                                   <td></td>
                                                   <td
@@ -837,6 +857,7 @@
 
                                 <table style="width: 100%">
                                   <tbody>
+                                    <th></th>
                                     <tr class="eds-pagerstyle blueColSpan">
                                       <td colspan="2" style="width: 100%">
                                         <span style="float: right">
@@ -986,6 +1007,10 @@
   </table>
   <br />
   <a *ngIf="data.length > 0" style="cursor: pointer;" (click)="downloadExcel()">Download XLS</a>
+  <div class="loader-container1" *ngIf="loadingDownload">
+    <div class="loader1"></div>
+    <p>Downloading data, please wait...</p>
+  </div>
   <br /><span *ngIf="data.length > 0">(Please note: Depending on the size, this operation might take several
   minutes)</span>
 </td>

@@ -6,6 +6,7 @@
 
   <table cellspacing="0" cellpadding="0" border="0">
     <tbody>
+      <th></th>
       <tr>
         <td>
           <table
@@ -15,6 +16,7 @@
             border="0"
           >
             <tbody>
+              <th></th>
               <tr>
                 <td class="eds-tabtopleftcorner"></td>
                 <td class="eds-tabtopmiddle" align="center">
@@ -39,6 +41,7 @@
             class="eds-tabtitle"
           >
             <tbody>
+              <th></th>
               <tr>
                 <td>
                   <div style="width: 400">
@@ -76,7 +79,7 @@
                             >
 
                             &nbsp;
-                            <a routerLink="/editAudit" (click)="editAudit(status.auditId)"
+                            <a *ngIf="this.apiService.role != 'VDT_ROLE_READONLY'" routerLink="/editAudit" (click)="editAudit(status.auditId)"
                               >Edit</a
                             >
                           </td>

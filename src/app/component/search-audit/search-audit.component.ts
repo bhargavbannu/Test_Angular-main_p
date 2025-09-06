@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Calendar } from 'primeng/calendar';
+import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 import { DatePipe } from '@angular/common';
 
@@ -8,7 +9,7 @@ import { DatePipe } from '@angular/common';
   selector: 'app-search-audit',
   templateUrl: './search-audit.component.html',
   styleUrls: ['./search-audit.component.css'],
-  providers: [DatePipe],
+  providers: [DatePipe]
 })
 export class SearchAuditComponent {
   headers: any;
@@ -32,12 +33,16 @@ export class SearchAuditComponent {
   auditStatus: any;
   auditYears: any[] = [];
   downloadPayload: any;
+  loadingDownload: boolean = false;
+  auditDetailDocType: any[] = [];
+  searchEffetivity: any[] = [];
+  auditDownloadError: any;
   constructor(
     private service: ApiService,
     private cdr: ChangeDetectorRef,
     private datePipe: DatePipe
   ) {}
-
+  private downloadSubscription: Subscription | null = null; 
   selectedOption: any;
   totalCount: any;
   recordsPerPage: any = 15; // Number of records per page
@@ -45,8 +50,6 @@ export class SearchAuditComponent {
   start: any;
   maxVisibleButtons: any = 8;
   loading: boolean = false;
-  auditDetailDocType: any[] = [];
-  searchEffetivity: any[] = [];
   @ViewChild('auditForm') auditForm!: NgForm;
   @ViewChild('calendar1') calendar1!: Calendar;
   @ViewChild('calendar2') calendar2!: Calendar;
@@ -56,6 +59,7 @@ export class SearchAuditComponent {
   @ViewChild('calendar6') calendar6!: Calendar;
 
   ngOnInit() {
+
     this.selectedOption = 'B';
     const formData = this.service.getFormData();
     if (formData) {
@@ -100,9 +104,10 @@ export class SearchAuditComponent {
         this.currentVendorRevisionDateEnd,
         'MM/dd/yyyy'
       );
-      this.onSearch();
+      this.onSearch();      
     }
     this.cdr.detectChanges();
+
     this.service.getDetaildocType().subscribe((data) => {
       this.auditDetailDocType = data;
     });
@@ -110,8 +115,18 @@ export class SearchAuditComponent {
     this.service.getSearchEffetivity().subscribe((data) => {
       this.searchEffetivity = data;
     });
+
+   
   }
+
+  ngOnDestroy() {
+    if (this.downloadSubscription) {
+      this.downloadSubscription.unsubscribe();
+    }
+  }
+
   onSearch() {
+    this.auditDownloadError = false;
     this.service.searchType = 'audit';
     let auditDateStart = this.datePipe.transform(
       this.auditDateStart,
@@ -137,7 +152,6 @@ export class SearchAuditComponent {
       this.currentVendorRevisionDateEnd,
       'yyyy-MM-ddTHH:mm:ss'
     );
-
     const formData = {
       eso: this.eso,
       ata: this.ata,
@@ -146,7 +160,7 @@ export class SearchAuditComponent {
       currentAARevision: this.AAResvision,
       searchType: this.selectedOption,
       auditDateStart: auditDateStart,
-      auditDateEnd: auditDateEnd,
+      auditDateEnd: auditDateEnd, 
       unauditedDateStart: unauditedDateStart,
       unauditedDateEnd: unauditedDateEnd,
       currentVendorRevision: this.currentVendorRevision,
@@ -179,7 +193,7 @@ export class SearchAuditComponent {
       auditCategory: this.auditCategory,
       effectivity: this.effectivity,
     };
-    this.downloadPayload = payload;
+    this.downloadPayload = payload
     this.service
       .auditsData(payload, this.start / this.size + 1, this.size)
       .subscribe((response) => {
@@ -192,7 +206,6 @@ export class SearchAuditComponent {
         this.auditYears = this.data[0].auditYears.map((item: any) => {
           return item.year;
         });
-
         console.log(this.auditYears);
       });
   }
@@ -258,6 +271,10 @@ export class SearchAuditComponent {
   }
 
   clear() {
+    this.auditDownloadError = false;
+    this.downloadSubscription?.unsubscribe()
+    this.downloadSubscription = null;
+    this.loadingDownload = false;
     this.auditForm.resetForm();
     this.selectedOption = 'B';
     this.auditForm.form.controls['searchType'].setValue('B');
@@ -265,12 +282,15 @@ export class SearchAuditComponent {
   }
 
   downloadExcel(): void {
-    this.service
+    this.loadingDownload = true;
+    this.auditDownloadError = false;
+    this.downloadSubscription = this.service
       .auditDownload(this.downloadPayload, {
         observe: 'response',
         responseType: 'blob',
       })
       .subscribe((response: any) => {
+        this.loadingDownload = false;
         const contentDisposition = response.headers.get('Content-Disposition');
         const filename = contentDisposition
           .split('filename=')[1]
@@ -285,7 +305,10 @@ export class SearchAuditComponent {
         a.download = filename;
         a.click();
         window.URL.revokeObjectURL(url);
-      });
+      }, (err)=>{
+          this.loadingDownload = false;
+          this.auditDownloadError = err.messages;
+  })
     // this.apiService.exportToExcel(this.apiData, 'my_records');
   }
 

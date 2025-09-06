@@ -14,13 +14,14 @@ eso: any;
   esoData: any[]=[];
   esoDeleted: any;
 
-constructor(private apiService: ApiService, private router: Router, private route:ActivatedRoute){}
+constructor(public apiService: ApiService, private router: Router, private route:ActivatedRoute){}
 
 ngOnInit(){
    this.route.params.subscribe(params =>{
       this.esoDeleted = params['esoDeleted']
     })
 }
+
 
 viewESO() {
   if(this.esoData.includes(this.eso)){

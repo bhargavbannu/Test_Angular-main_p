@@ -1,0 +1,19 @@
+.table-style {
+  border-spacing: 0;
+  padding: 0;
+}
+
+.fixed-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0; /* equivalent of cellspacing="0" */
+}
+
+.fixed-table td, 
+.fixed-table th {
+  padding: 0; /* equivalent of cellpadding="0" */
+}
+
+.eds-tabtopmiddle {
+  text-align: center;
+}

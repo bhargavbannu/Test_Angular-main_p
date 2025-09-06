@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'AngularNewApp'`, () => {
+  it(`should have as title 'VDTCloud'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('AngularNewApp');
+    expect(app.title).toEqual('VDTCloud');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('AngularNewApp app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('VDTCloud app is running!');
   });
 });

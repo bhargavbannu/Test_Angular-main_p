@@ -38,10 +38,10 @@ export class AddFormerVendorComponent {
   }
 
   saveFormerVendor() {
-      let supercedeDate = this.datePipe.transform(
+    let supercedeDate = this.datePipe.transform(
         this.supercedeDate,
         'MM/dd/yyyy HH:mm:ss'
-      )
+    );
     let payload = {
       documentNbr: this.apiService.viewDocId,
       supercededByVendorName: this.vendorName,
@@ -70,7 +70,7 @@ export class AddFormerVendorComponent {
     this.vendorNamesList = [];
   }
 
-    formatDate1(date: Date) {
+  formatDate1(date: Date) {
     this.supercedeDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 }

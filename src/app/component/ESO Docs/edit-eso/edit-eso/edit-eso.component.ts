@@ -36,9 +36,6 @@ export class EditEsoDocComponent {
     this.apiService.viewEso().subscribe((data) => {
       this.esoDetails={}
       this.esoDetails["esoData"] = data
-      this.esoDetails.esoData.assigndate = this.datePipe.transform(this.esoDetails?.esoData?.assigndate, 'MM/dd/yyyy');
-      this.esoDetails.esoData.canceldate = this.datePipe.transform(this.esoDetails?.esoData?.canceldate, 'MM/dd/yyyy');
-
     });
   }
 
@@ -55,11 +52,11 @@ export class EditEsoDocComponent {
     "submitType": "edit", 
     "eso": {
       "eso": this.esoDetails?.esoData.eso,
-      "assigndate":assigndate,
+      "assigndate": assigndate,
       "subject": this.esoDetails?.esoData.subject,
       "engineer": this.esoDetails?.esoData.engineer,
       "remark": this.esoDetails?.esoData.remark,
-      "canceldate":canceldate,
+      "canceldate": canceldate,
       "status": this.esoDetails?.esoData.status
     }  
   }
@@ -99,17 +96,17 @@ export class EditEsoDocComponent {
     }
   }
 
-
-//   openCalendar(calendar: any){
-//    calendar.overlayVisible = !calendar.overlayVisible;
-//     calendar.inputfieldViewChild?.nativeElement.click()
-// }
-
   formatDate1(date: Date) {
     this.esoDetails.esoData.assigndate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
   formatDate2(date: Date) {
     this.esoDetails.esoData.canceldate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
+
+
+//   openCalendar(calendar: any){
+//    calendar.overlayVisible = !calendar.overlayVisible;
+//     calendar.inputfieldViewChild?.nativeElement.click()
+// }
 
 }

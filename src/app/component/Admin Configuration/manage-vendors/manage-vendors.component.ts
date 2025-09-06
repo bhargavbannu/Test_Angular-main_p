@@ -23,7 +23,7 @@ vendError: boolean = false;
   @ViewChild('calendar1') calendar1!: Calendar;
 supercedDate: any;
   vendorSaved: any;
-vendorDeleted: any;
+  vendorDeleted: any;
   constructor(private http: HttpClient, private appservice: ApiService, private route: ActivatedRoute,private datePipe: DatePipe) {}
 dropdownValues:any[]=[]
   subb = new Subject();
@@ -77,15 +77,15 @@ dropdownValues:any[]=[]
     this.appservice.savevenodrs(this.newVendorName).subscribe((res) => {
       console.log(res);    
     })
-}
-onFocusOut(){
+  }
+  onFocusOut(){
   this.dropdownValues = [];
-}
+  }
 
   formatDate1(date: Date) {
     this.supercedDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 
-deleteVendor(){
-}
+  deleteVendor(){
+  }
 }

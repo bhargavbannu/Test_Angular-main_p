@@ -5,7 +5,8 @@
 
 <td  *ngIf="!loading" valign="top" align="left">
   <table border="0" cellspacing="0" cellpadding="0" width="100%">
-    <tbody>
+    <th></th>
+    <tbody>      
       <tr>
         <td
           id="errorMsg"
@@ -28,7 +29,6 @@
           <div *ngIf="detailSaved" class="savedDoc">SUCCESS: Successfully saved Detail.</div>
           <div *ngIf="routeSaved" class="savedDoc">SUCCESS: Successfully saved Route.</div>
           <div *ngIf="routeDeleted" class="savedDoc">SUCCESS: Successfully deleted Route.</div>
-
           <!-- <div *ngIf="routeAdded" class="savedDoc">SUCCESS: Successfully Added Route.</div> -->
 
           <a *ngIf="searchType ==='search'" style="font-size: larger;font-weight: bolder" routerLink="/search">Back To Search Results</a>
@@ -60,7 +60,8 @@
 
           <div class="whiteSpace-noWrap" style="float: left">
             <table cellspacing="0" cellpadding="0" border="0">
-              <tbody>
+              <th></th>
+              <tbody>                
                 <tr>
                   <td>
                     <table
@@ -69,7 +70,8 @@
                       cellpadding="0"
                       border="0"
                     >
-                      <tbody>
+                    <th></th>
+                      <tbody>                        
                         <tr>
                           <td class="eds-tabtopleftcorner"></td>
                           <td class="eds-tabtopmiddle" align="center">
@@ -93,6 +95,7 @@
                       border="0"
                       class="eds-tabtitle"
                     >
+                    <th></th>
                       <tbody>
                         <tr>
                           <td>
@@ -108,6 +111,7 @@
                                 value="28889813"
                               />
                               <table width="100%">
+                                <th></th>
                                 <tbody>
                                   <tr style="height: 1px">
                                     <td width="200"></td>
@@ -241,7 +245,7 @@
                                     </td>
                                   </tr>
 
-                                  <tr class="eds-pagerstyle">
+                                  <tr class="eds-pagerstyle" *ngIf="this.apiService.role != 'VDT_ROLE_READONLY' && this.apiService.role != 'VDT_ROLE_AUDITOR'">
                                     <td colspan="2">
                                       <span style="float: right">
                                         <input
@@ -282,6 +286,7 @@
             <!-- <div style="clear: both">	 -->
 
             <table cellspacing="0" cellpadding="0" border="0" style="margin-top: 15px;">
+              <th></th>
               <tbody>
                 <tr>
                   <td>
@@ -291,6 +296,7 @@
                       cellpadding="0"
                       border="0"
                     >
+                    <th></th>
                       <tbody>
                         <tr>
                           <td class="eds-tabtopleftcorner"></td>
@@ -315,6 +321,7 @@
                       border="0"
                       class="eds-tabtitle"
                     >
+                    <th></th>
                       <tbody>
                         <tr>
                           <td>
@@ -370,8 +377,8 @@
 
                                       <br />
 
-                                      <a
-                                       routerLink="/viewnewRoutw"
+                                      <a *ngIf="this.apiService.role != 'VDT_ROLE_READONLY' && this.apiService.role != 'VDT_ROLE_AUDITOR'"
+                                       routerLink="/viewnewRoutw" 
                                        (click)="reIssue()"
                                         >Re-Issue</a
                                       >
@@ -387,7 +394,7 @@
                                 </tbody>
                               </table>
 
-                              <span style="float: right">
+                              <span style="float: right" *ngIf="this.apiService.role != 'VDT_ROLE_READONLY' && this.apiService.role != 'VDT_ROLE_AUDITOR'">
                                 <button type="submit" value="New Route"  routerLink="/viewnewRoutw"  (click)="newRoute()">New Route</button>
                               </span>
                             </form>
@@ -402,11 +409,13 @@
           </div>
           <div class="whiteSpace-noWrap" style="float: left; margin-left: 5px">
             <table width="98%">
+              <th></th>
               <tbody>
                 <tr>
                   <td width="40%" valign="top">
                     <table cellspacing="0" cellpadding="0" border="0">
                       <tbody>
+                        <th></th>
                         <tr>
                           <td>
                             <table
@@ -415,6 +424,7 @@
                               cellpadding="0"
                               border="0"
                             >
+                            <th></th>
                               <tbody>
                                 <tr>
                                   <td class="eds-tabtopleftcorner"></td>
@@ -439,6 +449,7 @@
                               border="0"
                               class="eds-tabtitle"
                             >
+                            <th></th>
                               <tbody>
                                
                                     <tr>
@@ -494,6 +505,7 @@
               style="margin-top: 50px"
               width="100%"
             >
+            <th></th>
               <tbody>
                 <tr>
                   <td>
@@ -504,11 +516,12 @@
                       border="0"
                       width="100%"
                     >
+                    <th></th>
                       <tbody>
                         <tr>
                           <td class="eds-tabtopleftcorner"></td>
                           <td class="eds-tabtopmiddle" align="center">
-                            <div class="eds-tabtitle">ECO</div>
+                            <div class="eds-tabtitle">ECO</div>                          
                           </td>
                           <td class="eds-tabtoprightcorner"></td>
                         </tr>
@@ -528,6 +541,7 @@
                       border="0"
                       class="eds-tabtitle"
                     >
+                    <th></th>
                       <tbody>
                         <tr>
                           <td>

@@ -5,15 +5,14 @@ import { setLines } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { SearchPaginationComponent } from '../search-pagination/search-pagination.component';
+import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
-
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
   providers: [DatePipe],
-
 })
 export class SearchComponent {
 
@@ -162,14 +161,15 @@ export class SearchComponent {
   @ViewChild(SearchPaginationComponent) searchPagination!: SearchPaginationComponent;
   @ViewChild('myForm') myForm!: NgForm;
   downloadPayload: any;
-docDeleted: any;
+  docDeleted: any;
   dataFlag: boolean = false;
-loadingDownload: boolean = false;
+  loadingDownload: boolean = false;
   searchDetailDocType: any[] = [];
   searchEffetivity: any[] = [];
   searchDocAllSections: any[] = [];
   formdetailId: any;
   apidocData: any;
+  searchDownloadError: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -179,11 +179,13 @@ loadingDownload: boolean = false;
     private datePipe: DatePipe
   ) {
   }
+  private downloadSubscription: Subscription | null = null; 
   // "28796727"
-  downloadExcel(): void {  
-    this.loadingDownload = true;
-    this.apiService.docDownload(this.downloadPayload,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
+  downloadExcel(): void {
+    this.loadingDownload = true; 
+  this.downloadSubscription =  this.apiService.docDownload(this.downloadPayload,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
       this.loadingDownload = false;
+      this.searchDownloadError = false;
       const contentDisposition = response.headers.get('Content-Disposition');
       const filename = contentDisposition.split('filename=')[1].trim().replace(/"/g, '');
       const blob = new Blob([response.body], { type: 'application/vnd.ms-excel' });
@@ -193,13 +195,17 @@ loadingDownload: boolean = false;
        a.download = filename;
        a.click();
        window.URL.revokeObjectURL(url);
+    }, (err)=>{
+          this.loadingDownload = false;
+          this.searchDownloadError = true;          
     });   
     // this.apiService.exportToExcel(this.apiData, 'my_records');
   }
   ngOnInit() {
     this.advancedSearchValue = 'Advanced Search (Display)';
+    this.searchDownloadError = false;
     this.route.params.subscribe(params =>{
-      this.docDeleted = params['docDeleted'];   
+      this.docDeleted = params['docDeleted'];
     })
     this.apiService.getEccnLocations().subscribe((data) => {
       this.EccnLocations = data;
@@ -207,17 +213,17 @@ loadingDownload: boolean = false;
     this.apiService.getEccnNumbers().subscribe((data) => {
       this.EccnNumbers = data;
     });
-        this.apiService.getDetaildocType().subscribe((data) => {
+    this.apiService.getDetaildocType().subscribe((data) => {
       this.searchDetailDocType = data;
     });
     this.apiService.getSearchEffetivity().subscribe((data) => {
       this.searchEffetivity = data;
     });
-   // this.router.navigateByUrl('/search');
+    // this.router.navigateByUrl('/search');
   }
   ngAfterViewInit() {
     const formData = this.apiService.getFormData();
-    if (formData && !this.docDeleted) {      
+     if (formData && !this.docDeleted) {
       this.vendorName = formData.vendorName;
       this.checkBoxValue = formData.checkBoxValue;
       this.detailDocType = formData.detailDocType, 
@@ -229,7 +235,7 @@ loadingDownload: boolean = false;
       this.advancedSearchHidden = formData.advancedSearchHidden,
       this.currentPage = formData.currentPage;
       setTimeout(() => {
-     //   if(this.detailId === undefined || this.detailId === null){ 
+        //   if(this.detailId === undefined || this.detailId === null){
         this.Search();
       //  }
       }, 0);
@@ -237,10 +243,16 @@ loadingDownload: boolean = false;
     this.cdr.detectChanges();
 
   }
+  ngOnDestroy() {
+    if (this.downloadSubscription) {
+      this.downloadSubscription.unsubscribe();
+    }
+  }
 
   Search() {  
     this.apiService.searchType = "search";
     this.apiService.clearFields = false;
+    this.searchDownloadError = false;
     const formData = {
       vendorName: this.vendorName,
       checkBoxValue: this.checkBoxValue,
@@ -267,7 +279,7 @@ loadingDownload: boolean = false;
     this.loading = true;
     this.start = (this.currentPage - 1) * this.recordsPerPage;
     this.size = this.recordsPerPage;
-     let manualStartDate = this.datePipe.transform(
+    let manualStartDate = this.datePipe.transform(
       this.searchPagination?.manualStartDate,
       'yyyy-MM-ddTHH:mm:ss'
     );
@@ -284,6 +296,9 @@ loadingDownload: boolean = false;
       'yyyy-MM-ddTHH:mm:ss'
     );
     if(this.detailId === ''){this.detailId= undefined;}
+
+    let newSection = this.searchPagination?.selectedSection?.map((sec: any) => sec.split(' - ')[0]);
+
     const payload = {
       vendorName: this.vendorName,
       currentVendorOnly: this.checkBoxValue,
@@ -298,7 +313,7 @@ loadingDownload: boolean = false;
       effectivity: this.searchPagination?.selectedEffectivity,
       subject: this.searchPagination?.subject,
       bin: this.searchPagination?.bin,
-      section:this.searchPagination?.selectedSection,
+      section: newSection,
       manualStartDate: manualStartDate,
       manualEndDate: manualEndDate,
       reissueStartDate: reissueStartDate,
@@ -314,11 +329,11 @@ loadingDownload: boolean = false;
     this.apiService
       .postData(payload, this.start / this.size + 1, this.size)
       .subscribe((data) => {
-        if(data.results) {       
-        this.apiData = [...data.results];
+        if(data.results) {
+        this.apiData = [...data.results];  
         this.totalCount = data.totalRevisions;
         this.totalPages = data.totalPages;
-        this.loading = false;
+        this.loading = false;      
         }
         else if(data.viewDocumentResponse){
           this.apidocData = data.viewDocumentResponse.document;
@@ -329,12 +344,12 @@ loadingDownload: boolean = false;
           this.loading = false;
           this.apiData =[];
         }
-       if(this.detailId !== undefined && this.detailId !== null && this.formdetailId === undefined){       
+       if(this.detailId !== undefined && this.detailId !== null && this.formdetailId === undefined){
         this.apiService.viewDocId = data.viewDocumentResponse.document.documentNbr;
         this.apiService.vendorName = data.viewDocumentResponse.vendor.vendorNm;
         this.apiService.subject = data.viewDocumentResponse.document.subject;
         this.router.navigate(['/viewStatus', {fromdetailSearch:this.detailId}]);
-       }
+       }    
        this.formdetailId = undefined;
       },
       (error)=>{
@@ -344,8 +359,7 @@ loadingDownload: boolean = false;
         this.apidocData = undefined;
         this.totalCount = 0;
         this.totalPages = 0;
-      }
-    
+      }    
     );
   }
 
@@ -419,7 +433,11 @@ loadingDownload: boolean = false;
   }
 
   clear(){
+    this.searchDownloadError = false;
+    this.downloadSubscription?.unsubscribe()
     this.myForm.resetForm();
+    this.downloadSubscription = null;
+    this.loadingDownload = false;
     this.searchPagination?.clearFields();
     this.advancedSearchHidden = true;
     this.advancedSearchValue = 'Advanced Search (Display)';

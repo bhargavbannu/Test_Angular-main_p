@@ -3,10 +3,12 @@
     <table>
       <div>
         <tbody>
+          <th></th>
           <tr>
             <td>
               <table>
                 <tbody>
+                  <th></th>
                   <tr class="eds-pagerstyle-alt inline-table_dark_grey">
                     <td align="right">VDT System ID No.&nbsp; &nbsp;</td>
                     <td align="left">
@@ -34,7 +36,7 @@
                         class=""
                         id="effectivities"
                         multiple="multiple"
-                        style="font-family: Arial; font-size: 12px"
+                        style="font-family: 'Arial',sans-serif !important; font-size: 12px"
                         tabindex="-1"
                         [(ngModel)]="selectedEffectivity"
                       >
@@ -105,10 +107,12 @@
             <td>
               <table>
                 <tbody>
+                  <th></th>
                   <tr align="right" valign="top">
                     <td align="right" valign="top">
                       <table>
                         <tbody>
+                          <th></th>
                           <tr align="right">
                             <td align="right"></td>
                           </tr>
@@ -124,7 +128,7 @@
                                 multiple="multiple"
                                 style="
                                   width: 192px;
-                                  font-family: Arial;
+                                  font-family: 'Arial',sans-serif !important;
                                   font-size: 12px;
                                 "
                                 tabindex="-1"
@@ -172,6 +176,9 @@
                               !calendar1.overlayVisible;
                             calendar1.inputfieldViewChild?.nativeElement.click()
                           "
+                          alt=""
+                          onkeydown=""
+                          onfocus=""
                       /></span>
                       <p-calendar
                         name="calendarDate"
@@ -182,7 +189,7 @@
                         class="hidden-calendar"
                          (onSelect)="formatDate1($event)"
                       ></p-calendar>
-
+                
                       -
                       <input
                         type="text"
@@ -207,6 +214,9 @@
                               !calendar2.overlayVisible;
                             calendar2.inputfieldViewChild?.nativeElement.click()
                           "
+                          alt=""
+                          onkeydown=""
+                          onfocus=""
                       /></span>
                       <p-calendar
                         name="calendarDate"
@@ -238,7 +248,7 @@
                         autocomplete="off"
                         [(ngModel)]="reissueStartDate"
                       />
-
+                    
                       <span
                         ><img
                           onmouseover="this.style.cursor='hand'"
@@ -250,6 +260,9 @@
                               !calendar3.overlayVisible;
                             calendar3.inputfieldViewChild?.nativeElement.click()
                           "
+                          alt=""
+                          onkeydown=""
+                          onfocus=""
                       /></span>
                       <p-calendar
                         name="calendarDate"
@@ -260,7 +273,6 @@
                         class="hidden-calendar"
                          (onSelect)="formatDate3($event)"
                       ></p-calendar>
-
                       -
                       <input
                         type="text"
@@ -285,6 +297,9 @@
                               !calendar4.overlayVisible;
                             calendar4.inputfieldViewChild?.nativeElement.click()
                           "
+                          alt = ""
+                          onkeydown=""
+                          onfocus=""
                       /></span>
                       <p-calendar
                         name="calendarDate"
@@ -297,6 +312,7 @@
                       ></p-calendar>
                     </td>
                   </tr>
+
 
                   <tr align="right" valign="top">
                     <td align="right" valign="top" style="color: black">

@@ -17,6 +17,7 @@
   <div class="whiteSpace-noWrap" style="float: left">
     <table cellspacing="0" cellpadding="0" border="0">
       <tbody>
+        <th></th>
         <tr>
           <td>
             <table
@@ -26,6 +27,7 @@
               border="0"
             >
               <tbody>
+                <th></th>
                 <tr>
                   <td class="eds-tabtopleftcorner"></td>
                   <td class="eds-tabtopmiddle" align="center">
@@ -50,6 +52,7 @@
               class="eds-tabtitle"
             >
               <tbody>
+                <th></th>
                 <tr>
                   <td>
                     <form
@@ -65,6 +68,7 @@
                       />
                       <table width="100%">
                         <tbody>
+                          <th></th>
                           <tr style="height: 1px">
                             <td width="200"></td>
                             <td width="250"></td>
@@ -81,7 +85,7 @@
                                 readonly="readonly"
                                 size="45"
                                 [(ngModel)]="
-                                  docDetails?.document.vendor.vendorNm
+                                  docDetails.document.vendor.vendorNm
                                 "
                               />
                             </td>
@@ -97,7 +101,7 @@
                                 value=""
                                 readonly="readonly"
                                 size="45"
-                                [(ngModel)]="docDetails?.document.subject"
+                                [(ngModel)]="docDetails.document.subject"
                               />
                             </td>
                           </tr>
@@ -111,7 +115,7 @@
                                 value=""
                                 readonly="readonly"
                                 size="45"
-                                [(ngModel)]="docDetails?.detail.popRefNbr"
+                                [(ngModel)]="docDetails.detail.popRefNbr"
                               />
                             </td>
                           </tr>
@@ -124,7 +128,7 @@
                               <select
                                 name="detail.detailDocType"
                                 class=""
-                                [(ngModel)]="docDetails?.detail.detailDocType"
+                                [(ngModel)]="docDetails.detail.detailDocType"
                               >
                                 <option value=""></option>
 
@@ -355,7 +359,7 @@
                                 value=""
                                 size="45"
                                 maxlength="42"
-                                [(ngModel)]="docDetails?.detail.doctype"
+                                [(ngModel)]="docDetails.detail.doctype"
                               />
                             </td>
                           </tr>
@@ -370,7 +374,7 @@
                                 value=""
                                 size="45"
                                 maxlength="10"
-                                [(ngModel)]="docDetails?.detail.revisionNbr"
+                                [(ngModel)]="docDetails.detail.revisionNbr"
                               />
                             </td>
                           </tr>
@@ -388,7 +392,7 @@
                                 size="45"
                                 maxlength="25"
                                 [(ngModel)]="
-                                  docDetails?.detail.detailSubjectDesc
+                                  docDetails.detail.detailSubjectDesc
                                 "
                               />
                             </td>
@@ -406,7 +410,7 @@
                                 size="41"
                                 autocomplete="off"
                                 [(ngModel)]="
-                                  docDetails?.detail.manualdate
+                                  docDetails.detail.manualdate
                                 "
                               />
 
@@ -421,11 +425,14 @@
                                       !calendar1.overlayVisible;
                                     calendar1.inputfieldViewChild?.nativeElement.click()
                                   "
+                                  alt = ""
+                                  onkeydown=""
+                                  onfocus=""
                               /></span>
                               <p-calendar
                                 name="calendarDate"
                                 #calendar1
-                                [(ngModel)]="docDetails?.detail.manualdate"
+                                [(ngModel)]="docDetails.detail.manualdate"
                                 [showIcon]="false"
                                 [showOnFocus]="false"
                                 class="hidden-calendar"
@@ -440,7 +447,7 @@
                               <select
                                 name="detail.popClass"
                                 class=""
-                                [(ngModel)]="docDetails?.detail.popClass"
+                                [(ngModel)]="docDetails.detail.popClass"
                               >
                                 <option value="REGULAR">REGULAR</option>
 
@@ -462,7 +469,7 @@
                                 name="detail.mediaTypes"
                                 class=""
                                 multiple="multiple"
-                                [(ngModel)]="docDetails?.detail.mediaTypes"
+                                [(ngModel)]="docDetails.detail.mediaTypes"
                               >
                                 <option value="PAPER">PAPER</option>
 
@@ -487,7 +494,7 @@
                                 value=""
                                 size="45"
                                 maxlength="10"
-                                [(ngModel)]="docDetails?.detail.bin"
+                                [(ngModel)]="docDetails.detail.bin"
                               />
                             </td>
                           </tr>
@@ -500,7 +507,7 @@
                                 cols="28"
                                 name="detail.remark"
                                 class=""
-                                [(ngModel)]="docDetails?.detail.remark"
+                                [(ngModel)]="docDetails.detail.remark"
                               ></textarea>
                             </td>
                           </tr>

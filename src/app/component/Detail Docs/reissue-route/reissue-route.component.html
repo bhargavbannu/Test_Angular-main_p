@@ -4,6 +4,7 @@
   <div style="float: left">
     <table cellspacing="0" cellpadding="0" border="0">
       <tbody>
+        <th></th>
         <tr>
           <td>
             <table
@@ -13,6 +14,7 @@
               border="0"
             >
               <tbody>
+                <th></th>
                 <tr>
                   <td class="eds-tabtopleftcorner"></td>
                   <td class="eds-tabtopmiddle" align="center">
@@ -37,6 +39,7 @@
               class="eds-tabtitle"
             >
               <tbody>
+                <th></th>
                 <tr>
                   <td>
                     <form
@@ -46,6 +49,7 @@
                     >
                       <table width="100%">
                         <tbody>
+                          <th></th>
                           <tr style="height: 1px">
                             <td width="200"></td>
                             <td width="250"></td>
@@ -126,7 +130,7 @@
                                 value="02/23/2025"
                                 size="41"
                                 autocomplete="off"
-                                [(ngModel)]="routeDate"
+                                [ngModel]="routeDate"
                               />
 
                               <span
@@ -140,6 +144,9 @@
                                       !calendar1.overlayVisible;
                                     calendar1.inputfieldViewChild?.nativeElement.click()
                                   "
+                                  alt = ""
+                                  onkeydown=""
+                                  onfocus=""
                               /></span>
                               <p-calendar
                                 name="calendarDate"
@@ -189,7 +196,7 @@
                                 value=""
                                 size="41"
                                 autocomplete="off"
-                                [(ngModel)]="closeDate"
+                                [ngModel]="closeDate"
                               />
 
                               <span
@@ -203,6 +210,9 @@
                                       !calendar2.overlayVisible;
                                     calendar2.inputfieldViewChild?.nativeElement.click()
                                   "
+                                  alt = ""
+                                  onkeydown=""
+                                  onfocus=""
                               /></span>
                               <p-calendar
                                 name="calendarDate"
@@ -212,6 +222,7 @@
                                 [showOnFocus]="false"
                                 class="hidden-calendar"
                               ></p-calendar>
+
                             </td>
                           </tr>
 

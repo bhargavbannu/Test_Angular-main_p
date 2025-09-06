@@ -25,7 +25,9 @@ export class NewAuditComponent implements OnInit {
   @ViewChild('calendar2') calendar2!: Calendar;
   @ViewChild('calendar3') calendar3!: Calendar;
   auditableDocTypes: any[]=[];
-detailDocType: any;
+  detailDocType: any;
+  showErr: boolean = false;
+  auditError: any;
 
   constructor(private apiService: ApiService, private datePipe:DatePipe, private router:Router){}
 
@@ -46,7 +48,10 @@ detailDocType: any;
     let auditDate = this.datePipe.transform(this.auditDate, 'MM/dd/yyyy HH:mm:ss')
     let followUpDate = this.datePipe.transform(this.followUpDate, 'MM/dd/yyyy HH:mm:ss')
     let revDate = this.datePipe.transform(this.revDate, 'MM/dd/yyyy HH:mm:ss')
-    let popnoValue = this.documentDetail && this.documentDetail.trim() !== "" ? this.documentDetail.split(" ")[0] : null; 
+    let popnoValue = this.documentDetail && this.documentDetail.trim() !== ""
+      ? this.documentDetail.split(" ")[0]
+      : null;
+    
 
     let payload ={
       "audit": {
@@ -63,14 +68,22 @@ detailDocType: any;
         "auditNotes": this.auditNotes       
       }
     }
+    if(auditDate !== null && auditDate !== undefined && auditDate !== ""){
+
   this.apiService.saveNewAudit(payload).subscribe((res)=>{
     this.apiService.viewAuditId = res.successResult.data.auditData.auditId
     this.router.navigate(["/viewAudit", {auditSaved:true}])
+  }, (err)=>{
+    this.auditError = err.error.message;
   })
+} else{
+    this.showErr = true;
+  }
   }
 
-      formatDate1(date: Date) {
+    formatDate1(date: Date) {
     this.auditDate = this.datePipe.transform(date, 'MM/dd/yyyy');
+    this.showErr = false;
   }
 
     formatDate2(date: Date) {

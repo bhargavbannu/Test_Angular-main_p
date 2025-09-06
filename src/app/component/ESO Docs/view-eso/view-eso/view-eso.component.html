@@ -28,6 +28,7 @@
 
   <table cellspacing="0" cellpadding="0" border="0">
     <tbody>
+      <th></th>
       <tr>
         <td>
           <table
@@ -37,6 +38,7 @@
             border="0"
           >
             <tbody>
+              <th></th>
               <tr>
                 <td class="eds-tabtopleftcorner"></td>
                 <td class="eds-tabtopmiddle" align="center">
@@ -61,6 +63,7 @@
             class="eds-tabtitle"
           >
             <tbody>
+              <th></th>
               <tr>
                 <td>
                   <form
@@ -69,6 +72,7 @@
                   >
                     <table width="100%">
                       <tbody>
+                        <th></th>
                         <tr style="height: 1px">
                           <td width="200"></td>
                           <td width="250"></td>
@@ -129,7 +133,7 @@
 
                         <!-- BUTTONS SECTION -->
 
-                        <tr class="eds-pagerstyle-alt blueColSpan">
+                        <tr class="eds-pagerstyle-alt blueColSpan" *ngIf="this.apiService.role != 'VDT_ROLE_READONLY' && this.apiService.role != 'VDT_ROLE_AUDITOR'">
                           <td colspan="2">
                             <span style="float: right">
                               <input type="submit" routerLink="/edit-eso" (click)="editEso()"  value=" Edit " />

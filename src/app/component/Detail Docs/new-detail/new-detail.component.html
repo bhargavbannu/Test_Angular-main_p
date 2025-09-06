@@ -3,6 +3,7 @@
 <div class="whiteSpace-noWrap" style="float: left">
   <table cellspacing="0" cellpadding="0" border="0">
     <tbody>
+      <th></th>
       <tr>
         <td>
           <table
@@ -12,6 +13,7 @@
             border="0"
           >
             <tbody>
+              <th></th>
               <tr>
                 <td class="eds-tabtopleftcorner"></td>
                 <td class="eds-tabtopmiddle" align="center">
@@ -36,6 +38,7 @@
             class="eds-tabtitle"
           >
             <tbody>
+              <th></th>
               <tr>
                 <td>
                   <form
@@ -46,6 +49,7 @@
                   >
                     <table width="100%">
                       <tbody>
+                        <th></th>
                         <tr style="height: 1px">
                           <td width="200"></td>
                           <td width="250"></td>
@@ -369,7 +373,7 @@
                               size="41"
                               maxlength="10"
                               autocomplete="off"
-                              [(ngModel)]="revDate"
+                              [ngModel]="revDate"
                             />
 
                             <span
@@ -383,6 +387,9 @@
                                     !calendar1.overlayVisible;
                                   calendar1.inputfieldViewChild?.nativeElement.click()
                                 "
+                                alt = ""
+                                onkeydown=""
+                                onfocus=""
                             /></span>
                             <p-calendar
                               name="calendarDate"
@@ -393,6 +400,7 @@
                               class="hidden-calendar"
                               (onSelect)="formatDate1($event)"
                             ></p-calendar>
+
                           </td>
                         </tr>
 
@@ -410,9 +418,7 @@
 
                               <option value="MANDATORY">MANDATORY</option>
 
-                              <option value="SPECIAL ATTENTION">
-                                SPECIAL ATTENTION
-                              </option>
+                              <option value="SPECIAL ATTENTION">SPECIAL ATTENTION</option>
                             </select>
                           </td>
                         </tr>

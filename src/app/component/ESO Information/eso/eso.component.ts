@@ -111,6 +111,7 @@ export class EsoComponent {
       this.apiService.esoByEffectivity(id).subscribe((response: any) => {
         this.esoNo = response;
       });
+    
     } else {
       this.esoNo = '';
     }
@@ -123,4 +124,5 @@ export class EsoComponent {
   formatDate2(date: Date) {
     this.cancelDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
+
 }

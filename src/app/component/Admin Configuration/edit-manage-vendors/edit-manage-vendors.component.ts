@@ -40,7 +40,7 @@ export class EditManageVendorsComponent {
         this.route.params.subscribe(params => {
           this.vendorName = params['vendorVal'];
         })
-      this.apiService.getVendorId(this.vendorName).subscribe((res:any)=>{
+        this.apiService.getVendorId(this.vendorName).subscribe((res:any)=>{
       if(res){
         this.vendorid = res.vendor.vendorid;
       }});
@@ -63,15 +63,11 @@ export class EditManageVendorsComponent {
         this.router.navigate(['/Manage-Vendors', {vendorSaved:true}])
       }
     });
-
     this.apiService.savevendor(payload).subscribe((res:any)=>{
       if(res){
         this.router.navigate(['/Manage-Vendors', {vendorSaved:true}])
       }
     });
-    
-  
-
   }
 
   tettt(val: any) {
@@ -91,8 +87,7 @@ export class EditManageVendorsComponent {
   }
 
   deleteVendor(){
-    // console.log(this.vendorName);
-    
+    //console.log(this.vendorName);
     // const payload = {
     //   vendor: {
 //         vendorNm: this.vendorName,
@@ -100,6 +95,7 @@ export class EditManageVendorsComponent {
 //       },
 //     };
     this.apiService.getVendorId(this.vendorName).subscribe((res:any)=>{
+    
       if(res){
         this.apiService.deleteVendor(res.vendor.vendorid).subscribe((res:any)=>{
         this.router.navigate(['/Manage-Vendors', {vendorDeleted:true}])
@@ -107,5 +103,4 @@ export class EditManageVendorsComponent {
       }
     });
   }
-
 }

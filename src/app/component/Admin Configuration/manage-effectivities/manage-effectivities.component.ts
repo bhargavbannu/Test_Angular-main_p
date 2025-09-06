@@ -34,7 +34,7 @@ export class ManageEffectivitiesComponent {
     this.btnIndex = index;
     this.clickFlag = true;
     this.effectivitySaved = false;
-    this.effectivityDeleted = false; 
+    this.effectivityDeleted = false;
     this.Effectivities.forEach((item:any) => {
       if(!item.effectivityFleet){
         item.effectivityFleet = {esoMinSeqNbr:"", esoMaxSeqNbr:"", esoCurrSeqNbr:""};

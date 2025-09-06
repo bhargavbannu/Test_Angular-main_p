@@ -1,5 +1,6 @@
 <div>
   <div *ngIf="docDeleted" class="savedDoc">SUCCESS: Document deleted successfully.</div>
+  <div *ngIf="searchDownloadError" class="errMsg"> Request timed out while generating the report </div>
 
   <form
     #myForm="ngForm"
@@ -25,6 +26,7 @@
     <div style="padding-top: 6px">
       <table cellspacing="0" cellpadding="0" border="0">
         <tbody>
+          <th></th>
           <tr>
             <td>
               <table
@@ -34,6 +36,7 @@
                 border="0"
               >
                 <tbody>
+                  <th></th>
                   <tr>
                     <td class="eds-tabtopleftcorner"></td>
                     <td class="eds-tabtopmiddle" align="center">
@@ -58,14 +61,17 @@
                 class="eds-tabtitle"
               >
                 <tbody>
+                  <th></th>
                   <tr>
                     <td>
                       <table class="inline-table_dark_grey">
                         <tbody>
+                          <th></th>
                           <tr align="left">
                             <td align="left">
                               <table>
                                 <tbody>
+                                  <th></th>
                                   <tr
                                     class="eds-pagerstyle inline-table_dark_grey"
                                   >
@@ -149,7 +155,7 @@
                                         tabindex="-1"
                                         [(ngModel)]="detailDocType"
                                       >
-                                        <option>  </option>
+                                      <option>  </option>
                                         <option *ngFor="let doc of searchDetailDocType">
                                           {{ doc}}
                                         </option>
@@ -169,10 +175,10 @@
                                       tabindex="-1"
                                       [(ngModel)]="ITAR"
                                     >
-                                      <option  value="Yes">
-                                       y
+                                      <option  value="YES">
+                                       Y
                                       </option > <option  value="NO" >
-                                        n
+                                        N
                                        </option>
                                     </select>
                                   </td>
@@ -204,6 +210,7 @@
                             <td valign="top">
                               <table>
                                 <tbody>
+                                  <th></th>
                                   <tr
                                     class="eds-pagerstyle-alt inline-table_dark_grey"
                                   >
@@ -365,7 +372,9 @@
                                 <div class="hidableSectionLink">
                                   <a>Advanced Search (Hide)</a>
                                 </div>
-                                <table width="100%"></table>
+                                <table width="100%">
+                                  <th></th>
+                                </table>
                               </div>
                             </td>
                           </tr>
@@ -478,17 +487,17 @@
 
       <tbody *ngIf="apiData?.length > 0">
         <tr>
-          <th>VDT System ID No.</th>
-          <th>Vnd. Doc. Ref. #</th>
-          <th>ATA</th>
-          <th>Vendor</th>
-          <th>Effectivity</th>
-          <th>Subject</th>
-          <th>ESO#</th>
-          <th>ECO#</th>
-          <th>Vendor Part#</th>
-          <th>Sections</th>
-          <th>Action</th>
+          <th id="vdtsystemidno">VDT System ID No.</th>
+          <th id="vnddocref">Vnd. Doc. Ref. #</th>
+          <th id="ata">ATA</th>
+          <th id="vendor">Vendor</th>
+          <th id="effectivity">Effectivity</th>
+          <th id="subject">Subject</th>
+          <th id="eso">ESO#</th>
+          <th id="eco">ECO#</th>
+          <th id="vendorpart">Vendor Part#</th>
+          <th id="sections">Sections</th>
+          <th id="action">Action</th>
         </tr>
 
         <tr
@@ -516,17 +525,17 @@
       </tbody>
       <tbody *ngIf="apidocData !== undefined">
         <tr>
-          <th>VDT System ID No.</th>
-          <th>Vnd. Doc. Ref. #</th>
-          <th>ATA</th>
-          <th>Vendor</th>
-          <th>Effectivity</th>
-          <th>Subject</th>
-          <th>ESO#</th>
-          <th>ECO#</th>
-          <th>Vendor Part#</th>
-          <th>Sections</th>
-          <th>Action</th>
+          <th id="vdtsystemidno">VDT System ID No.</th>
+          <th id="vnddocref">Vnd. Doc. Ref. #</th>
+          <th id="ata">ATA</th>
+          <th id="vendor">Vendor</th>
+          <th id="effectivity">Effectivity</th>
+          <th id="subject">Subject</th> 
+          <th id="eso">ESO#</th>
+          <th id="eco">ECO#</th>
+          <th id="vendorpart">Vendor Part#</th>
+          <th id="sections">Sections</th>
+          <th id="action">Action</th>
         </tr>
 
         <tr class="eds-pagerstyle">
@@ -538,7 +547,7 @@
           <td>{{ apidocData.subject }}</td>
           <td>{{ apidocData.esos }}</td>
           <td>{{ apidocData.ecos }}</td>
-          <td style="overflow-wrap: break-word;max-width: 668px; text-wrap: wrap;">{{ apidocData.documentPartNumbers }}</td>
+          <td style="overflow-wrap: break-word;max-width: 668px;text-wrap: wrap;">{{ apidocData.documentPartNumbers }}</td>
           <td>{{ apidocData.sections }}</td>
           <td>
             <a
@@ -558,13 +567,12 @@
       >Download XLS</a
     >
     <div class="loader-container1" *ngIf="loadingDownload">
-  <div class="loader1"></div>
-  <p>Downloading data, please wait...</p>
-</div>
+      <div class="loader1"></div>
+      <p>Downloading data, please wait...</p>
+    </div>
     <br /><span *ngIf="(apiData?.length > 0 || apidocData !== undefined)"
       >(Please note: Depending on the size, this operation might take several
       minutes)</span
     >
   </td>
 </div>
-

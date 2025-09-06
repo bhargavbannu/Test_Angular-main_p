@@ -6,7 +6,6 @@ import { Calendar } from 'primeng/calendar';
 import { ApiService } from 'src/app/api.service';
 import { DatePipe } from '@angular/common';
 
-
 export interface PeriodicElement {
   id_no: string;
   doc_ref: string;
@@ -51,7 +50,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './search-pagination.component.html',
   styleUrls: ['./search-pagination.component.css'],
   providers: [DatePipe],
-
 })
 export class SearchPaginationComponent {
 
@@ -217,10 +215,9 @@ bin: any;
 documentType: any;
 selectedSection: any[]=[];
 documentSubject: any;
- searchDocAllSections: any;
-  searchEffetivity: any;
+searchDocAllSections: any;
+searchEffetivity: any;
 @ViewChild('childForm') childForm!: NgForm
-
 
   constructor(private apiService:ApiService, private datePipe: DatePipe) {}
 
@@ -262,6 +259,7 @@ documentSubject: any;
     this.apiService.getSearchEffetivity().subscribe((data) => {
       this.searchEffetivity = data;
     });
+    
   }
 
   ngAfterViewInit() {

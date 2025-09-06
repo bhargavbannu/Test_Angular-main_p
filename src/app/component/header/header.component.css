@@ -34,19 +34,34 @@
 .loggedArea {
   color: #ffffff;
   background-color: #00007c;
+  padding: 3px 0 3px 0;  /* Increased vertical padding, removed horizontal padding */
+  font-size: 15px;
 }
 
 .loginTitle {
   display: flex;
   font-weight: bold;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
 }
 .manualArea {
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0px;
 }
 
 .manualArea a {
   color: #ffffff;
   font-weight: bold;
-  font-family: Arial;
+  font-family: 'Arial',sans-serif !important;
   text-decoration: none;
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  transition: opacity 0.2s;
+}
+
+.manualArea a:hover {
+  opacity: 0.8;
 }

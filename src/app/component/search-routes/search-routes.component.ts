@@ -1,14 +1,14 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { Calendar } from 'primeng/calendar';
+import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
 import { DatePipe } from '@angular/common';
-
 
 @Component({
   selector: 'app-search-routes',
   templateUrl: './search-routes.component.html',
   styleUrls: ['./search-routes.component.css'],
-   providers: [DatePipe]
+  providers: [DatePipe]
 })
 export class SearchRoutesComponent {
   headers: any;
@@ -24,6 +24,10 @@ export class SearchRoutesComponent {
   eso: any;
   ata: any;
   downloadPayload: any;
+  loadingDownload: boolean = false;
+  private downloadSubscription: Subscription | null = null; 
+  routeDownloadError: any;
+  
   constructor(private service: ApiService, private cdr: ChangeDetectorRef, private datePipe:DatePipe) {}
 
   selectedOption: any;
@@ -36,6 +40,7 @@ export class SearchRoutesComponent {
   routeDetailDocType: any[] = [];
   documentSection: any[] = [];
   searchEffetivity: any[] = [];
+
   @ViewChild('calendar1') calendar1!: Calendar;
   @ViewChild('calendar2') calendar2!: Calendar;
 
@@ -60,8 +65,9 @@ export class SearchRoutesComponent {
       this.selectedOption = 'BOTH'
     }
     this.cdr.detectChanges();
+  
 
-        this.service.getDetaildocType().subscribe((data) => {
+    this.service.getDetaildocType().subscribe((data) => {
       this.routeDetailDocType = data;
       console.log(this.routeDetailDocType);
     });
@@ -75,20 +81,24 @@ export class SearchRoutesComponent {
       this.searchEffetivity = data;
       console.log(this.searchEffetivity);
     });
+    
   }
 
-formatDate(date:Date){
+  ngOnDestroy() {
+    if (this.downloadSubscription) {
+      this.downloadSubscription.unsubscribe();
+    }
+  }
+
+  formatDate(date:Date){
   this.routeEndDate = this.datePipe.transform(date, 'MM/dd/yyyy');
-}
-
-formatRouteStartDate(date:Date){
+  }
+  formatRouteStartDate(date:Date){
   this.routeStartDate = this.datePipe.transform(date, 'MM/dd/yyyy');
-}
-
+  }
   onSearch() {
     let routeEndDate = this.datePipe.transform(this.routeEndDate, 'yyyy-MM-ddTHH:mm:ss');
     let routeStartDate = this.datePipe.transform(this.routeStartDate, 'yyyy-MM-ddTHH:mm:ss');
-    
     this.service.searchType = 'route';
     const formData = {
       routeType: this.routeType,
@@ -106,9 +116,10 @@ formatRouteStartDate(date:Date){
     this.loading = true;
     this.start = (this.currentPage - 1) * this.recordsPerPage;
     this.size = this.recordsPerPage;
+    let newSection = this.section.split(' - ')[0];
     const payload = {
       routeType: this.routeType,
-      section: this.section,
+      section: newSection,
       routeStartDate: routeStartDate,
       routeEndDate: routeEndDate,
       routeStatusSearchType: this.selectedOption,
@@ -184,8 +195,11 @@ formatRouteStartDate(date:Date){
     this.service.detailRoute = id;
   }
 
-  downloadExcel(): void {  
-    this.service.routeDownload(this.downloadPayload,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
+  downloadExcel(): void {
+    this.loadingDownload = true;
+    this.routeDownloadError = false;  
+    this.downloadSubscription = this.service.routeDownload(this.downloadPayload,{observe:'response', responseType:'blob'}).subscribe((response:any)=>{
+      this.loadingDownload = false;
       const contentDisposition = response.headers.get('Content-Disposition');
       const filename = contentDisposition.split('filename=')[1].trim().replace(/"/g, '');
       const blob = new Blob([response.body], { type: 'application/vnd.ms-excel' });
@@ -195,7 +209,10 @@ formatRouteStartDate(date:Date){
        a.download = filename;
        a.click();
        window.URL.revokeObjectURL(url);
-    });   
+    }, (err)=>{
+          this.loadingDownload = false;
+          this.routeDownloadError = err.messages;
+  })   
     // this.apiService.exportToExcel(this.apiData, 'my_records');
   }
 

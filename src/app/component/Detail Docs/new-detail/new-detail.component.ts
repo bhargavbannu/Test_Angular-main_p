@@ -64,7 +64,7 @@ export class NewDetailComponent {
     });
   }
 
-    formatDate1(date: Date) {
+  formatDate1(date: Date) {
     this.revDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 }

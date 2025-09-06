@@ -2,7 +2,7 @@
   <mat-sidenav mode="side" opened class="sidenav">
     <h5 class="menu-heading">Menu</h5>
     <mat-nav-list class="mainlist">
-      <div class="dummy">
+      <div class="dummy" *ngIf="this.apiService.role != 'VDT_ROLE_READONLY' && this.apiService.role != 'VDT_ROLE_AUDITOR'">
         <span class="span1"><a mat-list-item>- Document Information</a></span>
         <div class="subspan1">
           <mat-nav-list>
@@ -16,12 +16,14 @@
         <div class="span2"><a mat-list-item>- ESO Information</a></div>
         <div class="span3">
           <mat-nav-list class="sublinks">
-            <div class="span4"><a mat-list-item (click)="default('/Add-ESO')">- Add ESO</a></div>
-            <div class="span5"><a mat-list-item (click)="default('/View-Edit-ESO')">- View/Edit ESO</a></div>
+            <div class="span4"  *ngIf="this.apiService.role != 'VDT_ROLE_READONLY' && this.apiService.role != 'VDT_ROLE_AUDITOR'"><a mat-list-item (click)="default('/Add-ESO')">- Add ESO</a></div>
+            <div class="span5" *ngIf="this.apiService.role != 'VDT_ROLE_READONLY' && this.apiService.role != 'VDT_ROLE_AUDITOR'"><a mat-list-item (click)="default('/View-Edit-ESO')">
+              - View/Edit ESO</a></div>
+               <div class="span5" *ngIf="this.apiService.role == 'VDT_ROLE_READONLY' || this.apiService.role == 'VDT_ROLE_AUDITOR'"><a mat-list-item (click)="default('/View-Edit-ESO')">
+              - View ESO</a></div>
           </mat-nav-list>
         </div>
       </div>
-
       <div class="dummy2">
         <div class="span6">
           <a mat-list-item>- Search</a>
@@ -31,13 +33,15 @@
             <div class="span4">
               <a mat-list-item routerLink="/search" (click)="resetFormData();default('/search')">- Search Documents</a>
             </div>
-            <div class="span4"><a mat-list-item   (click)="resetFormData();default('/search-audits')">- Search Audits</a></div>
+            <div class="span4" *ngIf="apiService.role != 'VDT_ROLE_READONLY' || apiService.role == 'VDT_ROLE_AUDITOR'">
+              <a mat-list-item (click)="resetFormData();default('/search-audits')">- Search Audits</a>
+            </div>
             <div class="span4"><a mat-list-item   (click)="resetFormData();default('/search-routes')">- Search Routes</a></div>
           </mat-nav-list>
         </div>
       </div>
 
-      <div class="dummy3">
+      <div class="dummy3" *ngIf="this.apiService.role != 'VDT_ROLE_READONLY' && this.apiService.role != 'VDT_ROLE_AUDITOR'">
         <div class="span11"><a mat-list-item>- Admin Configuration</a></div>
         <div class="span12">
           <mat-nav-list class="sublinks">

@@ -32,11 +32,13 @@
   SUCCESS: vendor deleted successfully.
 </div>
 
+
 <div *ngIf="!isEditVendor">
   <td valign="top" align="left">
     <table border="0" cellspacing="0" cellpadding="0" width="100%">
       <ng-container>
         <tbody>
+          <th></th>
           <tr>
             <td
               id="errorMsg"
@@ -61,6 +63,7 @@
 
               <table cellspacing="0" cellpadding="0" border="0">
                 <tbody>
+                  <th></th>
                   <tr>
                     <td style="padding-top: 12px">
                       <table
@@ -70,6 +73,7 @@
                         border="0"
                       >
                         <tbody>
+                          <th></th>
                           <tr>
                             <td class="eds-tabtopleftcorner"></td>
                             <td class="eds-tabtopmiddle" align="center">
@@ -94,6 +98,7 @@
                         class="eds-tabtitle"
                       >
                         <tbody>
+                          <th></th>
                           <tr>
                             <td>
                               <form
@@ -103,6 +108,7 @@
                               >
                                 <table>
                                   <tbody>
+                                    <th></th>
                                     <tr
                                       class="eds-pagerstyle eds-field-required"
                                     >
@@ -197,6 +203,7 @@
       <!-- ERRORS -->
 
       <tbody>
+        <th></th>
         <tr>
           <td
             id="errorMsg"
@@ -220,6 +227,7 @@
 
             <table cellspacing="0" cellpadding="0" border="0">
               <tbody>
+                <th></th>
                 <tr>
                   <td>
                     <table
@@ -229,6 +237,7 @@
                       border="0"
                     >
                       <tbody>
+                        <th></th>
                         <tr>
                           <td class="eds-tabtopleftcorner"></td>
                           <td class="eds-tabtopmiddle" align="center">
@@ -253,6 +262,7 @@
                       class="eds-tabtitle"
                     >
                       <tbody>
+                        <th></th>d
                         <tr>
                           <td>
                             <form
@@ -268,6 +278,7 @@
                               />
                               <table>
                                 <tbody>
+                                  <th></th>
                                   <tr
                                     class="eds-pagerstyle eds-field-required"
                                     style=""
@@ -406,6 +417,7 @@
       <!-- ERRORS -->
 
       <tbody>
+        <th></th>
         <tr>
           <td
             id="errorMsg"
@@ -429,6 +441,7 @@
 
             <table cellspacing="0" cellpadding="0" border="0">
               <tbody>
+                <th></th>
                 <tr>
                   <td>
                     <table
@@ -438,6 +451,7 @@
                       border="0"
                     >
                       <tbody>
+                        <th></th>
                         <tr>
                           <td class="eds-tabtopleftcorner"></td>
                           <td class="eds-tabtopmiddle" align="center">
@@ -464,6 +478,7 @@
                       class="eds-tabtitle"
                     >
                       <tbody>
+                        <th></th>
                         <tr>
                           <td>
                             <form
@@ -484,6 +499,7 @@
                               />
                               <table width="100%">
                                 <tbody>
+                                  <th></th>
                                   <tr
                                     class="eds-pagerstyle eds-field-required"
                                     style=""
@@ -508,15 +524,7 @@
                                         id="vendorAutoComplete_choices"
                                         class="autoCompleteClass"
                                         style="display: none"
-                                      ></div>
-                                      <script>
-                                        new Ajax.Autocompleter(
-                                          "vendorAutoComplete",
-                                          "vendorAutoComplete_choices",
-                                          "GetVendors.html",
-                                          { paramName: "sourceElement" }
-                                        );
-                                      </script>
+                                      ></div>                                      
                                     </td>
                                   </tr>
 
@@ -551,6 +559,9 @@
                                               !calendar1.overlayVisible;
                                             calendar1.inputfieldViewChild?.nativeElement.click()
                                           "
+                                          alt = ""
+                                          onkeydown=""
+                                          onfocus=""                                       
                                       /></span>
                                       <p-calendar
                                         name="calendarDate"

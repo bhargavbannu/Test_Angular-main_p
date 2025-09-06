@@ -3,6 +3,7 @@
   <td valign="top" align="left">
     <table border="0" cellspacing="0" cellpadding="0" width="100%">
       <tbody>
+        <th></th>
         <tr>
           <td
             id="errorMsg"
@@ -37,12 +38,14 @@
           <td align="left">
             <!-- CONTENT -->
 
-            <br />
+            <br /><br />
+
 
             <div class="documentContainer">
               <div style="float: left">
                 <table cellspacing="0" cellpadding="0" border="0">
                   <tbody>
+                    <th></th>
                     <tr>
                       <td>
                         <table
@@ -52,6 +55,7 @@
                           border="0"
                         >
                           <tbody>
+                            <th></th>
                             <tr>
                               <td class="eds-tabtopleftcorner"></td>
                               <td class="eds-tabtopmiddle" align="center">
@@ -82,6 +86,7 @@
                           class="eds-tabtitle"
                         >
                           <tbody>
+                            <th></th>
                             <tr>
                               <td>
                                 <form
@@ -102,6 +107,7 @@
                                   />
                                   <table width="100%">
                                     <tbody>
+                                      <th></th>
                                       <tr style="height: 1px">
                                         <td width="200"></td>
                                         <td width="250"></td>
@@ -125,6 +131,7 @@
                                             [(ngModel)]="docId"
                                             readonly
                                           />
+
                                         </td>
                                       </tr>
 
@@ -143,7 +150,7 @@
                                             id="creationDateId"
                                             size="41"
                                             autocomplete="off"
-                                            [(ngModel)]="creationDate"
+                                            [ngModel]="creationDate"
                                           />
 
                                           <span
@@ -152,11 +159,13 @@
                                               id="creationDateId_date"
                                               align="ABSMIDDLE"
                                               src="assets/images/calendar.gif"
-                                              (click)="
-                                                calendar1.overlayVisible =
-                                                  !calendar1.overlayVisible;
+                                              (click)="calendar1.overlayVisible = 
+                                                !calendar1.overlayVisible;
                                                 calendar1.inputfieldViewChild?.nativeElement.click()
                                               "
+                                              alt = ""
+                                              onkeydown=""
+                                              onfocus=""
                                           /></span>
                                           <p-calendar
                                             name="calendarDate"
@@ -167,6 +176,7 @@
                                             class="hidden-calendar"
                                             (onSelect)="formatDate($event)"
                                           ></p-calendar>
+
                                         </td>
                                       </tr>
 
@@ -190,15 +200,17 @@
                                             (focusout)="onFocusOut()"
                                           />
 
+                                          
+
                                           <div
                                             *ngIf="vendorNamesList.length > 0"
                                             style="
                                               min-width: 220px;
                                               background: rgb(247, 242, 242);
                                               position: absolute;
-                                            "
+                                            "                                         
                                           >
-                                            <div
+                                          <div
                                               *ngFor="
                                                 let val of vendorNamesList
                                               "
@@ -208,6 +220,7 @@
                                                 val
                                               }}</span>
                                             </div>
+                                            
                                           </div>
 
                                           <div
@@ -222,6 +235,7 @@
                                         <td id="vendorContainerId" colspan="2">
                                           <table width="100%">
                                             <tbody>
+                                              <th></th>
                                               <tr style="height: 1px">
                                                 <td width="200"></td>
                                                 <td width="250"></td>
@@ -279,7 +293,7 @@
                                                     size="45"
                                                     maxlength="25"
                                                     [(ngModel)]="
-                                                      vendorContactNumber
+                                                    vendorContactNumber
                                                     "
                                                   />
                                                 </td>
@@ -322,7 +336,7 @@
                                           </table>
                                         </td>
                                       </tr>
-
+                                      
                                       <tr class="eds-pagerstyle">
                                         <td align="right">
                                           Vendor Document Reference Number&nbsp;
@@ -396,7 +410,7 @@
                                               [value]="doc"
                                             >
                                               {{ doc }}
-                                            </option>
+                                            </option>  
                                           </select>
                                         </td>
                                       </tr>
@@ -493,7 +507,7 @@
                                             autocomplete="off"
                                             [(ngModel)]="
                                               reissueDate
-                                            "
+                                            "                                           
                                           />
 
                                           <span
@@ -507,6 +521,9 @@
                                                   !calendar2.overlayVisible;
                                                 calendar2.inputfieldViewChild?.nativeElement.click()
                                               "
+                                              alt=""
+                                              onkeydown=""
+                                              onfocus=""
                                           /></span>
                                           <p-calendar
                                             name="calendarDate"
@@ -517,6 +534,7 @@
                                             class="hidden-calendar"
                                             (onSelect)="formatDate1($event)"
                                           ></p-calendar>
+
                                         </td>
                                       </tr>
 
@@ -533,6 +551,24 @@
                                             size="45"
                                             maxlength="100"
                                           />
+                                        </td>
+                                      </tr>
+
+                                      <tr class="eds-pagerstyle dropdown inline-table_dark_grey">
+                                        <td align="right">
+                                          ITAR&nbsp; &nbsp;
+                                        </td>
+                                        <td align="left">
+                                          <select
+                                            name="detailDocType"
+                                            class=""
+                                            tabindex="-1"
+                                            [(ngModel)]="ITAR"
+                                          >
+                                            <option  value=""> </option>
+                                            <option  value="YES"> Y </option >
+                                            <option  value="NO" > N </option>
+                                          </select>
                                         </td>
                                       </tr>
 
@@ -672,6 +708,7 @@
                                           </div>
                                         </td>
                                       </tr>
+                                     
 
                                       <tr class="eds-pagerstyle">
                                         <td style="text-align: right">
@@ -702,6 +739,7 @@
                                             name="documentPartNumbers"
                                             class=""
                                             [(ngModel)]="typedDocType"
+                                            
                                             style="width: 120px"
                                             maxlength="20"
                                             autocomplete="off"
@@ -774,7 +812,7 @@
                                             [(ngModel)]="typedAuditable"
                                             [ngModelOptions]="{
                                               standalone: true
-                                            }"
+                                            }"                                          
                                             (focusout)="onFocusOut()"
                                           />
 
@@ -816,6 +854,7 @@
                                           </div>
                                         </td>
                                       </tr>
+
 
                                       <tr class="eds-pagerstyle-alt">
                                         <td style="text-align: right">
@@ -909,7 +948,7 @@
                                               "
                                               [value]="item"
                                             >
-                                              {{ item }}
+                                            {{ item }}
                                             </option>
                                           </select>
 

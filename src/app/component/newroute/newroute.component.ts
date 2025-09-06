@@ -44,20 +44,21 @@ export class NewrouteComponent {
     this.closeDate = new Date();
     this.closeDate = this.datePipe.transform(this.closeDate, 'MM/dd/yyyy');
     }
-
   }
 
   save() {
-      let routeDate = this.datePipe.transform(
-        this.routeDate,
-        'MM/dd/yyyy HH:mm:ss'
-      );
-      let closeDate = this.datePipe.transform(
-        this.closeDate,
-        'MM/dd/yyyy HH:mm:ss'
-      );
-let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
-  if(this.apiService.type === 'reIssue'){
+    let routeDate = this.datePipe.transform(
+      this.routeDate,
+      'MM/dd/yyyy HH:mm:ss'
+    );
+  
+    let closeDate = this.datePipe.transform(
+      this.closeDate,
+      'MM/dd/yyyy HH:mm:ss'
+    );
+
+   let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
+    if(this.apiService.type === 'reIssue'){
      this.closed = true;
   } else {
     this.closed = false;
@@ -77,10 +78,9 @@ let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
       submitType: 'add',
     };
     this.apiService.newRoute(payload).subscribe((res) => {
-     // this.router.navigate(['/viewDetail', { routeAdded: true,closedbtn: true,routeSaved: true }]);
-           this.apiService.detailRoute = res.data.routeDetails.route.routeId;
-           this.router.navigate(['/viewRoute', { routeSaved: true }]);
-
+      // this.router.navigate(['/viewDetail', { routeAdded: true,closedbtn: true,routeSaved: true }]);
+        this.apiService.detailRoute = res.data.routeDetails.route.routeId;
+        this.router.navigate(['/viewRoute', { routeSaved: true }]);
     });
     if(this.Sections.length === 0 || this.Sections === undefined || this.Sections === null){
       this.showErr = true;
@@ -132,4 +132,5 @@ let newSection = this.Sections.map(sec=> sec.split(' - ')[0]);
     this.closeDate = new Date();
     this.closeDate = this.datePipe.transform(this.closeDate, 'MM/dd/yyyy');
   }
+
 }

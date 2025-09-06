@@ -18,8 +18,8 @@ export class EditAuditComponent {
 @ViewChild('calendar2') calendar2!: Calendar;
 @ViewChild('calendar3') calendar3!: Calendar;
 documentDetailsList: any[] = [];
-  auditableDocTypes: any[]=[];
-  detailDocType: any;
+auditableDocTypes: any[]=[];
+detailDocType: any;
 
   constructor(private apiService: ApiService, private router:Router, private datePipe:DatePipe){}
 
@@ -29,19 +29,18 @@ documentDetailsList: any[] = [];
       this.documentDetailsList = res;
     })
 
-      this.apiService.getAuditableDocTypes().subscribe((res)=>{
+    this.apiService.getAuditableDocTypes().subscribe((res)=>{
       if(res[0] !== "ENTIRE DOCUMENT"){
          this.auditableDocTypes = res;
       }       
     })
-
   }
 
   loadAuditData() {
     this.apiService.viewAudit().subscribe((data) => {
       this.auditData = data;
       console.log(this.auditData);
-      this.auditData.audit.auditDate = this.datePipe.transform(this.auditData.audit.auditDate, 'MM/dd/yyyy');    
+      this.auditData.audit.auditDate = this.datePipe.transform(this.auditData.audit.auditDate, 'MM/dd/yyyy');
       this.auditData.audit.revisionDate = this.datePipe.transform(this.auditData.audit.revisionDate, 'MM/dd/yyyy');
       this.auditData.audit.followUpDate = this.datePipe.transform(this.auditData.audit.followUpDate, 'MM/dd/yyyy');
       this.followUpCompleteInd = this.auditData?.audit.followUpCompleteInd
@@ -65,7 +64,7 @@ documentDetailsList: any[] = [];
     else if(this.followUpCompleteInd === 'No' || this.followUpCompleteInd === 'NO'){
       this.followUpCompleteInd = 'N'
     }
-
+    
     let payload ={
       "audit": {
         "documentNbr": this.auditData.audit.documentNbr,
@@ -87,7 +86,7 @@ documentDetailsList: any[] = [];
     })
   }
 
-    formatDate1(date: Date) {
+  formatDate1(date: Date) {
     this.auditData.audit.auditDate = this.datePipe.transform(date, 'MM/dd/yyyy');
   }
 
@@ -100,7 +99,7 @@ documentDetailsList: any[] = [];
   }
 
   deleteAud(){
-     let confirm = window.confirm('Are you sure you want to delete this Audit');
+    let confirm = window.confirm('Are you sure you want to delete this Audit');
    if(confirm){
     const payload = {
       "audit": {
@@ -120,5 +119,4 @@ documentDetailsList: any[] = [];
     let val = documentDetail.match(/\((.*?)\)/)[1];
     this.detailDocType = val;
   }
-
 }

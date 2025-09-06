@@ -8,8 +8,8 @@
     id="previousUrl"
   />
 
-   <div *ngIf="existRouteSaved || routeSaved" class="savedDoc">SUCCESS: Successfully saved Route.</div>
-
+  <div *ngIf="existRouteSaved || routeSaved" class="savedDoc">SUCCESS: Successfully saved Route.</div>
+  
   <a
     *ngIf="searchType === 'search'"
     style="font-weight: bolder"
@@ -35,6 +35,7 @@
   <div style="float: left">
     <table cellspacing="0" cellpadding="0" border="0">
       <tbody>
+        <th></th>
         <tr>
           <td>
             <table
@@ -44,6 +45,7 @@
               border="0"
             >
               <tbody>
+                <th></th>
                 <tr>
                   <td class="eds-tabtopleftcorner"></td>
                   <td class="eds-tabtopmiddle" align="center">
@@ -68,6 +70,7 @@
               class="eds-tabtitle"
             >
               <tbody>
+                <th></th>
                 <tr>
                   <td>
                     <form
@@ -77,6 +80,7 @@
                     >
                       <table width="100%">
                         <tbody>
+                          <th></th>
                           <tr style="height: 1px">
                             <td width="200"></td>
                             <td width="250"></td>
@@ -130,7 +134,7 @@
                             <td align="right">Route Date *&nbsp; &nbsp;</td>
                             <td align="left">
                               <span class="viewFieldText">{{
-                                viewRoute?.route.routeDate | date : "MM/dd/yyyy"
+                                viewRoute?.route.routeDate | date: "MM/dd/yyyy"
                               }}</span>
                             </td>
                           </tr>
@@ -148,7 +152,7 @@
                             <td align="right">Close Date&nbsp; &nbsp;</td>
                             <td align="left">
                               <span class="viewFieldText">{{
-                                viewRoute?.route.closedate | date : "MM/dd/yyyy"
+                                viewRoute?.route.closedate | date: "MM/dd/yyyy"
                               }}</span>
                             </td>
                           </tr>
@@ -169,7 +173,7 @@
                                 name="submitType"
                                 value="edit"
                               />
-                              <span style="float: right">
+                              <span *ngIf="this.apiService.role != 'VDT_ROLE_READONLY'" style="float: right" >
                                 <input
                                   type="button"
                                   value="Edit"
@@ -194,10 +198,12 @@
   <div style="float: right; margin-left: 5px">
     <table width="98%">
       <tbody>
+        <th></th>
         <tr>
           <td width="40%" valign="top">
             <table cellspacing="0" cellpadding="0" border="0">
               <tbody>
+                <th></th>
                 <tr>
                   <td>
                     <table
@@ -207,6 +213,7 @@
                       border="0"
                     >
                       <tbody>
+                        <th></th>
                         <tr>
                           <td class="eds-tabtopleftcorner"></td>
                           <td class="eds-tabtopmiddle" align="center">
@@ -230,7 +237,8 @@
                       border="0"
                       class="eds-tabtitle"
                     >
-                      <tbody>
+                    <tbody>
+                      <th></th>
                         <tr>
                           <td>
                             <table class="inline-table" id="eso">
@@ -291,6 +299,7 @@
               width="100%"
             >
               <tbody>
+                <th></th>
                 <tr>
                   <td>
                     <table
@@ -301,6 +310,7 @@
                       width="100%"
                     >
                       <tbody>
+                        <th></th>
                         <tr>
                           <td class="eds-tabtopleftcorner"></td>
                           <td class="eds-tabtopmiddle" align="center">
@@ -325,6 +335,7 @@
                       class="eds-tabtitle"
                     >
                       <tbody>
+                        <th></th>
                         <tr>
                           <td>
                             <table class="inline-table" id="eso" width="100%">
@@ -371,6 +382,7 @@
     <div style="float: left">
       <table cellspacing="0" cellpadding="0" border="0">
         <tbody>
+          <th></th>
           <tr>
             <td>
               <table
@@ -380,6 +392,7 @@
                 border="0"
               >
                 <tbody>
+                  <th></th>
                   <tr>
                     <td class="eds-tabtopleftcorner"></td>
                     <td class="eds-tabtopmiddle" align="center">
@@ -404,6 +417,7 @@
                 class="eds-tabtitle"
               >
                 <tbody>
+                  <th></th>
                   <tr>
                     <td>
                       <form
@@ -413,6 +427,7 @@
                       >
                         <table width="100%">
                           <tbody>
+                            <th></th>
                             <tr style="height: 1px">
                               <td width="200"></td>
                               <td width="250"></td>
@@ -437,7 +452,7 @@
                                   name="route.detailRefNbr"
                                   class=""
                                   value=""
-                                  [(ngModel)]="viewRoute?.route.detailRefNbr"
+                                  [(ngModel)]="viewRoute.route.detailRefNbr"
                                   readonly="readonly"
                                   size="45"
                                 />
@@ -457,7 +472,7 @@
                                   name="route.section"
                                   class=""
                                   [(ngModel)]="
-                                    viewRoute?.route.sectionForDisplay
+                                    viewRoute.route.sectionForDisplay
                                   "
                                   size="45"
                                   readonly="readonly"
@@ -472,7 +487,7 @@
                                   type="text"
                                   name="route.routeType"
                                   class=""
-                                  [(ngModel)]="viewRoute?.route.routeType"
+                                  [(ngModel)]="viewRoute.route.routeType"
                                   size="45"
                                   readonly="readonly"
                                 />
@@ -504,7 +519,7 @@
                                   name="route.disposition"
                                   class=""
                                   id="dispositionId"
-                                  [(ngModel)]="viewRoute?.route.disposition"
+                                  [(ngModel)]="viewRoute.route.disposition"
                                   size="45"
                                   maxlength="20"
                                   autocomplete="off"
@@ -515,7 +530,7 @@
                                   "
                                 />
                                 <div
-                                  *ngIf="dispositionValues.length > 0"
+                                *ngIf="dispositionValues.length > 0"
                                   style="
                                     min-width: 256px;
                                     background: lightgray;
@@ -525,6 +540,7 @@
                                   <div
                                     *ngFor="let val of dispositionValues"
                                     (click)="selectValue(val)"
+                                    onkeydown=""
                                   >
                                     <span style="cursor: pointer">{{
                                       val
@@ -549,7 +565,7 @@
                                   class=""
                                   id="closeDateId"
                                   [(ngModel)]="
-                                    viewRoute?.route.closedate
+                                    viewRoute.route.closedate
                                   "
                                   size="41"
                                   autocomplete="off"
@@ -566,11 +582,14 @@
                                         !calendar1.overlayVisible;
                                       calendar1.inputfieldViewChild?.nativeElement.click()
                                     "
+                                    onkeydown=""
+                                    alt=""
+                                    onfocus=""
                                 /></span>
                                 <p-calendar
                                   name="calendarDate"
                                   #calendar1
-                                  [(ngModel)]="viewRoute?.route.closedate"
+                                  [(ngModel)]="viewRoute.route.closedate"
                                   [showIcon]="false"
                                   [showOnFocus]="false"
                                   class="hidden-calendar"
@@ -590,7 +609,7 @@
                                   rows="4"
                                   cols="28"
                                   name="route.remark"
-                                  [(ngModel)]="viewRoute?.route.remark"
+                                  [(ngModel)]="viewRoute.route.remark"
                                   class=""
                                 ></textarea>
                               </td>
@@ -615,7 +634,7 @@
                                     [value]="item"
                                   >
                                     {{ item }}
-                                  </option>
+                                  </option>                                                    
                                 </select>
 
                                 <br />
@@ -648,7 +667,7 @@
                                 <input
                                   type="button"
                                   value="Remove"
-                                  (click)="removeecoVal()"
+                                  (click)="removeecoVal()" 
                                 />
                                 <div
                                   style="
@@ -763,6 +782,7 @@
                                     value="Save"
                                     (click)="save()"
                                   />
+                                  
                                 </span>
                               </td>
                             </tr>

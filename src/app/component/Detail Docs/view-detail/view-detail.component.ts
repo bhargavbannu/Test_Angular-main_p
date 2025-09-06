@@ -20,20 +20,11 @@ export class ViewDetailComponent implements OnInit {
   loading: boolean = false;
   routeDeleted: any;
   respectiveColor: boolean = false;
-  constructor(private apiService: ApiService, private route: ActivatedRoute, private http:HttpClient, private router:Router) {}
-detaislID:any;
+  constructor(public apiService: ApiService, private route: ActivatedRoute, private http:HttpClient, private router:Router) {}
+
+  detaislID:any;
   ngOnInit() {
-    this.loading = true;
-    // this.detaislID =  this.apiService.detailID;
-    // console.log(this.detaislID, this.apiService.detailID);
-    
-    // this.detaislID.map((x:any)=>{
-    //   if(x == this.docDetails?.detail.popRefNbr){
-    //     this.respectiveColor = true;
-    //     console.log(this.respectiveColor);
-        
-    //   }
-    // });
+    this.loading = true
     this.loadDetails();
     this.route.params.subscribe((params) => {
       this.detailSaved = params['detailSaved'];
@@ -55,8 +46,9 @@ detaislID:any;
   loadDetails() {
     this.apiService.viewDetail().subscribe((data) => {
       this.docDetails = data;
-      this.loading = false;
+      this.loading = false
       this.apiService.section = data.document.sections
+      console.log(data.document.sections, 'sections');
     });
   }
 
@@ -65,7 +57,6 @@ detaislID:any;
     if(documentNumber !== null && documentNumber.trim()!=='' ){
       const payload ={
         "popno":this.apiService.popno,
-        // "popno":205553541,
         "oldDocumentNbr":this.apiService.viewDocId,
         "newDocumentNbr":documentNumber
       }

@@ -43,7 +43,7 @@ export class ViewRouteChildComponent implements OnInit {
   routeSaved: any;
 
   constructor(
-    private apiService: ApiService,
+    public apiService: ApiService,
     private router: Router,
     private datePipe: DatePipe,
     private route: ActivatedRoute
@@ -52,7 +52,7 @@ export class ViewRouteChildComponent implements OnInit {
   ngOnInit() {
     this.searchType = this.apiService.searchType;
     this.test();
-    this.ecoNum
+      this.ecoNum
       .pipe(
         debounceTime(1000),
         distinctUntilChanged(),
@@ -66,17 +66,17 @@ export class ViewRouteChildComponent implements OnInit {
       });
 
     this.esoNum
-      .pipe(
+      .pipe(        
+        debounceTime(1000), 
+        distinctUntilChanged(),
         switchMap(() => {
-          debounceTime(1000), distinctUntilChanged();
           return this.apiService.esoNumbersApiData(this.typedEsoNumber);
         })
       )
-      .subscribe((res) => {
-      
+      .subscribe((res) => {       
 
         this.esoNumberRess = res;
-        this.esoNumArray = res;
+        this.esoNumArray = res; 
         this.dropDownValues = res;
       });
 
@@ -93,7 +93,7 @@ export class ViewRouteChildComponent implements OnInit {
         this.viewRoute = data.routeForm;
         this.routeEsos = data.routeEsos;
         this.routeEcos = data.routeEcos;
-        // this.selectedEsoNumber = this.viewRoute.route.esos;
+        // this.selectedEsoNumber = this.viewRoute.route.esos;Add commentMore actions
         // this.selectedEsoNumberArr = this.viewRoute.route.esos;
         //this.selectedEcoNumber = this.viewRoute.route.ecos;
         //   this.selectedEcoNumberArr = this.viewRoute.route.ecos;
@@ -140,8 +140,8 @@ export class ViewRouteChildComponent implements OnInit {
     this.esoNumberRess = [];
   }
 
-addEsoNum() {
-  this.apiService.esoActiveCheck(this.typedEsoNumber).subscribe((res)=>{
+  addEsoNum() {
+    this.apiService.esoActiveCheck(this.typedEsoNumber).subscribe((res)=>{
     if(res === "Not an active ESO"){
      alert('Not an active ESO.');
     }else {
@@ -152,14 +152,11 @@ addEsoNum() {
           this.selectedEsoNumber.push(this.typedEsoNumber);
           this.typedEsoNumber = '';
         }
-    }
-   })
- 
- 
-}
+      }
+    })
+  }
+
   removeEso() {
-    // this.viewRoute.route.esos = [];
-    // this.typedEsoNumber = '';
     if (this.selectedEsoNumberArr !== undefined) {
       this.selectedEsoNumber = this.selectedEsoNumber.filter(
         (val: any) => !this.selectedEsoNumberArr.includes(val)
@@ -168,10 +165,6 @@ addEsoNum() {
   }
 
   addecoVal() {
-    // if (this.ecoNumber && !this.viewRoute.route.ecos.includes(this.ecoNumber)) {
-    //   this.viewRoute.route.ecos.push(this.ecoNumber);
-    //   this.ecoNumber = '';
-    // }
     if (this.ecoNumber && !this.selectedEcoNumber.includes(this.ecoNumber)) {
       this.selectedEcoNumber.push(this.ecoNumber);
       this.ecoNumber = '';
@@ -179,7 +172,6 @@ addEsoNum() {
   }
 
   removeecoVal() {
-    // this.viewRoute.route.ecos = [];
     if (this.selectedEcoNumberArr !== undefined) {
       this.selectedEcoNumber = this.selectedEcoNumber.filter(
         (val: any) => !this.selectedEcoNumberArr.includes(val)
@@ -194,7 +186,6 @@ addEsoNum() {
     );
 
     this.edit = true;
-
     const pay1 = {
       route: {
         routeId: this.viewRoute.route.routeId,
@@ -215,13 +206,13 @@ addEsoNum() {
     this.apiService
       .saveExistingRouteView(this.viewRoute.route.routeId, pay1)
       .subscribe((res) => {
-         this.test();
-        this.existRouteSaved = true;  
+        this.test();
+        this.existRouteSaved = true;
       });
     // this.test();
-  }
+   }
 
-  onDispositionChange(disposition: any) {
+   onDispositionChange(disposition: any) {
     if (disposition.trim() !== '') {
       this.apiService.disposition(disposition).subscribe((res) => {
         this.dispositionValues = res;
@@ -262,7 +253,7 @@ addEsoNum() {
         this.router.navigate(['/viewDetail', { routeDeleted: true }]);
       }
     });
-  }
+  }  
   }
 
   formatDate1(date: Date) {

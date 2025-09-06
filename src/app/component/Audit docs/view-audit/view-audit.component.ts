@@ -13,7 +13,7 @@ export class ViewAuditComponent implements OnInit {
   searchType: any;
   detailDocType: any;
 
-  constructor(private apiService: ApiService, private route:ActivatedRoute) {}
+  constructor(public apiService: ApiService, private route:ActivatedRoute) {}
 
   ngOnInit() {
     this.viewAudit();

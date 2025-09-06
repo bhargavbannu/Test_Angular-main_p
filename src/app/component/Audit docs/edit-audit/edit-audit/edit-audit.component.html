@@ -6,6 +6,7 @@
 
   <table cellspacing="0" cellpadding="0" border="0">
     <tbody>
+      <th></th>
       <tr>
         <td>
           <table
@@ -15,6 +16,7 @@
             border="0"
           >
             <tbody>
+              <th></th>
               <tr>
                 <td class="eds-tabtopleftcorner"></td>
                 <td class="eds-tabtopmiddle" align="center">
@@ -39,11 +41,13 @@
             class="eds-tabtitle"
           >
             <tbody>
+              <th></th>
               <tr>
                 <td>
                   <form name="AuditForm" id="auditFormId">
                     <table width="100%">
                       <tbody>
+                        <th></th>
                         <tr style="height: 1px">
                           <td width="200"></td>
                           <td width="250"></td>
@@ -55,7 +59,7 @@
                             <select
                               name="audit.dodAuditCategory"
                               class=""
-                              [(ngModel)]="auditData?.audit.dodAuditCategory"
+                              [(ngModel)]="auditData.audit.dodAuditCategory"
                             >
                               <option value="A">A</option>
 
@@ -78,7 +82,7 @@
                               value=""
                               size="41"
                               autocomplete="off"
-                              [(ngModel)]="auditData?.audit.auditDate"
+                              [(ngModel)]="auditData.audit.auditDate"
                             />
 
                             <span
@@ -92,16 +96,20 @@
                                     !calendar1.overlayVisible;
                                   calendar1.inputfieldViewChild?.nativeElement.click()
                                 "
+                                alt = ""
+                                onkeydown=""
+                                onfocus=""
                             /></span>
                             <p-calendar
                               name="calendarDate"
                               #calendar1
                               [showIcon]="false"
-                              [(ngModel)]="auditData?.audit.auditDate"
+                              [(ngModel)]="auditData.audit.auditDate"
                               [showOnFocus]="false"
                               class="hidden-calendar"
                               (onSelect)="formatDate1($event)"
                             ></p-calendar>
+
                           </td>
                         </tr>
 
@@ -111,11 +119,11 @@
                             <select
                               name="audit.popno"
                               class=""
-                              [(ngModel)]="auditData?.audit.documentDetail"
+                              [(ngModel)]="auditData.audit.documentDetail"
                               (ngModelChange)="docDetailChange(auditData?.audit.documentDetail)"
                             >
-                            <option value=""></option>
-                              <option *ngFor="let doc of documentDetailsList"  
+                              <option value=""></option>
+                              <option *ngFor="let doc of documentDetailsList"
                               value="{{ doc?.label}}">
                                {{ doc?.label }}
                               </option>
@@ -176,7 +184,7 @@
                               value=""
                               size="45"
                               maxlength="10"
-                              [(ngModel)]="auditData?.audit.revisionNbr"
+                              [(ngModel)]="auditData.audit.revisionNbr"
                             />
                           </td>
                         </tr>
@@ -193,7 +201,7 @@
                               maxlength="10"
                               autocomplete="off"
                               [(ngModel)]="
-                                auditData?.audit.revisionDate"
+                                auditData.audit.revisionDate"
                             />
 
                             <span
@@ -207,20 +215,24 @@
                                     !calendar2.overlayVisible;
                                   calendar2.inputfieldViewChild?.nativeElement.click()
                                 "
+                                alt = ""
+                                onkeydown=""
+                                onfocus=""
                             /></span>
                             <p-calendar
                               name="calendarDate"
                               #calendar2
                               [showIcon]="false"
-                              [(ngModel)]="auditData?.audit.revisionDate"
+                              [(ngModel)]="auditData.audit.revisionDate"
                               [showOnFocus]="false"
                               class="hidden-calendar"
                               (onSelect)="formatDate2($event)"
                             ></p-calendar>
+
                           </td>
                         </tr>
 
-                        <tr class="eds-pagerstyle-alt">
+                        <tr class="eds-pagerstyle-alt" >
                           <td align="right">Follow Up Date&nbsp; &nbsp;</td>
                           <td align="left">
                             <input
@@ -232,7 +244,7 @@
                               maxlength="10"
                               autocomplete="off"
                               [(ngModel)]="
-                                auditData?.audit.followUpDate
+                                auditData.audit.followUpDate
                               "
                             />
 
@@ -247,16 +259,20 @@
                                     !calendar3.overlayVisible;
                                   calendar3.inputfieldViewChild?.nativeElement.click()
                                 "
+                                alt = ""
+                                onkeydown=""
+                                onfocus=""
                             /></span>
                             <p-calendar
                               name="calendarDate"
                               #calendar3
                               [showIcon]="false"
-                              [(ngModel)]="auditData?.audit.followUpDate"
+                              [(ngModel)]="auditData.audit.followUpDate"
                               [showOnFocus]="false"
                               class="hidden-calendar"
                               (onSelect)="formatDate3($event)"
                             ></p-calendar>
+
                           </td>
                         </tr>
 
@@ -270,11 +286,11 @@
                               class=""
                               [(ngModel)]="followUpCompleteInd"
                             >
-                              <option value="Y">YES</option>
-                              <option value="N">NO</option>
+                              <option value="Y">Yes</option>
+                              <option value="N">No</option>
                             </select>
                           </td>
-                        </tr>
+                        </tr> 
 
                         <tr class="eds-pagerstyle-alt">
                           <td align="right">Audit Notes&nbsp; &nbsp;</td>
@@ -286,7 +302,7 @@
                               value=""
                               size="45"
                               maxlength="200"
-                              [(ngModel)]="auditData?.audit.auditNotes"
+                              [(ngModel)]="auditData.audit.auditNotes"
                             />
                           </td>
                         </tr>
@@ -299,7 +315,7 @@
                             <select
                               name="audit.auditStatus"
                               class=""
-                              [(ngModel)]="auditData?.audit.auditStatus"
+                              [(ngModel)]="auditData.audit.auditStatus"
                             >
                               <option value=""></option>
 

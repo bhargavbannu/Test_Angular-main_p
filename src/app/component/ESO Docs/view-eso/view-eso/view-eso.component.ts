@@ -16,7 +16,7 @@ export class ViewEsoComponent {
   viewStatus: any;
   viewDetail: any;
 
-  constructor(private apiService: ApiService, private route:ActivatedRoute, private router:Router){}
+  constructor(public apiService: ApiService, private route:ActivatedRoute, private router:Router){}
 
   ngOnInit() {
     this.loadEso();

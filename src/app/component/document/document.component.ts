@@ -95,6 +95,7 @@ export class DocumentComponent implements OnInit {
   formattedDate: any;
   editDoc: any;
   documentsDetails: any;
+  ITAR: any;
 
   @ViewChild('calendar1') calendar1!: Calendar;
   @ViewChild('calendar2') calendar2!: Calendar;
@@ -105,7 +106,7 @@ export class DocumentComponent implements OnInit {
   showSubErr: boolean = false;
   addedValDoc12: any;
   addedValEco: any;
-  selectedEsoNumberArr: any;
+  selectedEsoNumberArr: any;  
   selEccnNumber: any;
   selEccnLocation: any;
   docId: any;
@@ -120,39 +121,7 @@ export class DocumentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.sub
-    //   .pipe(
-    //     debounceTime(1000),
-    //     distinctUntilChanged(),
-    //     switchMap(() => {
-    //       return this.apiService.eccnNumber(this.EccnNumber);
-    //     })
-    //   )
-    //   .subscribe((res) => {
-    //     console.log(res);
-    //   });
-
-    //   this.loc.pipe(
-    //     debounceTime(100),
-    //     distinctUntilChanged(),
-    //     switchMap(()=> { return this.apiService.eccnLocation(this.eccnLocationValue)})
-    //   ).subscribe((res)=>{
-    //     console.log(res);
-    //     this.abhinayRes=res
-
-    //   })
-
-    // this.ref.pipe(
-    //   debounceTime(1000),
-    //   distinctUntilChanged(),
-    //   switchMap(()=>{
-    //     return this.apiService.audDocType(this.addDocType)
-    //   })
-
-    // ).subscribe((res)=>{
-    //   console.log(res);
-
-    // })
+ 
     this.nextRoute = 'ETDT';
     this.category = '--        ';
     const date = new Date();
@@ -223,7 +192,7 @@ export class DocumentComponent implements OnInit {
           this.auditableResponse = [];
         }
       });
-
+  
     this.ecoNum
       .pipe(
         debounceTime(1000),
@@ -239,12 +208,13 @@ export class DocumentComponent implements OnInit {
       )
       .subscribe((res) => {
         this.ecoRes = res;
-      });
+      });    
 
     this.esoNum
-      .pipe(
-        switchMap(() => {
-          debounceTime(1000), distinctUntilChanged();
+      .pipe(        
+          debounceTime(1000),
+          distinctUntilChanged(),
+          switchMap(() => {
           return this.apiService.esoNumbersApiData(this.typedEsoNumber);
         })
       )
@@ -282,7 +252,7 @@ export class DocumentComponent implements OnInit {
     if (this.editDoc) {
       this.apiService.viewDocuments().subscribe((data) => {
         this.documentsDetails = data;
-        this.docId = this.documentsDetails.document?.documentNbr;
+         this.docId = this.documentsDetails.document?.documentNbr;
         this.creationDate = this.datePipe.transform(
           this.documentsDetails.document?.creationDate,
           'MM/dd/yyyy'
@@ -362,6 +332,7 @@ export class DocumentComponent implements OnInit {
     }
   }
 
+
   auditNext() {
     this.auditableSubject.next(this.typedAuditable);
   }
@@ -397,9 +368,10 @@ export class DocumentComponent implements OnInit {
       );
     }
 
-    let newSection = this.docSection.map((sec: any) => sec.split(' - ')[0]);
+    let newSection = this.docSection?.map((sec: any) => sec.split(' - ')[0]);
+
     let payload;
-    if (!this.editDoc) {
+  if (!this.editDoc) {
       payload = {
         document: {
           vendor: {
@@ -431,11 +403,11 @@ export class DocumentComponent implements OnInit {
         submitType: 'ADD',
       };
     } else {
-      this.creationDate = this.datePipe.transform(
+      this.creationDate = this.datePipe.transform(    
         this.creationDate,
         'MM/dd/yyyy HH:mm:ss'
       );
-      payload = {
+    payload = {
         document: {
           documentNbr: this.docId,
           vendor: {
@@ -465,11 +437,13 @@ export class DocumentComponent implements OnInit {
           ecos: this.addedVal,
         },
         submitType: 'ADD',
-      };
-    }
+    };
+  }
     this.apiService.addDocument(payload).subscribe((res: any) => {
       if (res) {
         this.apiService.viewDocId = res.returnObject.documentNbr;
+        this.apiService.vendorName = this.vendorName;
+        this.apiService.subject = this.documentSubject;
         this.router.navigate(['/viewStatus', { docAdded: true }]);
       }
     });
@@ -552,7 +526,7 @@ export class DocumentComponent implements OnInit {
   }
 
   addEsoNum() {
-     if(this.esoNumArray.includes(this.typedEsoNumber)){
+    if(this.esoNumArray.includes(this.typedEsoNumber)){
     if (
       this.typedEsoNumber &&
       !this.selectedEsoNumber.includes(this.typedEsoNumber)
@@ -574,7 +548,7 @@ export class DocumentComponent implements OnInit {
     }
   }
 
-
+  
   addLocation() {
     if (this.typedLocation && !this.eccnLocation.includes(this.typedLocation)) {
       this.eccnLocation[0] = this.typedLocation;
@@ -595,7 +569,7 @@ export class DocumentComponent implements OnInit {
       this.addedVal.push(this.ecoNumber);
       this.ecoNumber = '';
     }
-  }
+  }  
 
   addDocType() {
     if (
@@ -629,22 +603,24 @@ export class DocumentComponent implements OnInit {
       );
     }
   }
-
+    
   removeEso() {
     if (this.selectedEsoNumberArr !== undefined) {
       this.selectedEsoNumber = this.selectedEsoNumber.filter(
         (val) => !this.selectedEsoNumberArr.includes(val)
       );
-    }
+    } 
   }
-
+    
+    
   removeDoc() {
-    if (this.addedValDoc12 !== undefined) {
+    if( this.addedValDoc12 !== undefined){
       this.addedValDoc = this.addedValDoc.filter(
-        (val) => !this.addedValDoc12.includes(val)
+        val => !this.addedValDoc12.includes(val)
       );
     }
   }
+
   onFocusOut() {
     this.filteredLocations = [];
     this.filteredNumbers = [];
@@ -663,9 +639,8 @@ export class DocumentComponent implements OnInit {
     }
   }
 
-  setVal(val: any) {
+  setVal(val: any){
     this.vendorName = val;
-
       const payload = {
         vendor: {
           vendorNm: this.vendorName,
@@ -680,7 +655,6 @@ export class DocumentComponent implements OnInit {
           this.vendorRemark = res.remarks;
         }
       });
-    
     this.vendorNamesList = [];
   }
 
@@ -689,7 +663,7 @@ export class DocumentComponent implements OnInit {
       if (res) {
         this.router.navigate(['/search', { docDeleted: true }]);
       }
-    });
+    })
   }
 
   formatDate(date: Date) {

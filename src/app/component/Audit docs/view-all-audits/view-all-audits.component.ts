@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/api.service';
 export class ViewAllAuditsComponent {
   auditDetails: any = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(public apiService: ApiService) {}
 
   ngOnInit() {
     this.viewAllAudits();
@@ -24,6 +24,7 @@ export class ViewAllAuditsComponent {
   viewAudit(id: any) {
     this.apiService.viewAuditId = id;
   }
+
   editAudit(id:any){
    this.apiService.viewAuditId = id;
   }
